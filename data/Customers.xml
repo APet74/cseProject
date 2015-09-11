@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<customers>
+<government>
+  <customerCode>C003</customerCode>
+  <primaryContact>
+    <personCode>306a</personCode>
+    <firstName>Brock</firstName>
+    <lastName>Sampson</lastName>
+    <address>
+      <street>123 N 1st Street</street>
+      <city>Omaha</city>
+      <state>NE</state>
+      <zip>68116</zip>
+      <country>USA</country>
+    </address>
+    <phoneNumber>402-241-6024</phoneNumber>
+    <emails>
+      <email>brock_f_sampson@gmail.com</email>
+      <email>bsampson@venture.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>United States Postal Service</customerName>
+  <airlineMiles>0</airlineMiles>
+</government>
+<corporate>
+  <customerCode>C004</customerCode>
+  <primaryContact>
+    <personCode>321f</personCode>
+    <firstName>Bud</firstName>
+    <lastName>Fox</lastName>
+    <address>
+      <street>321 Bronx Street</street>
+      <city>New York</city>
+      <state>NY</state>
+      <zip>10004</zip>
+      <country>USA</country>
+    </address>
+    <phoneNumber></phoneNumber>
+    <emails>
+      <email>bfox@gmail.com</email>
+      <email>csheen@crazy.net</email>
+    </emails>
+  </primaryContact>
+  <customerName>Mr Steve Odelay</customerName>
+  <airlineMiles>0</airlineMiles>
+</corporate>
+<general>
+  <customerCode>C005</customerCode>
+  <primaryContact>
+    <personCode>bbchar</personCode>
+    <firstName>Kaylee</firstName>
+    <lastName>Ehrmantraut</lastName>
+    <address>
+      <street>800 West 7th Street</street>
+      <city>Albuquerque</city>
+      <state>NM</state>
+      <zip>87105</zip>
+      <country>USA</country>
+    </address>
+    <phoneNumber>587-417-1032</phoneNumber>
+    <emails/>
+  </primaryContact>
+  <customerName>Vandelay Industries</customerName>
+  <airlineMiles>0</airlineMiles>
+</general>
+<government>
+  <customerCode>C006</customerCode>
+  <primaryContact>
+    <personCode>321dr</personCode>
+    <firstName>C.</firstName>
+    <lastName>Baker</lastName>
+    <address>
+      <street>Avery Hall</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68503</zip>
+      <country>USA</country>
+    </address>
+    <phoneNumber>122-141-1032</phoneNumber>
+    <emails/>
+  </primaryContact>
+  <customerName>University of Nebaska-Lincoln</customerName>
+  <airlineMiles>0</airlineMiles>
+</government>
+<corporate>
+  <customerCode>C007</customerCode>
+  <primaryContact>
+    <personCode>6doc</personCode>
+    <firstName>Richard</firstName>
+    <lastName>Hurndall</lastName>
+    <address>
+      <street>Campos El290</street>
+      <city>Mexico City</city>
+      <state>FD</state>
+      <zip></zip>
+      <country>Mexico</country>
+    </address>
+    <phoneNumber>124-366-3210</phoneNumber>
+    <emails>
+      <email>rhurndall@cse.unl.edu</email>
+      <email>richard@unl.edu</email>
+    </emails>
+  </primaryContact>
+  <customerName>Venture Club</customerName>
+  <airlineMiles>0</airlineMiles>
+</corporate>
+<general>
+  <customerCode>C008</customerCode>
+  <primaryContact>
+    <personCode>ma12</personCode>
+    <firstName>Dale</firstName>
+    <lastName>Sveum</lastName>
+    <address>
+      <street>1060 West Addison Street</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60613</zip>
+      <country>USA</country>
+    </address>
+    <phoneNumber>541-354-3210</phoneNumber>
+    <emails>
+      <email>sveum@cubs.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>Mr Gregory Smith</customerName>
+  <airlineMiles>0</airlineMiles>
+</general>
+<general>
+  <customerCode>C002</customerCode>
+  <primaryContact>
+    <personCode>944c</personCode>
+    <firstName>Starlin</firstName>
+    <lastName>Castro</lastName>
+    <address>
+      <street>1060 West Addison Street</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60613</zip>
+      <country>USA</country>
+    </address>
+    <phoneNumber>142-241-6024</phoneNumber>
+    <emails>
+      <email>scastro@cubs.com</email>
+      <email>starlin_castro13@gmail.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>Stark Associates</customerName>
+  <airlineMiles>0</airlineMiles>
+</general>
+<corporate>
+  <customerCode>C001</customerCode>
+  <primaryContact>
+    <personCode>231</personCode>
+    <firstName>Tom</firstName>
+    <lastName>Baker</lastName>
+    <address>
+      <street>1 Blue Jays Way</street>
+      <city>Toronto</city>
+      <state>ON</state>
+      <zip>M5V 1J1</zip>
+      <country>Canada</country>
+    </address>
+    <phoneNumber>210-124-3210</phoneNumber>
+    <emails>
+      <email>famousdoc@who.com</email>
+      <email>tbaker@cse.unl.edu</email>
+      <email>mostfamous@whovian.com</email>
+      <email>thedoctor@bbc.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>Cinco Consultants</customerName>
+  <airlineMiles>0</airlineMiles>
+</corporate>
+</customers>

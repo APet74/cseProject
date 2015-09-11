@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<airports>
+<airport>
+  <airportCode>LAX</airportCode>
+  <airportName>Los Angeles International Airport</airportName>
+  <address>
+    <street>1 World Way</street>
+    <city>Los Angeles</city>
+    <state>CA</state>
+    <zip>90045</zip>
+    <country>USA</country>
+  </address>
+  <latitude>34.05</latitude>
+  <longitude>118.25</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>SJC</airportCode>
+  <airportName>San Jose International Airport</airportName>
+  <address>
+    <street>1701 Airport Blvd</street>
+    <city>San Jose</city>
+    <state>CA</state>
+    <zip>95110</zip>
+    <country>USA</country>
+  </address>
+  <latitude>37.333333333333336</latitude>
+  <longitude>121.88333333333334</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>LNK</airportCode>
+  <airportName>Lincoln Municipal</airportName>
+  <address>
+    <street>2400 W Adams St</street>
+    <city>Lincoln</city>
+    <state>NE</state>
+    <zip>68524</zip>
+    <country>USA</country>
+  </address>
+  <latitude>40.833333333333336</latitude>
+  <longitude>96.66666666666667</longitude>
+  <passengerFacilityFee>0.0</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>MSP</airportCode>
+  <airportName>Minneapolis Saint Paul International Airport</airportName>
+  <address>
+    <street>4300 Glumack Drive</street>
+    <city>St. Paul</city>
+    <state>MN</state>
+    <zip>55111</zip>
+    <country>USA</country>
+  </address>
+  <latitude>44.983333333333334</latitude>
+  <longitude>93.23333333333333</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>JFK</airportCode>
+  <airportName>John F. Kennedy International</airportName>
+  <address>
+    <street>JFK Expy &amp; S Cargo Rd</street>
+    <city>Jamaica</city>
+    <state>NY</state>
+    <zip>11430</zip>
+    <country>USA</country>
+  </address>
+  <latitude>40.78333333333333</latitude>
+  <longitude>73.96666666666667</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>MDW</airportCode>
+  <airportName>Chicago Midway International</airportName>
+  <address>
+    <street>5700 S Cicero Ave</street>
+    <city>Chicago</city>
+    <state>IL</state>
+    <zip>60638</zip>
+    <country>USA</country>
+  </address>
+  <latitude>41.833333333333336</latitude>
+  <longitude>87.61666666666666</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>ORD</airportCode>
+  <airportName>Chicago O&apos;Hare International</airportName>
+  <address>
+    <street>10000 W O&apos;Hare Ave</street>
+    <city>Chicago</city>
+    <state>IL</state>
+    <zip>60666</zip>
+    <country>IL</country>
+  </address>
+  <latitude>41.833333333333336</latitude>
+  <longitude>87.61666666666666</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>DEN</airportCode>
+  <airportName>Denver International Airport</airportName>
+  <address>
+    <street>8500 Pea Blvd</street>
+    <city>Denver</city>
+    <state>CO</state>
+    <zip>80249</zip>
+    <country>USA</country>
+  </address>
+  <latitude>39.75</latitude>
+  <longitude>105.0</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>ATL</airportCode>
+  <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+  <address>
+    <street>6000 N Terminal Pkwy</street>
+    <city>Atlanta</city>
+    <state>GA</state>
+    <zip>30320</zip>
+    <country>USA</country>
+  </address>
+  <latitude>33.75</latitude>
+  <longitude>84.38333333333334</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+<airport>
+  <airportCode>PHX</airportCode>
+  <airportName>Phoenix Sky Harbor International</airportName>
+  <address>
+    <street>3400 E Sky Harbor Blvd</street>
+    <city>Phoenix</city>
+    <state>AZ</state>
+    <zip>85034</zip>
+    <country>USA</country>
+  </address>
+  <latitude>33.483333333333334</latitude>
+  <longitude>112.06666666666666</longitude>
+  <passengerFacilityFee>4.5</passengerFacilityFee>
+</airport>
+</airports>

@@ -1,0 +1,143 @@
+{
+"airports": [
+  {
+    "airportCode": "LAX",
+    "airportName": "Los Angeles International Airport",
+    "address": {
+      "street": "1 World Way",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zip": "90045",
+      "country": "USA"
+    },
+    "latitude": 34.05,
+    "longitude": 118.25,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "SJC",
+    "airportName": "San Jose International Airport",
+    "address": {
+      "street": "1701 Airport Blvd",
+      "city": "San Jose",
+      "state": "CA",
+      "zip": "95110",
+      "country": "USA"
+    },
+    "latitude": 37.333333333333336,
+    "longitude": 121.88333333333334,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "LNK",
+    "airportName": "Lincoln Municipal",
+    "address": {
+      "street": "2400 W Adams St",
+      "city": "Lincoln",
+      "state": "NE",
+      "zip": "68524",
+      "country": "USA"
+    },
+    "latitude": 40.833333333333336,
+    "longitude": 96.66666666666667,
+    "passengerFacilityFee": 0.0
+  },
+  {
+    "airportCode": "MSP",
+    "airportName": "Minneapolis Saint Paul International Airport",
+    "address": {
+      "street": "4300 Glumack Drive",
+      "city": "St. Paul",
+      "state": "MN",
+      "zip": "55111",
+      "country": "USA"
+    },
+    "latitude": 44.983333333333334,
+    "longitude": 93.23333333333333,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "JFK",
+    "airportName": "John F. Kennedy International",
+    "address": {
+      "street": "JFK Expy \u0026 S Cargo Rd",
+      "city": "Jamaica",
+      "state": "NY",
+      "zip": "11430",
+      "country": "USA"
+    },
+    "latitude": 40.78333333333333,
+    "longitude": 73.96666666666667,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "MDW",
+    "airportName": "Chicago Midway International",
+    "address": {
+      "street": "5700 S Cicero Ave",
+      "city": "Chicago",
+      "state": "IL",
+      "zip": "60638",
+      "country": "USA"
+    },
+    "latitude": 41.833333333333336,
+    "longitude": 87.61666666666666,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "ORD",
+    "airportName": "Chicago O\u0027Hare International",
+    "address": {
+      "street": "10000 W O\u0027Hare Ave",
+      "city": "Chicago",
+      "state": "IL",
+      "zip": "60666",
+      "country": "IL"
+    },
+    "latitude": 41.833333333333336,
+    "longitude": 87.61666666666666,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "DEN",
+    "airportName": "Denver International Airport",
+    "address": {
+      "street": "8500 Pea Blvd",
+      "city": "Denver",
+      "state": "CO",
+      "zip": "80249",
+      "country": "USA"
+    },
+    "latitude": 39.75,
+    "longitude": 105.0,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "ATL",
+    "airportName": "Hartsfield Jackson Atlanta International Airport",
+    "address": {
+      "street": "6000 N Terminal Pkwy",
+      "city": "Atlanta",
+      "state": "GA",
+      "zip": "30320",
+      "country": "USA"
+    },
+    "latitude": 33.75,
+    "longitude": 84.38333333333334,
+    "passengerFacilityFee": 4.5
+  },
+  {
+    "airportCode": "PHX",
+    "airportName": "Phoenix Sky Harbor International",
+    "address": {
+      "street": "3400 E Sky Harbor Blvd",
+      "city": "Phoenix",
+      "state": "AZ",
+      "zip": "85034",
+      "country": "USA"
+    },
+    "latitude": 33.483333333333334,
+    "longitude": 112.06666666666666,
+    "passengerFacilityFee": 4.5
+  }
+]}

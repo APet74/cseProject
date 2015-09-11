@@ -1,0 +1,877 @@
+<?xml version="1.0"?>
+<products>
+<com.nationalair.SpecialAssistance>
+  <productCode>xer1</productCode>
+  <type>PrioritySeating</type>
+</com.nationalair.SpecialAssistance>
+<standard>
+  <productCode>1261</productCode>
+  <departureCity>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <latitude>41.833333333333336</latitude>
+    <longitude>87.61666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.483333333333334</latitude>
+    <longitude>112.06666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>54540000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>61560000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>N725</flightNo>
+  <flightClass>BC</flightClass>
+  <aircraftType>Airbus-A319</aircraftType>
+  <costPerMile>0.5</costPerMile>
+</standard>
+<offseason>
+  <productCode>1262</productCode>
+  <departureCity>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.483333333333334</latitude>
+    <longitude>112.06666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <latitude>41.833333333333336</latitude>
+    <longitude>87.61666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>73440000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>93360000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>N2000</flightNo>
+  <flightClass>BC</flightClass>
+  <aircraftType>Airbus-A320</aircraftType>
+  <costPerMile>0.5</costPerMile>
+  <seasonStartDate>
+    <iMillis>1441083600000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonStartDate>
+  <seasonEndDate>
+    <iMillis>1476248400000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonEndDate>
+  <rebate>0.15</rebate>
+</offseason>
+<insurance>
+  <productCode>ff23</productCode>
+  <name>NationalInsurance</name>
+  <ageClass>0-20</ageClass>
+  <costPerMile>0.07</costPerMile>
+</insurance>
+<com.nationalair.SpecialAssistance>
+  <productCode>xer2</productCode>
+  <type>WheelChair</type>
+</com.nationalair.SpecialAssistance>
+<offseason>
+  <productCode>1263</productCode>
+  <departureCity>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.483333333333334</latitude>
+    <longitude>112.06666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <latitude>41.833333333333336</latitude>
+    <longitude>87.61666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>47400000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>67320000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>N488</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>Airbus-A320</aircraftType>
+  <costPerMile>0.15</costPerMile>
+  <seasonStartDate>
+    <iMillis>1442293200000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonStartDate>
+  <seasonEndDate>
+    <iMillis>1482991200000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonEndDate>
+  <rebate>0.25</rebate>
+</offseason>
+<insurance>
+  <productCode>ff24</productCode>
+  <name>Progressive</name>
+  <ageClass>55-68</ageClass>
+  <costPerMile>0.09</costPerMile>
+</insurance>
+<com.nationalair.SpecialAssistance>
+  <productCode>xer4</productCode>
+  <type>BabyBassinet</type>
+</com.nationalair.SpecialAssistance>
+<insurance>
+  <productCode>ff25</productCode>
+  <name>Progressive</name>
+  <ageClass>69-102</ageClass>
+  <costPerMile>0.1</costPerMile>
+</insurance>
+<com.nationalair.AwardsTicket>
+  <productCode>1260</productCode>
+  <departureCity>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <latitude>41.833333333333336</latitude>
+    <longitude>87.61666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.483333333333334</latitude>
+    <longitude>112.06666666666666</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>54540000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>61560000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>N725</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>Airbus-A319</aircraftType>
+  <costPerMile>0.2</costPerMile>
+  <redeemptionFee>30.0</redeemptionFee>
+  <pointsPerMile>110.0</pointsPerMile>
+</com.nationalair.AwardsTicket>
+<insurance>
+  <productCode>fh23</productCode>
+  <name>NationalInsurance</name>
+  <ageClass>21-60</ageClass>
+  <costPerMile>0.085</costPerMile>
+</insurance>
+<offseason>
+  <productCode>1240</productCode>
+  <departureCity>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <latitude>40.833333333333336</latitude>
+    <longitude>96.66666666666667</longitude>
+    <passengerFacilityFee>0.0</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>43200000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>54480000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA4889</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+  <costPerMile>0.15</costPerMile>
+  <seasonStartDate>
+    <iMillis>1444194000000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonStartDate>
+  <seasonEndDate>
+    <iMillis>1454047200000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonEndDate>
+  <rebate>0.1</rebate>
+</offseason>
+<standard>
+  <productCode>1241</productCode>
+  <departureCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <latitude>40.833333333333336</latitude>
+    <longitude>96.66666666666667</longitude>
+    <passengerFacilityFee>0.0</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>98100000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>103320000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA4871</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+  <costPerMile>0.15</costPerMile>
+</standard>
+<offseason>
+  <productCode>1243</productCode>
+  <departureCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <latitude>40.833333333333336</latitude>
+    <longitude>96.66666666666667</longitude>
+    <passengerFacilityFee>0.0</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>98100000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>103320000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA4871</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+  <costPerMile>0.2</costPerMile>
+  <seasonStartDate>
+    <iMillis>1444194000000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonStartDate>
+  <seasonEndDate>
+    <iMillis>1454047200000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </seasonEndDate>
+  <rebate>0.2</rebate>
+</offseason>
+<checkedbaggage>
+  <productCode>90fc</productCode>
+  <ticket class="com.nationalair.AwardsTicket">
+    <productCode>1260</productCode>
+    <departureCity>
+      <airportCode>ORD</airportCode>
+      <airportName>Chicago O&apos;Hare International</airportName>
+      <address>
+        <street>10000 W O&apos;Hare Ave</street>
+        <city>Chicago</city>
+        <state>IL</state>
+        <zip>60666</zip>
+        <country>IL</country>
+      </address>
+      <latitude>41.833333333333336</latitude>
+      <longitude>87.61666666666666</longitude>
+      <passengerFacilityFee>4.5</passengerFacilityFee>
+    </departureCity>
+    <arrivalCity>
+      <airportCode>PHX</airportCode>
+      <airportName>Phoenix Sky Harbor International</airportName>
+      <address>
+        <street>3400 E Sky Harbor Blvd</street>
+        <city>Phoenix</city>
+        <state>AZ</state>
+        <zip>85034</zip>
+        <country>USA</country>
+      </address>
+      <latitude>33.483333333333334</latitude>
+      <longitude>112.06666666666666</longitude>
+      <passengerFacilityFee>4.5</passengerFacilityFee>
+    </arrivalCity>
+    <departureDateTime>
+      <iMillis>54540000</iMillis>
+      <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+        <org.joda.time.chrono.ISOChronology_-Stub>
+          <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+            <org.joda.time.DateTimeZone_-Stub>
+              <email>America/Chicago</email>
+            </org.joda.time.DateTimeZone_-Stub>
+          </org.joda.time.tz.CachedDateTimeZone>
+        </org.joda.time.chrono.ISOChronology_-Stub>
+      </iChronology>
+    </departureDateTime>
+    <arrivalDateTime>
+      <iMillis>61560000</iMillis>
+      <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+    </arrivalDateTime>
+    <flightNo>N725</flightNo>
+    <flightClass>EP</flightClass>
+    <aircraftType>Airbus-A319</aircraftType>
+    <costPerMile>0.2</costPerMile>
+    <redeemptionFee>30.0</redeemptionFee>
+    <pointsPerMile>110.0</pointsPerMile>
+  </ticket>
+  <fCost>25.0</fCost>
+  <nextCost>35.0</nextCost>
+</checkedbaggage>
+<checkedbaggage>
+  <productCode>90fb</productCode>
+  <ticket class="standard">
+    <productCode>1241</productCode>
+    <departureCity>
+      <airportCode>ATL</airportCode>
+      <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+      <address>
+        <street>6000 N Terminal Pkwy</street>
+        <city>Atlanta</city>
+        <state>GA</state>
+        <zip>30320</zip>
+        <country>USA</country>
+      </address>
+      <latitude>33.75</latitude>
+      <longitude>84.38333333333334</longitude>
+      <passengerFacilityFee>4.5</passengerFacilityFee>
+    </departureCity>
+    <arrivalCity>
+      <airportCode>LNK</airportCode>
+      <airportName>Lincoln Municipal</airportName>
+      <address>
+        <street>2400 W Adams St</street>
+        <city>Lincoln</city>
+        <state>NE</state>
+        <zip>68524</zip>
+        <country>USA</country>
+      </address>
+      <latitude>40.833333333333336</latitude>
+      <longitude>96.66666666666667</longitude>
+      <passengerFacilityFee>0.0</passengerFacilityFee>
+    </arrivalCity>
+    <departureDateTime>
+      <iMillis>98100000</iMillis>
+      <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+        <org.joda.time.chrono.ISOChronology_-Stub>
+          <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+            <org.joda.time.DateTimeZone_-Stub>
+              <email>America/Chicago</email>
+            </org.joda.time.DateTimeZone_-Stub>
+          </org.joda.time.tz.CachedDateTimeZone>
+        </org.joda.time.chrono.ISOChronology_-Stub>
+      </iChronology>
+    </departureDateTime>
+    <arrivalDateTime>
+      <iMillis>103320000</iMillis>
+      <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+    </arrivalDateTime>
+    <flightNo>NA4871</flightNo>
+    <flightClass>EC</flightClass>
+    <aircraftType>CRJ900</aircraftType>
+    <costPerMile>0.15</costPerMile>
+  </ticket>
+  <fCost>25.0</fCost>
+  <nextCost>35.0</nextCost>
+</checkedbaggage>
+<insurance>
+  <productCode>fg23</productCode>
+  <name>Progressive</name>
+  <ageClass>21-54</ageClass>
+  <costPerMile>0.08</costPerMile>
+</insurance>
+<checkedbaggage>
+  <productCode>90fa</productCode>
+  <ticket class="standard">
+    <productCode>1255</productCode>
+    <departureCity>
+      <airportCode>LAX</airportCode>
+      <airportName>Los Angeles International Airport</airportName>
+      <address>
+        <street>1 World Way</street>
+        <city>Los Angeles</city>
+        <state>CA</state>
+        <zip>90045</zip>
+        <country>USA</country>
+      </address>
+      <latitude>34.05</latitude>
+      <longitude>118.25</longitude>
+      <passengerFacilityFee>4.5</passengerFacilityFee>
+    </departureCity>
+    <arrivalCity>
+      <airportCode>ATL</airportCode>
+      <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+      <address>
+        <street>6000 N Terminal Pkwy</street>
+        <city>Atlanta</city>
+        <state>GA</state>
+        <zip>30320</zip>
+        <country>USA</country>
+      </address>
+      <latitude>33.75</latitude>
+      <longitude>84.38333333333334</longitude>
+      <passengerFacilityFee>4.5</passengerFacilityFee>
+    </arrivalCity>
+    <departureDateTime>
+      <iMillis>55800000</iMillis>
+      <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+        <org.joda.time.chrono.ISOChronology_-Stub>
+          <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+            <org.joda.time.DateTimeZone_-Stub>
+              <email>America/Chicago</email>
+            </org.joda.time.DateTimeZone_-Stub>
+          </org.joda.time.tz.CachedDateTimeZone>
+        </org.joda.time.chrono.ISOChronology_-Stub>
+      </iChronology>
+    </departureDateTime>
+    <arrivalDateTime>
+      <iMillis>78900000</iMillis>
+      <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+    </arrivalDateTime>
+    <flightNo>NA2222</flightNo>
+    <flightClass>BC</flightClass>
+    <aircraftType>Boeing757</aircraftType>
+    <costPerMile>0.5</costPerMile>
+  </ticket>
+  <fCost>25.0</fCost>
+  <nextCost>35.0</nextCost>
+</checkedbaggage>
+<standard>
+  <productCode>1238</productCode>
+  <departureCity>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <latitude>40.833333333333336</latitude>
+    <longitude>96.66666666666667</longitude>
+    <passengerFacilityFee>0.0</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>43200000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>54480000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA4889</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+  <costPerMile>0.15</costPerMile>
+</standard>
+<refreshment>
+  <productCode>31f4</productCode>
+  <name>Labbat-Beer-15oz</name>
+  <cost>4.5</cost>
+</refreshment>
+<standard>
+  <productCode>1258</productCode>
+  <departureCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <latitude>34.05</latitude>
+    <longitude>118.25</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>60600000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>67800000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA1555</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>Boeing737-900ER</aircraftType>
+  <costPerMile>0.15</costPerMile>
+</standard>
+<refreshment>
+  <productCode>32f4</productCode>
+  <name>Italian Buffet</name>
+  <cost>18.0</cost>
+</refreshment>
+<standard>
+  <productCode>1255</productCode>
+  <departureCity>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <latitude>34.05</latitude>
+    <longitude>118.25</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>55800000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>78900000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA2222</flightNo>
+  <flightClass>BC</flightClass>
+  <aircraftType>Boeing757</aircraftType>
+  <costPerMile>0.5</costPerMile>
+</standard>
+<com.nationalair.AwardsTicket>
+  <productCode>1257</productCode>
+  <departureCity>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <latitude>34.05</latitude>
+    <longitude>118.25</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>58500000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>87180000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA101</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>Boeing737-900ER</aircraftType>
+  <costPerMile>0.2</costPerMile>
+  <redeemptionFee>30.0</redeemptionFee>
+  <pointsPerMile>90.0</pointsPerMile>
+</com.nationalair.AwardsTicket>
+<standard>
+  <productCode>1256</productCode>
+  <departureCity>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <latitude>34.05</latitude>
+    <longitude>118.25</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </departureCity>
+  <arrivalCity>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <latitude>33.75</latitude>
+    <longitude>84.38333333333334</longitude>
+    <passengerFacilityFee>4.5</passengerFacilityFee>
+  </arrivalCity>
+  <departureDateTime>
+    <iMillis>55800000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" resolves-to="org.joda.time.chrono.ISOChronology$Stub" serialization="custom">
+      <org.joda.time.chrono.ISOChronology_-Stub>
+        <org.joda.time.tz.CachedDateTimeZone resolves-to="org.joda.time.DateTimeZone$Stub" serialization="custom">
+          <org.joda.time.DateTimeZone_-Stub>
+            <email>America/Chicago</email>
+          </org.joda.time.DateTimeZone_-Stub>
+        </org.joda.time.tz.CachedDateTimeZone>
+      </org.joda.time.chrono.ISOChronology_-Stub>
+    </iChronology>
+  </departureDateTime>
+  <arrivalDateTime>
+    <iMillis>78900000</iMillis>
+    <iChronology class="org.joda.time.chrono.ISOChronology" reference="../../departureDateTime/iChronology"/>
+  </arrivalDateTime>
+  <flightNo>NA2222</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>Boeing757</aircraftType>
+  <costPerMile>0.2</costPerMile>
+</standard>
+</products>

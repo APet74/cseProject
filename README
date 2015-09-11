@@ -1,0 +1,28 @@
+This project can be used as a starting point for
+implementation of the Invoice system. 
+
+NOTE: This is a sample project structure created in Eclipse (hence
+may not be compatible with other IDEs).
+
+This is just an example. You are highly encouraged 
+to be creative and design your own project structure (directories,files,package names
+etc), as long as you are following the instructions mentioned in the assignment
+handouts in each phase.
+
+Follow the following instructions to import into Eclipse:
+	1. Download this zip file (archive file) from Blackboard (to your desktop or Z: drive)
+	2. Go to File-> Import-> General-> Existing Projects into Workspace
+	3. Select “Select archive file” and select the zip file you downloaded
+	4. Change build path settings as appropriate (to link to appropriate JDK
+		or other libraries on your local system).
+
+Here is a brief explanation of various sub-directories:
+
+src (Included in build path) : Source packages.
+design : Design documents, other images,UML diagrams etc.
+data : Contains input/output data files.
+lib : External libraries.
+db : Keep your database DDL and DML scripts here.
+bin (Not visible in eclipse) : Contains compiled classes and packages.
+
+ 

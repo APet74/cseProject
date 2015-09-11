@@ -1,0 +1,174 @@
+{
+"customers": [
+  {
+    "customerCode": "C003",
+    "primaryContact": {
+      "personCode": "306a",
+      "firstName": "Brock",
+      "lastName": "Sampson",
+      "address": {
+        "street": "123 N 1st Street",
+        "city": "Omaha",
+        "state": "NE",
+        "zip": "68116",
+        "country": "USA"
+      },
+      "phoneNumber": "402-241-6024",
+      "emails": [
+        "brock_f_sampson@gmail.com",
+        "bsampson@venture.com"
+      ]
+    },
+    "customerName": "United States Postal Service",
+    "airlineMiles": 0
+  },
+  {
+    "customerCode": "C004",
+    "primaryContact": {
+      "personCode": "321f",
+      "firstName": "Bud",
+      "lastName": "Fox",
+      "address": {
+        "street": "321 Bronx Street",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10004",
+        "country": "USA"
+      },
+      "phoneNumber": "",
+      "emails": [
+        "bfox@gmail.com",
+        "csheen@crazy.net"
+      ]
+    },
+    "customerName": "Mr Steve Odelay",
+    "airlineMiles": 0
+  },
+  {
+    "customerCode": "C005",
+    "primaryContact": {
+      "personCode": "bbchar",
+      "firstName": "Kaylee",
+      "lastName": "Ehrmantraut",
+      "address": {
+        "street": "800 West 7th Street",
+        "city": "Albuquerque",
+        "state": "NM",
+        "zip": "87105",
+        "country": "USA"
+      },
+      "phoneNumber": "587-417-1032",
+      "emails": []
+    },
+    "customerName": "Vandelay Industries",
+    "airlineMiles": 0
+  },
+  {
+    "customerCode": "C006",
+    "primaryContact": {
+      "personCode": "321dr",
+      "firstName": "C.",
+      "lastName": "Baker",
+      "address": {
+        "street": "Avery Hall",
+        "city": "Lincoln",
+        "state": "NE",
+        "zip": "68503",
+        "country": "USA"
+      },
+      "phoneNumber": "122-141-1032",
+      "emails": []
+    },
+    "customerName": "University of Nebaska-Lincoln",
+    "airlineMiles": 0
+  },
+  {
+    "customerCode": "C007",
+    "primaryContact": {
+      "personCode": "6doc",
+      "firstName": "Richard",
+      "lastName": "Hurndall",
+      "address": {
+        "street": "Campos El290",
+        "city": "Mexico City",
+        "state": "FD",
+        "zip": "",
+        "country": "Mexico"
+      },
+      "phoneNumber": "124-366-3210",
+      "emails": [
+        "rhurndall@cse.unl.edu",
+        "richard@unl.edu"
+      ]
+    },
+    "customerName": "Venture Club",
+    "airlineMiles": 0
+  },
+  {
+    "customerCode": "C008",
+    "primaryContact": {
+      "personCode": "ma12",
+      "firstName": "Dale",
+      "lastName": "Sveum",
+      "address": {
+        "street": "1060 West Addison Street",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60613",
+        "country": "USA"
+      },
+      "phoneNumber": "541-354-3210",
+      "emails": [
+        "sveum@cubs.com"
+      ]
+    },
+    "customerName": "Mr Gregory Smith",
+    "airlineMiles": 0
+  },
+  {
+    "customerCode": "C002",
+    "primaryContact": {
+      "personCode": "944c",
+      "firstName": "Starlin",
+      "lastName": "Castro",
+      "address": {
+        "street": "1060 West Addison Street",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60613",
+        "country": "USA"
+      },
+      "phoneNumber": "142-241-6024",
+      "emails": [
+        "scastro@cubs.com",
+        "starlin_castro13@gmail.com"
+      ]
+    },
+    "customerName": "Stark Associates",
+    "airlineMiles": 0
+  },
+  {
+    "customerCode": "C001",
+    "primaryContact": {
+      "personCode": "231",
+      "firstName": "Tom",
+      "lastName": "Baker",
+      "address": {
+        "street": "1 Blue Jays Way",
+        "city": "Toronto",
+        "state": "ON",
+        "zip": "M5V 1J1",
+        "country": "Canada"
+      },
+      "phoneNumber": "210-124-3210",
+      "emails": [
+        "famousdoc@who.com",
+        "tbaker@cse.unl.edu",
+        "mostfamous@whovian.com",
+        "thedoctor@bbc.com"
+      ]
+    },
+    "customerName": "Cinco Consultants",
+    "airlineMiles": 0
+  }
+]}
