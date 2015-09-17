@@ -8,15 +8,12 @@ import java.util.List;
 public class Person {
 	
 	private String personCode;
-	
-	/* Note how Address has been used (Composition Relationship) */ 
+	private String name;
 	private Address address;
+	private String phoneNumber;
 	
 	/* Note how email is used (a collection of variable size) */ 
 	private List<String> emails;
-	
-	/*TODO: Add other fields as necessary (eg. firstName, lastName,
-	phoneNo etc) */
 	
 
 	// TODO: Add appropriate constructor(s)
@@ -31,8 +28,7 @@ public class Person {
 		return this.address;
 	}
 	
-	public void setEmails(List<String> emails)
-	{
+	public void setEmails(List<String> emails) {
 		this.emails = emails;
 	}
 		

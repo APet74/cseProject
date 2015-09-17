@@ -4,10 +4,14 @@ public class Customer {
 	
 	
 	private String customerCode;
+	private String customerType;
+	private Person primaryContact;
+	private String customerName;
+	private int airlineMiles;
+	
 	
 	/* Note how Person has been used as 
 	 * primary contact(Composition Relationship) */ 
-	private Person primaryContact;
 
 	/*TODO: Add other fields as necessary (eg. firstName, lastName,
 	phoneNo etc) */

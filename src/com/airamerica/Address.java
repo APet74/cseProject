@@ -6,7 +6,10 @@ public class Address {
 	
 	private String street;
 	private String city;
-//TODO: Add more fields as needed
+	private String State;
+	private String zip;
+	private String Country;
+
 
 	/* Constructor - Generated using Eclipse Menu 
 	 * (Source-> Generate Constructor using fields) */
