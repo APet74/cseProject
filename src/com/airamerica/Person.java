@@ -8,7 +8,10 @@ import java.util.List;
 public class Person {
 	
 	private String personCode;
-	private String name;
+	
+	//Changed to personName due to confusion within 
+	//Products class -- Insurance name
+	private String personName;
 	private Address address; //optional
 	private String phoneNumber; //optional
 	
@@ -42,12 +45,12 @@ public class Person {
 		this.personCode = personCode;
 	}
 
-	public String getName() {
-		return name;
+	public String getpersonName() {
+		return personName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setpersonName(String personName) {
+		this.personName = personName;
 	}
 
 	public String getPhoneNumber() {

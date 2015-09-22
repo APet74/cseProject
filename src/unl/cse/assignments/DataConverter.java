@@ -22,7 +22,7 @@ public class DataConverter {
 		 * Uncomment the following line to see an example of XML implementation
 		 * using XStream
 		 */
-//		/XMLExample();
+		XMLExample();
 	}
 
 	/*
@@ -34,7 +34,7 @@ public class DataConverter {
 	public static void XMLExample() {
 		XStream xstream = new XStream();
 
-		Address address1 = new Address("Street1", "City1");
+		Address address1 = new Address("Street1", "City1", null, null, null);
 		Person p1 = new Person("PersonCode1", address1);
 		p1.addEmail("Email1");
 		p1.addEmail("Email2");
