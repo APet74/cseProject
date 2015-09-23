@@ -223,21 +223,23 @@ public class Products {
 	 */
 	public class Services extends Products {
 		
-		public Services(String code, String productType, String productName) {
-			super(code, productType, productName);
-			
-		}
+
 
 		/*
 		 * Checked Baggage
 		 */
-		private String ticketCode;
+		private int ticketCode;
 
-		public String getTicketCode() {
+		public Services(String code, String productType, String productName, int ticketCode) {
+			super(code, productType, productName);
+			this.ticketCode = ticketCode;
+		}
+		
+		public int getTicketCode() {
 			return ticketCode;
 		}
 
-		public void setTicketCode(String ticketCode) {
+		public void setTicketCode(int ticketCode) {
 			this.ticketCode = ticketCode;
 		}
 
@@ -255,7 +257,12 @@ public class Products {
 		 * Special Assistance
 		 */
 		private String typeOfService;
-
+		
+		public Services(String code, String productType, String productName, String typeOfService) {
+			super(code, productType, productName);
+			this.typeOfService = typeOfService;
+		}
+		
 		public String getTypeOfService() {
 			return typeOfService;
 		}
@@ -270,6 +277,14 @@ public class Products {
 		private String insuranceName;
 		private String ageClass;
 		private float costPerMile;
+		
+		public Services(String code, String productType, String productName, String insuranceName,
+				String ageClass, float costPerMile) {
+			super(code, productType, productName);
+			this.insuranceName = insuranceName;
+			this.ageClass = ageClass;
+			this.costPerMile = costPerMile;
+		}
 
 		public String getInsuranceName() {
 			return insuranceName;
@@ -300,6 +315,13 @@ public class Products {
 		 */
 		private String refreshmentName;
 		private float cost;
+		
+		public Services(String code, String productType, String productName, String refreshmentName,
+				float cost) {
+			super(code, productType, productName);
+			this.refreshmentName = refreshmentName;
+			this.cost = cost;
+		}
 
 		public String getRefreshmentName() {
 			return refreshmentName;
@@ -316,7 +338,6 @@ public class Products {
 		public void setCost(float cost) {
 			this.cost = cost;
 		}
-		
 		
 	}
 }
