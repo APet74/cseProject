@@ -1,5 +1,6 @@
 package com.airamerica;
 
+import java.util.Date;
 
 public class Products {
 	
@@ -61,7 +62,7 @@ public class Products {
 		
 		//these might need to be in a time class 
 		//rather than string:
-		private String depTime, arrTime;
+		private Date depTime, arrTime;
 		private String flightClass;
 		private String aircraftType;
 		
@@ -69,8 +70,8 @@ public class Products {
 		 * Constructor: Standard Ticket
 		 */
 		public Ticket(String depAirportCode, 
-				String arrAirportCode, String depTime, 
-				String arrTime, String flightClass,
+				String arrAirportCode, Date depTime, 
+				Date arrTime, String flightClass,
 				String aircraftType) {
 			super(code, productType, productName);
 			this.depAirportCode = depAirportCode;
@@ -89,16 +90,16 @@ public class Products {
 		 */
 		
 		//will have to change this to a date format:
-		private String seasonStartDate;
-		private String seasonEndDate;
+		private Date seasonStartDate;
+		private Date seasonEndDate;
 		private float rebate;
 
 		public Ticket(String code, String productType, 
 				String productName, String depAirportCode, 
-				String arrAirportCode, String depTime, 
-				String arrTime, String flightClass, 
-				String aircraftType, String seasonStartDate,
-				String seasonEndDate, float rebate) {
+				String arrAirportCode, Date depTime, 
+				Date arrTime, String flightClass, 
+				String aircraftType, Date seasonStartDate,
+				Date seasonEndDate, float rebate) {
 			super(code, productType, productName);
 			this.depAirportCode = depAirportCode;
 			this.arrAirportCode = arrAirportCode;
@@ -119,8 +120,10 @@ public class Products {
 		 */
 		private int pointsPerMile;
 
-		public Ticket(String code, String productType, String productName, String depAirportCode, String arrAirportCode,
-				String depTime, String arrTime, String flightClass, String aircraftType, int pointsPerMile) {
+		public Ticket(String code, String productType, String productName, 
+				String depAirportCode, String arrAirportCode,
+				Date depTime, Date arrTime, String flightClass, 
+				String aircraftType, int pointsPerMile) {
 			super(code, productType, productName);
 			this.depAirportCode = depAirportCode;
 			this.arrAirportCode = arrAirportCode;
@@ -153,19 +156,19 @@ public class Products {
 			this.arrAirportCode = arrAirportCode;
 		}
 
-		public String getDepTime() {
+		public Date getDepTime() {
 			return depTime;
 		}
 
-		public void setDepTime(String depTime) {
+		public void setDepTime(Date depTime) {
 			this.depTime = depTime;
 		}
 
-		public String getArrTime() {
+		public Date getArrTime() {
 			return arrTime;
 		}
 
-		public void setArrTime(String arrTime) {
+		public void setArrTime(Date arrTime) {
 			this.arrTime = arrTime;
 		}
 
@@ -185,19 +188,19 @@ public class Products {
 			this.aircraftType = aircraftType;
 		}
 
-		public String getSeasonStartDate() {
+		public Date getSeasonStartDate() {
 			return seasonStartDate;
 		}
 
-		public void setSeasonStartDate(String seasonStartDate) {
+		public void setSeasonStartDate(Date seasonStartDate) {
 			this.seasonStartDate = seasonStartDate;
 		}
 
-		public String getSeasonEndDate() {
+		public Date getSeasonEndDate() {
 			return seasonEndDate;
 		}
 
-		public void setSeasonEndDate(String seasonEndDate) {
+		public void setSeasonEndDate(Date seasonEndDate) {
 			this.seasonEndDate = seasonEndDate;
 		}
 
