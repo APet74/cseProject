@@ -7,39 +7,49 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import com.airamerica.*;
 
 // Include imports for XML/JSON libraries if needed
 import com.thoughtworks.xstream.XStream;
 
+
+
 public class DataConverter {
 
 	public static void main(String[] args) throws FileNotFoundException {
-
 		
-		String test = "";
-		Scanner sc1;
-		
-		String file = args[0];
-		//String file = "cgislands_input_002.txt";
-		
-		//pull in new file
-		try {
-			sc1 = new Scanner(new File(file));
-		
-			String[] fileInput = new String[1000];
-			fileInput[0] = "";
-			
-			while(sc1.hasNext()) {
-				String a = sc1.next();
-				fileInput[0] = fileInput[0] + a;
-			}
-		
-			//convert to string
-			test = fileInput[0];
-			
-		} catch (FileNotFoundException e) {	
+		Scanner s = null;
+    	try {
+			s = new Scanner(new File("data/Airports.txt"));
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+    	int counter = 0;
+    	while(s.hasNext()) {
+    		if(counter == 0){
+    			counter++;
+    			int sizeOfArray = s.nextInt();
+    		}
+    		/* Add each line to string array
+    		 * create array of object size of the first index of string array
+    		 * then split each line via delimeters
+    		 * create objects and store in array of objects
+    		 */
+    		String line = s.nextLine();
+    		String tokens[] = line.split(";");
+    		String airportCode = tokens[0];
+    		String airportName = tokens[1];
+    		String address[] = tokens[2].split(" ");
+    		Address addressVar = new Address(address[1], address[2], address[3], address[4], address[5]);
+    		String isbn = tokens[2];
+    		String publishDate = tokens[3];
+    		Book b = new Book();
+    		b.setTitle(title);
+    		b.setAuthor(author);
+    		b.setISBN(isbn);
+    		b.setPublishDate(publishDate);
+    		lib.addBook(b);
+    	}
 		
 				// TODO: Add your code to read data from .dat files, create objects
 		//and export them as XML or JSON 
