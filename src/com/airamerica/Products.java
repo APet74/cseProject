@@ -1,9 +1,15 @@
 package com.airamerica;
 
+<<<<<<< HEAD
 
 public class Products {
 
 	
+=======
+import java.util.Date;
+
+public class Products {
+>>>>>>> origin/master
 	
 	/*
 	 * General fields for all Products
@@ -15,6 +21,10 @@ public class Products {
 	/*
 	 * Getters+Setters for Products class arguments
 	 */
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 	
 	public String getCode() {
 		return code;
@@ -62,7 +72,7 @@ public class Products {
 		
 		//these might need to be in a time class 
 		//rather than string:
-		private String depTime, arrTime;
+		private Date depTime, arrTime;
 		private String flightClass;
 		private String aircraftType;
 		
@@ -70,8 +80,8 @@ public class Products {
 		 * Constructor: Standard Ticket
 		 */
 		public Ticket(String depAirportCode, 
-				String arrAirportCode, String depTime, 
-				String arrTime, String flightClass,
+				String arrAirportCode, Date depTime, 
+				Date arrTime, String flightClass,
 				String aircraftType) {
 			super(code, productType, productName);
 			this.depAirportCode = depAirportCode;
@@ -90,16 +100,16 @@ public class Products {
 		 */
 		
 		//will have to change this to a date format:
-		private String seasonStartDate;
-		private String seasonEndDate;
+		private Date seasonStartDate;
+		private Date seasonEndDate;
 		private float rebate;
 
 		public Ticket(String code, String productType, 
 				String productName, String depAirportCode, 
-				String arrAirportCode, String depTime, 
-				String arrTime, String flightClass, 
-				String aircraftType, String seasonStartDate,
-				String seasonEndDate, float rebate) {
+				String arrAirportCode, Date depTime, 
+				Date arrTime, String flightClass, 
+				String aircraftType, Date seasonStartDate,
+				Date seasonEndDate, float rebate) {
 			super(code, productType, productName);
 			this.depAirportCode = depAirportCode;
 			this.arrAirportCode = arrAirportCode;
@@ -120,8 +130,10 @@ public class Products {
 		 */
 		private int pointsPerMile;
 
-		public Ticket(String code, String productType, String productName, String depAirportCode, String arrAirportCode,
-				String depTime, String arrTime, String flightClass, String aircraftType, int pointsPerMile) {
+		public Ticket(String code, String productType, String productName, 
+				String depAirportCode, String arrAirportCode,
+				Date depTime, Date arrTime, String flightClass, 
+				String aircraftType, int pointsPerMile) {
 			super(code, productType, productName);
 			this.depAirportCode = depAirportCode;
 			this.arrAirportCode = arrAirportCode;
@@ -154,19 +166,19 @@ public class Products {
 			this.arrAirportCode = arrAirportCode;
 		}
 
-		public String getDepTime() {
+		public Date getDepTime() {
 			return depTime;
 		}
 
-		public void setDepTime(String depTime) {
+		public void setDepTime(Date depTime) {
 			this.depTime = depTime;
 		}
 
-		public String getArrTime() {
+		public Date getArrTime() {
 			return arrTime;
 		}
 
-		public void setArrTime(String arrTime) {
+		public void setArrTime(Date arrTime) {
 			this.arrTime = arrTime;
 		}
 
@@ -186,19 +198,19 @@ public class Products {
 			this.aircraftType = aircraftType;
 		}
 
-		public String getSeasonStartDate() {
+		public Date getSeasonStartDate() {
 			return seasonStartDate;
 		}
 
-		public void setSeasonStartDate(String seasonStartDate) {
+		public void setSeasonStartDate(Date seasonStartDate) {
 			this.seasonStartDate = seasonStartDate;
 		}
 
-		public String getSeasonEndDate() {
+		public Date getSeasonEndDate() {
 			return seasonEndDate;
 		}
 
-		public void setSeasonEndDate(String seasonEndDate) {
+		public void setSeasonEndDate(Date seasonEndDate) {
 			this.seasonEndDate = seasonEndDate;
 		}
 
@@ -224,21 +236,23 @@ public class Products {
 	 */
 	public class Services extends Products {
 		
-		public Services(String code, String productType, String productName) {
-			super(code, productType, productName);
-			
-		}
+
 
 		/*
 		 * Checked Baggage
 		 */
-		private String ticketCode;
+		private int ticketCode;
 
-		public String getTicketCode() {
+		public Services(String code, String productType, String productName, int ticketCode) {
+			super(code, productType, productName);
+			this.ticketCode = ticketCode;
+		}
+		
+		public int getTicketCode() {
 			return ticketCode;
 		}
 
-		public void setTicketCode(String ticketCode) {
+		public void setTicketCode(int ticketCode) {
 			this.ticketCode = ticketCode;
 		}
 
@@ -256,7 +270,12 @@ public class Products {
 		 * Special Assistance
 		 */
 		private String typeOfService;
-
+		
+		public Services(String code, String productType, String productName, String typeOfService) {
+			super(code, productType, productName);
+			this.typeOfService = typeOfService;
+		}
+		
 		public String getTypeOfService() {
 			return typeOfService;
 		}
@@ -271,6 +290,14 @@ public class Products {
 		private String insuranceName;
 		private String ageClass;
 		private float costPerMile;
+		
+		public Services(String code, String productType, String productName, String insuranceName,
+				String ageClass, float costPerMile) {
+			super(code, productType, productName);
+			this.insuranceName = insuranceName;
+			this.ageClass = ageClass;
+			this.costPerMile = costPerMile;
+		}
 
 		public String getInsuranceName() {
 			return insuranceName;
@@ -301,6 +328,13 @@ public class Products {
 		 */
 		private String refreshmentName;
 		private float cost;
+		
+		public Services(String code, String productType, String productName, String refreshmentName,
+				float cost) {
+			super(code, productType, productName);
+			this.refreshmentName = refreshmentName;
+			this.cost = cost;
+		}
 
 		public String getRefreshmentName() {
 			return refreshmentName;
@@ -318,8 +352,8 @@ public class Products {
 			this.cost = cost;
 		}
 		
-		
 	}
 }
+
 
 

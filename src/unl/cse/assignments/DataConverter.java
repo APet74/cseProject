@@ -4,17 +4,44 @@ package unl.cse.assignments;
 import com.airamerica.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-
+import java.util.Scanner;
 
 // Include imports for XML/JSON libraries if needed
 import com.thoughtworks.xstream.XStream;
 
 public class DataConverter {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) throws FileNotFoundException {
 
-		// TODO: Add your code to read data from .dat files, create objects
+		
+		String test = "";
+		Scanner sc1;
+		
+		String file = args[0];
+		//String file = "cgislands_input_002.txt";
+		
+		//pull in new file
+		try {
+			sc1 = new Scanner(new File(file));
+		
+			String[] fileInput = new String[1000];
+			fileInput[0] = "";
+			
+			while(sc1.hasNext()) {
+				String a = sc1.next();
+				fileInput[0] = fileInput[0] + a;
+			}
+		
+			//convert to string
+			test = fileInput[0];
+			
+		} catch (FileNotFoundException e) {	
+			e.printStackTrace();
+		}
+		
+				// TODO: Add your code to read data from .dat files, create objects
 		//and export them as XML or JSON 
 		
 

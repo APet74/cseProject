@@ -41,3 +41,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.java
+src/unl/cse/assignments/DataConverter.java
+*.class
+src/com/airamerica/Products.java
