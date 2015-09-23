@@ -1,15 +1,10 @@
 package com.airamerica;
-
-<<<<<<< HEAD
-
-public class Products {
-
 	
-=======
+
 import java.util.Date;
 
 public class Products {
->>>>>>> origin/master
+
 	
 	/*
 	 * General fields for all Products
@@ -21,10 +16,6 @@ public class Products {
 	/*
 	 * Getters+Setters for Products class arguments
 	 */
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 	
 	public String getCode() {
 		return code;
