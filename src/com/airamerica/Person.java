@@ -11,26 +11,26 @@ public class Person {
 	
 	//Changed to personName due to confusion within 
 	//Products class -- Insurance name
-	private String personName;
+	private String firstName, lastName;
 	private Address address; //optional
 	private String phoneNumber; //optional
 	
 	/* Note how email is used (a collection of variable size) */ 
-	private List<String> emails;
+	private List<String> emails = new ArrayList<String>();
 	
 
 	/*constructor(s)
 	 * 
 	 */
-	public Person(String personCode, Address address) {
+	public Person(String personCode, String firstName, String lastName) {
 		this.personCode = personCode;
-		this.address = address;
-		this.emails = new ArrayList<String>();
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 	
 	// TODO: Add Getters and setters as appropriate
-	public Address getAddress() {
-		return this.address;
+	public String getAddress() {
+		return this.address.getAddress();
 	}
 	
 	public void setAddress(Address address) {
@@ -45,12 +45,20 @@ public class Person {
 		this.personCode = personCode;
 	}
 
-	public String getpersonName() {
-		return personName;
+	public String getfirstName() {
+		return firstName;
 	}
 
-	public void setpersonName(String personName) {
-		this.personName = personName;
+	public void setfirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getlastName() {
+		return lastName;
+	}
+
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPhoneNumber() {

@@ -13,14 +13,12 @@ public class Customer {
 	/*Constructor
 	 * 
 	 */
-	public Customer(String customerCode, String customerType, Person primaryContact, String customerName,
-			int airlineMiles) {
+	public Customer(String customerCode, String customerType, Person primaryContact, String customerName) {
 		super();
 		this.customerCode = customerCode;
 		this.customerType = customerType;
 		this.primaryContact = primaryContact;
 		this.customerName = customerName;
-		this.airlineMiles = airlineMiles;
 	}	
 	
 	
