@@ -4,17 +4,44 @@ package unl.cse.assignments;
 import com.airamerica.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-
+import java.util.Scanner;
 
 // Include imports for XML/JSON libraries if needed
 import com.thoughtworks.xstream.XStream;
 
 public class DataConverter {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) throws FileNotFoundException {
 
-		// TODO: Add your code to read data from .dat files, create objects
+		
+		String test = "";
+		Scanner sc1;
+		
+		String file = args[0];
+		//String file = "cgislands_input_002.txt";
+		
+		//pull in new file
+		try {
+			sc1 = new Scanner(new File(file));
+		
+			String[] fileInput = new String[1000];
+			fileInput[0] = "";
+			
+			while(sc1.hasNext()) {
+				String a = sc1.next();
+				fileInput[0] = fileInput[0] + a;
+			}
+		
+			//convert to string
+			test = fileInput[0];
+			
+		} catch (FileNotFoundException e) {	
+			e.printStackTrace();
+		}
+		
+				// TODO: Add your code to read data from .dat files, create objects
 		//and export them as XML or JSON 
 		
 
@@ -22,7 +49,11 @@ public class DataConverter {
 		 * Uncomment the following line to see an example of XML implementation
 		 * using XStream
 		 */
-//		/XMLExample();
+<<<<<<< HEAD
+		//XMLExample();
+=======
+		XMLExample();
+>>>>>>> Test
 	}
 
 	/*
@@ -31,10 +62,11 @@ public class DataConverter {
 	 * are exported. NOTE: Pay attention how to alias various properties of an
 	 * object.
 	 */
+	/*
 	public static void XMLExample() {
 		XStream xstream = new XStream();
 
-		Address address1 = new Address("Street1", "City1");
+		Address address1 = new Address("Street1", "City1", null, null, null);
 		Person p1 = new Person("PersonCode1", address1);
 		p1.addEmail("Email1");
 		p1.addEmail("Email2");
@@ -56,4 +88,5 @@ public class DataConverter {
 
 		System.out.println("XML generated at 'data/Person-example.xml'");
 	}
+	*/
 }
