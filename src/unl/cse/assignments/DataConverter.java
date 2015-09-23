@@ -22,7 +22,11 @@ public class DataConverter {
 		 * Uncomment the following line to see an example of XML implementation
 		 * using XStream
 		 */
-//		/XMLExample();
+<<<<<<< HEAD
+		//XMLExample();
+=======
+		XMLExample();
+>>>>>>> Test
 	}
 
 	/*
@@ -31,10 +35,11 @@ public class DataConverter {
 	 * are exported. NOTE: Pay attention how to alias various properties of an
 	 * object.
 	 */
+	/*
 	public static void XMLExample() {
 		XStream xstream = new XStream();
 
-		Address address1 = new Address("Street1", "City1");
+		Address address1 = new Address("Street1", "City1", null, null, null);
 		Person p1 = new Person("PersonCode1", address1);
 		p1.addEmail("Email1");
 		p1.addEmail("Email2");
@@ -56,4 +61,5 @@ public class DataConverter {
 
 		System.out.println("XML generated at 'data/Person-example.xml'");
 	}
+	*/
 }
