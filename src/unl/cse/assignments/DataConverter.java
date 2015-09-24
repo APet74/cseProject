@@ -2,7 +2,10 @@ package unl.cse.assignments;
 
 /* Phase-I */
 import com.airamerica.*;
+import com.airamerica.Products.AwardTicket;
+import com.airamerica.Products.Products;
 import com.airamerica.Products.Ticket;
+import com.airamerica.Products.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +13,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -87,10 +91,11 @@ public class DataConverter {
 		}
 		
 		//Products
-		Products productArray[] = new Products[productsUnparsed.length];
-		System.out.println(productArray.length);
+		ArrayList <Products> productArray = new ArrayList<Products>();
+	
+		
 		for (int i = 0; i < productsUnparsed.length; i++) {
-			productArray[i] = parseProduct(productsUnparsed[i], airportArray);
+			productArray.add(parseProduct(productsUnparsed[i], airportArray));
 			//System.out.println(productArray[i].getCode());
 			
 		}
@@ -265,7 +270,6 @@ public class DataConverter {
 	
 	private static Products parseProduct(String unparsed, Airports [] airportArray) {
 
-		
 		String token[] = unparsed.split(";\\s*");
 		String productCode = token[0];
 		String productType = token[1];
@@ -273,10 +277,9 @@ public class DataConverter {
 		String firstLetter = String.valueOf(productType.charAt(0));
 		
 		Products parsedProduct = null;
-		switch (firstLetter){
-			
-			case "T":
+
 				
+		if (productType.equals("T*"));
 				Airports depAirportCode = findAirport(token[2], airportArray);
 				Airports arrAirportCode = findAirport(token[3], airportArray);
 				DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
@@ -289,146 +292,97 @@ public class DataConverter {
 				String flightClass = token[7];
 				String aircraftType = token[8];
 					
-				switch (productType) {
-				
-					case "TS":
-						try {
-							depTime = format.parse(token[4]);
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-				
-						try {
-							arrTime = format.parse(token[5]);
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-						/*String code, String productClass, Airports depAirportCode, 
-						Airports arrAirportCode, Date depTime, 
-						Date arrTime, String flightNo, String flightClass,
-						String aircraftType
-						*/
-						System.out.println(productCode);
-						System.out.println(productType);
-						System.out.println(depAirportCode);
-						System.out.println(arrAirportCode);
-						System.out.println(depTime); 
-						System.out.println(arrTime);
-						System.out.println(flightNo);
-						System.out.println(flightClass);
-						System.out.println(aircraftType);
-						parsedProduct = parsedProduct.new Ticket(productCode, productType, 
-								depAirportCode, arrAirportCode, 
-								depTime, arrTime, flightNo, flightClass,
-								aircraftType);
-						break;
-				
-					case "TA":
-						int pointsPerMile = Integer.parseInt(token[9]);
-						try {
-							depTime = format.parse(token[4]);
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-				
-						try {
-							arrTime = format.parse(token[5]);
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-						parsedProduct = parsedProduct.new Ticket(productCode, productType, 
-								depAirportCode, arrAirportCode, 
-								depTime, arrTime, flightNo, flightClass,
-								aircraftType, pointsPerMile);
-						break;
-					
-					case "TO":
-						DateFormat season = new SimpleDateFormat("y-M-d", Locale.ENGLISH);
-						
-						//Was throwing Exceptions
-						Date seasonStartDate = null;
-							try {
-								seasonStartDate = season.parse(token[2]);
-							} catch (ParseException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 
-						Date seasonEndDate = null;
-							try {
-								seasonEndDate = season.parse(token[3]);
-							} catch (ParseException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							
-							depAirportCode = findAirport(token[4], airportArray);
-							arrAirportCode = findAirport(token[5], airportArray);
-							 
-						
-							try {
-								depTime = format.parse(token[6]);
-							} catch (ParseException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							
-							try {
-								arrTime = format.parse(token[7]);
-							} catch (ParseException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							
-						flightNo = token[8];
-						flightClass = token[9];
-						aircraftType = token[10];
-						float rebate = Float.parseFloat(token[11]);
-						
-							parsedProduct = parsedProduct.new Ticket(productCode, productType, 
-									depAirportCode, 
-									arrAirportCode, depTime, 
-									arrTime, flightNo, flightClass, 
-									aircraftType, seasonStartDate,
-									seasonEndDate, rebate);
-						break;
-						
-				}
-				
-				break;
+				if (productType.equals("TS")){
+					try {
+						depTime = format.parse(token[4]);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						arrTime = format.parse(token[5]);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					parsedProduct = new StandardTicket(productCode, productType, 
+							depAirportCode, arrAirportCode, 
+							depTime, arrTime, flightNo, flightClass,
+							aircraftType);
+				} else if(productType.equals("TA")){
+					int pointsPerMile = Integer.parseInt(token[9]);
+					try {
+						depTime = format.parse(token[4]);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+			
+					try {
+						arrTime = format.parse(token[5]);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					parsedProduct = new AwardTicket(productCode, productType, 
+							depAirportCode, arrAirportCode, 
+							depTime, arrTime, flightNo, flightClass,
+							aircraftType, pointsPerMile);
+				} else if(productType.equals("TO")){
+					DateFormat season = new SimpleDateFormat("y-M-d", Locale.ENGLISH);
+					
+					//Was throwing Exceptions
+					Date seasonStartDate = null;
+						try {
+							seasonStartDate = season.parse(token[2]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
-			case "S":
-				
-				switch (productType){
-							
-					case "SI":
-				
-						break;
-				
-					case "SS":
-					
-						break;
-				
-					case "SR":
+					Date seasonEndDate = null;
+						try {
+							seasonEndDate = season.parse(token[3]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
-						break;
+						depAirportCode = findAirport(token[4], airportArray);
+						arrAirportCode = findAirport(token[5], airportArray);
+						 
 					
-					case "SC":
+						try {
+							depTime = format.parse(token[6]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
-						break;
-				}
-				
-				break;
-				
-		}
+						try {
+							arrTime = format.parse(token[7]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					flightNo = token[8];
+					flightClass = token[9];
+					aircraftType = token[10];
+					float rebate = Float.parseFloat(token[11]);
+					
+					parsedProduct = new OffSeasonTicket(productCode, productType, 
+								depAirportCode, 
+								arrAirportCode, depTime, 
+								arrTime, flightNo, flightClass, 
+								aircraftType, seasonStartDate,
+								seasonEndDate, rebate);
+				}		
+						
+						
 		
 		
 		
@@ -452,7 +406,7 @@ public class DataConverter {
 		Customer customer = new Customer(customerCode, customerType, customerContact, customerName);
 		customer.setAirlineMiles(airlineMiles);
 		*/
-		
+
 		return parsedProduct;
 	}
 		
