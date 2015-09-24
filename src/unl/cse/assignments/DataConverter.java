@@ -6,21 +6,23 @@ import com.airamerica.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
-<<<<<<< HEAD
-=======
+
 import com.airamerica.*;
 
 // Include imports for XML/JSON libraries if needed
->>>>>>> origin/master
+
 import com.thoughtworks.xstream.XStream;
 
 
 
 public class DataConverter {
 
-<<<<<<< HEAD
 	public static void main(String[] args) {
 
 		//filename string variable
@@ -67,43 +69,7 @@ public class DataConverter {
 		for (int i = 0; i < personsUnparsed.length; i++) {
 			//put it into an array of persons
 			personArray[i] = parsePerson(personsUnparsed[i]);
-=======
-	public static void main(String[] args) throws FileNotFoundException {
-		
-		Scanner s = null;
-    	try {
-			s = new Scanner(new File("data/Airports.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
->>>>>>> origin/master
 		}
-    	int counter = 0;
-    	while(s.hasNext()) {
-    		if(counter == 0){
-    			counter++;
-    			int sizeOfArray = s.nextInt();
-    		}
-    		/* Add each line to string array
-    		 * create array of object size of the first index of string array
-    		 * then split each line via delimeters
-    		 * create objects and store in array of objects
-    		 */
-    		String line = s.nextLine();
-    		String tokens[] = line.split(";");
-    		String airportCode = tokens[0];
-    		String airportName = tokens[1];
-    		String address[] = tokens[2].split(" ");
-    		Address addressVar = new Address(address[1], address[2], address[3], address[4], address[5]);
-    		String isbn = tokens[2];
-    		String publishDate = tokens[3];
-    		Book b = new Book();
-    		b.setTitle(title);
-    		b.setAuthor(author);
-    		b.setISBN(isbn);
-    		b.setPublishDate(publishDate);
-    		lib.addBook(b);
-    	}
-		
 		//Customer
 		Customer customerArray[] = new Customer[customersUnparsed.length];
 		
@@ -242,7 +208,100 @@ public class DataConverter {
 		return customer;
 	}
 	
-	
+	private static Products parseProducts(String unparsed, Person [] personArray) {
+		Products parsedProduct;
+		
+		String token[] = unparsed.split(";\\s*");
+		String productCode = token[0];
+		String productType = token[1];
+		
+		String firstLetter = String.valueOf(productType.charAt(0));
+		
+		switch (firstLetter){
+			
+			case "T":
+				
+				
+				switch (productType) { 
+					String depAirportCode = token[2];
+					String arrAirportCode = token[3];
+					DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
+					Date depTime = format.parse(token[4]);
+					Date arrTime = format.parse(token[5]);
+					String flightClass = token[6];
+					String aircraftType = token[7];
+
+					case "TS":
+						parsedProduct = new Ticket( depAirportCode, 
+				 arrAirportCode,  depTime, 
+				 arrTime,  flightClass,
+				 aircraftType)
+						this.setProductType("TS");
+						this.setProductName("Standard Ticket");
+						break;
+				
+					case "TA":
+				
+						break;
+					
+					case "TO":
+						
+						break;
+						
+				}
+				
+				break;
+
+			case "S":
+				
+				switch (productType){
+							
+					case "SI":
+				
+						break;
+				
+					case "SS":
+					
+						break;
+				
+					case "SR":
+						
+						break;
+					
+					case "SC":
+						
+						break;
+				}
+				
+				break;
+				
+		}
+		
+		
+		
+		
+		String customerName = token[3];
+		int airlineMiles = 0;
+		//find the person, put into customer object
+		Person customerContact = null;
+		
+		for(int j = 0; j < personArray.length; j++) {
+			if (token[2].equals(personArray[j].getPersonCode())){
+				customerContact = personArray[j];
+				break;
+			}
+		}
+		
+		if (token.length > 4){
+			airlineMiles = Integer.parseInt(token[4]);
+		}
+		
+		Customer customer = new Customer(customerCode, customerType, customerContact, customerName);
+		customer.setAirlineMiles(airlineMiles);
+		
+		return parsedProduct;
+	}
+		
 	
 	
 	

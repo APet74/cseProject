@@ -9,7 +9,7 @@ public class Products {
 	/*
 	 * General fields for all Products
 	 */
-	private String code;
+	protected String code;
 	private String productType;
 	private String productName;
 	
@@ -22,7 +22,6 @@ public class Products {
 	}
 
 	public Products(String code, String productType, String productName) {
-		super();
 		this.code = code;
 		this.productType = productType;
 		this.productName = productName;
@@ -48,11 +47,11 @@ public class Products {
 		this.productName = productName;
 	}
 
-
+}
 	/*
 	 * Ticket Subclass
 	 */
-	public class Ticket extends Products {
+	 class Ticket extends Products {
 		
 		
 		/*
@@ -70,11 +69,12 @@ public class Products {
 		/*
 		 * Constructor: Standard Ticket
 		 */
+
 		public Ticket(String depAirportCode, 
 				String arrAirportCode, Date depTime, 
 				Date arrTime, String flightClass,
-				String aircraftType) {
-			super(code, productType, productName);
+				String aircraftType, String Test) {
+			super(Test,null, null);
 			this.depAirportCode = depAirportCode;
 			this.arrAirportCode = arrAirportCode;
 			this.depTime = depTime;
