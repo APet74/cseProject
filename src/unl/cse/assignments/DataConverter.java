@@ -8,10 +8,19 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
+<<<<<<< HEAD
+=======
+import com.airamerica.*;
+
+// Include imports for XML/JSON libraries if needed
+>>>>>>> origin/master
 import com.thoughtworks.xstream.XStream;
+
+
 
 public class DataConverter {
 
+<<<<<<< HEAD
 	public static void main(String[] args) {
 
 		//filename string variable
@@ -58,7 +67,42 @@ public class DataConverter {
 		for (int i = 0; i < personsUnparsed.length; i++) {
 			//put it into an array of persons
 			personArray[i] = parsePerson(personsUnparsed[i]);
+=======
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		Scanner s = null;
+    	try {
+			s = new Scanner(new File("data/Airports.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+>>>>>>> origin/master
 		}
+    	int counter = 0;
+    	while(s.hasNext()) {
+    		if(counter == 0){
+    			counter++;
+    			int sizeOfArray = s.nextInt();
+    		}
+    		/* Add each line to string array
+    		 * create array of object size of the first index of string array
+    		 * then split each line via delimeters
+    		 * create objects and store in array of objects
+    		 */
+    		String line = s.nextLine();
+    		String tokens[] = line.split(";");
+    		String airportCode = tokens[0];
+    		String airportName = tokens[1];
+    		String address[] = tokens[2].split(" ");
+    		Address addressVar = new Address(address[1], address[2], address[3], address[4], address[5]);
+    		String isbn = tokens[2];
+    		String publishDate = tokens[3];
+    		Book b = new Book();
+    		b.setTitle(title);
+    		b.setAuthor(author);
+    		b.setISBN(isbn);
+    		b.setPublishDate(publishDate);
+    		lib.addBook(b);
+    	}
 		
 		//Customer
 		Customer customerArray[] = new Customer[customersUnparsed.length];
