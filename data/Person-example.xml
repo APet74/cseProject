@@ -1,0 +1,24 @@
+<persons>
+<person>
+  <personCode>PersonCode1</personCode>
+  <address>
+    <street>Street1</street>
+    <city>City1</city>
+  </address>
+  <emails>
+    <string>Email1</string>
+    <string>Email2</string>
+  </emails>
+</person>
+<person>
+  <personCode>PersonCode2</personCode>
+  <address>
+    <street>Street1</street>
+    <city>City1</city>
+  </address>
+  <emails>
+    <string>Email3</string>
+    <string>Email4</string>
+  </emails>
+</person>
+</persons>
