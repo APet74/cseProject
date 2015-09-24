@@ -2,11 +2,13 @@ package unl.cse.assignments;
 
 /* Phase-I */
 import com.airamerica.*;
+import com.airamerica.Products.Ticket;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -77,8 +79,21 @@ public class DataConverter {
 			customerArray[i] = parseCustomer(customersUnparsed[i], personArray);
 		}
 
+		//Airports
+		Airports airportArray[] = new Airports[airportsUnparsed.length];
+		for (int i = 0; i < airportsUnparsed.length; i++) {
+			airportArray[i] = parseAirport(airportsUnparsed[i]);
+			System.out.println(airportArray[i].getAirportCode());
+		}
 		
-
+		//Products
+		Products productArray[] = new Products[productsUnparsed.length];
+		System.out.println(productArray.length);
+		for (int i = 0; i < productsUnparsed.length; i++) {
+			productArray[i] = parseProduct(productsUnparsed[i], airportArray);
+			//System.out.println(productArray[i].getCode());
+			
+		}
 		
 
 		/*
@@ -188,6 +203,7 @@ public class DataConverter {
 		String customerType = token[1];
 		String customerName = token[3];
 		int airlineMiles = 0;
+		
 		//find the person, put into customer object
 		Person customerContact = null;
 		
@@ -208,8 +224,47 @@ public class DataConverter {
 		return customer;
 	}
 	
-	private static Products parseProducts(String unparsed, Person [] personArray) {
-		Products parsedProduct;
+	private static Airports parseAirport(String unparsed) {
+		String token[] = unparsed.split(";\\s*");
+		String airportCode = token[0];
+		String airportName= token[1];
+		
+		//deal with lat/long
+		String lattitudeLongitude[] = token[3].split(",");
+		int latDegrees = Integer.parseInt(lattitudeLongitude[0]);
+		int latMinutes = Integer.parseInt(lattitudeLongitude[1]);
+		int longDegrees = Integer.parseInt(lattitudeLongitude[2]);
+		int longMinutes = Integer.parseInt(lattitudeLongitude[3]);
+		
+		float passengerFacilityFee = Float.parseFloat(token[4]);
+		
+		Airports thisAirport = new Airports(airportCode, airportName,latDegrees,
+				latMinutes,longDegrees,longMinutes,passengerFacilityFee);
+		
+		
+		//find the address, put into address object
+		Address address = parseAddress(token[2]);
+		thisAirport.setAddress(address);
+		
+		return thisAirport;
+	}
+	
+	private static Airports findAirport(String airportCode, Airports [] airportsArray){
+		Airports airport = null;
+
+			for(int j = 0; j < airportsArray.length; j++) {
+				if (airportCode.equals(airportsArray[j].getAirportCode())){
+					airport = airportsArray[j];
+					break;
+				}
+			}
+		return airport;
+		
+	}
+	
+	
+	private static Products parseProduct(String unparsed, Airports [] airportArray) {
+
 		
 		String token[] = unparsed.split(";\\s*");
 		String productCode = token[0];
@@ -217,35 +272,133 @@ public class DataConverter {
 		
 		String firstLetter = String.valueOf(productType.charAt(0));
 		
+		Products parsedProduct = null;
 		switch (firstLetter){
 			
 			case "T":
 				
+				Airports depAirportCode = findAirport(token[2], airportArray);
+				Airports arrAirportCode = findAirport(token[3], airportArray);
+				DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
+			
+				Date depTime = null;
+					Date arrTime = null;
+					
+					
+				String flightNo = token[6];
+				String flightClass = token[7];
+				String aircraftType = token[8];
+					
+				switch (productType) {
 				
-				switch (productType) { 
-					String depAirportCode = token[2];
-					String arrAirportCode = token[3];
-					DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
-					Date depTime = format.parse(token[4]);
-					Date arrTime = format.parse(token[5]);
-					String flightClass = token[6];
-					String aircraftType = token[7];
-
 					case "TS":
-						parsedProduct = new Ticket( depAirportCode, 
-				 arrAirportCode,  depTime, 
-				 arrTime,  flightClass,
-				 aircraftType)
-						this.setProductType("TS");
-						this.setProductName("Standard Ticket");
+						try {
+							depTime = format.parse(token[4]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+				
+						try {
+							arrTime = format.parse(token[5]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						/*String code, String productClass, Airports depAirportCode, 
+						Airports arrAirportCode, Date depTime, 
+						Date arrTime, String flightNo, String flightClass,
+						String aircraftType
+						*/
+						System.out.println(productCode);
+						System.out.println(productType);
+						System.out.println(depAirportCode);
+						System.out.println(arrAirportCode);
+						System.out.println(depTime); 
+						System.out.println(arrTime);
+						System.out.println(flightNo);
+						System.out.println(flightClass);
+						System.out.println(aircraftType);
+						parsedProduct = parsedProduct.new Ticket(productCode, productType, 
+								depAirportCode, arrAirportCode, 
+								depTime, arrTime, flightNo, flightClass,
+								aircraftType);
 						break;
 				
 					case "TA":
+						int pointsPerMile = Integer.parseInt(token[9]);
+						try {
+							depTime = format.parse(token[4]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
 				
+						try {
+							arrTime = format.parse(token[5]);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						parsedProduct = parsedProduct.new Ticket(productCode, productType, 
+								depAirportCode, arrAirportCode, 
+								depTime, arrTime, flightNo, flightClass,
+								aircraftType, pointsPerMile);
 						break;
 					
 					case "TO":
+						DateFormat season = new SimpleDateFormat("y-M-d", Locale.ENGLISH);
 						
+						//Was throwing Exceptions
+						Date seasonStartDate = null;
+							try {
+								seasonStartDate = season.parse(token[2]);
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+						Date seasonEndDate = null;
+							try {
+								seasonEndDate = season.parse(token[3]);
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							depAirportCode = findAirport(token[4], airportArray);
+							arrAirportCode = findAirport(token[5], airportArray);
+							 
+						
+							try {
+								depTime = format.parse(token[6]);
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+							try {
+								arrTime = format.parse(token[7]);
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						flightNo = token[8];
+						flightClass = token[9];
+						aircraftType = token[10];
+						float rebate = Float.parseFloat(token[11]);
+						
+							parsedProduct = parsedProduct.new Ticket(productCode, productType, 
+									depAirportCode, 
+									arrAirportCode, depTime, 
+									arrTime, flightNo, flightClass, 
+									aircraftType, seasonStartDate,
+									seasonEndDate, rebate);
 						break;
 						
 				}
@@ -279,7 +432,7 @@ public class DataConverter {
 		
 		
 		
-		
+		/*
 		String customerName = token[3];
 		int airlineMiles = 0;
 		//find the person, put into customer object
@@ -298,6 +451,7 @@ public class DataConverter {
 		
 		Customer customer = new Customer(customerCode, customerType, customerContact, customerName);
 		customer.setAirlineMiles(airlineMiles);
+		*/
 		
 		return parsedProduct;
 	}

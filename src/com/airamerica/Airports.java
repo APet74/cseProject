@@ -8,11 +8,11 @@ public class Airports {
 	private int lattitudeDegrees, longitudeDegrees, longitudeMinutes, lattitudeMinutes;
 	private float passengerFee;
 	
-	public Airports(String airportCode, String airportName, Address address, int lattitudeDegrees, int longitudeDegrees,
-			int longitudeMinutes, int lattitudeMinutes, float passengerFee) {
+	public Airports(String airportCode, String airportName, int lattitudeDegrees, int lattitudeMinutes,
+			int longitudeDegrees,
+			int longitudeMinutes,  float passengerFee) {
 		this.airportCode = airportCode;
 		this.airportName = airportName;
-		this.address = address;
 		this.lattitudeDegrees = lattitudeDegrees;
 		this.longitudeDegrees = longitudeDegrees;
 		this.longitudeMinutes = longitudeMinutes;
