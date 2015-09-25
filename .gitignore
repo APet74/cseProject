@@ -45,3 +45,4 @@ Temporary Items
 src/unl/cse/assignments/DataConverter.java
 *.class
 src/com/airamerica/Products.java
+bin/unl/cse/assignments/DataConverter.class
