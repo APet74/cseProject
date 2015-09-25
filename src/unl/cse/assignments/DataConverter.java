@@ -72,20 +72,21 @@ public class DataConverter {
 			//put it into an array of persons
 			personArray[i] = parsePerson(personsUnparsed[i]);
 		}
+		PersonToXML(personArray);
 		//Customer
 		Customer customerArray[] = new Customer[customersUnparsed.length];
 		
 		for (int i = 0; i < customersUnparsed.length; i++) {
 			customerArray[i] = parseCustomer(customersUnparsed[i], personArray);
 		}
-
+		CustomerToXML(customerArray);
 		//Airports
 		Airports airportArray[] = new Airports[airportsUnparsed.length];
 		for (int i = 0; i < airportsUnparsed.length; i++) {
 			airportArray[i] = parseAirport(airportsUnparsed[i]);
 			System.out.println(airportArray[i].getAirportCode());
 		}
-		
+		AirportToXML(airportArray);
 		//Products
 		Products productArray[] = new Products[productsUnparsed.length];
 		System.out.println(productArray.length);
@@ -94,14 +95,8 @@ public class DataConverter {
 			//System.out.println(productArray[i].getCode());
 			
 		}
+		ProductToXML(productArray);	
 		
-
-		/*
-		 * Uncomment the following line to see an example of XML implementation
-		 * using XStream
-		 */
-
-		//XMLExample();
 
 
 	}
@@ -455,45 +450,72 @@ public class DataConverter {
 		
 		return parsedProduct;
 	}
-		
+		/*
+		 * XML outputs
+		 */
 	
-	
-	
-	
-	
-	
-	
-	/*
-	 * An example of using XStream API It exports to "data/Person-example.xml"
-	 * NOTE: It may be interesting to note how compositions (and relationships
-	 * are exported. NOTE: Pay attention how to alias various properties of an
-	 * object.
-	 */
-	/*
-	public static void XMLExample() {
+	public static void PersonToXML(Person personArray[]){
 		XStream xstream = new XStream();
-
-		Address address1 = new Address("Street1", "City1", null, null, null);
-		Person p1 = new Person("PersonCode1", address1);
-		p1.addEmail("Email1");
-		p1.addEmail("Email2");
-		Person p2 = new Person("PersonCode2", address1);
-		p2.addEmail("Email3");
-		p2.addEmail("Email4");
 		xstream.alias("person", Person.class);
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter(new File("data/Person-example.xml"));
+			pw = new PrintWriter(new File("data/Persons.xml"));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		pw.print("<persons>\n");
-		pw.print(xstream.toXML(p1) + "\n");
-		pw.print(xstream.toXML(p2) + "\n");
+		for(int i = 0; i < personArray.length; i++){
+			pw.print(xstream.toXML(personArray[i]) + "\n");
+		}
 		pw.print("</persons>" + "\n");
 		pw.close();
-
-		System.out.println("XML generated at 'data/Person-example.xml'");
 	}
-	*/
+	public static void AirportToXML(Airports airportArray[]){
+		XStream xstream = new XStream();
+		xstream.alias("airport", Airports.class);
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(new File("data/Airports.xml"));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		pw.print("<airports>\n");
+		for(int i = 0; i < airportArray.length; i++){
+			pw.print(xstream.toXML(airportArray[i]) + "\n");
+		}
+		pw.print("</airports>" + "\n");
+		pw.close();
+	}
+	public static void CustomerToXML(Customer customerArray[]){
+		XStream xstream = new XStream();
+		xstream.alias("customer", Customer.class);
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(new File("data/Customers.xml"));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		pw.print("<customers>\n");
+		for(int i = 0; i < customerArray.length; i++){
+			pw.print(xstream.toXML(customerArray[i]) + "\n");
+		}
+		pw.print("</customers>" + "\n");
+		pw.close();
+	}
+	public static void ProductToXML(Products productArray[]){
+		XStream xstream = new XStream();
+		xstream.alias("product", Products.class);
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(new File("data/Products.xml"));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		pw.print("<products>\n");
+		for(int i = 0; i < productArray.length; i++){
+			pw.print(xstream.toXML(productArray[i]) + "\n");
+		}
+		pw.print("</products>" + "\n");
+		pw.close();
+	}
 }
