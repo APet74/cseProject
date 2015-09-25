@@ -11,15 +11,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import com.airamerica.*;
 
 // Include imports for XML/JSON libraries if needed
 
-import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.*;
 
 
 
@@ -90,7 +88,7 @@ public class DataConverter {
 		Products productArray[] = new Products[productsUnparsed.length];
 		for (int i = 0; i < productsUnparsed.length; i++) {
 			productArray[i] = (parseProduct(productsUnparsed[i], airportArray, productArray));		
-			System.out.println(productArray[i].getCode());
+			//System.out.println(productArray[i].getCode());
 		}
 		ProductToXML(productArray);	
 		
@@ -299,13 +297,13 @@ public class DataConverter {
 				try {
 					depTime = format.parse(token[4]);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				try {
 					arrTime = format.parse(token[5]);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				parsedProduct = new StandardTickets(productCode, productType, 
@@ -319,7 +317,7 @@ public class DataConverter {
 				try {
 					depTime = format.parse(token[4]);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				
@@ -327,7 +325,7 @@ public class DataConverter {
 				try {
 					arrTime = format.parse(token[5]);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				
@@ -343,7 +341,7 @@ public class DataConverter {
 					try {
 						seasonStartDate = season.parse(token[2]);
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 
@@ -351,7 +349,6 @@ public class DataConverter {
 					try {
 						seasonEndDate = season.parse(token[3]);
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
@@ -362,14 +359,14 @@ public class DataConverter {
 					try {
 						depTime = format.parse(token[6]);
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 					
 					try {
 						arrTime = format.parse(token[7]);
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
+						
 						e.printStackTrace();
 					}
 					
@@ -378,7 +375,7 @@ public class DataConverter {
 				aircraftType = token[10];
 				float rebate = Float.parseFloat(token[11]);
 				
-				parsedProduct = new OffseasonTickets(productCode, productType, 
+				parsedProduct = new OffSeasonTickets(productCode, productType, 
 							depAirportCode, 
 							arrAirportCode, depTime, 
 							arrTime, flightNo, flightClass, 
@@ -413,31 +410,7 @@ public class DataConverter {
 					}
 				}
 	
-						
-						
-		
-		
-		
-		/*
-		String customerName = token[3];
-		int airlineMiles = 0;
-		//find the person, put into customer object
-		Person customerContact = null;
-		
-		for(int j = 0; j < personArray.length; j++) {
-			if (token[2].equals(personArray[j].getPersonCode())){
-				customerContact = personArray[j];
-				break;
-			}
-		}
-		
-		if (token.length > 4){
-			airlineMiles = Integer.parseInt(token[4]);
-		}
-		
-		Customer customer = new Customer(customerCode, customerType, customerContact, customerName);
-		customer.setAirlineMiles(airlineMiles);
-		*/
+
 
 		return parsedProduct;
 	}

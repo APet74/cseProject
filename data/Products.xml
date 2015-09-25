@@ -1,0 +1,706 @@
+<products>
+<com.airamerica.InsuranceServices>
+  <code>ff23</code>
+  <productType>SI</productType>
+  <name>NationalInsurance</name>
+  <ageClass>0-20</ageClass>
+  <costPerMile>0.07</costPerMile>
+</com.airamerica.InsuranceServices>
+<com.airamerica.StandardTickets>
+  <code>1255</code>
+  <productType>TS</productType>
+  <depAirportCode>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>34</lattitudeDegrees>
+    <longitudeDegrees>118</longitudeDegrees>
+    <longitudeMinutes>15</longitudeMinutes>
+    <lattitudeMinutes>3</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 15:30:00.0 UTC</depTime>
+  <arrTime>1970-01-01 21:55:00.0 UTC</arrTime>
+  <flightNo>NA2222</flightNo>
+  <flightClass>BC</flightClass>
+  <aircraftType>Boeing757</aircraftType>
+</com.airamerica.StandardTickets>
+<com.airamerica.CheckedBaggage>
+  <code>90fa</code>
+  <productType>SC</productType>
+  <ticketCode class="com.airamerica.StandardTickets">
+    <code>1255</code>
+    <productType>TS</productType>
+    <depAirportCode>
+      <airportCode>LAX</airportCode>
+      <airportName>Los Angeles International Airport</airportName>
+      <address>
+        <street>1 World Way</street>
+        <city>Los Angeles</city>
+        <state>CA</state>
+        <zip>90045</zip>
+        <country>USA</country>
+      </address>
+      <lattitudeDegrees>34</lattitudeDegrees>
+      <longitudeDegrees>118</longitudeDegrees>
+      <longitudeMinutes>15</longitudeMinutes>
+      <lattitudeMinutes>3</lattitudeMinutes>
+      <passengerFee>4.5</passengerFee>
+    </depAirportCode>
+    <arrAirportCode>
+      <airportCode>ATL</airportCode>
+      <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+      <address>
+        <street>6000 N Terminal Pkwy</street>
+        <city>Atlanta</city>
+        <state>GA</state>
+        <zip>30320</zip>
+        <country>USA</country>
+      </address>
+      <lattitudeDegrees>33</lattitudeDegrees>
+      <longitudeDegrees>84</longitudeDegrees>
+      <longitudeMinutes>23</longitudeMinutes>
+      <lattitudeMinutes>45</lattitudeMinutes>
+      <passengerFee>4.5</passengerFee>
+    </arrAirportCode>
+    <depTime>1970-01-01 15:30:00.0 UTC</depTime>
+    <arrTime>1970-01-01 21:55:00.0 UTC</arrTime>
+    <flightNo>NA2222</flightNo>
+    <flightClass>BC</flightClass>
+    <aircraftType>Boeing757</aircraftType>
+  </ticketCode>
+</com.airamerica.CheckedBaggage>
+<com.airamerica.StandardTickets>
+  <code>1238</code>
+  <productType>TS</productType>
+  <depAirportCode>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>40</lattitudeDegrees>
+    <longitudeDegrees>96</longitudeDegrees>
+    <longitudeMinutes>40</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>0.0</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 12:00:00.0 UTC</depTime>
+  <arrTime>1970-01-01 15:08:00.0 UTC</arrTime>
+  <flightNo>NA4889</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+</com.airamerica.StandardTickets>
+<com.airamerica.SpecialAssistance>
+  <code>xer2</code>
+  <productType>SS</productType>
+  <TypeOfService>WheelChair</TypeOfService>
+</com.airamerica.SpecialAssistance>
+<com.airamerica.OffSeasonTickets>
+  <code>1240</code>
+  <productType>TO</productType>
+  <depAirportCode>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>40</lattitudeDegrees>
+    <longitudeDegrees>96</longitudeDegrees>
+    <longitudeMinutes>40</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>0.0</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 12:00:00.0 UTC</depTime>
+  <arrTime>1970-01-01 15:08:00.0 UTC</arrTime>
+  <flightNo>NA4889</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+  <seasonStartDate>2015-10-07 05:00:00.0 UTC</seasonStartDate>
+  <seasonEndDate>2016-01-29 06:00:00.0 UTC</seasonEndDate>
+  <rebate>0.1</rebate>
+</com.airamerica.OffSeasonTickets>
+<com.airamerica.StandardTickets>
+  <code>1241</code>
+  <productType>TS</productType>
+  <depAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>40</lattitudeDegrees>
+    <longitudeDegrees>96</longitudeDegrees>
+    <longitudeMinutes>40</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>0.0</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-02 03:15:00.0 UTC</depTime>
+  <arrTime>1970-01-02 04:42:00.0 UTC</arrTime>
+  <flightNo>NA4871</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+</com.airamerica.StandardTickets>
+<com.airamerica.InsuranceServices>
+  <code>ff25</code>
+  <productType>SI</productType>
+  <name>Progressive</name>
+  <ageClass>69-102</ageClass>
+  <costPerMile>0.1</costPerMile>
+</com.airamerica.InsuranceServices>
+<com.airamerica.OffSeasonTickets>
+  <code>1243</code>
+  <productType>TO</productType>
+  <depAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>LNK</airportCode>
+    <airportName>Lincoln Municipal</airportName>
+    <address>
+      <street>2400 W Adams St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68524</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>40</lattitudeDegrees>
+    <longitudeDegrees>96</longitudeDegrees>
+    <longitudeMinutes>40</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>0.0</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-02 03:15:00.0 UTC</depTime>
+  <arrTime>1970-01-02 04:42:00.0 UTC</arrTime>
+  <flightNo>NA4871</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>CRJ900</aircraftType>
+  <seasonStartDate>2015-10-07 05:00:00.0 UTC</seasonStartDate>
+  <seasonEndDate>2016-01-29 06:00:00.0 UTC</seasonEndDate>
+  <rebate>0.2</rebate>
+</com.airamerica.OffSeasonTickets>
+<com.airamerica.CheckedBaggage>
+  <code>90fb</code>
+  <productType>SC</productType>
+  <ticketCode class="com.airamerica.StandardTickets">
+    <code>1241</code>
+    <productType>TS</productType>
+    <depAirportCode>
+      <airportCode>ATL</airportCode>
+      <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+      <address>
+        <street>6000 N Terminal Pkwy</street>
+        <city>Atlanta</city>
+        <state>GA</state>
+        <zip>30320</zip>
+        <country>USA</country>
+      </address>
+      <lattitudeDegrees>33</lattitudeDegrees>
+      <longitudeDegrees>84</longitudeDegrees>
+      <longitudeMinutes>23</longitudeMinutes>
+      <lattitudeMinutes>45</lattitudeMinutes>
+      <passengerFee>4.5</passengerFee>
+    </depAirportCode>
+    <arrAirportCode>
+      <airportCode>LNK</airportCode>
+      <airportName>Lincoln Municipal</airportName>
+      <address>
+        <street>2400 W Adams St</street>
+        <city>Lincoln</city>
+        <state>NE</state>
+        <zip>68524</zip>
+        <country>USA</country>
+      </address>
+      <lattitudeDegrees>40</lattitudeDegrees>
+      <longitudeDegrees>96</longitudeDegrees>
+      <longitudeMinutes>40</longitudeMinutes>
+      <lattitudeMinutes>50</lattitudeMinutes>
+      <passengerFee>0.0</passengerFee>
+    </arrAirportCode>
+    <depTime>1970-01-02 03:15:00.0 UTC</depTime>
+    <arrTime>1970-01-02 04:42:00.0 UTC</arrTime>
+    <flightNo>NA4871</flightNo>
+    <flightClass>EC</flightClass>
+    <aircraftType>CRJ900</aircraftType>
+  </ticketCode>
+</com.airamerica.CheckedBaggage>
+<com.airamerica.StandardTickets>
+  <code>1256</code>
+  <productType>TS</productType>
+  <depAirportCode>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>34</lattitudeDegrees>
+    <longitudeDegrees>118</longitudeDegrees>
+    <longitudeMinutes>15</longitudeMinutes>
+    <lattitudeMinutes>3</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 15:30:00.0 UTC</depTime>
+  <arrTime>1970-01-01 21:55:00.0 UTC</arrTime>
+  <flightNo>NA2222</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>Boeing757</aircraftType>
+</com.airamerica.StandardTickets>
+<com.airamerica.AwardTickets>
+  <code>1257</code>
+  <productType>TA</productType>
+  <depAirportCode>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>34</lattitudeDegrees>
+    <longitudeDegrees>118</longitudeDegrees>
+    <longitudeMinutes>15</longitudeMinutes>
+    <lattitudeMinutes>3</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 16:15:00.0 UTC</depTime>
+  <arrTime>1970-01-02 00:13:00.0 UTC</arrTime>
+  <flightNo>NA101</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>Boeing737-900ER</aircraftType>
+  <pointsPerMile>90</pointsPerMile>
+</com.airamerica.AwardTickets>
+<com.airamerica.StandardTickets>
+  <code>1258</code>
+  <productType>TS</productType>
+  <depAirportCode>
+    <airportCode>ATL</airportCode>
+    <airportName>Hartsfield Jackson Atlanta International Airport</airportName>
+    <address>
+      <street>6000 N Terminal Pkwy</street>
+      <city>Atlanta</city>
+      <state>GA</state>
+      <zip>30320</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>84</longitudeDegrees>
+    <longitudeMinutes>23</longitudeMinutes>
+    <lattitudeMinutes>45</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>LAX</airportCode>
+    <airportName>Los Angeles International Airport</airportName>
+    <address>
+      <street>1 World Way</street>
+      <city>Los Angeles</city>
+      <state>CA</state>
+      <zip>90045</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>34</lattitudeDegrees>
+    <longitudeDegrees>118</longitudeDegrees>
+    <longitudeMinutes>15</longitudeMinutes>
+    <lattitudeMinutes>3</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 16:50:00.0 UTC</depTime>
+  <arrTime>1970-01-01 18:50:00.0 UTC</arrTime>
+  <flightNo>NA1555</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>Boeing737-900ER</aircraftType>
+</com.airamerica.StandardTickets>
+<com.airamerica.Refreshments>
+  <code>32f4</code>
+  <productType>SR</productType>
+  <name>Italian Buffet</name>
+  <cost>18.0</cost>
+</com.airamerica.Refreshments>
+<com.airamerica.AwardTickets>
+  <code>1260</code>
+  <productType>TA</productType>
+  <depAirportCode>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <lattitudeDegrees>41</lattitudeDegrees>
+    <longitudeDegrees>87</longitudeDegrees>
+    <longitudeMinutes>37</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>112</longitudeDegrees>
+    <longitudeMinutes>4</longitudeMinutes>
+    <lattitudeMinutes>29</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 15:09:00.0 UTC</depTime>
+  <arrTime>1970-01-01 17:06:00.0 UTC</arrTime>
+  <flightNo>N725</flightNo>
+  <flightClass>EP</flightClass>
+  <aircraftType>Airbus-A319</aircraftType>
+  <pointsPerMile>110</pointsPerMile>
+</com.airamerica.AwardTickets>
+<com.airamerica.SpecialAssistance>
+  <code>xer4</code>
+  <productType>SS</productType>
+  <TypeOfService>BabyBassinet</TypeOfService>
+</com.airamerica.SpecialAssistance>
+<com.airamerica.StandardTickets>
+  <code>1261</code>
+  <productType>TS</productType>
+  <depAirportCode>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <lattitudeDegrees>41</lattitudeDegrees>
+    <longitudeDegrees>87</longitudeDegrees>
+    <longitudeMinutes>37</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>112</longitudeDegrees>
+    <longitudeMinutes>4</longitudeMinutes>
+    <lattitudeMinutes>29</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 15:09:00.0 UTC</depTime>
+  <arrTime>1970-01-01 17:06:00.0 UTC</arrTime>
+  <flightNo>N725</flightNo>
+  <flightClass>BC</flightClass>
+  <aircraftType>Airbus-A319</aircraftType>
+</com.airamerica.StandardTickets>
+<com.airamerica.InsuranceServices>
+  <code>ff24</code>
+  <productType>SI</productType>
+  <name>Progressive</name>
+  <ageClass>55-68</ageClass>
+  <costPerMile>0.09</costPerMile>
+</com.airamerica.InsuranceServices>
+<com.airamerica.OffSeasonTickets>
+  <code>1262</code>
+  <productType>TO</productType>
+  <depAirportCode>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>112</longitudeDegrees>
+    <longitudeMinutes>4</longitudeMinutes>
+    <lattitudeMinutes>29</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <lattitudeDegrees>41</lattitudeDegrees>
+    <longitudeDegrees>87</longitudeDegrees>
+    <longitudeMinutes>37</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 20:24:00.0 UTC</depTime>
+  <arrTime>1970-01-02 01:56:00.0 UTC</arrTime>
+  <flightNo>N2000</flightNo>
+  <flightClass>BC</flightClass>
+  <aircraftType>Airbus-A320</aircraftType>
+  <seasonStartDate>2015-09-01 05:00:00.0 UTC</seasonStartDate>
+  <seasonEndDate>2016-10-12 05:00:00.0 UTC</seasonEndDate>
+  <rebate>0.15</rebate>
+</com.airamerica.OffSeasonTickets>
+<com.airamerica.OffSeasonTickets>
+  <code>1263</code>
+  <productType>TO</productType>
+  <depAirportCode>
+    <airportCode>PHX</airportCode>
+    <airportName>Phoenix Sky Harbor International</airportName>
+    <address>
+      <street>3400 E Sky Harbor Blvd</street>
+      <city>Phoenix</city>
+      <state>AZ</state>
+      <zip>85034</zip>
+      <country>USA</country>
+    </address>
+    <lattitudeDegrees>33</lattitudeDegrees>
+    <longitudeDegrees>112</longitudeDegrees>
+    <longitudeMinutes>4</longitudeMinutes>
+    <lattitudeMinutes>29</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </depAirportCode>
+  <arrAirportCode>
+    <airportCode>ORD</airportCode>
+    <airportName>Chicago O&apos;Hare International</airportName>
+    <address>
+      <street>10000 W O&apos;Hare Ave</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60666</zip>
+      <country>IL</country>
+    </address>
+    <lattitudeDegrees>41</lattitudeDegrees>
+    <longitudeDegrees>87</longitudeDegrees>
+    <longitudeMinutes>37</longitudeMinutes>
+    <lattitudeMinutes>50</lattitudeMinutes>
+    <passengerFee>4.5</passengerFee>
+  </arrAirportCode>
+  <depTime>1970-01-01 13:10:00.0 UTC</depTime>
+  <arrTime>1970-01-01 18:42:00.0 UTC</arrTime>
+  <flightNo>N488</flightNo>
+  <flightClass>EC</flightClass>
+  <aircraftType>Airbus-A320</aircraftType>
+  <seasonStartDate>2015-09-15 05:00:00.0 UTC</seasonStartDate>
+  <seasonEndDate>2016-12-29 06:00:00.0 UTC</seasonEndDate>
+  <rebate>0.25</rebate>
+</com.airamerica.OffSeasonTickets>
+<com.airamerica.InsuranceServices>
+  <code>fg23</code>
+  <productType>SI</productType>
+  <name>Progressive</name>
+  <ageClass>21-54</ageClass>
+  <costPerMile>0.08</costPerMile>
+</com.airamerica.InsuranceServices>
+<com.airamerica.InsuranceServices>
+  <code>fh23</code>
+  <productType>SI</productType>
+  <name>NationalInsurance</name>
+  <ageClass>21-60</ageClass>
+  <costPerMile>0.085</costPerMile>
+</com.airamerica.InsuranceServices>
+<com.airamerica.CheckedBaggage>
+  <code>90fc</code>
+  <productType>SC</productType>
+  <ticketCode class="com.airamerica.AwardTickets">
+    <code>1260</code>
+    <productType>TA</productType>
+    <depAirportCode>
+      <airportCode>ORD</airportCode>
+      <airportName>Chicago O&apos;Hare International</airportName>
+      <address>
+        <street>10000 W O&apos;Hare Ave</street>
+        <city>Chicago</city>
+        <state>IL</state>
+        <zip>60666</zip>
+        <country>IL</country>
+      </address>
+      <lattitudeDegrees>41</lattitudeDegrees>
+      <longitudeDegrees>87</longitudeDegrees>
+      <longitudeMinutes>37</longitudeMinutes>
+      <lattitudeMinutes>50</lattitudeMinutes>
+      <passengerFee>4.5</passengerFee>
+    </depAirportCode>
+    <arrAirportCode>
+      <airportCode>PHX</airportCode>
+      <airportName>Phoenix Sky Harbor International</airportName>
+      <address>
+        <street>3400 E Sky Harbor Blvd</street>
+        <city>Phoenix</city>
+        <state>AZ</state>
+        <zip>85034</zip>
+        <country>USA</country>
+      </address>
+      <lattitudeDegrees>33</lattitudeDegrees>
+      <longitudeDegrees>112</longitudeDegrees>
+      <longitudeMinutes>4</longitudeMinutes>
+      <lattitudeMinutes>29</lattitudeMinutes>
+      <passengerFee>4.5</passengerFee>
+    </arrAirportCode>
+    <depTime>1970-01-01 15:09:00.0 UTC</depTime>
+    <arrTime>1970-01-01 17:06:00.0 UTC</arrTime>
+    <flightNo>N725</flightNo>
+    <flightClass>EP</flightClass>
+    <aircraftType>Airbus-A319</aircraftType>
+    <pointsPerMile>110</pointsPerMile>
+  </ticketCode>
+</com.airamerica.CheckedBaggage>
+<com.airamerica.SpecialAssistance>
+  <code>xer1</code>
+  <productType>SS</productType>
+  <TypeOfService>PrioritySeating</TypeOfService>
+</com.airamerica.SpecialAssistance>
+<com.airamerica.Refreshments>
+  <code>31f4</code>
+  <productType>SR</productType>
+  <name>Labbat-Beer-15oz</name>
+  <cost>4.5</cost>
+</com.airamerica.Refreshments>
+</products>
