@@ -1,7 +1,55 @@
-<?xml version="1.0"?>
 <customers>
-<government>
+<customer>
+  <customerCode>C001</customerCode>
+  <customerType>C</customerType>
+  <primaryContact>
+    <personCode>231</personCode>
+    <firstName>Tom</firstName>
+    <lastName>Baker</lastName>
+    <address>
+      <street>1 Blue Jays Way</street>
+      <city>Toronto</city>
+      <state>ON</state>
+      <zip>M5V 1J1</zip>
+      <country>Canada</country>
+    </address>
+    <phoneNumber>210-124-3210</phoneNumber>
+    <emails>
+      <string>famousdoc@who.com</string>
+      <string>tbaker@cse.unl.edu</string>
+      <string>mostfamous@whovian.com</string>
+      <string>thedoctor@bbc.com</string>
+    </emails>
+  </primaryContact>
+  <customerName>Cinco Consultants</customerName>
+  <airlineMiles>0</airlineMiles>
+</customer>
+<customer>
+  <customerCode>C002</customerCode>
+  <customerType>G</customerType>
+  <primaryContact>
+    <personCode>944c</personCode>
+    <firstName>Starlin</firstName>
+    <lastName>Castro</lastName>
+    <address>
+      <street>1060 West Addison Street</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60613</zip>
+      <country>USA</country>
+    </address>
+    <phoneNumber>142-241-6024</phoneNumber>
+    <emails>
+      <string>scastro@cubs.com</string>
+      <string>starlin_castro13@gmail.com</string>
+    </emails>
+  </primaryContact>
+  <customerName>Stark Associates</customerName>
+  <airlineMiles>12500</airlineMiles>
+</customer>
+<customer>
   <customerCode>C003</customerCode>
+  <customerType>V</customerType>
   <primaryContact>
     <personCode>306a</personCode>
     <firstName>Brock</firstName>
@@ -15,15 +63,16 @@
     </address>
     <phoneNumber>402-241-6024</phoneNumber>
     <emails>
-      <email>brock_f_sampson@gmail.com</email>
-      <email>bsampson@venture.com</email>
+      <string>brock_f_sampson@gmail.com</string>
+      <string>bsampson@venture.com</string>
     </emails>
   </primaryContact>
   <customerName>United States Postal Service</customerName>
-  <airlineMiles>0</airlineMiles>
-</government>
-<corporate>
+  <airlineMiles>36000</airlineMiles>
+</customer>
+<customer>
   <customerCode>C004</customerCode>
+  <customerType>C</customerType>
   <primaryContact>
     <personCode>321f</personCode>
     <firstName>Bud</firstName>
@@ -37,15 +86,16 @@
     </address>
     <phoneNumber></phoneNumber>
     <emails>
-      <email>bfox@gmail.com</email>
-      <email>csheen@crazy.net</email>
+      <string>bfox@gmail.com</string>
+      <string>csheen@crazy.net</string>
     </emails>
   </primaryContact>
   <customerName>Mr Steve Odelay</customerName>
-  <airlineMiles>0</airlineMiles>
-</corporate>
-<general>
+  <airlineMiles>4170000</airlineMiles>
+</customer>
+<customer>
   <customerCode>C005</customerCode>
+  <customerType>G</customerType>
   <primaryContact>
     <personCode>bbchar</personCode>
     <firstName>Kaylee</firstName>
@@ -62,9 +112,10 @@
   </primaryContact>
   <customerName>Vandelay Industries</customerName>
   <airlineMiles>0</airlineMiles>
-</general>
-<government>
+</customer>
+<customer>
   <customerCode>C006</customerCode>
+  <customerType>V</customerType>
   <primaryContact>
     <personCode>321dr</personCode>
     <firstName>C.</firstName>
@@ -77,13 +128,16 @@
       <country>USA</country>
     </address>
     <phoneNumber>122-141-1032</phoneNumber>
-    <emails/>
+    <emails>
+      <string>321-274-3210</string>
+    </emails>
   </primaryContact>
   <customerName>University of Nebaska-Lincoln</customerName>
-  <airlineMiles>0</airlineMiles>
-</government>
-<corporate>
+  <airlineMiles>6857441</airlineMiles>
+</customer>
+<customer>
   <customerCode>C007</customerCode>
+  <customerType>C</customerType>
   <primaryContact>
     <personCode>6doc</personCode>
     <firstName>Richard</firstName>
@@ -97,15 +151,16 @@
     </address>
     <phoneNumber>124-366-3210</phoneNumber>
     <emails>
-      <email>rhurndall@cse.unl.edu</email>
-      <email>richard@unl.edu</email>
+      <string>rhurndall@cse.unl.edu</string>
+      <string>richard@unl.edu</string>
     </emails>
   </primaryContact>
   <customerName>Venture Club</customerName>
   <airlineMiles>0</airlineMiles>
-</corporate>
-<general>
+</customer>
+<customer>
   <customerCode>C008</customerCode>
+  <customerType>G</customerType>
   <primaryContact>
     <personCode>ma12</personCode>
     <firstName>Dale</firstName>
@@ -119,56 +174,10 @@
     </address>
     <phoneNumber>541-354-3210</phoneNumber>
     <emails>
-      <email>sveum@cubs.com</email>
+      <string>sveum@cubs.com</string>
     </emails>
   </primaryContact>
   <customerName>Mr Gregory Smith</customerName>
-  <airlineMiles>0</airlineMiles>
-</general>
-<general>
-  <customerCode>C002</customerCode>
-  <primaryContact>
-    <personCode>944c</personCode>
-    <firstName>Starlin</firstName>
-    <lastName>Castro</lastName>
-    <address>
-      <street>1060 West Addison Street</street>
-      <city>Chicago</city>
-      <state>IL</state>
-      <zip>60613</zip>
-      <country>USA</country>
-    </address>
-    <phoneNumber>142-241-6024</phoneNumber>
-    <emails>
-      <email>scastro@cubs.com</email>
-      <email>starlin_castro13@gmail.com</email>
-    </emails>
-  </primaryContact>
-  <customerName>Stark Associates</customerName>
-  <airlineMiles>0</airlineMiles>
-</general>
-<corporate>
-  <customerCode>C001</customerCode>
-  <primaryContact>
-    <personCode>231</personCode>
-    <firstName>Tom</firstName>
-    <lastName>Baker</lastName>
-    <address>
-      <street>1 Blue Jays Way</street>
-      <city>Toronto</city>
-      <state>ON</state>
-      <zip>M5V 1J1</zip>
-      <country>Canada</country>
-    </address>
-    <phoneNumber>210-124-3210</phoneNumber>
-    <emails>
-      <email>famousdoc@who.com</email>
-      <email>tbaker@cse.unl.edu</email>
-      <email>mostfamous@whovian.com</email>
-      <email>thedoctor@bbc.com</email>
-    </emails>
-  </primaryContact>
-  <customerName>Cinco Consultants</customerName>
-  <airlineMiles>0</airlineMiles>
-</corporate>
+  <airlineMiles>101111</airlineMiles>
+</customer>
 </customers>
