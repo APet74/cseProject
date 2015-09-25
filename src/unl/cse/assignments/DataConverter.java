@@ -2,9 +2,7 @@ package unl.cse.assignments;
 
 /* Phase-I */
 import com.airamerica.*;
-import com.airamerica.Products.*;
-import com.airamerica.Products.Tickets.*;
-import com.airamerica.Products.Services.*;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -256,15 +254,15 @@ public class DataConverter {
 		
 	}
 	
-	private static Ticket findTicket(String productCode, Products[] productArray){
-		Ticket product= null;
+	private static Tickets findTicket(String productCode, Products[] productArray){
+		Tickets product= null;
 		String matchCode = null;
 		
 			for(int j = 0; j < productArray.length; j++) {
 				matchCode = productArray[j].getCode();
 
 				if (matchCode.equals(productCode)){
-					product = (Ticket) productArray[j];
+					product = (Tickets) productArray[j];
 					break;
 				}
 			}
@@ -310,7 +308,7 @@ public class DataConverter {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				parsedProduct = new StandardTicket(productCode, productType, 
+				parsedProduct = new StandardTickets(productCode, productType, 
 						depAirportCode, arrAirportCode, 
 						depTime, arrTime, flightNo, flightClass,
 						aircraftType);
@@ -333,7 +331,7 @@ public class DataConverter {
 					e.printStackTrace();
 				}
 				
-				parsedProduct = new AwardTicket(productCode, productType, 
+				parsedProduct = new AwardTickets(productCode, productType, 
 						depAirportCode, arrAirportCode, 
 						depTime, arrTime, flightNo, flightClass,
 						aircraftType, pointsPerMile);
@@ -380,7 +378,7 @@ public class DataConverter {
 				aircraftType = token[10];
 				float rebate = Float.parseFloat(token[11]);
 				
-				parsedProduct = new OffSeasonTicket(productCode, productType, 
+				parsedProduct = new OffseasonTickets(productCode, productType, 
 							depAirportCode, 
 							arrAirportCode, depTime, 
 							arrTime, flightNo, flightClass, 
@@ -394,7 +392,7 @@ public class DataConverter {
 		case "S":
 					if (productType.equals("SC")) {
 						//Search for ticket to make an embedded ticket object
-						Ticket ticketCode = findTicket(token[2], productArray);
+						Tickets ticketCode = findTicket(token[2], productArray);
 						
 						parsedProduct = new CheckedBaggage(productCode,productType,ticketCode);
 					} else if (productType.equals("SI")) {
@@ -402,7 +400,7 @@ public class DataConverter {
 						String ageClass = token[3];
 						float costPerMile = Float.parseFloat(token[4]);
 						
-						parsedProduct = new Insurance(productCode, productType, insuranceName, ageClass, costPerMile);
+						parsedProduct = new InsuranceServices(productCode, productType, insuranceName, ageClass, costPerMile);
 					} else if (productType.equals("SS")) {
 						String typeOfService = token[2];
 						
@@ -411,7 +409,7 @@ public class DataConverter {
 						String refreshmentName = token[2];
 						float cost = Float.parseFloat(token[3]);
 						
-						parsedProduct = new Refreshment(productCode, productType, refreshmentName, cost);
+						parsedProduct = new Refreshments(productCode, productType, refreshmentName, cost);
 					}
 				}
 	
