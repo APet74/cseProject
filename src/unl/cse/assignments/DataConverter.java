@@ -91,8 +91,7 @@ public class DataConverter {
 		//Products
 		Products productArray[] = new Products[productsUnparsed.length];
 		for (int i = 0; i < productsUnparsed.length-1; i++) {
-			productArray[i] = (parseProduct(productsUnparsed[i], airportArray, productArray));
-					
+			productArray[i] = (parseProduct(productsUnparsed[i], airportArray, productArray));		
 		}
 
 
