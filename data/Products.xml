@@ -1,12 +1,12 @@
 <products>
-<com.airamerica.InsuranceServices>
+<com.airamerica.Products.InsuranceServices>
   <code>ff23</code>
   <productType>SI</productType>
   <name>NationalInsurance</name>
   <ageClass>0-20</ageClass>
   <costPerMile>0.07</costPerMile>
-</com.airamerica.InsuranceServices>
-<com.airamerica.StandardTickets>
+</com.airamerica.Products.InsuranceServices>
+<com.airamerica.Products.StandardTickets>
   <code>1255</code>
   <productType>TS</productType>
   <depAirportCode>
@@ -46,11 +46,11 @@
   <flightNo>NA2222</flightNo>
   <flightClass>BC</flightClass>
   <aircraftType>Boeing757</aircraftType>
-</com.airamerica.StandardTickets>
-<com.airamerica.CheckedBaggage>
+</com.airamerica.Products.StandardTickets>
+<com.airamerica.Products.CheckedBaggage>
   <code>90fa</code>
   <productType>SC</productType>
-  <ticketCode class="com.airamerica.StandardTickets">
+  <ticketCode class="com.airamerica.Products.StandardTickets">
     <code>1255</code>
     <productType>TS</productType>
     <depAirportCode>
@@ -91,8 +91,8 @@
     <flightClass>BC</flightClass>
     <aircraftType>Boeing757</aircraftType>
   </ticketCode>
-</com.airamerica.CheckedBaggage>
-<com.airamerica.StandardTickets>
+</com.airamerica.Products.CheckedBaggage>
+<com.airamerica.Products.StandardTickets>
   <code>1238</code>
   <productType>TS</productType>
   <depAirportCode>
@@ -132,13 +132,13 @@
   <flightNo>NA4889</flightNo>
   <flightClass>EC</flightClass>
   <aircraftType>CRJ900</aircraftType>
-</com.airamerica.StandardTickets>
-<com.airamerica.SpecialAssistance>
+</com.airamerica.Products.StandardTickets>
+<com.airamerica.Products.SpecialAssistance>
   <code>xer2</code>
   <productType>SS</productType>
   <TypeOfService>WheelChair</TypeOfService>
-</com.airamerica.SpecialAssistance>
-<com.airamerica.OffSeasonTickets>
+</com.airamerica.Products.SpecialAssistance>
+<com.airamerica.Products.OffSeasonTickets>
   <code>1240</code>
   <productType>TO</productType>
   <depAirportCode>
@@ -179,10 +179,10 @@
   <flightClass>EC</flightClass>
   <aircraftType>CRJ900</aircraftType>
   <seasonStartDate>2015-10-07 05:00:00.0 UTC</seasonStartDate>
-  <seasonEndDate>2016-01-29 06:00:00.0 UTC</seasonEndDate>
+  <sesaonEndDAte>2016-01-29 06:00:00.0 UTC</sesaonEndDAte>
   <rebate>0.1</rebate>
-</com.airamerica.OffSeasonTickets>
-<com.airamerica.StandardTickets>
+</com.airamerica.Products.OffSeasonTickets>
+<com.airamerica.Products.StandardTickets>
   <code>1241</code>
   <productType>TS</productType>
   <depAirportCode>
@@ -222,15 +222,15 @@
   <flightNo>NA4871</flightNo>
   <flightClass>EC</flightClass>
   <aircraftType>CRJ900</aircraftType>
-</com.airamerica.StandardTickets>
-<com.airamerica.InsuranceServices>
+</com.airamerica.Products.StandardTickets>
+<com.airamerica.Products.InsuranceServices>
   <code>ff25</code>
   <productType>SI</productType>
   <name>Progressive</name>
   <ageClass>69-102</ageClass>
   <costPerMile>0.1</costPerMile>
-</com.airamerica.InsuranceServices>
-<com.airamerica.OffSeasonTickets>
+</com.airamerica.Products.InsuranceServices>
+<com.airamerica.Products.OffSeasonTickets>
   <code>1243</code>
   <productType>TO</productType>
   <depAirportCode>
@@ -271,13 +271,13 @@
   <flightClass>EP</flightClass>
   <aircraftType>CRJ900</aircraftType>
   <seasonStartDate>2015-10-07 05:00:00.0 UTC</seasonStartDate>
-  <seasonEndDate>2016-01-29 06:00:00.0 UTC</seasonEndDate>
+  <sesaonEndDAte>2016-01-29 06:00:00.0 UTC</sesaonEndDAte>
   <rebate>0.2</rebate>
-</com.airamerica.OffSeasonTickets>
-<com.airamerica.CheckedBaggage>
+</com.airamerica.Products.OffSeasonTickets>
+<com.airamerica.Products.CheckedBaggage>
   <code>90fb</code>
   <productType>SC</productType>
-  <ticketCode class="com.airamerica.StandardTickets">
+  <ticketCode class="com.airamerica.Products.StandardTickets">
     <code>1241</code>
     <productType>TS</productType>
     <depAirportCode>
@@ -318,8 +318,8 @@
     <flightClass>EC</flightClass>
     <aircraftType>CRJ900</aircraftType>
   </ticketCode>
-</com.airamerica.CheckedBaggage>
-<com.airamerica.StandardTickets>
+</com.airamerica.Products.CheckedBaggage>
+<com.airamerica.Products.StandardTickets>
   <code>1256</code>
   <productType>TS</productType>
   <depAirportCode>
@@ -359,8 +359,8 @@
   <flightNo>NA2222</flightNo>
   <flightClass>EP</flightClass>
   <aircraftType>Boeing757</aircraftType>
-</com.airamerica.StandardTickets>
-<com.airamerica.AwardTickets>
+</com.airamerica.Products.StandardTickets>
+<com.airamerica.Products.AwardTickets>
   <code>1257</code>
   <productType>TA</productType>
   <depAirportCode>
@@ -401,8 +401,8 @@
   <flightClass>EP</flightClass>
   <aircraftType>Boeing737-900ER</aircraftType>
   <pointsPerMile>90</pointsPerMile>
-</com.airamerica.AwardTickets>
-<com.airamerica.StandardTickets>
+</com.airamerica.Products.AwardTickets>
+<com.airamerica.Products.StandardTickets>
   <code>1258</code>
   <productType>TS</productType>
   <depAirportCode>
@@ -442,14 +442,14 @@
   <flightNo>NA1555</flightNo>
   <flightClass>EC</flightClass>
   <aircraftType>Boeing737-900ER</aircraftType>
-</com.airamerica.StandardTickets>
-<com.airamerica.Refreshments>
+</com.airamerica.Products.StandardTickets>
+<com.airamerica.Products.Refreshments>
   <code>32f4</code>
   <productType>SR</productType>
   <name>Italian Buffet</name>
   <cost>18.0</cost>
-</com.airamerica.Refreshments>
-<com.airamerica.AwardTickets>
+</com.airamerica.Products.Refreshments>
+<com.airamerica.Products.AwardTickets>
   <code>1260</code>
   <productType>TA</productType>
   <depAirportCode>
@@ -490,13 +490,13 @@
   <flightClass>EP</flightClass>
   <aircraftType>Airbus-A319</aircraftType>
   <pointsPerMile>110</pointsPerMile>
-</com.airamerica.AwardTickets>
-<com.airamerica.SpecialAssistance>
+</com.airamerica.Products.AwardTickets>
+<com.airamerica.Products.SpecialAssistance>
   <code>xer4</code>
   <productType>SS</productType>
   <TypeOfService>BabyBassinet</TypeOfService>
-</com.airamerica.SpecialAssistance>
-<com.airamerica.StandardTickets>
+</com.airamerica.Products.SpecialAssistance>
+<com.airamerica.Products.StandardTickets>
   <code>1261</code>
   <productType>TS</productType>
   <depAirportCode>
@@ -536,15 +536,15 @@
   <flightNo>N725</flightNo>
   <flightClass>BC</flightClass>
   <aircraftType>Airbus-A319</aircraftType>
-</com.airamerica.StandardTickets>
-<com.airamerica.InsuranceServices>
+</com.airamerica.Products.StandardTickets>
+<com.airamerica.Products.InsuranceServices>
   <code>ff24</code>
   <productType>SI</productType>
   <name>Progressive</name>
   <ageClass>55-68</ageClass>
   <costPerMile>0.09</costPerMile>
-</com.airamerica.InsuranceServices>
-<com.airamerica.OffSeasonTickets>
+</com.airamerica.Products.InsuranceServices>
+<com.airamerica.Products.OffSeasonTickets>
   <code>1262</code>
   <productType>TO</productType>
   <depAirportCode>
@@ -585,10 +585,10 @@
   <flightClass>BC</flightClass>
   <aircraftType>Airbus-A320</aircraftType>
   <seasonStartDate>2015-09-01 05:00:00.0 UTC</seasonStartDate>
-  <seasonEndDate>2016-10-12 05:00:00.0 UTC</seasonEndDate>
+  <sesaonEndDAte>2016-10-12 05:00:00.0 UTC</sesaonEndDAte>
   <rebate>0.15</rebate>
-</com.airamerica.OffSeasonTickets>
-<com.airamerica.OffSeasonTickets>
+</com.airamerica.Products.OffSeasonTickets>
+<com.airamerica.Products.OffSeasonTickets>
   <code>1263</code>
   <productType>TO</productType>
   <depAirportCode>
@@ -629,27 +629,27 @@
   <flightClass>EC</flightClass>
   <aircraftType>Airbus-A320</aircraftType>
   <seasonStartDate>2015-09-15 05:00:00.0 UTC</seasonStartDate>
-  <seasonEndDate>2016-12-29 06:00:00.0 UTC</seasonEndDate>
+  <sesaonEndDAte>2016-12-29 06:00:00.0 UTC</sesaonEndDAte>
   <rebate>0.25</rebate>
-</com.airamerica.OffSeasonTickets>
-<com.airamerica.InsuranceServices>
+</com.airamerica.Products.OffSeasonTickets>
+<com.airamerica.Products.InsuranceServices>
   <code>fg23</code>
   <productType>SI</productType>
   <name>Progressive</name>
   <ageClass>21-54</ageClass>
   <costPerMile>0.08</costPerMile>
-</com.airamerica.InsuranceServices>
-<com.airamerica.InsuranceServices>
+</com.airamerica.Products.InsuranceServices>
+<com.airamerica.Products.InsuranceServices>
   <code>fh23</code>
   <productType>SI</productType>
   <name>NationalInsurance</name>
   <ageClass>21-60</ageClass>
   <costPerMile>0.085</costPerMile>
-</com.airamerica.InsuranceServices>
-<com.airamerica.CheckedBaggage>
+</com.airamerica.Products.InsuranceServices>
+<com.airamerica.Products.CheckedBaggage>
   <code>90fc</code>
   <productType>SC</productType>
-  <ticketCode class="com.airamerica.AwardTickets">
+  <ticketCode class="com.airamerica.Products.AwardTickets">
     <code>1260</code>
     <productType>TA</productType>
     <depAirportCode>
@@ -691,16 +691,16 @@
     <aircraftType>Airbus-A319</aircraftType>
     <pointsPerMile>110</pointsPerMile>
   </ticketCode>
-</com.airamerica.CheckedBaggage>
-<com.airamerica.SpecialAssistance>
+</com.airamerica.Products.CheckedBaggage>
+<com.airamerica.Products.SpecialAssistance>
   <code>xer1</code>
   <productType>SS</productType>
   <TypeOfService>PrioritySeating</TypeOfService>
-</com.airamerica.SpecialAssistance>
-<com.airamerica.Refreshments>
+</com.airamerica.Products.SpecialAssistance>
+<com.airamerica.Products.Refreshments>
   <code>31f4</code>
   <productType>SR</productType>
   <name>Labbat-Beer-15oz</name>
   <cost>4.5</cost>
-</com.airamerica.Refreshments>
+</com.airamerica.Products.Refreshments>
 </products>
