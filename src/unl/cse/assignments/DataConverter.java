@@ -59,28 +59,35 @@ public class DataConverter {
 			//put it into an array of persons
 			personArray[i] = ParseData.parsePerson(personsUnparsed[i]);
 		}
-		XMLOut.personToXML(personArray);
+		
 		//Customer
 		Customer customerArray[] = new Customer[customersUnparsed.length];
 		
 		for (int i = 0; i < customersUnparsed.length; i++) {
 			customerArray[i] = ParseData.parseCustomer(customersUnparsed[i], personArray);
 		}
-		XMLOut.customerToXML(customerArray);
+		
 		//Airports
 		Airports airportArray[] = new Airports[airportsUnparsed.length];
 		for (int i = 0; i < airportsUnparsed.length; i++) {
 			airportArray[i] = ParseData.parseAirport(airportsUnparsed[i]);
 		}
-		XMLOut.airportToXML(airportArray);
+		
 		//Products
 		Products productArray[] = new Products[productsUnparsed.length];
 		for (int i = 0; i < productsUnparsed.length; i++) {
 			productArray[i] = (ParseData.parseProduct(productsUnparsed[i], airportArray, productArray));		
 			//System.out.println(productArray[i].getCode());
 		}
-		XMLOut.productToXML(productArray);	
+
 		
+		/*
+		 * Send flat file data to XML
+		 */
+		XMLOut.personToXML(personArray);
+		XMLOut.customerToXML(customerArray);
+		XMLOut.airportToXML(airportArray);
+		XMLOut.productToXML(productArray);	
 	}
 
 	
