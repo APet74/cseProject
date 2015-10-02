@@ -3,10 +3,10 @@ package com.airamerica.dataConversion;
 import java.io.File;
 import java.io.PrintWriter;
 
-import com.airamerica.Airports;
+import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
-import com.airamerica.Products.Products;
+import com.airamerica.products.Product;
 import com.thoughtworks.xstream.XStream;
 
 public class XMLOut {
@@ -36,9 +36,9 @@ public class XMLOut {
 		pw.close();
 	}
 	
-	public static void airportToXML(Airports airportArray[]){
+	public static void airportToXML(Airport airportArray[]){
 		XStream xstream = new XStream();
-		xstream.alias("airport", Airports.class);
+		xstream.alias("airport", Airport.class);
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(new File("data/Airports.xml"));
@@ -72,9 +72,9 @@ public class XMLOut {
 	}
 
 	
-	public static void productToXML(Products [] productArray){
+	public static void productToXML(Product [] productArray){
 		XStream xstream = new XStream();
-		xstream.alias("product", Products.class);
+		xstream.alias("product", Product.class);
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(new File("data/Products.xml"));

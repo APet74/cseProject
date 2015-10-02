@@ -1,17 +1,18 @@
 package com.airamerica.dataConversion;
 
-import com.airamerica.Airports;
+import com.airamerica.Airport;
 import com.airamerica.Person;
-import com.airamerica.Products.Products;
-import com.airamerica.Products.Tickets;
+import com.airamerica.products.Product;
+import com.airamerica.products.Ticket;
 
 public class FindObject {
+
 	
-	public static Airports findAirport(String airportCode, Airports [] airportsArray){
-		Airports airport = null;
+	public static Airport findAirport(String airportCode, Airport [] airportsArray){
+		Airport airport = null;
 
 			for(int j = 0; j < airportsArray.length; j++) {
-				if (airportCode.equals(airportsArray[j].getAirportCode())){
+				if (airportCode.equals(airportsArray[j].getCode())){
 					airport = airportsArray[j];
 					break;
 				}
@@ -21,15 +22,15 @@ public class FindObject {
 	}
 	
 	
-	public static Tickets findTicket(String productCode, Products[] productArray){
-		Tickets product= null;
+	public static Ticket findTicket(String productCode, Product[] productArray){
+		Ticket product= null;
 		String matchCode = null;
 		
 			for(int j = 0; j < productArray.length; j++) {
 				matchCode = productArray[j].getCode();
 
 				if (matchCode.equals(productCode)){
-					product = (Tickets) productArray[j];
+					product = (Ticket) productArray[j];
 					break;
 				}
 			}

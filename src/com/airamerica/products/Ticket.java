@@ -2,12 +2,12 @@ package com.airamerica.products;
 
 import java.util.Date;
 
-import com.airamerica.Airports;
+import com.airamerica.Airport;
 
 public abstract class Ticket extends Product {
 	
-	private Airports depAirportCode;
-	private Airports arrAirportCode;
+	private Airport depAirportCode;
+	private Airport arrAirportCode;
 	private Date depTime, arrTime;
 	private String flightNo;
 	private String flightClass;
@@ -15,7 +15,7 @@ public abstract class Ticket extends Product {
 
 
 
-	public Ticket(String code, String productType, Airports depAirportCode, Airports arrAirportCode,
+	public Ticket(String code, String productType, Airport depAirportCode, Airport arrAirportCode,
 			Date depTime, Date arrTime, String flightNo, String flightClass, String aircraftType) {
 		super(code, productType);
 		this.depAirportCode = depAirportCode;
@@ -27,19 +27,19 @@ public abstract class Ticket extends Product {
 		this.aircraftType = aircraftType;
 	}
 
-	public Airports getDepAirportCode() {
+	public Airport getDepAirportCode() {
 		return depAirportCode;
 	}
 
-	public void setDepAirportCode(Airports depAirportCode) {
+	public void setDepAirportCode(Airport depAirportCode) {
 		this.depAirportCode = depAirportCode;
 	}
 
-	public Airports getArrAirportCode() {
+	public Airport getArrAirportCode() {
 		return arrAirportCode;
 	}
 
-	public void setArrAirportCode(Airports arrAirportCode) {
+	public void setArrAirportCode(Airport arrAirportCode) {
 		this.arrAirportCode = arrAirportCode;
 	}
 

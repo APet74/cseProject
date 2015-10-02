@@ -7,18 +7,18 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.airamerica.Address;
-import com.airamerica.Airports;
+import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
-import com.airamerica.Products.AwardTickets;
-import com.airamerica.Products.CheckedBaggage;
-import com.airamerica.Products.InsuranceServices;
-import com.airamerica.Products.OffSeasonTickets;
-import com.airamerica.Products.Products;
-import com.airamerica.Products.Refreshments;
-import com.airamerica.Products.SpecialAssistance;
-import com.airamerica.Products.StandardTickets;
-import com.airamerica.Products.Tickets;
+import com.airamerica.products.AwardTicket;
+import com.airamerica.products.CheckedBaggage;
+import com.airamerica.products.Insurance;
+import com.airamerica.products.OffSeasonTicket;
+import com.airamerica.products.Product;
+import com.airamerica.products.Refreshment;
+import com.airamerica.products.SpecialAssistance;
+import com.airamerica.products.StandardTicket;
+import com.airamerica.products.Ticket;
 
 public class ParseData {
 
@@ -108,7 +108,7 @@ public class ParseData {
 	/*
 	 * Method to parse out Airports
 	 */
-	public static Airports parseAirport(String unparsed) {
+	public static Airport parseAirport(String unparsed) {
 		String token[] = unparsed.split(";\\s*");
 		String airportCode = token[0];
 		String airportName= token[1];
@@ -122,7 +122,7 @@ public class ParseData {
 		
 		float passengerFacilityFee = Float.parseFloat(token[4]);
 		
-		Airports thisAirport = new Airports(airportCode, airportName,latDegrees,
+		Airport thisAirport = new Airport(airportCode, airportName,latDegrees,
 				latMinutes,longDegrees,longMinutes,passengerFacilityFee);
 		
 		
@@ -137,7 +137,7 @@ public class ParseData {
 	 * Method to parse Products
 	 */
 	
-	public static Products parseProduct(String unparsed, Airports [] airportArray, Products [] productArray) {
+	public static Product parseProduct(String unparsed, Airport [] airportArray, Product [] productArray) {
 
 		String token[] = unparsed.split(";\\s*");
 		String productCode = token[0];
@@ -145,13 +145,13 @@ public class ParseData {
 		
 		String firstLetter = String.valueOf(productType.charAt(0));
 		
-		Products parsedProduct = null;
+		Product parsedProduct = null;
 
 		switch (firstLetter) {
 		
 		case ("T") :
-			Airports depAirportCode = FindObject.findAirport(token[2], airportArray);
-			Airports arrAirportCode = FindObject.findAirport(token[3], airportArray);
+			Airport depAirportCode = FindObject.findAirport(token[2], airportArray);
+			Airport arrAirportCode = FindObject.findAirport(token[3], airportArray);
 			DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
 		
 			Date depTime = null;
@@ -175,7 +175,7 @@ public class ParseData {
 					
 					e.printStackTrace();
 				}
-				parsedProduct = new StandardTickets(productCode, productType, 
+				parsedProduct = new StandardTicket(productCode, productType, 
 						depAirportCode, arrAirportCode, 
 						depTime, arrTime, flightNo, flightClass,
 						aircraftType);
@@ -198,7 +198,7 @@ public class ParseData {
 					e.printStackTrace();
 				}
 				
-				parsedProduct = new AwardTickets(productCode, productType, 
+				parsedProduct = new AwardTicket(productCode, productType, 
 						depAirportCode, arrAirportCode, 
 						depTime, arrTime, flightNo, flightClass,
 						aircraftType, pointsPerMile);
@@ -244,7 +244,7 @@ public class ParseData {
 				aircraftType = token[10];
 				float rebate = Float.parseFloat(token[11]);
 				
-				parsedProduct = new OffSeasonTickets(productCode, productType, 
+				parsedProduct = new OffSeasonTicket(productCode, productType, 
 							depAirportCode, 
 							arrAirportCode, depTime, 
 							arrTime, flightNo, flightClass, 
@@ -258,7 +258,7 @@ public class ParseData {
 		case "S":
 					if (productType.equals("SC")) {
 						//Search for ticket to make an embedded ticket object
-						Tickets ticketCode = FindObject.findTicket(token[2], productArray);
+						Ticket ticketCode = FindObject.findTicket(token[2], productArray);
 						
 						parsedProduct = new CheckedBaggage(productCode,productType,ticketCode);
 					} else if (productType.equals("SI")) {
@@ -266,7 +266,7 @@ public class ParseData {
 						String ageClass = token[3];
 						float costPerMile = Float.parseFloat(token[4]);
 						
-						parsedProduct = new InsuranceServices(productCode, productType, insuranceName, ageClass, costPerMile);
+						parsedProduct = new Insurance(productCode, productType, insuranceName, ageClass, costPerMile);
 					} else if (productType.equals("SS")) {
 						String typeOfService = token[2];
 						
@@ -275,7 +275,7 @@ public class ParseData {
 						String refreshmentName = token[2];
 						float cost = Float.parseFloat(token[3]);
 						
-						parsedProduct = new Refreshments(productCode, productType, refreshmentName, cost);
+						parsedProduct = new Refreshment(productCode, productType, refreshmentName, cost);
 					}
 				}
 	

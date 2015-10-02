@@ -2,10 +2,10 @@ package unl.cse.assignments;
 
 /* Phase-I */
 import com.airamerica.*;
-import com.airamerica.Products.*;
 import com.airamerica.dataConversion.FileReadIn;
 import com.airamerica.dataConversion.ParseData;
 import com.airamerica.dataConversion.XMLOut;
+import com.airamerica.products.*;
 
 
 
@@ -68,13 +68,13 @@ public class DataConverter {
 		}
 		
 		//Airports
-		Airports airportArray[] = new Airports[airportsUnparsed.length];
+		Airport airportArray[] = new Airport[airportsUnparsed.length];
 		for (int i = 0; i < airportsUnparsed.length; i++) {
 			airportArray[i] = ParseData.parseAirport(airportsUnparsed[i]);
 		}
 		
 		//Products
-		Products productArray[] = new Products[productsUnparsed.length];
+		Product productArray[] = new Product[productsUnparsed.length];
 		for (int i = 0; i < productsUnparsed.length; i++) {
 			productArray[i] = (ParseData.parseProduct(productsUnparsed[i], airportArray, productArray));		
 			//System.out.println(productArray[i].getCode());

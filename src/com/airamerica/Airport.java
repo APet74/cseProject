@@ -1,6 +1,6 @@
 package com.airamerica;
 
-public class Airports {
+public class Airport {
 	
 	private String airportCode;
 	private String airportName;
@@ -8,7 +8,7 @@ public class Airports {
 	private int lattitudeDegrees, longitudeDegrees, longitudeMinutes, lattitudeMinutes;
 	private float passengerFee;
 	
-	public Airports(String airportCode, String airportName, int lattitudeDegrees, int lattitudeMinutes,
+	public Airport(String airportCode, String airportName, int lattitudeDegrees, int lattitudeMinutes,
 			int longitudeDegrees,
 			int longitudeMinutes,  float passengerFee) {
 		this.airportCode = airportCode;
@@ -20,7 +20,7 @@ public class Airports {
 		this.passengerFee = passengerFee;
 	}
 
-	public String getAirportCode() {
+	public String getCode() {
 		return airportCode;
 	}
 
