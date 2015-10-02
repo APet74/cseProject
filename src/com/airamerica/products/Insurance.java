@@ -1,11 +1,11 @@
-package com.airamerica.Products;
+package com.airamerica.products;
 
-public class InsuranceServices extends Services {
+public class Insurance extends Service {
 
 	private String name;
 	private String ageClass;
 	private float costPerMile;
-	public InsuranceServices(String code, String productType, String name, String ageClass, float costPerMile) {
+	public Insurance(String code, String productType, String name, String ageClass, float costPerMile) {
 		super(code, productType);
 		this.name = name;
 		this.ageClass = ageClass;

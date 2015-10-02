@@ -1,10 +1,10 @@
-package com.airamerica.Products;
+package com.airamerica.products;
 
-public class Refreshments extends Services {
+public class Refreshment extends Service {
 	
 	private String name;
 	private float cost;
-	public Refreshments(String code, String productType, String name, float cost) {
+	public Refreshment(String code, String productType, String name, float cost) {
 		super(code, productType);
 		this.name = name;
 		this.cost = cost;

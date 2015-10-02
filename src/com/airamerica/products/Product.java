@@ -1,5 +1,5 @@
-package com.airamerica.Products;
-public abstract class Products {
+package com.airamerica.products;
+public abstract class Product {
 
 	
 	/*
@@ -21,7 +21,7 @@ public abstract class Products {
 		return code;
 	}
 
-	public Products(String code, String productType) {
+	public Product(String code, String productType) {
 		super();
 		this.code = code;
 		this.productType = productType;

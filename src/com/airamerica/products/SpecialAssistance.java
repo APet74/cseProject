@@ -1,6 +1,6 @@
-package com.airamerica.Products;
+package com.airamerica.products;
 
-public class SpecialAssistance extends Services {
+public class SpecialAssistance extends Service {
 
 	
 	private String TypeOfService;

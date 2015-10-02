@@ -1,10 +1,10 @@
-package com.airamerica.Products;
+package com.airamerica.products;
 
 import java.util.Date;
 
 import com.airamerica.Airports;
 
-public abstract class Tickets extends Products {
+public abstract class Ticket extends Product {
 	
 	private Airports depAirportCode;
 	private Airports arrAirportCode;
@@ -15,7 +15,7 @@ public abstract class Tickets extends Products {
 
 
 
-	public Tickets(String code, String productType, Airports depAirportCode, Airports arrAirportCode,
+	public Ticket(String code, String productType, Airports depAirportCode, Airports arrAirportCode,
 			Date depTime, Date arrTime, String flightNo, String flightClass, String aircraftType) {
 		super(code, productType);
 		this.depAirportCode = depAirportCode;

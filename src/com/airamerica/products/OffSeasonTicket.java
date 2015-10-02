@@ -1,13 +1,13 @@
-package com.airamerica.Products;
+package com.airamerica.products;
 
 import java.util.Date;
 
 import com.airamerica.Airports;
 
-public class OffSeasonTickets extends Tickets {
+public class OffSeasonTicket extends Ticket {
 	private Date seasonStartDate, sesaonEndDAte;
 	private float rebate;
-	public OffSeasonTickets(String code, String productType, Airports depAirportCode, Airports arrAirportCode,
+	public OffSeasonTicket(String code, String productType, Airports depAirportCode, Airports arrAirportCode,
 			Date depTime, Date arrTime, String flightNo, String flightClass, String aircraftType, Date seasonStartDate,
 			Date sesaonEndDAte, float rebate) {
 		super(code, productType, depAirportCode, arrAirportCode, depTime, arrTime, flightNo, flightClass, aircraftType);
