@@ -61,11 +61,11 @@ public class Invoice {
 		this.saleDate = saleDate;
 	}
 	
-	public ArrayList<Object> getTickets() {
+	public ArrayList<Ticket> getTickets() {
 		return tickets;
 	}
 	
-	public void setTickets(ArrayList<Object> tickets) {
+	public void setTickets(ArrayList<Ticket> tickets) {
 		this.tickets = tickets;
 	}
 	
