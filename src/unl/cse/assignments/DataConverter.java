@@ -38,6 +38,9 @@ public class DataConverter {
 		String[] productsUnparsed = FileReadIn.fileReader(fileInput);
 		
 		//Invoices
+		fileInput = "data/Invoices.dat";
+		String[] invoicesUnparsed = FileReadIn.fileReader(fileInput);
+		
 		
 		/*
 		 *	Debugging: Test file input system 
