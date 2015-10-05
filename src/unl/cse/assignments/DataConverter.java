@@ -11,7 +11,7 @@ import com.airamerica.products.*;
 
 public class DataConverter {
 
-	public static void main(String[] args) {
+	public static void main() {
 
 		//filename string variable
 		String fileInput = null;
@@ -36,6 +36,8 @@ public class DataConverter {
 		//Products
 		fileInput = "data/Products.dat";
 		String[] productsUnparsed = FileReadIn.fileReader(fileInput);
+		
+		//Invoices
 		
 		/*
 		 *	Debugging: Test file input system 
