@@ -40,6 +40,8 @@ public class DataConverter {
 		//Invoices
 		fileInput = "data/Invoices.dat";
 		String[] invoicesUnparsed = FileReadIn.fileReader(fileInput);
+		
+		
 		/*
 		 *	Debugging: Test file input system 
 		 * 
