@@ -14,11 +14,12 @@ public class Invoice {
 	private Customer customerCode;
 	private Person personCode;
 	private Date saleDate;
-	private ArrayList <Object> tickets = new ArrayList() ;
+	private ArrayList <Ticket> tickets;
+	private ArrayList <Date> flightDates;
 	private ArrayList <Service> services;
 	
 	public Invoice(String invoiceCode, Customer customerCode, Person personCode, Date saleDate,
-			ArrayList<Object> tickets, ArrayList<Service> services) {
+			ArrayList<Ticket> tickets, ArrayList<Service> services) {
 		super();
 		this.invoiceCode = invoiceCode;
 		this.customerCode = customerCode;
@@ -31,40 +32,49 @@ public class Invoice {
 	public String getInvoiceCode() {
 		return invoiceCode;
 	}
+	
 	public void setInvoiceCode(String invoiceCode) {
 		this.invoiceCode = invoiceCode;
 	}
+	
 	public Customer getCustomerCode() {
 		return customerCode;
 	}
+	
 	public void setCustomerCode(Customer customerCode) {
 		this.customerCode = customerCode;
 	}
+	
 	public Person getPersonCode() {
 		return personCode;
 	}
+	
 	public void setPersonCode(Person personCode) {
 		this.personCode = personCode;
 	}
+	
 	public Date getSaleDate() {
 		return saleDate;
 	}
+	
 	public void setSaleDate(Date saleDate) {
 		this.saleDate = saleDate;
 	}
+	
 	public ArrayList<Object> getTickets() {
 		return tickets;
 	}
+	
 	public void setTickets(ArrayList<Object> tickets) {
 		this.tickets = tickets;
 	}
+	
 	public ArrayList<Service> getServices() {
 		return services;
 	}
+	
 	public void setServices(ArrayList<Service> services) {
 		this.services = services;
 	}
-	
-	
-	
+
 }
