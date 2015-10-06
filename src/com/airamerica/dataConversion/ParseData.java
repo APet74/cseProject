@@ -3,6 +3,7 @@ package com.airamerica.dataConversion;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -84,7 +85,7 @@ public class ParseData {
 	 * Method to parse out Customers
 	 * Contains potential method to search for previous objects
 	 */
-	public static Customer parseCustomer(String unparsed, Person [] personArray) {
+	public static Customer parseCustomer(String unparsed, ArrayList<Person> personArray) {
 		String token[] = unparsed.split(";\\s*");
 		String customerCode = token[0];
 		String customerType = token[1];
@@ -92,7 +93,7 @@ public class ParseData {
 		int airlineMiles = 0;
 		
 		//find the person, put into customer object
-		Person customerContact =  FindObject.findPerson(token[2], personArray);
+		Person customerContact =  FindObject.find(token[2], personArray);
 
 		
 		if (token.length > 4){
@@ -137,7 +138,8 @@ public class ParseData {
 	 * Method to parse Products
 	 */
 	
-	public static Product parseProduct(String unparsed, Airport [] airportArray, Product [] productArray) {
+	
+	public static Product parseProduct(String unparsed, ArrayList<Airport> airportArray, ArrayList<Product> productArray) {
 
 		String token[] = unparsed.split(";\\s*");
 		String productCode = token[0];
@@ -150,8 +152,8 @@ public class ParseData {
 		switch (firstLetter) {
 		
 		case ("T") :
-			Airport depAirportCode = FindObject.findAirport(token[2], airportArray);
-			Airport arrAirportCode = FindObject.findAirport(token[3], airportArray);
+			Airport depAirportCode = FindObject.find(token[2], airportArray);
+			Airport arrAirportCode = FindObject.find(token[3], airportArray);
 			DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
 		
 			Date depTime = null;
@@ -221,8 +223,8 @@ public class ParseData {
 						e.printStackTrace();
 					}
 					
-					depAirportCode = FindObject.findAirport(token[4], airportArray);
-					arrAirportCode = FindObject.findAirport(token[5], airportArray);
+					depAirportCode = FindObject.find(token[4], airportArray);
+					arrAirportCode = FindObject.find(token[5], airportArray);
 					 
 				
 					try {
@@ -258,7 +260,7 @@ public class ParseData {
 		case "S":
 					if (productType.equals("SC")) {
 						//Search for ticket to make an embedded ticket object
-						Ticket ticketCode = FindObject.findTicket(token[2], productArray);
+						Ticket ticketCode = (Ticket) FindObject.find(token[2], productArray);
 						
 						parsedProduct = new CheckedBaggage(productCode,productType,ticketCode);
 					} else if (productType.equals("SI")) {

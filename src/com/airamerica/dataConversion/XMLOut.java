@@ -2,6 +2,7 @@ package com.airamerica.dataConversion;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import com.airamerica.Airport;
 import com.airamerica.Customer;
@@ -15,81 +16,76 @@ public class XMLOut {
 	 * XML outputs
 	 */
 	
-	public static void personToXML(Person personArray[]){
+
+	public static <T> void toXML(ArrayList<T> list) {
+
 		XStream xstream = new XStream();
-		xstream.alias("person", Person.class);
+		String header = null;
 		PrintWriter pw = null;
 		
-		try {
-			pw = new PrintWriter(new File("data/Persons.xml"));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		
+		//If statement to handle generics
+		if (list.getClass().isInstance(Customer.class)){
+			
+			xstream.alias("customer", Customer.class);
+			
+			try {
+				pw = new PrintWriter(new File("data/Customers.xml"));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			
+			header = "customers";
+		
+		} else if (list.getClass().isInstance(Product.class)){
+			
+			xstream.alias("product", Product.class);
+			
+			try {
+				pw = new PrintWriter(new File("data/Products.xml"));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			
+			header = "products";
+			
+		} else if (list.getClass().isInstance(Airport.class)){
+			
+			xstream.alias("airport", Airport.class);
+			
+			try {
+				pw = new PrintWriter(new File("data/Airports.xml"));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			
+			header = "airports";
+			
+		} else if (list.getClass().isInstance(Person.class)) {
+			
+			xstream.alias("person", Person.class);
+			
+			try {
+				pw = new PrintWriter(new File("data/Persons.xml"));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			
+			header = "persons";
+			
 		}
 		
-		pw.print("<persons>\n");
+
+		//Begin Printing
 		
-		for(int i = 0; i < personArray.length; i++){
-			pw.print(xstream.toXML(personArray[i]) + "\n");
+		pw.print("<" + header + ">\n");
+		
+		for(T i: list){
+			pw.print(xstream.toXML(list) + "\n");
 		}
 		
-		pw.print("</persons>" + "\n");
+		pw.print("</" + header + ">\n");
 		pw.close();
 	}
-	
-	public static void airportToXML(Airport airportArray[]){
-		XStream xstream = new XStream();
-		xstream.alias("airport", Airport.class);
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(new File("data/Airports.xml"));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		pw.print("<airports>\n");
-		for(int i = 0; i < airportArray.length; i++){
-			pw.print(xstream.toXML(airportArray[i]) + "\n");
-		}
-		pw.print("</airports>" + "\n");
-		pw.close();
-	}
-	
-	public static void customerToXML(Customer[] customerArray) {
-		// TODO Auto-generated method stub
-				XStream xstream = new XStream();
-		xstream.alias("customer", Customer.class);
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(new File("data/Customers.xml"));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		pw.print("<customers>\n");
-		for(int i = 0; i < customerArray.length; i++){
-			pw.print(xstream.toXML(customerArray[i]) + "\n");
-		}
-		pw.print("</customers>" + "\n");
-		pw.close();
-	}
-
-	
-	public static void productToXML(Product [] productArray){
-		XStream xstream = new XStream();
-		xstream.alias("product", Product.class);
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter(new File("data/Products.xml"));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		pw.print("<products>\n");
-		for(int i = 0; i < productArray.length; i++){
-			pw.print(xstream.toXML(productArray[i]) + "\n");
-		}
-		pw.print("</products>" + "\n");
-		pw.close();
-	}
-
-
-
 
 }

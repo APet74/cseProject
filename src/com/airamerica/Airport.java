@@ -1,5 +1,6 @@
 package com.airamerica;
 
+
 public class Airport {
 	
 	private String airportCode;

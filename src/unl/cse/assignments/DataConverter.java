@@ -1,5 +1,7 @@
 package unl.cse.assignments;
 
+import java.util.ArrayList;
+
 /* Phase-I */
 import com.airamerica.*;
 import com.airamerica.dataConversion.FileReadIn;
@@ -58,30 +60,30 @@ public class DataConverter {
 		 */
 		
 		//Person
-		Person personArray[] = new Person[personsUnparsed.length];
+		ArrayList<Person> personArray = new ArrayList<Person>();
 		
 		for (int i = 0; i < personsUnparsed.length; i++) {
 			//put it into an array of persons
-			personArray[i] = ParseData.parsePerson(personsUnparsed[i]);
+			personArray.add(ParseData.parsePerson(personsUnparsed[i]));
 		}
 		
 		//Customer
-		Customer customerArray[] = new Customer[customersUnparsed.length];
+		ArrayList<Customer> customerArray = new ArrayList<Customer>();
 		
 		for (int i = 0; i < customersUnparsed.length; i++) {
-			customerArray[i] = ParseData.parseCustomer(customersUnparsed[i], personArray);
+			customerArray.add(ParseData.parseCustomer(customersUnparsed[i], personArray));
 		}
 		
 		//Airports
-		Airport airportArray[] = new Airport[airportsUnparsed.length];
+		ArrayList<Airport> airportArray = new ArrayList<Airport>();
 		for (int i = 0; i < airportsUnparsed.length; i++) {
-			airportArray[i] = ParseData.parseAirport(airportsUnparsed[i]);
+			airportArray.add(ParseData.parseAirport(airportsUnparsed[i]));
 		}
 		
 		//Products
-		Product productArray[] = new Product[productsUnparsed.length];
+		ArrayList<Product> productArray = new ArrayList<Product>();
 		for (int i = 0; i < productsUnparsed.length; i++) {
-			productArray[i] = (ParseData.parseProduct(productsUnparsed[i], airportArray, productArray));		
+			productArray.add(ParseData.parseProduct(productsUnparsed[i], airportArray, productArray));		
 			//System.out.println(productArray[i].getCode());
 		}
 
@@ -89,10 +91,10 @@ public class DataConverter {
 		/*
 		 * Send flat file data to XML
 		 */
-		XMLOut.personToXML(personArray);
-		XMLOut.customerToXML(customerArray);
-		XMLOut.airportToXML(airportArray);
-		XMLOut.productToXML(productArray);	
+		XMLOut.toXML(personArray);
+		XMLOut.toXML(customerArray);
+		XMLOut.toXML(airportArray);
+		XMLOut.toXML(productArray);	
 	}
 
 	
