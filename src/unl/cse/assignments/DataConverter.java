@@ -93,7 +93,7 @@ public class DataConverter {
 		//Invoices
 		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
 		for (int i = 0; i < invoicesUnparsed.length; i++) {
-			invoiceArray.add(ParseData.parseInvoice(invoicesUnparsed[i]));		
+			invoiceArray.add(ParseData.parseInvoice(invoicesUnparsed[i], customerArray, personArray, productArray));		
 			//System.out.println(productArray[i].getCode());
 		}
 		

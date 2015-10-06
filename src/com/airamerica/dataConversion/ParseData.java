@@ -18,6 +18,7 @@ import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
 import com.airamerica.products.Product;
 import com.airamerica.products.Refreshment;
+import com.airamerica.products.Service;
 import com.airamerica.products.SpecialAssistance;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
@@ -290,11 +291,79 @@ public class ParseData {
 
 
 
-public static Invoice parseInvoice(String unparsed) {
-	String token[] = unparsed.split(";\\s*");
-	String invoiceCode = token[0];
-	Invoice thisInvoice = new Invoice(invoiceCode);
 	
+ 
 
-	return thisInvoice;
-}}
+	/*
+	 * Note on arraylist structure
+	 * This is a take on multidimensional array. Indices of tickets, ticketholder, and ticketservices
+	 * all correlate toward the same ticket number. See design document
+	 */
+	public static Invoice parseInvoice(String unparsed, ArrayList<Customer> customerList,
+			ArrayList<Person> personList, ArrayList <Product> productList) {
+		String token[] = unparsed.split(";\\s*");
+		String invoiceCode = token[0];
+		Invoice thisInvoice = new Invoice(invoiceCode);
+		
+		//customer object
+		thisInvoice.setCustomer(token[1], customerList);
+		
+		// salesperson - person object
+		thisInvoice.setSalesperson(token[2]);
+		
+		// invoice date - date
+		DateFormat format = new SimpleDateFormat("y-M-d", Locale.ENGLISH);	
+		Date invoiceDate = null;
+		
+		try {
+			invoiceDate = format.parse(token[3]);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		thisInvoice.setSaleDate(invoiceDate);
+		
+
+		String productToken[] = token[4].split(",\\s*");
+		
+		
+		
+		for (int i = 0; i < productToken.length; i++){
+			String productDefined[] = productToken[i].split(":");
+			
+			if (FindObject.find(productDefined[0], productList) instanceof Ticket) {
+				System.out.println(productDefined[0]);
+				//Ticket
+				thisInvoice.addTicket(productDefined[0]);
+				
+				//flight date
+				Date flightDate = null;
+				try {
+					flightDate = format.parse(productDefined[1]);
+				} catch (ParseException e) {
+					
+					e.printStackTrace();
+				}
+				
+				thisInvoice.addFlightDates(flightDate);
+				
+				
+				
+			} else if (FindObject.find(productDefined[0], productList) instanceof Service) {
+				System.out.println(productDefined[0] + " is a Service");
+			}
+		}
+		
+		// tickets - arraylist
+		
+		// flight dates - arraylist
+		
+		// ticketholder - arraylist
+		
+		// services - arraylist of TicketServices
+		
+	
+		return thisInvoice;
+	}
+}

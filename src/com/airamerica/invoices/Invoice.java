@@ -5,26 +5,24 @@ import java.util.Date;
 
 import com.airamerica.Customer;
 import com.airamerica.Person;
+import com.airamerica.dataConversion.FindObject;
+import com.airamerica.products.Product;
 import com.airamerica.products.Service;
 import com.airamerica.products.Ticket;
 
 public class Invoice {
 
 	private String invoiceCode;
-	private Customer customerCode;
-	private Person personCode;
+	private Customer customer;
+	private String salespersonCode;
 	private Date saleDate;
-	private ArrayList <Ticket> tickets;
-	private ArrayList <Date> flightDates;
-	private ArrayList <Service> services;
+	private ArrayList <String> ticketCodes = new ArrayList<String>();
+	private ArrayList <Date> flightDates = new ArrayList<Date>();
+	private ArrayList <TicketHolder> ticketHolder = new ArrayList<TicketHolder>();
+	private ArrayList <TicketService> services = new ArrayList<TicketService>();
 	
 	public Invoice(String invoiceCode) {
-		this.customerCode = null;
-		this.personCode = null;
-		this.saleDate = null;
-		this.tickets = null;
-		this.flightDates = null;
-		this.services = null;
+		this.invoiceCode = invoiceCode;
 	}
 	
 	public String getInvoiceCode() {
@@ -35,20 +33,20 @@ public class Invoice {
 		this.invoiceCode = invoiceCode;
 	}
 	
-	public Customer getCustomerCode() {
-		return customerCode;
+	public Customer getCustomer() {
+		return customer;
 	}
 	
-	public void setCustomerCode(Customer customerCode) {
-		this.customerCode = customerCode;
+	public void setCustomer(String customerCode, ArrayList<Customer> list) {
+		this.customer = (Customer) FindObject.find(customerCode, list);
 	}
 	
-	public Person getPersonCode() {
-		return personCode;
+	public String getSalesperson() {
+		return salespersonCode;
 	}
 	
-	public void setPersonCode(Person personCode) {
-		this.personCode = personCode;
+	public void setSalesperson(String personCode) {
+			this.salespersonCode = personCode;
 	}
 	
 	public Date getSaleDate() {
@@ -59,20 +57,24 @@ public class Invoice {
 		this.saleDate = saleDate;
 	}
 	
-	public ArrayList<Ticket> getTickets() {
-		return tickets;
-	}
 	
-	public void setTickets(ArrayList<Ticket> tickets) {
-		this.tickets = tickets;
-	}
-	
-	public ArrayList<Service> getServices() {
+	public ArrayList<TicketService> getServices() {
 		return services;
 	}
 	
-	public void setServices(ArrayList<Service> services) {
+	public void AddServices(ArrayList<TicketService> services) {
 		this.services = services;
 	}
 
+	public void addTicket(String code){
+		this.ticketCodes.add(code);
+	}
+
+	public ArrayList <Date> getFlightDates() {
+		return flightDates;
+	}
+
+	public void addFlightDates(Date flightDates) {
+		this.flightDates.add(flightDates);
+	}
 }
