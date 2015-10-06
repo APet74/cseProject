@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
+import com.airamerica.invoices.Invoice;
 import com.airamerica.products.Product;
 import com.thoughtworks.xstream.XStream;
 
@@ -23,10 +24,10 @@ public class XMLOut {
 		String header = null;
 		PrintWriter pw = null;
 		
-		
+
 		//If statement to handle generics
-		if (list.getClass().isInstance(Customer.class)){
-			
+		if (list.get(0) instanceof Customer){
+
 			xstream.alias("customer", Customer.class);
 			
 			try {
@@ -37,7 +38,7 @@ public class XMLOut {
 			
 			header = "customers";
 		
-		} else if (list.getClass().isInstance(Product.class)){
+		} else if (list.get(0) instanceof Product){
 			
 			xstream.alias("product", Product.class);
 			
@@ -49,7 +50,7 @@ public class XMLOut {
 			
 			header = "products";
 			
-		} else if (list.getClass().isInstance(Airport.class)){
+		} else if (list.get(0) instanceof Airport){
 			
 			xstream.alias("airport", Airport.class);
 			
@@ -61,7 +62,7 @@ public class XMLOut {
 			
 			header = "airports";
 			
-		} else if (list.getClass().isInstance(Person.class)) {
+		} else if (list.get(0) instanceof Person) {
 			
 			xstream.alias("person", Person.class);
 			
@@ -73,16 +74,28 @@ public class XMLOut {
 			
 			header = "persons";
 			
+		} else if (list.get(0) instanceof Invoice) {
+			
+			xstream.alias("invoice", Invoice.class);
+			
+			try {
+				pw = new PrintWriter(new File("data/Invoice.xml"));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			
+			header = "invoices";
+			
 		}
+		
+		
 		
 
 		//Begin Printing
 		
 		pw.print("<" + header + ">\n");
 		
-		for(T i: list){
-			pw.print(xstream.toXML(list) + "\n");
-		}
+			pw.print(xstream.toXML(list));
 		
 		pw.print("</" + header + ">\n");
 		pw.close();

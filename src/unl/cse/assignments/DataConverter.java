@@ -7,14 +7,17 @@ import com.airamerica.*;
 import com.airamerica.dataConversion.FileReadIn;
 import com.airamerica.dataConversion.ParseData;
 import com.airamerica.dataConversion.XMLOut;
+import com.airamerica.invoices.Invoice;
 import com.airamerica.products.*;
 
 
 
 public class DataConverter {
 
-	public static void main() {
+	public static void main(String args[]) {
 
+
+		
 		//filename string variable
 		String fileInput = null;
 		
@@ -87,14 +90,24 @@ public class DataConverter {
 			//System.out.println(productArray[i].getCode());
 		}
 
+		//Invoices
+		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
+		for (int i = 0; i < invoicesUnparsed.length; i++) {
+			invoiceArray.add(ParseData.parseInvoice(invoicesUnparsed[i]));		
+			//System.out.println(productArray[i].getCode());
+		}
 		
 		/*
 		 * Send flat file data to XML
 		 */
+
+		
+		
 		XMLOut.toXML(personArray);
 		XMLOut.toXML(customerArray);
 		XMLOut.toXML(airportArray);
 		XMLOut.toXML(productArray);	
+		XMLOut.toXML(invoiceArray);
 	}
 
 	

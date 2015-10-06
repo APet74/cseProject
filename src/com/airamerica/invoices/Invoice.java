@@ -18,15 +18,13 @@ public class Invoice {
 	private ArrayList <Date> flightDates;
 	private ArrayList <Service> services;
 	
-	public Invoice(String invoiceCode, Customer customerCode, Person personCode, Date saleDate,
-			ArrayList<Ticket> tickets, ArrayList<Service> services) {
-		super();
-		this.invoiceCode = invoiceCode;
-		this.customerCode = customerCode;
-		this.personCode = personCode;
-		this.saleDate = saleDate;
-		this.tickets = tickets;
-		this.services = services;
+	public Invoice(String invoiceCode) {
+		this.customerCode = null;
+		this.personCode = null;
+		this.saleDate = null;
+		this.tickets = null;
+		this.flightDates = null;
+		this.services = null;
 	}
 	
 	public String getInvoiceCode() {

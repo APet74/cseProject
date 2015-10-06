@@ -10,49 +10,47 @@ import com.airamerica.products.Ticket;
 
 public class FindObject {
 	
-	public static <T> T find(String code, ArrayList<T> list){
-		T found = null;
+	@SuppressWarnings("unchecked")
+	public static <T> Object find(String code, ArrayList<T> list){
+		Object found = null;
 
 
 		
 		
 		int i = 0;
 		
-		if (list.getClass().isInstance(Customer.class)){	
+		if (list.get(0) instanceof Customer){	
 			for(T j: list) {
-							if(code.equals((list.get(i)))) {
-			found = list.get(i);
-				break;	
-			}
+			
 				if(code.equals(((Customer) list.get(i)).getCode())) {
-				found = list.get(i);
+				found = (Customer) list.get(i);
 					break;	
 				}
 				i++;
 			}
-		} else if (list.getClass().isInstance(Person.class)){	
+		} else if (list.get(0) instanceof Person){	
 			for(T j: list) {
 					
 				if(code.equals(( (Person) list.get(i)).getCode())) {
-				found = list.get(i);
+				found = (Person) list.get(i);
 					break;	
 				}
 				i++;
 			}
-		} else if (list.getClass().isInstance(Airport.class)){	
+		} else if (list.get(0) instanceof Airport){	
 			for(T j: list) {
 					
 				if(code.equals(( (Airport) list.get(i)).getCode())) {
-				found = list.get(i);
+				found = (Airport) list.get(i);
 					break;	
 				}
 				i++;
 			}
-		} else if (list.getClass().isInstance(Product.class)){	
+		} else if (list.get(0) instanceof Product){	
 			for(T j: list) {
 					
 				if(code.equals(( (Product) list.get(i)).getCode())) {
-				found = list.get(i);
+				found = (Product) list.get(i);
 					break;	
 				}
 				i++;

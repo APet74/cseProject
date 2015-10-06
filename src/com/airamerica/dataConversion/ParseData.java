@@ -11,6 +11,7 @@ import com.airamerica.Address;
 import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
+import com.airamerica.invoices.Invoice;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
@@ -93,7 +94,7 @@ public class ParseData {
 		int airlineMiles = 0;
 		
 		//find the person, put into customer object
-		Person customerContact =  FindObject.find(token[2], personArray);
+		Person customerContact =  (Person) FindObject.find(token[2], personArray);
 
 		
 		if (token.length > 4){
@@ -133,6 +134,7 @@ public class ParseData {
 		
 		return thisAirport;
 	}
+
 	
 	/*
 	 * Method to parse Products
@@ -152,8 +154,8 @@ public class ParseData {
 		switch (firstLetter) {
 		
 		case ("T") :
-			Airport depAirportCode = FindObject.find(token[2], airportArray);
-			Airport arrAirportCode = FindObject.find(token[3], airportArray);
+			Airport depAirportCode = (Airport) FindObject.find(token[2], airportArray);
+			Airport arrAirportCode = (Airport) FindObject.find(token[3], airportArray);
 			DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
 		
 			Date depTime = null;
@@ -223,8 +225,8 @@ public class ParseData {
 						e.printStackTrace();
 					}
 					
-					depAirportCode = FindObject.find(token[4], airportArray);
-					arrAirportCode = FindObject.find(token[5], airportArray);
+					depAirportCode = (Airport) FindObject.find(token[4], airportArray);
+					arrAirportCode = (Airport) FindObject.find(token[5], airportArray);
 					 
 				
 					try {
@@ -285,4 +287,14 @@ public class ParseData {
 
 		return parsedProduct;
 	}
-}
+
+
+
+public static Invoice parseInvoice(String unparsed) {
+	String token[] = unparsed.split(";\\s*");
+	String invoiceCode = token[0];
+	Invoice thisInvoice = new Invoice(invoiceCode);
+	
+
+	return thisInvoice;
+}}
