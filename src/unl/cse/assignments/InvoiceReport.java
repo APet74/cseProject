@@ -53,6 +53,7 @@ public class InvoiceReport {
 	}
 
 	public static void main(String args[]) {
+
 		
 		InvoiceReport ir = new InvoiceReport();
 		String summary = ir.generateSummaryReport();

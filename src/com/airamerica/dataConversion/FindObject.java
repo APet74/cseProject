@@ -1,56 +1,63 @@
 package com.airamerica.dataConversion;
 
+import java.util.ArrayList;
+
 import com.airamerica.Airport;
+import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.products.Product;
 import com.airamerica.products.Ticket;
 
 public class FindObject {
-
 	
-	public static Airport findAirport(String airportCode, Airport [] airportsArray){
-		Airport airport = null;
+	@SuppressWarnings("unchecked")
+	public static <T> Object find(String code, ArrayList<T> list){
+		Object found = null;
 
-			for(int j = 0; j < airportsArray.length; j++) {
-				if (airportCode.equals(airportsArray[j].getCode())){
-					airport = airportsArray[j];
-					break;
+
+		
+		
+		int i = 0;
+		
+		if (list.get(0) instanceof Customer){	
+			for(T j: list) {
+			
+				if(code.equals(((Customer) list.get(i)).getCode())) {
+				found = (Customer) list.get(i);
+					break;	
 				}
+				i++;
 			}
-		return airport;
-		
-	}
-	
-	
-	public static Ticket findTicket(String productCode, Product[] productArray){
-		Ticket product= null;
-		String matchCode = null;
-		
-			for(int j = 0; j < productArray.length; j++) {
-				matchCode = productArray[j].getCode();
-
-				if (matchCode.equals(productCode)){
-					product = (Ticket) productArray[j];
-					break;
+		} else if (list.get(0) instanceof Person){	
+			for(T j: list) {
+					
+				if(code.equals(( (Person) list.get(i)).getCode())) {
+				found = (Person) list.get(i);
+					break;	
 				}
+				i++;
 			}
-		return product;
-		
-	}
-	
-	public static Person findPerson(String personCode, Person[] personArray){
-		Person person= null;
-		String matchCode = null;
-		
-			for(int j = 0; j < personArray.length; j++) {
-				matchCode = personArray[j].getPersonCode();
-
-				if (matchCode.equals(personCode)){
-					person = personArray[j];
-					break;
+		} else if (list.get(0) instanceof Airport){	
+			for(T j: list) {
+					
+				if(code.equals(( (Airport) list.get(i)).getCode())) {
+				found = (Airport) list.get(i);
+					break;	
 				}
+				i++;
 			}
-		return person;
+		} else if (list.get(0) instanceof Product){	
+			for(T j: list) {
+					
+				if(code.equals(( (Product) list.get(i)).getCode())) {
+				found = (Product) list.get(i);
+					break;	
+				}
+				i++;
+			}
+		}
+		
+		return found;
 		
 	}
 }

@@ -37,7 +37,7 @@ public class Person {
 		this.address = address;
 	}
 	
-	public String getPersonCode() {
+	public String getCode() {
 		return personCode;
 	}
 

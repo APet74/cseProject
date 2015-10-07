@@ -3,6 +3,7 @@ package com.airamerica.dataConversion;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -10,12 +11,14 @@ import com.airamerica.Address;
 import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
+import com.airamerica.invoices.Invoice;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
 import com.airamerica.products.Product;
 import com.airamerica.products.Refreshment;
+import com.airamerica.products.Service;
 import com.airamerica.products.SpecialAssistance;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
@@ -84,7 +87,7 @@ public class ParseData {
 	 * Method to parse out Customers
 	 * Contains potential method to search for previous objects
 	 */
-	public static Customer parseCustomer(String unparsed, Person [] personArray) {
+	public static Customer parseCustomer(String unparsed, ArrayList<Person> personArray) {
 		String token[] = unparsed.split(";\\s*");
 		String customerCode = token[0];
 		String customerType = token[1];
@@ -92,7 +95,7 @@ public class ParseData {
 		int airlineMiles = 0;
 		
 		//find the person, put into customer object
-		Person customerContact =  FindObject.findPerson(token[2], personArray);
+		Person customerContact =  (Person) FindObject.find(token[2], personArray);
 
 		
 		if (token.length > 4){
@@ -132,12 +135,14 @@ public class ParseData {
 		
 		return thisAirport;
 	}
+
 	
 	/*
 	 * Method to parse Products
 	 */
 	
-	public static Product parseProduct(String unparsed, Airport [] airportArray, Product [] productArray) {
+	
+	public static Product parseProduct(String unparsed, ArrayList<Airport> airportArray, ArrayList<Product> productArray) {
 
 		String token[] = unparsed.split(";\\s*");
 		String productCode = token[0];
@@ -150,8 +155,8 @@ public class ParseData {
 		switch (firstLetter) {
 		
 		case ("T") :
-			Airport depAirportCode = FindObject.findAirport(token[2], airportArray);
-			Airport arrAirportCode = FindObject.findAirport(token[3], airportArray);
+			Airport depAirportCode = (Airport) FindObject.find(token[2], airportArray);
+			Airport arrAirportCode = (Airport) FindObject.find(token[3], airportArray);
 			DateFormat format = new SimpleDateFormat("k:m", Locale.ENGLISH);	
 		
 			Date depTime = null;
@@ -221,8 +226,8 @@ public class ParseData {
 						e.printStackTrace();
 					}
 					
-					depAirportCode = FindObject.findAirport(token[4], airportArray);
-					arrAirportCode = FindObject.findAirport(token[5], airportArray);
+					depAirportCode = (Airport) FindObject.find(token[4], airportArray);
+					arrAirportCode = (Airport) FindObject.find(token[5], airportArray);
 					 
 				
 					try {
@@ -258,7 +263,7 @@ public class ParseData {
 		case "S":
 					if (productType.equals("SC")) {
 						//Search for ticket to make an embedded ticket object
-						Ticket ticketCode = FindObject.findTicket(token[2], productArray);
+						Ticket ticketCode = (Ticket) FindObject.find(token[2], productArray);
 						
 						parsedProduct = new CheckedBaggage(productCode,productType,ticketCode);
 					} else if (productType.equals("SI")) {
@@ -282,5 +287,84 @@ public class ParseData {
 
 
 		return parsedProduct;
+	}
+
+
+
+	
+ 
+
+	/*
+	 * Note on arraylist structure
+	 * This is a take on multidimensional array. Indices of tickets, ticketholder, and ticketservices
+	 * all correlate toward the same ticket number. See design document
+	 */
+	public static Invoice parseInvoice(String unparsed, ArrayList<Customer> customerList,
+			ArrayList<Person> personList, ArrayList <Product> productList) {
+		String token[] = unparsed.split(";\\s*");
+		String invoiceCode = token[0];
+		Invoice thisInvoice = new Invoice(invoiceCode);
+		
+		//customer object
+		thisInvoice.setCustomer(token[1], customerList);
+		
+		// salesperson - person object
+		thisInvoice.setSalesperson(token[2]);
+		
+		// invoice date - date
+		DateFormat format = new SimpleDateFormat("y-M-d", Locale.ENGLISH);	
+		Date invoiceDate = null;
+		
+		try {
+			invoiceDate = format.parse(token[3]);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		thisInvoice.setSaleDate(invoiceDate);
+		
+
+		String productToken[] = token[4].split(",\\s*");
+		
+		for (int i = 0; i < productToken.length; i++){
+			String productDefined[] = productToken[i].split(":");
+			
+			//test the type of product - ticket or service 
+			if (FindObject.find(productDefined[0], productList) instanceof Ticket) {
+				System.out.println(productDefined[0]);
+				//Ticket
+				thisInvoice.addTicket(productDefined[0]);
+				
+				//flight date
+				Date flightDate = null;
+				try {
+					flightDate = format.parse(productDefined[1]);
+				} catch (ParseException e) {
+					
+					e.printStackTrace();
+				}
+				
+				//use given number of pax on a ticket to generate flag for loop
+				int flag = Integer.parseInt(productDefined[2]);
+				
+				for (int j = 0; j < flag; j++){
+					thisInvoice.addTicketHolder(productDefined[3+(0+(j*5))],productDefined[3+(1+(j*5))],
+							productDefined[3+(2+(j*5))], Integer.parseInt(productDefined[3+(3+(j*5))]),productDefined[3+(4+(j*5))]);
+				}
+				
+				
+				thisInvoice.addFlightDates(flightDate);
+				
+				//add pax info
+				
+				
+			} else if (FindObject.find(productDefined[0], productList) instanceof Service) {
+				System.out.println(productDefined[0] + " is a Service");
+			}
+		}
+		
+
+		return thisInvoice;
 	}
 }

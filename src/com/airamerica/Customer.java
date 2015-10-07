@@ -1,5 +1,6 @@
 package com.airamerica;
 
+
 public class Customer {
 	
 	
@@ -28,8 +29,8 @@ public class Customer {
 	public Person getPrimaryContact() {
 		return primaryContact;
 	}
-
-	public String getCustomerCode() {
+	
+	public String getCode() {
 		return customerCode;
 	}
 
