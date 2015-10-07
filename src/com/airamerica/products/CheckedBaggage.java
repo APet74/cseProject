@@ -16,5 +16,17 @@ public class CheckedBaggage extends Service {
 		this.ticketCode = ticketCode;
 	}
 	
+	@Override
+	public double getFees(int amount){
+		double fee = 0;
+		for(int i = 0; i < amount; i++){
+			if(i == 0){
+				fee = 25;
+			}else{
+				fee += 25;
+			}
+		}
+		return fee;
+	}
 	
 }

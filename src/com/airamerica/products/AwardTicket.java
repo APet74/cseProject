@@ -24,7 +24,7 @@ public class AwardTicket extends Ticket {
 	}
 	
 	
-	
+	@Override
 	public double getFees(Airport [] airportArray){
 		String seatType = getFlightClass();
 		
@@ -52,5 +52,12 @@ public class AwardTicket extends Ticket {
 		return fees;
 	}
 	
+	@Override
+	public double getTax(double fee){
+		double tax = 0;
+		tax = fee * .075; // Federal Excise Tax
+		tax = tax * .04; // flat 4% tax
+		return tax;
+	}
 	
 }

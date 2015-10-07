@@ -22,5 +22,11 @@ public class Refreshment extends Service {
 		this.cost = cost;
 	}
 	
-	
+	@Override 
+	public double getFees(int amount){
+		double cost = getCost();
+		double fee = cost * amount;
+		return fee;
+		
+	}
 }

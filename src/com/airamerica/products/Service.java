@@ -6,4 +6,9 @@ public abstract class Service extends Product {
 		super(code, productType);
 	}
 
+	public double getFees(int amount) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

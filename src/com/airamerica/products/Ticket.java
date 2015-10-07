@@ -3,6 +3,7 @@ package com.airamerica.products;
 import java.util.Date;
 
 import com.airamerica.Airport;
+import com.airamerica.utils.Haversine;
 
 public abstract class Ticket extends Product {
 	
@@ -81,6 +82,17 @@ public abstract class Ticket extends Product {
 
 	public void setAircraftType(String aircraftType) {
 		this.aircraftType = aircraftType;
+	}
+	
+
+
+	public double getTax(double fee) {
+		return 0;
+	}
+
+	public double getFees(Airport[] airportArray) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
