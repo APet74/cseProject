@@ -59,7 +59,17 @@
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>90fa</serviceCode>
+        <units>3</units>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>fh23</serviceCode>
+        <units>2</units>
+        <ticketCode>1255</ticketCode>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
   <invoice>
     <invoiceCode>INV002</invoiceCode>
@@ -132,7 +142,16 @@
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>32f4</serviceCode>
+        <units>3</units>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>xer4</serviceCode>
+        <personCode>321na</personCode>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
   <invoice>
     <invoiceCode>INV003</invoiceCode>
@@ -186,7 +205,16 @@
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>xer1</serviceCode>
+        <personCode>55bb</personCode>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>31f4</serviceCode>
+        <units>1</units>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
   <invoice>
     <invoiceCode>INV004</invoiceCode>
@@ -274,6 +302,21 @@
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>fg23</serviceCode>
+        <units>3</units>
+        <ticketCode>1260</ticketCode>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>90fc</serviceCode>
+        <units>2</units>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>fg23</serviceCode>
+        <units>2</units>
+        <ticketCode>1262</ticketCode>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
 </list></invoices>
