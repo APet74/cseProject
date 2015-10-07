@@ -89,9 +89,17 @@ public class Invoice {
 	}
 
 
+	public void newTicketHolder(){
+		this.ticketHolder.add(new TicketHolder());
+	}
 	
-	public void addTicketHolder(String seatNumber, String personCode, String id, Integer age, String nationality) {
-		this.ticketHolder.add(new TicketHolder(seatNumber, personCode, id, age, nationality));
+	public void addTicketHolderInformation(int index, String seatNumber, String personCode, String id, Integer age, String nationality) {
+		this.ticketHolder.get(index).addSeatNum(seatNumber);
+		this.ticketHolder.get(index).addPerson(personCode);
+		this.ticketHolder.get(index).addId(id);
+		this.ticketHolder.get(index).addAge(age);
+		this.ticketHolder.get(index).addNationality(nationality);
+
 
 	}
 }

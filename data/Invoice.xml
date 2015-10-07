@@ -39,34 +39,22 @@
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
           <string>12A</string>
-        </seatNum>
-        <person>
-          <string>ma12</string>
-        </person>
-        <id>
-          <string>FA1234</string>
-        </id>
-        <age>
-          <int>23</int>
-        </age>
-        <nationality>
-          <string>USA</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>12B</string>
         </seatNum>
         <person>
+          <string>ma12</string>
           <string>321f</string>
         </person>
         <id>
+          <string>FA1234</string>
           <string>FP6521</string>
         </id>
         <age>
+          <int>23</int>
           <int>26</int>
         </age>
         <nationality>
+          <string>USA</string>
           <string>USA</string>
         </nationality>
       </com.airamerica.invoices.TicketHolder>
@@ -239,85 +227,49 @@
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
           <string>32F</string>
-        </seatNum>
-        <person>
-          <string>55bb</string>
-        </person>
-        <id>
-          <string>AB3111</string>
-        </id>
-        <age>
-          <int>34</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>21A</string>
-        </seatNum>
-        <person>
-          <string>2342</string>
-        </person>
-        <id>
-          <string>AB1222</string>
-        </id>
-        <age>
-          <int>31</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>32D</string>
         </seatNum>
         <person>
+          <string>55bb</string>
+          <string>2342</string>
           <string>231</string>
         </person>
         <id>
+          <string>AB3111</string>
+          <string>AB1222</string>
           <string>PP988877</string>
         </id>
         <age>
+          <int>34</int>
+          <int>31</int>
           <int>12</int>
         </age>
         <nationality>
+          <string>Korea</string>
+          <string>Korea</string>
           <string>Korea</string>
         </nationality>
       </com.airamerica.invoices.TicketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
           <string>10B</string>
-        </seatNum>
-        <person>
-          <string>231</string>
-        </person>
-        <id>
-          <string>PP988877</string>
-        </id>
-        <age>
-          <int>12</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>10C</string>
         </seatNum>
         <person>
+          <string>231</string>
           <string>2342</string>
         </person>
         <id>
+          <string>PP988877</string>
           <string>AB1222</string>
         </id>
         <age>
+          <int>12</int>
           <int>31</int>
         </age>
         <nationality>
+          <string>Korea</string>
           <string>Korea</string>
         </nationality>
       </com.airamerica.invoices.TicketHolder>

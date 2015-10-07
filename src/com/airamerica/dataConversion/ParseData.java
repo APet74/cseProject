@@ -326,7 +326,8 @@ public class ParseData {
 		
 
 		String productToken[] = token[4].split(",\\s*");
-		
+
+		int ticketIndexFlag = 0;
 		for (int i = 0; i < productToken.length; i++){
 			String productDefined[] = productToken[i].split(":");
 			
@@ -335,6 +336,8 @@ public class ParseData {
 				System.out.println(productDefined[0]);
 				//Ticket
 				thisInvoice.addTicket(productDefined[0]);
+				thisInvoice.newTicketHolder();
+				
 				
 				//flight date
 				Date flightDate = null;
@@ -349,11 +352,12 @@ public class ParseData {
 				int flag = Integer.parseInt(productDefined[2]);
 				
 				for (int j = 0; j < flag; j++){
-					thisInvoice.addTicketHolder(productDefined[3+(0+(j*5))],productDefined[3+(1+(j*5))],
+					
+					thisInvoice.addTicketHolderInformation(ticketIndexFlag, productDefined[3+(0+(j*5))],productDefined[3+(1+(j*5))],
 							productDefined[3+(2+(j*5))], Integer.parseInt(productDefined[3+(3+(j*5))]),productDefined[3+(4+(j*5))]);
 				}
 				
-				
+				ticketIndexFlag++;
 				thisInvoice.addFlightDates(flightDate);
 				
 				//add pax info
