@@ -21,6 +21,12 @@ public class Invoice {
 	private ArrayList <TicketHolder> ticketHolder = new ArrayList<TicketHolder>();
 	private ArrayList <TicketService> services = new ArrayList<TicketService>();
 	
+	
+	
+	public Invoice() {
+		super();
+	}
+
 	public Invoice(String invoiceCode) {
 		this.invoiceCode = invoiceCode;
 	}
@@ -76,5 +82,16 @@ public class Invoice {
 
 	public void addFlightDates(Date flightDates) {
 		this.flightDates.add(flightDates);
+	}
+
+	public ArrayList <TicketHolder> getTicketHolder() {
+		return ticketHolder;
+	}
+
+
+	
+	public void addTicketHolder(String seatNumber, String personCode, String id, Integer age, String nationality) {
+		this.ticketHolder.add(new TicketHolder(seatNumber, personCode, id, age, nationality));
+
 	}
 }

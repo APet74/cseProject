@@ -35,7 +35,42 @@
     <flightDates>
       <date>2015-09-13 05:00:00.0 UTC</date>
     </flightDates>
-    <ticketHolder/>
+    <ticketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>12A</string>
+        </seatNum>
+        <person>
+          <string>ma12</string>
+        </person>
+        <id>
+          <string>FA1234</string>
+        </id>
+        <age>
+          <int>23</int>
+        </age>
+        <nationality>
+          <string>USA</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>12B</string>
+        </seatNum>
+        <person>
+          <string>321f</string>
+        </person>
+        <id>
+          <string>FP6521</string>
+        </id>
+        <age>
+          <int>26</int>
+        </age>
+        <nationality>
+          <string>USA</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+    </ticketHolder>
     <services/>
   </invoice>
   <invoice>
@@ -73,7 +108,42 @@
       <date>2015-09-12 05:00:00.0 UTC</date>
       <date>2015-09-22 05:00:00.0 UTC</date>
     </flightDates>
-    <ticketHolder/>
+    <ticketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>32C</string>
+        </seatNum>
+        <person>
+          <string>321na</string>
+        </person>
+        <id>
+          <string>FS12345</string>
+        </id>
+        <age>
+          <int>43</int>
+        </age>
+        <nationality>
+          <string>Mexico</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>12C</string>
+        </seatNum>
+        <person>
+          <string>321na</string>
+        </person>
+        <id>
+          <string>FS12345</string>
+        </id>
+        <age>
+          <int>43</int>
+        </age>
+        <nationality>
+          <string>Mexico</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+    </ticketHolder>
     <services/>
   </invoice>
   <invoice>
@@ -109,7 +179,25 @@
     <flightDates>
       <date>2015-12-17 06:00:00.0 UTC</date>
     </flightDates>
-    <ticketHolder/>
+    <ticketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>17G</string>
+        </seatNum>
+        <person>
+          <string>55bb</string>
+        </person>
+        <id>
+          <string>NB3111</string>
+        </id>
+        <age>
+          <int>72</int>
+        </age>
+        <nationality>
+          <string>Bolivia</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+    </ticketHolder>
     <services/>
   </invoice>
   <invoice>
@@ -147,7 +235,93 @@
       <date>2016-01-08 06:00:00.0 UTC</date>
       <date>2016-03-28 05:00:00.0 UTC</date>
     </flightDates>
-    <ticketHolder/>
+    <ticketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>32F</string>
+        </seatNum>
+        <person>
+          <string>55bb</string>
+        </person>
+        <id>
+          <string>AB3111</string>
+        </id>
+        <age>
+          <int>34</int>
+        </age>
+        <nationality>
+          <string>Korea</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>21A</string>
+        </seatNum>
+        <person>
+          <string>2342</string>
+        </person>
+        <id>
+          <string>AB1222</string>
+        </id>
+        <age>
+          <int>31</int>
+        </age>
+        <nationality>
+          <string>Korea</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>32D</string>
+        </seatNum>
+        <person>
+          <string>231</string>
+        </person>
+        <id>
+          <string>PP988877</string>
+        </id>
+        <age>
+          <int>12</int>
+        </age>
+        <nationality>
+          <string>Korea</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>10B</string>
+        </seatNum>
+        <person>
+          <string>231</string>
+        </person>
+        <id>
+          <string>PP988877</string>
+        </id>
+        <age>
+          <int>12</int>
+        </age>
+        <nationality>
+          <string>Korea</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+      <com.airamerica.invoices.TicketHolder>
+        <seatNum>
+          <string>10C</string>
+        </seatNum>
+        <person>
+          <string>2342</string>
+        </person>
+        <id>
+          <string>AB1222</string>
+        </id>
+        <age>
+          <int>31</int>
+        </age>
+        <nationality>
+          <string>Korea</string>
+        </nationality>
+      </com.airamerica.invoices.TicketHolder>
+    </ticketHolder>
     <services/>
   </invoice>
 </list></invoices>

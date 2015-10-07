@@ -327,11 +327,10 @@ public class ParseData {
 
 		String productToken[] = token[4].split(",\\s*");
 		
-		
-		
 		for (int i = 0; i < productToken.length; i++){
 			String productDefined[] = productToken[i].split(":");
 			
+			//test the type of product - ticket or service 
 			if (FindObject.find(productDefined[0], productList) instanceof Ticket) {
 				System.out.println(productDefined[0]);
 				//Ticket
@@ -346,8 +345,18 @@ public class ParseData {
 					e.printStackTrace();
 				}
 				
+				//use given number of pax on a ticket to generate flag for loop
+				int flag = Integer.parseInt(productDefined[2]);
+				
+				for (int j = 0; j < flag; j++){
+					thisInvoice.addTicketHolder(productDefined[3+(0+(j*5))],productDefined[3+(1+(j*5))],
+							productDefined[3+(2+(j*5))], Integer.parseInt(productDefined[3+(3+(j*5))]),productDefined[3+(4+(j*5))]);
+				}
+				
+				
 				thisInvoice.addFlightDates(flightDate);
 				
+				//add pax info
 				
 				
 			} else if (FindObject.find(productDefined[0], productList) instanceof Service) {
@@ -355,15 +364,7 @@ public class ParseData {
 			}
 		}
 		
-		// tickets - arraylist
-		
-		// flight dates - arraylist
-		
-		// ticketholder - arraylist
-		
-		// services - arraylist of TicketServices
-		
-	
+
 		return thisInvoice;
 	}
 }

@@ -5,31 +5,32 @@ import java.util.ArrayList;
 import com.airamerica.Person;
 
 public class TicketHolder {
-private ArrayList<Person> person; 
-private ArrayList<String> seatNum;
-private ArrayList<String> id;
-private ArrayList<Integer> age;
-private ArrayList<String> nationality;
-public TicketHolder(ArrayList<Person> person, ArrayList<String> seatNum, ArrayList<String> id, ArrayList<Integer> age,
-		ArrayList<String> nationality) {
+private ArrayList<String> seatNum = new ArrayList<>();
+private ArrayList<String> person = new ArrayList<>(); 
+private ArrayList<String> id = new ArrayList<>();
+private ArrayList<Integer> age = new ArrayList<>();
+private ArrayList<String> nationality = new ArrayList<>();
+
+public TicketHolder(String seatNumber, String personCode, String id, Integer age, String nationality) {
 	super();
-	this.person = person;
-	this.seatNum = seatNum;
-	this.id = id;
-	this.age = age;
-	this.nationality = nationality;
+	this.seatNum.add(seatNumber);
+	this.person.add(personCode);
+	this.id.add(id);
+	this.age.add(age);
+	this.nationality.add(nationality);
+	
 }
-public ArrayList<Person> getPerson() {
+public ArrayList<String> getPerson() {
 	return person;
 }
-public void setPerson(ArrayList<Person> person) {
-	this.person = person;
+public void addPerson(String person) {
+	this.person.add(person);
 }
 public ArrayList<String> getSeatNum() {
 	return seatNum;
 }
-public void setSeatNum(ArrayList<String> seatNum) {
-	this.seatNum = seatNum;
+public void addSeatNum(String seatNum) {
+	this.seatNum.add(seatNum);
 }
 public ArrayList<String> getId() {
 	return id;
