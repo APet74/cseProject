@@ -39,39 +39,37 @@
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
           <string>12A</string>
-        </seatNum>
-        <person>
-          <string>ma12</string>
-        </person>
-        <id>
-          <string>FA1234</string>
-        </id>
-        <age>
-          <int>23</int>
-        </age>
-        <nationality>
-          <string>USA</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>12B</string>
         </seatNum>
         <person>
+          <string>ma12</string>
           <string>321f</string>
         </person>
         <id>
+          <string>FA1234</string>
           <string>FP6521</string>
         </id>
         <age>
+          <int>23</int>
           <int>26</int>
         </age>
         <nationality>
           <string>USA</string>
+          <string>USA</string>
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>90fa</serviceCode>
+        <units>3</units>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>fh23</serviceCode>
+        <units>2</units>
+        <ticketCode>1255</ticketCode>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
   <invoice>
     <invoiceCode>INV002</invoiceCode>
@@ -144,7 +142,16 @@
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>32f4</serviceCode>
+        <units>3</units>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>xer4</serviceCode>
+        <personCode>321na</personCode>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
   <invoice>
     <invoiceCode>INV003</invoiceCode>
@@ -198,7 +205,16 @@
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>xer1</serviceCode>
+        <personCode>55bb</personCode>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>31f4</serviceCode>
+        <units>1</units>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
   <invoice>
     <invoiceCode>INV004</invoiceCode>
@@ -239,89 +255,68 @@
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
           <string>32F</string>
-        </seatNum>
-        <person>
-          <string>55bb</string>
-        </person>
-        <id>
-          <string>AB3111</string>
-        </id>
-        <age>
-          <int>34</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>21A</string>
-        </seatNum>
-        <person>
-          <string>2342</string>
-        </person>
-        <id>
-          <string>AB1222</string>
-        </id>
-        <age>
-          <int>31</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>32D</string>
         </seatNum>
         <person>
+          <string>55bb</string>
+          <string>2342</string>
           <string>231</string>
         </person>
         <id>
+          <string>AB3111</string>
+          <string>AB1222</string>
           <string>PP988877</string>
         </id>
         <age>
+          <int>34</int>
+          <int>31</int>
           <int>12</int>
         </age>
         <nationality>
+          <string>Korea</string>
+          <string>Korea</string>
           <string>Korea</string>
         </nationality>
       </com.airamerica.invoices.TicketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
           <string>10B</string>
-        </seatNum>
-        <person>
-          <string>231</string>
-        </person>
-        <id>
-          <string>PP988877</string>
-        </id>
-        <age>
-          <int>12</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
           <string>10C</string>
         </seatNum>
         <person>
+          <string>231</string>
           <string>2342</string>
         </person>
         <id>
+          <string>PP988877</string>
           <string>AB1222</string>
         </id>
         <age>
+          <int>12</int>
           <int>31</int>
         </age>
         <nationality>
           <string>Korea</string>
+          <string>Korea</string>
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services/>
+    <services>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>fg23</serviceCode>
+        <units>3</units>
+        <ticketCode>1260</ticketCode>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>90fc</serviceCode>
+        <units>2</units>
+      </com.airamerica.invoices.TicketService>
+      <com.airamerica.invoices.TicketService>
+        <serviceCode>fg23</serviceCode>
+        <units>2</units>
+        <ticketCode>1262</ticketCode>
+      </com.airamerica.invoices.TicketService>
+    </services>
   </invoice>
 </list></invoices>

@@ -10,7 +10,7 @@ private ArrayList<String> person = new ArrayList<>();
 private ArrayList<String> id = new ArrayList<>();
 private ArrayList<Integer> age = new ArrayList<>();
 private ArrayList<String> nationality = new ArrayList<>();
-
+/*
 public TicketHolder(String seatNumber, String personCode, String id, Integer age, String nationality) {
 	super();
 	this.seatNum.add(seatNumber);
@@ -20,6 +20,11 @@ public TicketHolder(String seatNumber, String personCode, String id, Integer age
 	this.nationality.add(nationality);
 	
 }
+*/
+public TicketHolder(){
+	
+}
+
 public ArrayList<String> getPerson() {
 	return person;
 }
@@ -35,20 +40,20 @@ public void addSeatNum(String seatNum) {
 public ArrayList<String> getId() {
 	return id;
 }
-public void setId(ArrayList<String> id) {
-	this.id = id;
+public void addId(String id) {
+	this.id.add(id);
 }
 public ArrayList<Integer> getAge() {
 	return age;
 }
-public void setAge(ArrayList<Integer> age) {
-	this.age = age;
+public void addAge(Integer age) {
+	this.age.add(age);
 }
 public ArrayList<String> getNationality() {
 	return nationality;
 }
-public void setNationality(ArrayList<String> nationality) {
-	this.nationality = nationality;
+public void addNationality(String nationality) {
+	this.nationality.add(nationality);
 }
 
 

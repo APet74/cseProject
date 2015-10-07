@@ -89,9 +89,42 @@ public class Invoice {
 	}
 
 
+	public void newTicketHolder(){
+		this.ticketHolder.add(new TicketHolder());
+	}
 	
-	public void addTicketHolder(String seatNumber, String personCode, String id, Integer age, String nationality) {
-		this.ticketHolder.add(new TicketHolder(seatNumber, personCode, id, age, nationality));
+	public void addTicketHolderInformation(int index, String seatNumber, String personCode, String id, Integer age, String nationality) {
+		this.ticketHolder.get(index).addSeatNum(seatNumber);
+		this.ticketHolder.get(index).addPerson(personCode);
+		this.ticketHolder.get(index).addId(id);
+		this.ticketHolder.get(index).addAge(age);
+		this.ticketHolder.get(index).addNationality(nationality);
+	}
+	
+	public void newTicketService(){
+		this.services.add(new TicketService());
+	}
+	
+	public void addCheckedBaggage(int index, String serviceCode, int units){
+		this.services.get(index).setServiceCode(serviceCode);
+		this.services.get(index).setUnits(units);
+	}
+	
+	public void addInsurance(int index, String serviceCode, int units, String ticketCode) {
+		this.services.get(index).setServiceCode(serviceCode);
+		this.services.get(index).setUnits(units);
+		this.services.get(index).setTicketCode(ticketCode);
+		
+	}
+	
+	public void addRefreshment(int index, String serviceCode, int units){
+		this.services.get(index).setServiceCode(serviceCode);
+		this.services.get(index).setUnits(units);
 
+	}
+	
+	public void addSpecialAssistance(int index, String serviceCode, String personCode){
+		this.services.get(index).setServiceCode(serviceCode);
+		this.services.get(index).setPersonCode(personCode);
 	}
 }

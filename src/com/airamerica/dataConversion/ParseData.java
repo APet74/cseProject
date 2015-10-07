@@ -326,15 +326,18 @@ public class ParseData {
 		
 
 		String productToken[] = token[4].split(",\\s*");
-		
+
+		int ticketIndexFlag = 0;
+		int serviceIndexFlag = 0;
 		for (int i = 0; i < productToken.length; i++){
 			String productDefined[] = productToken[i].split(":");
 			
 			//test the type of product - ticket or service 
 			if (FindObject.find(productDefined[0], productList) instanceof Ticket) {
-				System.out.println(productDefined[0]);
 				//Ticket
 				thisInvoice.addTicket(productDefined[0]);
+				thisInvoice.newTicketHolder();
+				
 				
 				//flight date
 				Date flightDate = null;
@@ -349,18 +352,41 @@ public class ParseData {
 				int flag = Integer.parseInt(productDefined[2]);
 				
 				for (int j = 0; j < flag; j++){
-					thisInvoice.addTicketHolder(productDefined[3+(0+(j*5))],productDefined[3+(1+(j*5))],
+					
+					thisInvoice.addTicketHolderInformation(ticketIndexFlag, productDefined[3+(0+(j*5))],productDefined[3+(1+(j*5))],
 							productDefined[3+(2+(j*5))], Integer.parseInt(productDefined[3+(3+(j*5))]),productDefined[3+(4+(j*5))]);
 				}
 				
-				
+				ticketIndexFlag++;
 				thisInvoice.addFlightDates(flightDate);
 				
 				//add pax info
 				
 				
-			} else if (FindObject.find(productDefined[0], productList) instanceof Service) {
-				System.out.println(productDefined[0] + " is a Service");
+			} else if (FindObject.find(productDefined[0], productList) instanceof Refreshment) {
+				System.out.println(productDefined[0] + " is a refreshment");
+				thisInvoice.newTicketService();
+				thisInvoice.addRefreshment(serviceIndexFlag, productDefined[0], Integer.parseInt(productDefined[1]));
+				
+				serviceIndexFlag++;
+			} else if (FindObject.find(productDefined[0], productList) instanceof CheckedBaggage) {
+				thisInvoice.newTicketService();
+				thisInvoice.addCheckedBaggage(serviceIndexFlag, productDefined[0], Integer.parseInt(productDefined[1]));
+				
+				serviceIndexFlag++;
+			} else if (FindObject.find(productDefined[0], productList) instanceof Insurance) {
+				System.out.println(productDefined[0] + " is insurance");
+				thisInvoice.newTicketService();
+				thisInvoice.addInsurance(serviceIndexFlag, productDefined[0], Integer.parseInt(productDefined[1]), 
+						productDefined[2]);
+				
+				serviceIndexFlag++;
+			} else if (FindObject.find(productDefined[0], productList) instanceof SpecialAssistance) {
+				System.out.println(productDefined[0] + " is special assistance");
+				thisInvoice.newTicketService();
+				thisInvoice.addSpecialAssistance(serviceIndexFlag, productDefined[0], productDefined[1]);
+				
+				serviceIndexFlag++;
 			}
 		}
 		

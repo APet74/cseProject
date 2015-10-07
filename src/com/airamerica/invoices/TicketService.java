@@ -1,50 +1,45 @@
 package com.airamerica.invoices;
 
-import java.util.ArrayList;
-
-import com.airamerica.products.Service;
-
 public class TicketService {
-	private ArrayList<Service> serviceCode;
-	private ArrayList<Integer> units = null;
-	private ArrayList<String> personCode = null;
-	private ArrayList<String> flightNum = null;
+	private String serviceCode = null;
+	private Integer units = null;
+	private String personCode = null;
+	private String ticketCode = null;
 	
-	public TicketService(ArrayList<Service> serviceCode) {
+	public TicketService() {
 		super();
-		this.serviceCode = serviceCode;
 	}
 
-	public ArrayList<Service> getServiceCode() {
+	public String getServiceCode() {
 		return serviceCode;
 	}
 
-	public void setServiceCode(ArrayList<Service> serviceCode) {
+	public void setServiceCode(String serviceCode) {
 		this.serviceCode = serviceCode;
 	}
 
-	public ArrayList<Integer> getUnits() {
+	public Integer getUnits() {
 		return units;
 	}
 
-	public void setUnits(ArrayList<Integer> units) {
+	public void setUnits(Integer units) {
 		this.units = units;
 	}
 
-	public ArrayList<String> getPersonCode() {
+	public String getPersonCode() {
 		return personCode;
 	}
 
-	public void setPersonCode(ArrayList<String> personCode) {
+	public void setPersonCode(String personCode) {
 		this.personCode = personCode;
 	}
 
-	public ArrayList<String> getFlightNum() {
-		return flightNum;
+	public String getTicketCode() {
+		return ticketCode;
 	}
 
-	public void setFlightNum(ArrayList<String> flightNum) {
-		this.flightNum = flightNum;
+	public void setTicketCode(String ticketCode) {
+		this.ticketCode = ticketCode;
 	}
 	
 	
