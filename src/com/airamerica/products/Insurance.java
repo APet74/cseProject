@@ -30,5 +30,11 @@ public class Insurance extends Service {
 		this.costPerMile = costPerMile;
 	}
 	
+	public double getFees(double amount){
+		double fee = 0;
+		
+		return fee;
+	}
+	
 	
 }

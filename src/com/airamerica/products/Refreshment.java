@@ -23,9 +23,9 @@ public class Refreshment extends Service {
 	}
 	
 	@Override 
-	public double getFees(int amount){
+	public double getFees(){
 		double cost = getCost();
-		double fee = cost * amount;
+		double fee = cost;
 		return fee;
 		
 	}

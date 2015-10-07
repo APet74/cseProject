@@ -90,7 +90,7 @@ public abstract class Ticket extends Product {
 		return 0;
 	}
 
-	public double getFees(Airport[] airportArray) {
+	public double getFees() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

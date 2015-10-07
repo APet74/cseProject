@@ -36,7 +36,7 @@ public class OffSeasonTicket extends Ticket {
 	}
 	
 	@Override
-	public double getFees(Airport [] airportArray){
+	public double getFees(){
 		String seatType = getFlightClass();
 		
 		Airport a1 = getDepAirportCode();

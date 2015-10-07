@@ -17,7 +17,7 @@ public class CheckedBaggage extends Service {
 	}
 	
 	@Override
-	public double getFees(int amount){
+	public double getFees(double amount){
 		double fee = 0;
 		for(int i = 0; i < amount; i++){
 			if(i == 0){
