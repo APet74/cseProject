@@ -31,6 +31,14 @@ public class Invoice {
 		this.invoiceCode = invoiceCode;
 	}
 	
+	public ArrayList<String> getTicketCodes() {
+		return ticketCodes;
+	}
+
+	public void setTicketCodes(ArrayList<String> ticketCodes) {
+		this.ticketCodes = ticketCodes;
+	}
+
 	public String getInvoiceCode() {
 		return invoiceCode;
 	}

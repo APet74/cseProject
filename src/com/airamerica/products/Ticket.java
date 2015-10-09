@@ -94,5 +94,7 @@ public abstract class Ticket extends Product {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public abstract double getMiles(Airport a1, Airport a2);
 	
 }
