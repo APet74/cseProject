@@ -10,6 +10,7 @@ private ArrayList<String> person = new ArrayList<>();
 private ArrayList<String> id = new ArrayList<>();
 private ArrayList<Integer> age = new ArrayList<>();
 private ArrayList<String> nationality = new ArrayList<>();
+
 /*
 public TicketHolder(String seatNumber, String personCode, String id, Integer age, String nationality) {
 	super();
@@ -55,7 +56,6 @@ public ArrayList<String> getNationality() {
 public void addNationality(String nationality) {
 	this.nationality.add(nationality);
 }
-
 
 
 

@@ -360,7 +360,8 @@ public class ParseData {
 				ticketIndexFlag++;
 				thisInvoice.addFlightDates(flightDate);
 				
-				//add pax info
+				//add ticket comment
+				thisInvoice.addComment(productDefined[productDefined.length - 1]);
 				
 				
 			} else if (FindObject.find(productDefined[0], productList) instanceof Refreshment) {
