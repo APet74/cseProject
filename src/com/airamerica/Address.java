@@ -28,6 +28,11 @@ public class Address {
 		return address;
 	}
 	
+	public String getCityState(){
+		String cityState = this.city + ", " + this.state;
+		return cityState;
+	}
+	
 	public String getState() {
 		return state;
 	}

@@ -14,8 +14,6 @@ public abstract class Ticket extends Product {
 	private String flightClass;
 	private String aircraftType;
 
-
-
 	public Ticket(String code, String productType, Airport depAirportCode, Airport arrAirportCode,
 			Date depTime, Date arrTime, String flightNo, String flightClass, String aircraftType) {
 		super(code, productType);
@@ -30,6 +28,45 @@ public abstract class Ticket extends Product {
 
 	public Airport getDepAirportCode() {
 		return depAirportCode;
+	}
+	
+	public String getAirportCode(String code){
+		
+		String output = null;
+		
+		if (code.equals("departing")){
+			output = this.depAirportCode.getCode();
+		} else if (code.equals("arriving")){
+			output = this.arrAirportCode.getCode();
+		}
+		
+		return output;
+	}
+	
+	public Date getFlightTime(String code){
+		
+		Date output = null;
+		
+		if (code.equals("departing")){
+			output = this.depTime;
+		} else if (code.equals("arriving")){
+			output = this.arrTime;
+		}
+		
+		return output;
+	}
+	
+	public String getCityState(String code){
+		
+		String output = null;
+		
+		if (code.equals("departing")){
+			output = this.depAirportCode.getCityState();
+		} else if (code.equals("arriving")){
+			output = this.arrAirportCode.getCityState();
+		}
+		
+		return output;
 	}
 
 	public void setDepAirportCode(Airport depAirportCode) {

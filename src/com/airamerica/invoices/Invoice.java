@@ -20,7 +20,7 @@ public class Invoice {
 	private ArrayList <Date> flightDates = new ArrayList<Date>();
 	private ArrayList <TicketHolder> ticketHolder = new ArrayList<TicketHolder>();
 	private ArrayList <TicketService> services = new ArrayList<TicketService>();
-	
+	private ArrayList <String> comments = new ArrayList<>();
 	
 	
 	public Invoice() {
@@ -31,12 +31,16 @@ public class Invoice {
 		this.invoiceCode = invoiceCode;
 	}
 	
-	public ArrayList<String> getTicketCodes() {
-		return ticketCodes;
+	public String getTicketCodes(int index) {
+		return ticketCodes.get(index);
 	}
 
 	public void setTicketCodes(ArrayList<String> ticketCodes) {
 		this.ticketCodes = ticketCodes;
+	}
+	
+	public int getTicketCodesSize(){
+		return this.ticketCodes.size();
 	}
 
 	public String getInvoiceCode() {
@@ -84,8 +88,8 @@ public class Invoice {
 		this.ticketCodes.add(code);
 	}
 
-	public ArrayList <Date> getFlightDates() {
-		return flightDates;
+	public Date getFlightDates(int index) {
+		return flightDates.get(index);
 	}
 
 	public void addFlightDates(Date flightDates) {
@@ -135,4 +139,13 @@ public class Invoice {
 		this.services.get(index).setServiceCode(serviceCode);
 		this.services.get(index).setPersonCode(personCode);
 	}
+	
+	public void addComment(String comment){
+		this.comments.add(comment);
+	}
+	
+	public String getComment(int index) {
+		return this.comments.get(index);
+	}
+	
 }

@@ -16,12 +16,18 @@ import com.airamerica.products.Product;
 import com.airamerica.products.Service;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
+<<<<<<< HEAD
 import com.thoughtworks.xstream.io.binary.Token.Formatter;
+=======
+import com.airamerica.utils.StandardUtils;
+>>>>>>> JohnInvoiceReport
 
 import java.lang.StringBuilder;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 
 
 /* Assignment 3,5 and 6 (Project Phase-II,IV and V) */
@@ -40,13 +46,68 @@ public class InvoiceReport  {
 	}
 	
 
-	private String getTravelSummary() {
+	private String getTravelSummary(ArrayList<Invoice> invoiceArray, int index, ArrayList<Product> productArray) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("FLIGHT INFORMATION");
-		sb.append("==================================================\n");
-
-		//TODO: Add code for generating Travel Information of an Invoice
+		sb.append("FLIGHT INFORMATION\n");
 		
+		DateFormat formatter = new SimpleDateFormat("h:ma");
+		
+		//header
+		sb.append(String.format("%-15s%-10s%-7s%-30s%-30s%s\n", "Day, Date", "Flight", "Class",
+				"Departure City and Time", "Arrival City and Time", "Aircraft"));
+		
+		//loop through tickets
+		for (int j = 0; j < invoiceArray.get(index).getTicketCodesSize(); j++){
+			
+			//date
+			sb.append(String.format("%ta, %td%tb%-5ty%-10s%-7s%-30s%-30s%s\n%-32s%-30s%-30s\n", invoiceArray.get(j).getFlightDates(j),
+					invoiceArray.get(j).getFlightDates(j), invoiceArray.get(j).getFlightDates(j), 
+					invoiceArray.get(j).getFlightDates(j),
+					//flight
+					((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getFlightNo(),
+					//Class
+					((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getFlightClass(),
+					//departing/arriving cities and states
+					((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getCityState("departing"),
+					((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getCityState("arriving"),
+					//aircraft type
+					((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getAircraftType(),
+					//open space
+					"",
+					//departing airport code and time
+					"(" + ((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getAirportCode("departing") +
+					") " + formatter.format(((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getFlightTime("departing")),
+					//arriving airport code and time
+					"(" + ((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getAirportCode("arriving") +
+					") " + formatter.format(((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getFlightTime("arriving"))));
+			
+
+
+			sb.append(String.format("    *%s\n", invoiceArray.get(j).getComment(j)));
+
+		}
+		
+		
+		/*
+		if(c.getCustomer().getCustomerType().equals("C")){
+			sb.append("[Corporate]\n");
+		}else if(c.getCustomer().getCustomerType().equals("V")){
+			sb.append("[Government]\n");
+		}else{
+			sb.append("[General]\n");
+		}
+		sb.append(c.getCustomer().getPrimaryContact().getlastName() + ", " + c.getCustomer().getPrimaryContact().getfirstName() + "\n");
+		String customerAddress[] = c.getCustomer().getPrimaryContact().getAddress().split(",\\s*");
+		sb.append(customerAddress[0] + "\n" + customerAddress[1] + " " + customerAddress[2] + " " + customerAddress[3] + " " + customerAddress[4] + "\n");
+		if(c.getSalesperson().equals("online")){
+			sb.append("Salesperson: ONLINE, null\n");
+		}else{
+		Person customerContact =  (Person) FindObject.find(c.getSalesperson(), personArray);
+			sb.append("Salesperson: " + customerContact.getlastName() + ", " + customerContact.getfirstName() + "\n");
+		}
+		*/
+		
+		sb.append("\n");
 		return sb.toString();
 		
 	}
@@ -80,8 +141,8 @@ public class InvoiceReport  {
 		sb.append("==================================================\n");
 		sb.append("Code\tItem\t\t\t\t\t\t\t\t\t\tSubtotal\tTax\t\tTotal\n");
 		double totalTax = 0;
-		for(int j = 0; j < c.getTicketCodes().size(); j++){
-			Product ticketObject =  (Product) FindObject.find(c.getTicketCodes().get(j), productArray);
+		for(int j = 0; j < c.getTicketCodesSize(); j++){
+			Product ticketObject =  (Product) FindObject.find(c.getTicketCodes(j), productArray);
 			Ticket ticketObj = (Ticket) ticketObject;
 			//sb.append(ticketObj.getCode());
 			if(ticketObject.getProductType().equals("TS")){
@@ -153,15 +214,38 @@ public class InvoiceReport  {
 		
 	}
 
+	public String getInvoiceHeader (ArrayList<Invoice> invoiceArray, int index) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(String.format("\nInvoice %s\n", invoiceArray.get(index).getInvoiceCode()));
+
+		sb.append(String.format("----------------------------------------------------------------------------------------------------------------\n"));
+
+		sb.append(String.format("%-87sPNR", "AIR AMERICA"));
+				
+		sb.append(String.format("%s%tb %td, %-65tY%s\n", "\nIssueDate: ", invoiceArray.get(index).getSaleDate(),invoiceArray.get(index).getSaleDate(),invoiceArray.get(index).getSaleDate(), 
+				StandardUtils.generatePNR()));
+
+		sb.append(String.format("----------------------------------------------------------------------------------------------------------------\n"));
+		
+		return sb.toString();
+	}
+	
 	public String generateDetailReport(ArrayList<Invoice> invoiceArray, ArrayList<Person> personArray, ArrayList<Product> productArray) {
 	StringBuilder sb = new StringBuilder();		
 	sb.append("Individual Invoice Detail Reports\n");
-	sb.append("==================================================\n");
+	sb.append("==================================================");
 	
 	/* TODO: Loop through all invoices and call the getTravelSummary() and 
 	getCostSummary() for each invoice*/
 	for(int i = 0; i < invoiceArray.size(); i++){
+		
+		String invoiceHeader = getInvoiceHeader(invoiceArray, i);
+		String flightSummary = getTravelSummary(invoiceArray, i, productArray);
 		String costSummary = getCostSummary(invoiceArray, i, personArray, productArray);
+		
+		
+		sb.append(invoiceHeader);
+		sb.append(flightSummary);
 		sb.append(costSummary);
 	}
 	
