@@ -16,11 +16,11 @@ import com.airamerica.products.Product;
 import com.airamerica.products.Service;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
-<<<<<<< HEAD
+
 import com.thoughtworks.xstream.io.binary.Token.Formatter;
-=======
+
 import com.airamerica.utils.StandardUtils;
->>>>>>> JohnInvoiceReport
+
 
 import java.lang.StringBuilder;
 import java.text.DateFormat;
@@ -46,7 +46,7 @@ public class InvoiceReport  {
 	}
 	
 
-	private String getTravelSummary(ArrayList<Invoice> invoiceArray, int index, ArrayList<Product> productArray) {
+	private String getTravelSummary(ArrayList<Invoice> invoiceArray, int index, ArrayList<Product> productArray, ArrayList<Person> personArray) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FLIGHT INFORMATION\n");
 		
@@ -81,7 +81,23 @@ public class InvoiceReport  {
 					"(" + ((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getAirportCode("arriving") +
 					") " + formatter.format(((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getFlightTime("arriving"))));
 			
-
+			sb.append(String.format("%-8s%-20s%-8s%s\n", "","Traveller","Age","SeatNo"));
+			
+			for(int k = 0; k < invoiceArray.get(j).getTicketHolder().size(); k++){
+			System.out.println("J " + j + " K " + k);
+			
+			sb.append(String.format("%-8s%-20s%-8s\n", 
+					"",
+					//name
+					
+					invoiceArray.get(j).getTicketHolderName(j, k, personArray), 
+					//age
+					invoiceArray.get(j).getTicketHolder().get(j).getAge(),
+					"",
+					//seat number
+					""));
+			
+			}
 
 			sb.append(String.format("    *%s\n", invoiceArray.get(j).getComment(j)));
 
@@ -159,8 +175,7 @@ public class InvoiceReport  {
 				sb.append(String.format("%-8s%-71s\n", "", "(" + c.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit)"));
 			}else if(ticketObject.getProductType().equals("TO")){
 				
-				if(ticketObj.getSeasonStartDate().compareTo(c.getFlightDates().get(j)) * c.getFlightDates().get(j).compareTo(ticketObj.getSesaonEndDAte()) > 0){
-					ticketObj = (StandardTicket) ticketObject;
+				if(ticketObj.getSeasonStartDate().compareTo(c.getFlightDates(j)) * c.getFlightDates(j).compareTo(ticketObj.getSesaonEndDAte()) > 0){
 					Airport a1 = ticketObj.getArrAirportCode();
 					Airport a2 = ticketObj.getDepAirportCode();
 					NumberFormat formatter = new DecimalFormat("#0.00");
@@ -175,10 +190,8 @@ public class InvoiceReport  {
 				}else{
 					
 				}
-				 ticketObj = (OffSeasonTicket) ticketObject;
 				sb.append("\tOffseason Ticket");
 			}else{
-				 ticketObj = (AwardTicket) ticketObject;
 				sb.append("\tAward Ticket");
 			}
 		
@@ -255,7 +268,7 @@ public class InvoiceReport  {
 	for(int i = 0; i < invoiceArray.size(); i++){
 		
 		String invoiceHeader = getInvoiceHeader(invoiceArray, i);
-		String flightSummary = getTravelSummary(invoiceArray, i, productArray);
+		String flightSummary = getTravelSummary(invoiceArray, i, productArray, personArray);
 		String costSummary = getCostSummary(invoiceArray, i, personArray, productArray);
 		
 		
