@@ -16,9 +16,11 @@ import com.airamerica.products.Product;
 import com.airamerica.products.Service;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
+import com.thoughtworks.xstream.io.binary.Token.Formatter;
 
 import java.lang.StringBuilder;
 import java.text.DecimalFormat;
+import java.text.Format;
 import java.text.NumberFormat;
 
 
@@ -81,11 +83,22 @@ public class InvoiceReport  {
 		for(int j = 0; j < c.getTicketCodes().size(); j++){
 			Product ticketObject =  (Product) FindObject.find(c.getTicketCodes().get(j), productArray);
 			Ticket ticketObj = (Ticket) ticketObject;
-			sb.append(ticketObj.getCode());
+			//sb.append(ticketObj.getCode());
 			if(ticketObject.getProductType().equals("TS")){
-				 ticketObj = (StandardTicket) ticketObject;
-				sb.append("\tStandard Ticket");
+				ticketObj = (StandardTicket) ticketObject;
+				Airport a1 = ticketObj.getArrAirportCode();
+				Airport a2 = ticketObj.getDepAirportCode();
+				NumberFormat formatter = new DecimalFormat("#0.00");
+				ticketObj.getFees();
+				double fee = ticketObj.getFees() * c.getTicketHolder().get(j).getPerson().size();
+				 double tax = ticketObj.getTax(fee) + (4 * c.getTicketHolder().get(j).getPerson().size()) + (5.6 * c.getTicketHolder().get(j).getPerson().size() + (a2.getPassengerFee() * c.getTicketHolder().get(j).getPerson().size()));
+					totalTax = totalTax + tax;
+					double total = fee + tax;
+				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",ticketObj.getCode(), "Standard Ticket(" + ticketObj.getFlightClass() + ") " + a2.getCode() + " to " + a1.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles)", "$", fee, " $", tax, " $", total));
+				sb.append(String.format("%-8s%-71s\n", "", "(" + c.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit)"));
 			}else if(ticketObject.getProductType().equals("TO")){
+				
+				if(ticketObj.getSeasonStartDate().compareTo(ticketObject) * d.compareTo(ticketObj.getSesaonEndDAte()) > 0;)
 				 ticketObj = (OffSeasonTicket) ticketObject;
 				sb.append("\tOffseason Ticket");
 			}else{
@@ -93,39 +106,45 @@ public class InvoiceReport  {
 				sb.append("\tAward Ticket");
 			}
 		
-			Airport a1 = ticketObj.getArrAirportCode();
-			Airport a2 = ticketObj.getDepAirportCode();
-			NumberFormat formatter = new DecimalFormat("#0.00");
-			sb.append("(" + ticketObj.getFlightClass() + ") " + a1.getCode() + " to " + a2.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles)");
-			ticketObj.getFees();
-			double fee = ticketObj.getFees() * c.getTicketHolder().get(j).getPerson().size();
-			sb.append("\t\t\t\t\t\t$ " + formatter.format(fee));
-			
-
-				 double tax = ticketObj.getTax(fee) + (4 * c.getTicketHolder().get(j).getPerson().size()) + (5.6 * c.getTicketHolder().get(j).getPerson().size() + (a2.getPassengerFee() * c.getTicketHolder().get(j).getPerson().size()));
-				sb.append("\t$ " + formatter.format(tax));
-				totalTax = totalTax + tax;
-				double total = fee + tax;
-				sb.append("\t$ " + formatter.format(total) + "\n");
-				sb.append("\t(" + c.getTicketHolder().get(j).getPerson().size() + " units @ " + ticketObj.getFees() + "\n");
+		
 		
 		}
 		for(int k = 0; k < c.getServices().size(); k++){
-			Service serviceObject = (Service) FindObject.find(c.getServices().get(k).getServiceCode(), productArray);
+			NumberFormat formatter = new DecimalFormat("#0.00");
+			Product serviceObject = (Product) FindObject.find(c.getServices().get(k).getServiceCode(), productArray);
 			Service serviceObj = (Service) serviceObject;
-			//get services names for insurance as well as age bracket and finish rest of services
-			//Fix formatting/ Ask johnathan if he has ideas
-			sb.append(serviceObj.getCode());
+			
+
 			
 			if(serviceObject.getProductType().equals("SC")){
-				sb.append("\tBaggage (" + c.getServices().size() + " @ $25.00 for 1st and $35.00 onwards)");
-			}else if(serviceObject.getProductType().equals("SI")){
+				double price = serviceObj.getCostPerMile();
+				price = serviceObj.getFees(c.getServices().get(k).getUnits());
+				double tax = price * .04;
+				double total = price + tax;
+				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n", serviceObj.getCode(), "Baggage (" + c.getServices().get(k).getUnits() + " @ $25.00 for 1st and $35.00 onwards)", "$", price, " $", tax, " $", total));
+			}else if(serviceObject.getProductType().equals("SI")){  
+				Ticket ticketObj = (Ticket) FindObject.find(c.getServices().get(k).getTicketCode(), productArray);
+				
+				Airport a1 = ticketObj.getArrAirportCode();
+				Airport a2 = ticketObj.getDepAirportCode();
+				
 				serviceObj = (Insurance) serviceObj;
-				sb.append("\tInsurance ");
+				double price = serviceObj.getCostPerMile();
+				price = (price * ticketObj.getMiles(a1, a2)) * c.getServices().get(k).getUnits();
+				double tax = price * .04;
+				double total = price + tax;
+				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",serviceObj.getCode(), "Insurance" + " " + serviceObj.getName() + " (" + serviceObj.getAgeClass() + ")", "$", price, " $", tax, " $", total));
+				sb.append(String.format("%-8s%-71s\n", "", "(" + c.getServices().get(k).getUnits() + " units @ " + serviceObj.getCostPerMile() + " perMile x " + formatter.format(ticketObj.getMiles(a1, a2)) + " miles)"));
 			}else if(serviceObject.getProductType().equals("SS")){
-				sb.append("\tSpecial Assistance");
+				Person personObj = (Person) FindObject.find(c.getServices().get(k).getPersonCode(), personArray);
+				String name = personObj.getlastName() + "," + personObj.getfirstName();
+ 				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",serviceObj.getCode(), "Special Assistance for" + "[" + name  + "]"  + " (" +serviceObj.getName() +")", "$", 0.00, " $", 0.00, " $", 0.00));
 			}else{
-				sb.append("\tRefreshments");
+				double price = serviceObj.getFees();
+				price = price - (price * .05);
+				double tax = serviceObj.getTax();
+				double total = price + tax;
+				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n", serviceObj.getCode(), serviceObj.getName() + "(" + c.getServices().size() + " @ $" + formatter.format(serviceObj.getFees()) + "/unit with 5% off)","$", price, " $", tax, " $", total ));
 			}
 			
 		}

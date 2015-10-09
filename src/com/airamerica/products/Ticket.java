@@ -96,5 +96,15 @@ public abstract class Ticket extends Product {
 	}
 
 	public abstract double getMiles(Airport a1, Airport a2);
+
+	public Date getSesaonEndDAte() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Date getSeasonStartDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

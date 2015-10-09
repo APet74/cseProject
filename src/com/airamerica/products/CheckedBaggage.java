@@ -23,10 +23,14 @@ public class CheckedBaggage extends Service {
 			if(i == 0){
 				fee = 25;
 			}else{
-				fee += 25;
+				fee += 35;
 			}
 		}
 		return fee;
 	}
 	
+	@Override
+	public String getName(){
+		return "Baggage";
+	}
 }
