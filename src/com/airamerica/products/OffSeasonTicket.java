@@ -32,6 +32,8 @@ public class OffSeasonTicket extends Ticket {
 	public void setSesaonEndDAte(Date sesaonEndDAte) {
 		this.sesaonEndDAte = sesaonEndDAte;
 	}
+	
+	@Override
 	public float getRebate() {
 		return rebate;
 	}
