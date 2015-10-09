@@ -16,12 +16,16 @@ public class OffSeasonTicket extends Ticket {
 		this.sesaonEndDAte = sesaonEndDAte;
 		this.rebate = rebate;
 	}
+	
+	@Override
 	public Date getSeasonStartDate() {
 		return seasonStartDate;
 	}
 	public void setSeasonStartDate(Date seasonStartDate) {
 		this.seasonStartDate = seasonStartDate;
 	}
+	
+	@Override
 	public Date getSesaonEndDAte() {
 		return sesaonEndDAte;
 	}

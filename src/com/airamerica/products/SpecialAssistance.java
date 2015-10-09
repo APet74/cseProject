@@ -18,5 +18,10 @@ public class SpecialAssistance extends Service {
 		TypeOfService = typeOfService;
 	}
 	
+	@Override
+	public String getName(){
+		return TypeOfService;
+	}
+	
 	
 }

@@ -11,30 +11,38 @@ public class Insurance extends Service {
 		this.ageClass = ageClass;
 		this.costPerMile = costPerMile;
 	}
+	
+	@Override
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
 	public String getAgeClass() {
 		return ageClass;
 	}
 	public void setAgeClass(String ageClass) {
 		this.ageClass = ageClass;
 	}
+	
+	@Override
 	public float getCostPerMile() {
 		return costPerMile;
 	}
+
 	public void setCostPerMile(float costPerMile) {
 		this.costPerMile = costPerMile;
 	}
 	
 	public double getFees(double amount){
-		double fee = 0;
+		double fee = getCostPerMile();
 		
 		return fee;
 	}
+	
 	
 	
 }
