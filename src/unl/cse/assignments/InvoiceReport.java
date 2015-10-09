@@ -159,7 +159,22 @@ public class InvoiceReport  {
 				sb.append(String.format("%-8s%-71s\n", "", "(" + c.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit)"));
 			}else if(ticketObject.getProductType().equals("TO")){
 				
-				if(ticketObj.getSeasonStartDate().compareTo(ticketObject) * d.compareTo(ticketObj.getSesaonEndDAte()) > 0;)
+				if(ticketObj.getSeasonStartDate().compareTo(c.getFlightDates().get(j)) * c.getFlightDates().get(j).compareTo(ticketObj.getSesaonEndDAte()) > 0){
+					ticketObj = (StandardTicket) ticketObject;
+					Airport a1 = ticketObj.getArrAirportCode();
+					Airport a2 = ticketObj.getDepAirportCode();
+					NumberFormat formatter = new DecimalFormat("#0.00");
+					ticketObj.getFees();
+					double fee = ticketObj.getFees() * c.getTicketHolder().get(j).getPerson().size();
+					 double tax = ticketObj.getTax(fee) + (4 * c.getTicketHolder().get(j).getPerson().size()) + (5.6 * c.getTicketHolder().get(j).getPerson().size() + (a2.getPassengerFee() * c.getTicketHolder().get(j).getPerson().size()));
+						totalTax = totalTax + tax;
+						double total = fee + tax;
+						double percentOff = ticketObj.getRebate();
+					sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",ticketObj.getCode(), "Standard Ticket(" + ticketObj.getFlightClass() + ") " + a2.getCode() + " to " + a1.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles) ", "$", fee, " $", tax, " $", total));
+					sb.append(String.format("%-8s%-71s\n", "", "(" + c.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit)"));
+				}else{
+					
+				}
 				 ticketObj = (OffSeasonTicket) ticketObject;
 				sb.append("\tOffseason Ticket");
 			}else{

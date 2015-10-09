@@ -143,5 +143,10 @@ public abstract class Ticket extends Product {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public float getRebate() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
