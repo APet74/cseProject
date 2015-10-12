@@ -31,9 +31,9 @@ public class Refreshment extends Service {
 	}
 	
 	@Override 
-	public double getTax(){
+	public double getTax(int amount){
 		double cost = getCost();
-		double tax = cost * .04;
+		double tax = (amount * (cost - (cost * .05))) * .04;
 		return tax;
 	}
 	
