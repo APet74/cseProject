@@ -156,5 +156,8 @@ public class Invoice {
 		return this.ticketHolder.get(index).getAgeOfTicketHolder();
 	}
 	
+	public int getNumberOfPassengers (int index) {
+		return this.ticketHolder.get(index).getNumberOfPassengers();
+	}
 	
 }

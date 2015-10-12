@@ -8,6 +8,7 @@ import com.airamerica.Person;
 import com.airamerica.dataConversion.FileReadIn;
 import com.airamerica.dataConversion.FindObject;
 import com.airamerica.dataConversion.ParseData;
+import com.airamerica.dataConversion.XMLOut;
 import com.airamerica.invoices.Invoice;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.Insurance;
@@ -34,6 +35,8 @@ import java.text.SimpleDateFormat;
 
 public class InvoiceReport  {
 	
+	
+	
 	private String generateSummaryReport() {
 		StringBuilder sb = new StringBuilder();
 		
@@ -55,10 +58,11 @@ public class InvoiceReport  {
 		//header
 		sb.append(String.format("%-15s%-10s%-7s%-30s%-30s%s\n", "Day, Date", "Flight", "Class",
 				"Departure City and Time", "Arrival City and Time", "Aircraft"));
-		
+
 		//loop through tickets
 		for (int j = 0; j < invoiceArray.get(index).getTicketCodesSize(); j++){
 			
+
 			//date
 			sb.append(String.format("%ta, %td%tb%-5ty%-10s%-7s%-30s%-30s%s\n%-32s%-30s%-30s\n", invoiceArray.get(j).getFlightDates(j),
 					invoiceArray.get(j).getFlightDates(j), invoiceArray.get(j).getFlightDates(j), 
@@ -82,20 +86,24 @@ public class InvoiceReport  {
 					") " + formatter.format(((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getFlightTime("arriving"))));
 			
 			sb.append(String.format("%-8s%-20s%-8s%s\n", "","Traveller","Age","SeatNo"));
-			
-			for(int k = 0; k < invoiceArray.get(j).getTicketHolder().size(); k++){
-			System.out.println("J " + j + " K " + k);
-			
-			sb.append(String.format("%-8s%-20s%-8s\n", 
-					"",
+
+
+			//invoiceArray.get(index).getTicketHolder().get(j).getAge().size()
+			for(int k = 0; k < invoiceArray.get(index).getTicketHolder().get(j).getAge().size(); k++){
+//invoiceArray.get(index).getNumberOfPassengers(j)
+				System.out.println("person under scrutiny: " + j + "  Index of current Person: " + k);
+			sb.append(String.format("%-8s\n",
+					
+					//sb.append(String.format("%-8s%-20s%-8s\n",
+					
 					//name
 					
-					invoiceArray.get(j).getTicketHolderName(j, k, personArray), 
+					invoiceArray.get(index).getTicketHolder().get(j).getName(k, personArray)
 					//age
-					invoiceArray.get(j).getTicketHolder().get(j).getAge(),
-					"",
+					//invoiceArray.get(j).getTicketHolder().get(k).getAge(),
+					
 					//seat number
-					""));
+					));
 			
 			}
 
@@ -348,6 +356,12 @@ public class InvoiceReport  {
 			//System.out.println(productArray[i].getCode());
 		}
 		
+		
+		XMLOut.toXML(personArray);
+		XMLOut.toXML(customerArray);
+		XMLOut.toXML(airportArray);
+		XMLOut.toXML(productArray);	
+		XMLOut.toXML(invoiceArray);
 		
 		//DataConverter.main(); //calls our DataConverter so that it runs and parses all the files.
 		InvoiceReport ir = new InvoiceReport();

@@ -57,6 +57,7 @@
           <string>USA</string>
           <string>USA</string>
         </nationality>
+        <comment/>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
     <services>
@@ -70,6 +71,9 @@
         <ticketCode>1255</ticketCode>
       </com.airamerica.invoices.TicketService>
     </services>
+    <comments>
+      <string>Operated by Skywest</string>
+    </comments>
   </invoice>
   <invoice>
     <invoiceCode>INV002</invoiceCode>
@@ -123,6 +127,7 @@
         <nationality>
           <string>Mexico</string>
         </nationality>
+        <comment/>
       </com.airamerica.invoices.TicketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
@@ -140,6 +145,7 @@
         <nationality>
           <string>Mexico</string>
         </nationality>
+        <comment/>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
     <services>
@@ -152,6 +158,10 @@
         <personCode>321na</personCode>
       </com.airamerica.invoices.TicketService>
     </services>
+    <comments>
+      <string>None</string>
+      <string>None</string>
+    </comments>
   </invoice>
   <invoice>
     <invoiceCode>INV003</invoiceCode>
@@ -203,6 +213,7 @@
         <nationality>
           <string>Bolivia</string>
         </nationality>
+        <comment/>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
     <services>
@@ -215,6 +226,9 @@
         <units>1</units>
       </com.airamerica.invoices.TicketService>
     </services>
+    <comments>
+      <string>CareNeeded</string>
+    </comments>
   </invoice>
   <invoice>
     <invoiceCode>INV004</invoiceCode>
@@ -278,6 +292,7 @@
           <string>Korea</string>
           <string>Korea</string>
         </nationality>
+        <comment/>
       </com.airamerica.invoices.TicketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
@@ -300,6 +315,7 @@
           <string>Korea</string>
           <string>Korea</string>
         </nationality>
+        <comment/>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
     <services>
@@ -318,5 +334,9 @@
         <ticketCode>1262</ticketCode>
       </com.airamerica.invoices.TicketService>
     </services>
+    <comments>
+      <string>Operated by Southwest</string>
+      <string>None</string>
+    </comments>
   </invoice>
 </list></invoices>

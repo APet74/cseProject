@@ -72,10 +72,15 @@ public void addNationality(String nationality) {
 public String getName(int index, ArrayList<Person> personArray){
 	StringBuilder sb = new StringBuilder();
 	
+	System.out.println(this.person.size() + " " + ((Person) FindObject.find(this.person.get(index), personArray)).getfirstName());
 	sb.append(((Person) FindObject.find(this.person.get(index), personArray)).getfirstName());
 	
 	
 	return sb.toString();
+}
+
+public int getNumberOfPassengers() {
+	return this.age.size();
 }
 
 
