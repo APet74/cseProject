@@ -33,12 +33,23 @@ import java.text.SimpleDateFormat;
 /* Assignment 3,5 and 6 (Project Phase-II,IV and V) */
 
 public class InvoiceReport  {
+    static ArrayList<String> invoiceNum = null;
+	static ArrayList<String> customerName = null;
+	static ArrayList<String> salesPerson = null;
+	static double[] subTotalEx = null;
+	static double[] feesEx = null;
+	static double[] taxesEx = null;
+	static double[] discountEx = null;
+	static double[] totalEx = null;
 	
-	private String generateSummaryReport() {
+	private String generateSummaryReport(ArrayList<String> invoiceNum, ArrayList<String> customerName, ArrayList<String> salesPerson, double[] subTotalEx, double[] feesEx, double[] taxesEx, double[] discountEx, double[] totalEx) {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("Executive Summary Report\n");
 		sb.append("=========================\n");
+		for(int i = 0; i < invoiceNum.size(); i++){
+			sb.append(String.format("%-40s%-39s%-2s%8.2s%-2s%8.2s%-2s%8s\n", invoiceNum.get(i), "", "", "", "", "", " $", salesPerson.get(i) ));
+		}
 		
 		//TODO: Add code for generating summary of all Invoices
 		
@@ -113,12 +124,15 @@ public class InvoiceReport  {
 	}
 	
 	private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<Person> personArray, ArrayList<Product> productArray, ArrayList<Customer> customerArray) {
+		
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append("CUSTOMER INFORMATION:\n");
 		sb.append("==================================================\n");
 		Invoice c = invoiceArray.get(i);
 		
-		
+		invoiceNum.add(invoiceArray.get(i).getInvoiceCode());
+		customerName.add(c.getCustomer().getCustomerName());
 		sb.append(c.getCustomer().getCustomerName() + " " + c.getCustomer().getCode() + "\n");
 		if(c.getCustomer().getCustomerType().equals("C")){
 			sb.append("[Corporate]\n");
@@ -249,8 +263,9 @@ public class InvoiceReport  {
  				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",serviceObj.getCode(), "Special Assistance for" + "[" + name  + "]"  + " (" +serviceObj.getName() +")", "$", 0.00, " $", 0.00, " $", 0.00));
 			}else{
 				double price = serviceObj.getFees();
+				price = (c.getServices().get(k).getUnits() * price);
 				price = price - (price * .05);
-				double tax = serviceObj.getTax();
+				double tax = serviceObj.getTax(c.getServices().get(k).getUnits());
 				double total = price + tax;
 				totalTax = totalTax + tax;
 				totalSub = totalSub + price;
@@ -261,7 +276,52 @@ public class InvoiceReport  {
 		}
 		sb.append(String.format("%110s", "===============================\n"));
 		sb.append(String.format("%-20s%-59s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n", "SUB-TOTALS", "", "$", totalSub, " $", totalTax, " $", totalTotal));
-		sb.append(String.format("%-20s%-59s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n", "Discount", "", "$", totalSub, " $", totalTax, " $", totalTotal));
+		if(c.getCustomer().getCustomerType().equals("C")){
+			double discount = totalSub * .12;
+			double addionFee = 40;
+			totalTotal = totalTotal - discount + addionFee;
+			NumberFormat formatter = new DecimalFormat("#0.00");
+			String discountNeg = "-" + String.valueOf(formatter.format(discount));
+
+			sb.append(String.format("%-40s%-39s%-2s%8.2s%-2s%8.2s%-2s%8s\n", "DISCOUNT ( 12.00% of SUBTOTAL)", "", "", "", "", "", " $", discountNeg));
+			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "ADDITIONAL FEE", "", "", "", "", "", " $", addionFee));
+			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "TOTAL", "", "", "", "", "", " $", totalTotal));
+			subTotalEx[i] = totalSub;
+			feesEx[i] = addionFee;
+			taxesEx[i] = totalTax;
+			discountEx[i] = discount;
+			totalEx[i] = totalTotal;
+			
+		}else if (c.getCustomer().getCustomerType().equals("V")){
+			double discount = totalTax;
+			double addionFee = 0;
+			totalTotal = totalTotal - discount;
+			NumberFormat formatter = new DecimalFormat("#0.00");
+			String discountNeg = "-" + String.valueOf(formatter.format(discount));
+			sb.append(String.format("%-40s%-39s%-2s%8.2s%-2s%8.2s%-2s%8s\n", "DISCOUNT ( NO TAX )", "", "", "", "", "", " $", discountNeg));
+			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "ADDITIONAL FEE", "", "", "", "", "", " $", addionFee));
+			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "TOTAL", "", "", "", "", "", " $", totalTotal));
+			subTotalEx[i] = totalSub;
+			feesEx[i] = addionFee;
+			taxesEx[i] = totalTax;
+			discountEx[i] = discount;
+			totalEx[i] = totalTotal;
+		}else{
+			double discount = 0;
+			double addionFee = 0;
+			totalTotal = totalTotal - discount;
+			NumberFormat formatter = new DecimalFormat("#0.00");
+			String discountNeg = "-" + String.valueOf(formatter.format(discount));
+			sb.append(String.format("%-40s%-39s%-2s%8.2s%-2s%8.2s%-2s%8s\n", "DISCOUNT", "", "", "", "", "", " $", discountNeg));
+			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "ADDITIONAL FEE", "", "", "", "", "", " $", addionFee));
+			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "TOTAL", "", "", "", "", "", " $", totalTotal));
+			subTotalEx[i] = totalSub;
+			feesEx[i] = addionFee;
+			taxesEx[i] = totalTax;
+			discountEx[i] = discount;
+			totalEx[i] = totalTotal;
+		}
+		
 		return sb.toString();
 		
 	}
@@ -374,9 +434,11 @@ public class InvoiceReport  {
 		
 		
 		//DataConverter.main(); //calls our DataConverter so that it runs and parses all the files.
+
 		InvoiceReport ir = new InvoiceReport();
-		String summary = ir.generateSummaryReport();
 		String details = ir.generateDetailReport(invoiceArray, personArray, productArray, customerArray);
+		String summary = ir.generateSummaryReport(invoiceNum, customerName, salesPerson, subTotalEx, feesEx, taxesEx, discountEx, totalEx );
+		
 		
 		System.out.println(summary);
 		System.out.println("\n\n");
