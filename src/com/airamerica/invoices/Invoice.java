@@ -152,9 +152,7 @@ public class Invoice {
 		return this.comments.get(index);
 	}
 	
-	public int getAge(int index) {
-		return this.ticketHolder.get(index).getAgeOfTicketHolder();
-	}
+
 	
 	public int getNumberOfPassengers (int index) {
 		return this.ticketHolder.get(index).getNumberOfPassengers();

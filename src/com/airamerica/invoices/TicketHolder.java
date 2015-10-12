@@ -49,16 +49,12 @@ public ArrayList<Integer> getAge() {
 	return age;
 }
 
-public int getAgeOfTicketHolder(){
-	int output = 0;
-	
-	for (int i = 0; i < age.size(); i++){
-		output = age.get(i);
-		
+public int getAgeOfTicketHolder(int index){
+	return this.age.get(index);
+}
 
-		}
-	
-	return output;
+public String getSeatOfTicketholder(int index) {
+	return this.seatNum.get(index);
 }
 public void addAge(Integer age) {
 	this.age.add(age);
@@ -70,13 +66,8 @@ public void addNationality(String nationality) {
 	this.nationality.add(nationality);
 }
 public String getName(int index, ArrayList<Person> personArray){
-	StringBuilder sb = new StringBuilder();
-	
-	System.out.println(this.person.size() + " " + ((Person) FindObject.find(this.person.get(index), personArray)).getfirstName());
-	sb.append(((Person) FindObject.find(this.person.get(index), personArray)).getfirstName());
-	
-	
-	return sb.toString();
+	return String.format("%s, %s", ((Person) FindObject.find(this.person.get(index), personArray)).getlastName(), 
+			((Person) FindObject.find(this.person.get(index), personArray)).getfirstName());
 }
 
 public int getNumberOfPassengers() {

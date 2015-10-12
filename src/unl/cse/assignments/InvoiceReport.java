@@ -89,25 +89,22 @@ public class InvoiceReport  {
 
 
 			//invoiceArray.get(index).getTicketHolder().get(j).getAge().size()
-			for(int k = 0; k < invoiceArray.get(index).getTicketHolder().get(j).getAge().size(); k++){
-//invoiceArray.get(index).getNumberOfPassengers(j)
-				System.out.println("person under scrutiny: " + j + "  Index of current Person: " + k);
-			sb.append(String.format("%-8s\n",
-					
-					//sb.append(String.format("%-8s%-20s%-8s\n",
+			for(int k = 0; k < invoiceArray.get(index).getTicketHolder().get(j).getNumberOfPassengers(); k++){
+
+			sb.append(String.format("%-8s%-20s%-8s%s\n",
 					
 					//name
-					
-					invoiceArray.get(index).getTicketHolder().get(j).getName(k, personArray)
+					"",
+					invoiceArray.get(index).getTicketHolder().get(j).getName(k, personArray),
 					//age
-					//invoiceArray.get(j).getTicketHolder().get(k).getAge(),
-					
+					invoiceArray.get(index).getTicketHolder().get(j).getAgeOfTicketHolder(k),
 					//seat number
+					invoiceArray.get(index).getTicketHolder().get(j).getSeatOfTicketholder(k)
 					));
 			
 			}
 
-			sb.append(String.format("    *%s\n", invoiceArray.get(j).getComment(j)));
+			sb.append(String.format("    *%s\n", invoiceArray.get(index).getComment(j)));
 
 		}
 		
