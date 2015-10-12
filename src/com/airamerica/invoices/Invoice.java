@@ -96,8 +96,12 @@ public class Invoice {
 		this.flightDates.add(flightDates);
 	}
 
-	public ArrayList <TicketHolder> getTicketHolder() {
-		return ticketHolder;
+	public ArrayList<TicketHolder> getTicketHolder(){
+		return this.ticketHolder;
+	}
+	
+	public String getTicketHolderName(int index, int indexB, ArrayList<Person> personArray) {
+		return ticketHolder.get(index).getName(indexB, personArray);
 	}
 
 
@@ -146,6 +150,12 @@ public class Invoice {
 	
 	public String getComment(int index) {
 		return this.comments.get(index);
+	}
+	
+
+	
+	public int getNumberOfPassengers (int index) {
+		return this.ticketHolder.get(index).getNumberOfPassengers();
 	}
 	
 }

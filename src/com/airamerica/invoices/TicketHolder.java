@@ -3,6 +3,7 @@ package com.airamerica.invoices;
 import java.util.ArrayList;
 
 import com.airamerica.Person;
+import com.airamerica.dataConversion.FindObject;
 
 public class TicketHolder {
 private ArrayList<String> seatNum = new ArrayList<>();
@@ -10,7 +11,7 @@ private ArrayList<String> person = new ArrayList<>();
 private ArrayList<String> id = new ArrayList<>();
 private ArrayList<Integer> age = new ArrayList<>();
 private ArrayList<String> nationality = new ArrayList<>();
-
+private ArrayList<String> comment = new ArrayList<>();
 /*
 public TicketHolder(String seatNumber, String personCode, String id, Integer age, String nationality) {
 	super();
@@ -47,6 +48,14 @@ public void addId(String id) {
 public ArrayList<Integer> getAge() {
 	return age;
 }
+
+public int getAgeOfTicketHolder(int index){
+	return this.age.get(index);
+}
+
+public String getSeatOfTicketholder(int index) {
+	return this.seatNum.get(index);
+}
 public void addAge(Integer age) {
 	this.age.add(age);
 }
@@ -56,7 +65,14 @@ public ArrayList<String> getNationality() {
 public void addNationality(String nationality) {
 	this.nationality.add(nationality);
 }
+public String getName(int index, ArrayList<Person> personArray){
+	return String.format("%s, %s", ((Person) FindObject.find(this.person.get(index), personArray)).getlastName(), 
+			((Person) FindObject.find(this.person.get(index), personArray)).getfirstName());
+}
 
+public int getNumberOfPassengers() {
+	return this.age.size();
+}
 
 
 }

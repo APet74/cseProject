@@ -8,6 +8,7 @@ import com.airamerica.Person;
 import com.airamerica.dataConversion.FileReadIn;
 import com.airamerica.dataConversion.FindObject;
 import com.airamerica.dataConversion.ParseData;
+import com.airamerica.dataConversion.XMLOut;
 import com.airamerica.invoices.Invoice;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.Insurance;
@@ -16,11 +17,11 @@ import com.airamerica.products.Product;
 import com.airamerica.products.Service;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
-<<<<<<< HEAD
+
 import com.thoughtworks.xstream.io.binary.Token.Formatter;
-=======
+
 import com.airamerica.utils.StandardUtils;
->>>>>>> JohnInvoiceReport
+
 
 import java.lang.StringBuilder;
 import java.text.DateFormat;
@@ -34,6 +35,8 @@ import java.text.SimpleDateFormat;
 
 public class InvoiceReport  {
 	
+	
+	
 	private String generateSummaryReport() {
 		StringBuilder sb = new StringBuilder();
 		
@@ -46,7 +49,7 @@ public class InvoiceReport  {
 	}
 	
 
-	private String getTravelSummary(ArrayList<Invoice> invoiceArray, int index, ArrayList<Product> productArray) {
+	private String getTravelSummary(ArrayList<Invoice> invoiceArray, int index, ArrayList<Product> productArray, ArrayList<Person> personArray) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FLIGHT INFORMATION\n");
 		
@@ -55,10 +58,11 @@ public class InvoiceReport  {
 		//header
 		sb.append(String.format("%-15s%-10s%-7s%-30s%-30s%s\n", "Day, Date", "Flight", "Class",
 				"Departure City and Time", "Arrival City and Time", "Aircraft"));
-		
+
 		//loop through tickets
 		for (int j = 0; j < invoiceArray.get(index).getTicketCodesSize(); j++){
 			
+
 			//date
 			sb.append(String.format("%ta, %td%tb%-5ty%-10s%-7s%-30s%-30s%s\n%-32s%-30s%-30s\n", invoiceArray.get(j).getFlightDates(j),
 					invoiceArray.get(j).getFlightDates(j), invoiceArray.get(j).getFlightDates(j), 
@@ -81,9 +85,26 @@ public class InvoiceReport  {
 					"(" + ((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getAirportCode("arriving") +
 					") " + formatter.format(((Ticket) (FindObject.find(invoiceArray.get(j).getTicketCodes(j), productArray))).getFlightTime("arriving"))));
 			
+			sb.append(String.format("%-8s%-20s%-8s%s\n", "","Traveller","Age","SeatNo"));
 
 
-			sb.append(String.format("    *%s\n", invoiceArray.get(j).getComment(j)));
+			//invoiceArray.get(index).getTicketHolder().get(j).getAge().size()
+			for(int k = 0; k < invoiceArray.get(index).getTicketHolder().get(j).getNumberOfPassengers(); k++){
+
+			sb.append(String.format("%-8s%-20s%-8s%s\n",
+					
+					//name
+					"",
+					invoiceArray.get(index).getTicketHolder().get(j).getName(k, personArray),
+					//age
+					invoiceArray.get(index).getTicketHolder().get(j).getAgeOfTicketHolder(k),
+					//seat number
+					invoiceArray.get(index).getTicketHolder().get(j).getSeatOfTicketholder(k)
+					));
+			
+			}
+
+			sb.append(String.format("    *%s\n", invoiceArray.get(index).getComment(j)));
 
 		}
 		
@@ -159,8 +180,7 @@ public class InvoiceReport  {
 				sb.append(String.format("%-8s%-71s\n", "", "(" + c.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit)"));
 			}else if(ticketObject.getProductType().equals("TO")){
 				
-				if(ticketObj.getSeasonStartDate().compareTo(c.getFlightDates().get(j)) * c.getFlightDates().get(j).compareTo(ticketObj.getSesaonEndDAte()) > 0){
-					ticketObj = (StandardTicket) ticketObject;
+				if(ticketObj.getSeasonStartDate().compareTo(c.getFlightDates(j)) * c.getFlightDates(j).compareTo(ticketObj.getSesaonEndDAte()) > 0){
 					Airport a1 = ticketObj.getArrAirportCode();
 					Airport a2 = ticketObj.getDepAirportCode();
 					NumberFormat formatter = new DecimalFormat("#0.00");
@@ -175,10 +195,8 @@ public class InvoiceReport  {
 				}else{
 					
 				}
-				 ticketObj = (OffSeasonTicket) ticketObject;
 				sb.append("\tOffseason Ticket");
 			}else{
-				 ticketObj = (AwardTicket) ticketObject;
 				sb.append("\tAward Ticket");
 			}
 		
@@ -255,7 +273,7 @@ public class InvoiceReport  {
 	for(int i = 0; i < invoiceArray.size(); i++){
 		
 		String invoiceHeader = getInvoiceHeader(invoiceArray, i);
-		String flightSummary = getTravelSummary(invoiceArray, i, productArray);
+		String flightSummary = getTravelSummary(invoiceArray, i, productArray, personArray);
 		String costSummary = getCostSummary(invoiceArray, i, personArray, productArray);
 		
 		
@@ -335,6 +353,12 @@ public class InvoiceReport  {
 			//System.out.println(productArray[i].getCode());
 		}
 		
+		
+		XMLOut.toXML(personArray);
+		XMLOut.toXML(customerArray);
+		XMLOut.toXML(airportArray);
+		XMLOut.toXML(productArray);	
+		XMLOut.toXML(invoiceArray);
 		
 		//DataConverter.main(); //calls our DataConverter so that it runs and parses all the files.
 		InvoiceReport ir = new InvoiceReport();
