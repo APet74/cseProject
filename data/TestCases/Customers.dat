@@ -1,6 +1,6 @@
 5
-C001;V;74cd;Region V Systems;44200
+C001;C;74cd;Region V Systems;44200
 C002;G;4acc;Radio Shack;1200
-c003;C;ac22s;Simers Industries;100203
-c004;V;4sccs;University Of Nebraska-Lincoln;75400
-c005;G;44c;Best Buy;500
+C003;C;ac22s;Simers Industries;100203
+C004;C;4sccs;University Of Nebraska-Lincoln;75400
+C005;G;44c;Best Buy;500

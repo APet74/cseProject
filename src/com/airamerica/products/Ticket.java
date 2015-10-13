@@ -65,7 +65,6 @@ public abstract class Ticket extends Product {
 		} else if (code.equals("arriving")){
 			output = this.arrAirportCode.getCityState();
 		}
-		
 		return output;
 	}
 

@@ -352,7 +352,6 @@ public class ParseData {
 				int flag = Integer.parseInt(productDefined[2]);
 				
 				for (int j = 0; j < flag; j++){
-					
 					thisInvoice.addTicketHolderInformation(ticketIndexFlag, productDefined[3+(0+(j*5))],productDefined[3+(1+(j*5))],
 							productDefined[3+(2+(j*5))], Integer.parseInt(productDefined[3+(3+(j*5))]),productDefined[3+(4+(j*5))]);
 				}
