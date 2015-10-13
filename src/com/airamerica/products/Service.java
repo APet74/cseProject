@@ -34,6 +34,7 @@ public abstract class Service extends Product {
 		return 0;
 	}
 
+	
 	public double getTax(int amount) {
 		// TODO Auto-generated method stub
 		return 0;

@@ -30,6 +30,7 @@ public class Refreshment extends Service {
 		return cost;
 	}
 	
+	
 	@Override 
 	public double getTax(int amount){
 		double cost = getCost();

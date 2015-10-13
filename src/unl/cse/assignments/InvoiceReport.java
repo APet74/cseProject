@@ -409,6 +409,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		String costSummary = getCostSummary(invoiceArray, i, personArray, productArray, customerArray, invoiceNum, customerName,  salesPerson, subTotalEx, feesEx, taxesEx, discountEx, totalEx);
 		
 		
+		
 		sb.append(invoiceHeader);
 		sb.append(flightSummary);
 		sb.append(costSummary);
