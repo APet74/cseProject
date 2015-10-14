@@ -180,8 +180,9 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		//adds the invoice code to the invoiceNum array
 		invoiceNum.add(invoiceArray.get(i).getInvoiceCode());
 		
-		
+		//adds the company of the customer to the string builder
 		sb.append(invoice.getCustomer().getCustomerName() + " " + invoice.getCustomer().getCode() + "\n");
+		//Conditions to to add corporate, government or general tag to the customer and appends them to the string builder
 		if(invoice.getCustomer().getCustomerType().equals("C")){
 			customerName.add(invoice.getCustomer().getCustomerName() + "[Corporate]");
 			sb.append("[Corporate]\n");
@@ -192,9 +193,15 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 			sb.append("[General]\n");
 			customerName.add(invoice.getCustomer().getCustomerName() + "[General]");
 		}
+		//adds the first and last name of the employee of the customer's company to the string builder
 		sb.append(invoice.getCustomer().getPrimaryContact().getlastName() + ", " + invoice.getCustomer().getPrimaryContact().getfirstName() + "\n");
+		
+		//used to split out the address to be reported to string builder
 		String customerAddress[] = invoice.getCustomer().getPrimaryContact().getAddress().split(",\\s*");
+		//the tokenized address of the customer
 		sb.append(customerAddress[0] + "\n" + customerAddress[1] + " " + customerAddress[2] + " " + customerAddress[3] + " " + customerAddress[4] + "\n");
+		
+		//checks if the sales method was online and if so adds it to the array otherwise it looks for contact info for the sales persons and appends it to the builder
 		if(invoice.getSalesperson().equals("online")){
 			sb.append("Salesperson: ONLINE, null\n");
 			salesPerson.add("ONLINE, null");
@@ -205,17 +212,27 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 			salesPerson.add(customerContact.getlastName()+ ", " + customerContact.getfirstName());
 		}
 		
+		//adds headings for the fares and services to string builder
 		sb.append("\n\nFARES AND SERVICES\n");
 		sb.append("==================================================\n");
 		sb.append(String.format("%-8s%-71s%10s%10s%10s\n", "Code", "Item", "Subtotal", "Tax", "Total"));
+		
+		//sets the total variables which are used to add to the array and send them to the summary report
 		double totalTax = 0;
 		double totalSub = 0;
 		double totalTotal = 0;
+		
+		//loops through the tickets attached to the invoice object (they are stored in ArrayList in our version)
 		for(int j = 0; j < invoice.getTicketCodesSize(); j++){
+			
+			//finds the ticketObject that matches the ticket number 
 			Product ticketObject =  (Product) FindObject.find(invoice.getTicketCodes(j), productArray);
 			Ticket ticketObj = (Ticket) ticketObject;
 			//sb.append(ticketObj.getCode());
+			//checks if it is a standard ticket
 			if(ticketObject.getProductType().equals("TS")){
+				//creates airport objects to hold the airport code, makes a formatter to format a double to two decimal places and grabs the fees and then does some match to finish the calculation and 
+				//add it to the string builder
 				ticketObj = (StandardTicket) ticketObject;
 				Airport a1 = ticketObj.getArrAirportCode();
 				Airport a2 = ticketObj.getDepAirportCode();
@@ -223,54 +240,73 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 				ticketObj.getFees();
 				double fee = ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size();
 				 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
-					totalTax = totalTax + tax;
+					//setting values for the tax, total and sub total as well as creating the totalSub total which is used to get the total sub total and total total cost for the invoice
+				 	totalTax = totalTax + tax;
 					double total = fee + tax;
 					totalSub = totalSub + fee;
 					totalTotal = totalTotal + total;
+					
+					//adding to string builder
 				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",ticketObj.getCode(), "Standard Ticket(" + ticketObj.getFlightClass() + ") " + a2.getCode() + " to " + a1.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles)", "$", fee, " $", tax, " $", total));
 				sb.append(String.format("%-8s%-71s\n", "", "(" + invoice.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit)"));
 			}else if(ticketObject.getProductType().equals("TO")){
+				
+				//if the ticket is off season this code does exactly the same as above with the only change being a data comparison to make sure that the discount gets applied.
 				Airport a1 = ticketObj.getArrAirportCode();
 				Airport a2 = ticketObj.getDepAirportCode();
 				NumberFormat formatter = new DecimalFormat("#0.00");
+				
+				//this is the date comparison
 				if(ticketObj.getSeasonStartDate().compareTo(invoice.getFlightDates(j)) * invoice.getFlightDates(j).compareTo(ticketObj.getSesaonEndDAte()) > 0){
 					ticketObj.getFees();
 					double fee = (ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) - ((ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) * ticketObj.getRebate()) + 20 ;
 					 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
-						totalTax = totalTax + tax;
+						//adds totals and sub totals
+					 	totalTax = totalTax + tax;
 						double total = fee + tax;
 						double percentOff = ticketObj.getRebate() * 100;
 						totalSub = totalSub + fee;
 						totalTotal = totalTotal + total;
+						
+						//adds to string builder
 					sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",ticketObj.getCode(), "OffSeason Ticket(" + ticketObj.getFlightClass() + ") " + a2.getCode() + " to " + a1.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles) %" + formatter.format(percentOff) , "$", fee, " $", tax, " $", total));
 					sb.append(String.format("%-8s%-71s\n", "", "(" + invoice.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit with $20.00 fee) "));
 				}else{
+					
+					//if the date doesn't match this is used to still apply the fee but not give the discount
 					ticketObj.getFees();
 					double fee = (ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) + 20 ;
 					 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
-						totalTax = totalTax + tax;
+						//math for totals and sub totals
+					 	totalTax = totalTax + tax;
 						double total = fee + tax;
 						double percentOff = ticketObj.getRebate() * 100;
 						totalSub = totalSub + fee;
 						totalTotal = totalTotal + total;
+						
+						//formatting and adding to string builder
 					sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",ticketObj.getCode(), "OffSeason Ticket(" + ticketObj.getFlightClass() + ") " + a2.getCode() + " to " + a1.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles) %0.00" , "$", fee, " $", tax, " $", total));
 					sb.append(String.format("%-8s%-71s\n", "", "(" + invoice.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit with $20.00 fee) "));
 				}
 				
 			}else{
+				//same as other two blocks but this one will use award miles and then output reward mile left and charge the $30 fee.
 				Airport a1 = ticketObj.getArrAirportCode();
 				Airport a2 = ticketObj.getDepAirportCode();
 				NumberFormat formatter = new DecimalFormat("#0.00");
+				
 				ticketObj.getFees();
 				double fee = ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size();
 				 double tax = ticketObj.getTax(30) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
-					totalTax = totalTax + tax;
+					//math for totals and sub totals
+				 	totalTax = totalTax + tax;
 					double total = 30 + tax;
 					totalSub = totalSub + 30;
 					totalTotal = totalTotal + total;
 					Customer customObj = (Customer) FindObject.find(invoice.getCustomer().getCode(), customerArray);
 					int rewardMiles = customObj.getAirlineMiles();
 					int milesLeft = rewardMiles - (int) (ticketObj.getMiles(a1, a2) * invoice.getTicketHolder().get(j).getPerson().size());
+					//string builder and formatting
 				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",ticketObj.getCode(), "AwardTicket(" + ticketObj.getFlightClass() + ") " + a2.getCode() + " to " + a1.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles)", "$", 30.00, " $", tax, " $", total));
 				sb.append(String.format("%-8s%-71s\n", "", "(" + invoice.getTicketHolder().get(j).getPerson().size() + " units @ " + milesLeft + " reward miles/unit with $30.0 ReedemptionFee)"));
 			}
@@ -278,7 +314,11 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		
 		
 		}
+		
+		//similar to looping through tickets but for services
 		for(int k = 0; k < invoice.getServices().size(); k++){
+			
+			//used for formatting and finding what type of service, holds it in the serviceObject
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			Product serviceObject = (Product) FindObject.find(invoice.getServices().get(k).getServiceCode(), productArray);
 			Service serviceObj = (Service) serviceObject;
@@ -286,6 +326,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 
 			
 			if(serviceObject.getProductType().equals("SC")){
+				//checks if baggage and if so grabs prices and calculates fees and taxes calculations from 330 to 336
 				double price = serviceObj.getCostPerMile();
 				price = serviceObj.getFees(invoice.getServices().get(k).getUnits());
 				double tax = price * .04;
@@ -293,8 +334,11 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 				totalTax = totalTax + tax;
 				totalSub = totalSub + price;
 				totalTotal = totalTotal + total;
+				
+				//formats and adds to string builder
 				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n", serviceObj.getCode(), "Baggage (" + invoice.getServices().get(k).getUnits() + " @ $25.00 for 1st and $35.00 onwards)", "$", price, " $", tax, " $", total));
 			}else if(serviceObject.getProductType().equals("SI")){  
+				//if it is insurance grabs a ticket to get the air miles and calculates how much the insurance costs, calculations from line 348 to 354
 				Ticket ticketObj = (Ticket) FindObject.find(invoice.getServices().get(k).getTicketCode(), productArray);
 				
 				Airport a1 = ticketObj.getArrAirportCode();
@@ -308,13 +352,19 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 				totalTax = totalTax + tax;
 				totalSub = totalSub + price;
 				totalTotal = totalTotal + total;
+				
+				//formatting and adding to string builder
 				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",serviceObj.getCode(), "Insurance" + " " + serviceObj.getName() + " (" + serviceObj.getAgeClass() + ")", "$", price, " $", tax, " $", total));
 				sb.append(String.format("%-8s%-71s\n", "", "(" + invoice.getServices().get(k).getUnits() + " units @ " + serviceObj.getCostPerMile() + " perMile x " + formatter.format(ticketObj.getMiles(a1, a2)) + " miles)"));
 			}else if(serviceObject.getProductType().equals("SS")){
+				
+				//checks if special assistance and if it is formats and adds to string builder, no cost for this one so no computations done
 				Person personObj = (Person) FindObject.find(invoice.getServices().get(k).getPersonCode(), personArray);
 				String name = personObj.getlastName() + "," + personObj.getfirstName();
  				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",serviceObj.getCode(), "Special Assistance for" + "[" + name  + "]"  + " (" +serviceObj.getName() +")", "$", 0.00, " $", 0.00, " $", 0.00));
 			}else{
+				
+				//if here then must be a refreshment, math is done from 368 to 375
 				double price = serviceObj.getFees();
 				price = (invoice.getServices().get(k).getUnits() * price);
 				price = price - (price * .05);
@@ -323,22 +373,29 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 				totalTax = totalTax + tax;
 				totalSub = totalSub + price;
 				totalTotal = totalTotal + total;
+				
+				//formatting and output to string builder
 				sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n", serviceObj.getCode(), serviceObj.getName() + "(" + invoice.getServices().size() + " @ $" + formatter.format(serviceObj.getFees()) + "/unit with 5% off)","$", price, " $", tax, " $", total ));
 			}
 			
 		}
+		
+		//calculates subtotals for the entire invoice as well as fees and taxes and gets the total
 		sb.append(String.format("%110s", "===============================\n"));
 		sb.append(String.format("%-20s%-59s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n", "SUB-TOTALS", "", "$", totalSub, " $", totalTax, " $", totalTotal));
+		//checks if corporate because of 12% discount
 		if(invoice.getCustomer().getCustomerType().equals("C")){
+			//applies the discount and generates values for subtotal tax and fees as well as discount
 			double discount = totalSub * .12;
 			double addionFee = 40;
 			totalTotal = totalTotal - discount + addionFee;
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			String discountNeg = "-" + String.valueOf(formatter.format(discount));
-
+			//formatting and adding to string builder
 			sb.append(String.format("%-40s%-39s%-2s%8.2s%-2s%8.2s%-2s%8s\n", "DISCOUNT ( 12.00% of SUBTOTAL)", "", "", "", "", "", " $", discountNeg));
 			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "ADDITIONAL FEE", "", "", "", "", "", " $", addionFee));
 			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "TOTAL", "", "", "", "", "", " $", totalTotal));
+			//adds values to array for the summary report
 			subTotalEx[i] = totalSub;
 			feesEx[i] = addionFee;
 			taxesEx[i] = totalTax;
@@ -346,28 +403,37 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 			totalEx[i] = totalTotal;
 			
 		}else if (invoice.getCustomer().getCustomerType().equals("V")){
+			//checks if government because of no tax
+			//subtracts the tax that would be from the subtotal
 			double discount = totalTax;
 			double addionFee = 0;
 			totalTotal = totalTotal - discount;
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			String discountNeg = "-" + String.valueOf(formatter.format(discount));
+			//formatting and adding to string builder
 			sb.append(String.format("%-40s%-39s%-2s%8.2s%-2s%8.2s%-2s%8s\n", "DISCOUNT ( NO TAX )", "", "", "", "", "", " $", discountNeg));
 			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "ADDITIONAL FEE", "", "", "", "", "", " $", addionFee));
 			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "TOTAL", "", "", "", "", "", " $", totalTotal));
+			//adds values to array for summary report
 			subTotalEx[i] = totalSub;
 			feesEx[i] = addionFee;
 			taxesEx[i] = totalTax;
 			discountEx[i] = discount;
 			totalEx[i] = totalTotal;
 		}else{
+			//if regular customer then no special discount and full taxes and fees
 			double discount = 0;
 			double addionFee = 0;
 			totalTotal = totalTotal - discount;
 			NumberFormat formatter = new DecimalFormat("#0.00");
 			String discountNeg = "-" + String.valueOf(formatter.format(discount));
+			
+			//formatting and output to string builder
 			sb.append(String.format("%-40s%-39s%-2s%8.2s%-2s%8.2s%-2s%8s\n", "DISCOUNT", "", "", "", "", "", " $", discountNeg));
 			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "ADDITIONAL FEE", "", "", "", "", "", " $", addionFee));
 			sb.append(String.format("%-20s%-59s%-2s%8.2s%-2s%8.2s%-2s%8.2f\n", "TOTAL", "", "", "", "", "", " $", totalTotal));
+			
+			//add to array for summary report
 			subTotalEx[i] = totalSub;
 			feesEx[i] = addionFee;
 			taxesEx[i] = totalTax;
@@ -404,6 +470,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 	getCostSummary() for each invoice*/
 	for(int i = 0; i < invoiceArray.size(); i++){
 		
+		//calls the methods for genearting cost summary
 		String invoiceHeader = getInvoiceHeader(invoiceArray, i);
 		String flightSummary = getTravelSummary(invoiceArray, i, productArray, personArray);
 		String costSummary = getCostSummary(invoiceArray, i, personArray, productArray, customerArray, invoiceNum, customerName,  salesPerson, subTotalEx, feesEx, taxesEx, discountEx, totalEx);
@@ -492,7 +559,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		//XMLOut.toXML(airportArray);
 		//XMLOut.toXML(productArray);	
 		//XMLOut.toXML(invoiceArray);
-		
+			//declares the arrays and uses passing by reference to get values to summary report
 		  ArrayList<String> invoiceNum = new ArrayList();
 	      ArrayList<String> customerName = new ArrayList();
 	      ArrayList<String> salesPerson = new ArrayList();
