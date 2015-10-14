@@ -138,7 +138,10 @@ public class InvoiceReport  {
 			
 			}
 
-			sb.append(String.format("    *%s\n", invoiceArray.get(index).getComment(j)));
+			if (!invoiceArray.get(index).getComment(j).equals("None")) {
+				sb.append(String.format("    *%s\n", invoiceArray.get(index).getComment(j)));
+			}
+
 
 		}
 		
@@ -553,6 +556,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 			//System.out.println(productArray[i].getCode());
 		}
 		
+<<<<<<< HEAD
 		
 		//XMLOut.toXML(personArray);
 		//XMLOut.toXML(customerArray);
@@ -560,6 +564,14 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		//XMLOut.toXML(productArray);	
 		//XMLOut.toXML(invoiceArray);
 			//declares the arrays and uses passing by reference to get values to summary report
+=======
+		XMLOut.toXML(personArray);
+		XMLOut.toXML(customerArray);
+		XMLOut.toXML(airportArray);
+		XMLOut.toXML(productArray);	
+		XMLOut.toXML(invoiceArray);
+		
+>>>>>>> 30a941d10bd4b18cbf1fcc046e073fdf0f1c0b5a
 		  ArrayList<String> invoiceNum = new ArrayList();
 	      ArrayList<String> customerName = new ArrayList();
 	      ArrayList<String> salesPerson = new ArrayList();
