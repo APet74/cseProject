@@ -24,6 +24,12 @@ public class Airport {
 	public String getCode() {
 		return airportCode;
 	}
+	
+	public String getCityState(){
+		String cityState = this.address.getCityState();
+		
+		return cityState;
+	}
 
 	public void setAirportCode(String airportCode) {
 		this.airportCode = airportCode;

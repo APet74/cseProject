@@ -9,6 +9,8 @@ public class Refreshment extends Service {
 		this.name = name;
 		this.cost = cost;
 	}
+	
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -25,8 +27,14 @@ public class Refreshment extends Service {
 	@Override 
 	public double getFees(){
 		double cost = getCost();
-		double fee = cost;
-		return fee;
-		
+		return cost;
 	}
+	
+	@Override 
+	public double getTax(int amount){
+		double cost = getCost();
+		double tax = (amount * (cost - (cost * .05))) * .04;
+		return tax;
+	}
+	
 }

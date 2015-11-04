@@ -14,7 +14,7 @@ import com.airamerica.products.*;
 
 public class DataConverter {
 
-	public static void main(String args[]) {
+	public static void main() {
 
 
 		
@@ -108,9 +108,13 @@ public class DataConverter {
 		XMLOut.toXML(airportArray);
 		XMLOut.toXML(productArray);	
 		XMLOut.toXML(invoiceArray);
+		
+		
+		
 	}
 
-	
+
+
 
 	
 

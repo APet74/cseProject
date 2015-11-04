@@ -16,4 +16,26 @@ public abstract class Service extends Product {
 		return 0;
 	}
 
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getAgeClass(){
+		return null;
+	}
+	
+	public float getCostPerMile(){
+		return 0;
+	}
+
+	public double getTax() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double getTax(int amount) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

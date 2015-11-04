@@ -19,7 +19,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.airamerica.database.DatabaseConnect;
 
 
 /**
@@ -34,7 +33,7 @@ public class InvoiceData {
 	 */
 	public static void removeAllPersons() {
 		
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
 		String removePersonsQuery = "DELETE * FROM `Persons`";
@@ -59,7 +58,7 @@ public class InvoiceData {
 	public static void addPerson(String personCode, String firstName, String lastName, 
 			String phoneNo, String street, String city, String state, 
 			String zip, String country) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
 		String addAddressQuery = "INSERT INTO `Addresses` (`street`,`city`,`state`,`zip`,`country`) VALUES (?,?,?,?,?)";
@@ -95,7 +94,7 @@ public class InvoiceData {
 	 * Method that removes every airport record from the database
 	 */
 	public static void removeAllAirports() {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
 		String removeAirportsQuery = "DELETE * FROM `Airports`";
@@ -121,7 +120,7 @@ public class InvoiceData {
 			String city, String state, String zip, String country, 
 			int latdegs, int latmins, int londegs, int lonmins, 
 			double passengerFacilityFee) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
 		String addAddressQuery = "INSERT INTO `Addresses` (`street`,`city`,`state`,`zip`,`country`) VALUES (?,?,?,?,?)";
@@ -161,7 +160,7 @@ public class InvoiceData {
 	 * provided <code>personCode</code>
 	 */
 	public static void addEmail(String personCode, String email) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
 		String addEmailQuery = "INSERT INTO `EmailAddresses` (`person_ID`,`emailAddress`) VALUES ((SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?)";
@@ -187,7 +186,7 @@ public class InvoiceData {
 	 * Method that removes every customer record from the database
 	 */
 	public static void removeAllCustomers() {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
 		String removeCustomersQuery = "DELETE * FROM `Customers`";
@@ -212,7 +211,7 @@ public class InvoiceData {
 	public static void addCustomer(String customerCode, String customerType, 
 			String primaryContactPersonCode, String name, 
 			int airlineMiles) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
 		String addCustomerQuery = "INSERT INTO `Persons` (`customerCode`,`customerType`,`primaryContact_person_ID`,`customerName`,`airlineMiles`) VALUES (?,?,SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?,?,?,?,?,?)";
@@ -240,7 +239,7 @@ public class InvoiceData {
 	 * Removes all product records from the database
 	 */
 	public static void removeAllProducts() {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 
 		
@@ -279,7 +278,7 @@ public class InvoiceData {
 	public static void addStandardTicket(String productCode,String depAirportCode, 
 			String arrAirportCode, String depTime, String arrTime, 
 			String flightNo, String flightClass, String aircraftType) { 
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TS'";		
@@ -344,7 +343,7 @@ public class InvoiceData {
 			String seasonEndDate, String depAirportCode, String arrAirportCode, 
 			String depTime, String arrTime,	String flightNo, String flightClass, 
 			String aircraftType, double rebate) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TO'";		
@@ -413,7 +412,7 @@ public class InvoiceData {
 			String arrAirportCode, String depTime, String arrTime, 
 			String flightNo, String flightClass, 
 			String aircraftType, int pointsPerMile) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TA'";		
@@ -476,7 +475,7 @@ public class InvoiceData {
 	 * provided data.  
 	 */
 	public static void addCheckedBaggage(String productCode, String ticketCode) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Checked Baggage'";		
@@ -526,7 +525,7 @@ public class InvoiceData {
 	 */
 	public static void addInsurance(String productCode, String productName, 
 			String ageClass, double costPerMile) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Insurance'";		
@@ -579,7 +578,7 @@ public class InvoiceData {
 	 * provided data.  
 	 */
 	public static void addSpecialAssistance(String productCode, String assistanceType) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Special Assistance'";		
@@ -629,7 +628,7 @@ public class InvoiceData {
 	 * provided data.  
 	 */
 	public static void addRefreshment(String productCode, String name, double cost) {
-		Connection conn = DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Refreshment'";		

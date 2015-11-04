@@ -16,12 +16,16 @@ public class OffSeasonTicket extends Ticket {
 		this.sesaonEndDAte = sesaonEndDAte;
 		this.rebate = rebate;
 	}
+	
+	@Override
 	public Date getSeasonStartDate() {
 		return seasonStartDate;
 	}
 	public void setSeasonStartDate(Date seasonStartDate) {
 		this.seasonStartDate = seasonStartDate;
 	}
+	
+	@Override
 	public Date getSesaonEndDAte() {
 		return sesaonEndDAte;
 	}
@@ -45,10 +49,10 @@ public class OffSeasonTicket extends Ticket {
 		int latMin1 = a1.getLattitudeMinutes();
 		int long1 = a1.getLongitudeDegrees();
 		int longMin1 = a1.getLongitudeMinutes();
-		int lat2 = a1.getLattitudeDegrees();
-		int latMin2 = a1.getLattitudeMinutes();
-		int long2 = a1.getLongitudeDegrees();
-		int longMin2 =  a1.getLongitudeMinutes();
+		int lat2 = a2.getLattitudeDegrees();
+		int latMin2 = a2.getLattitudeMinutes();
+		int long2 = a2.getLongitudeDegrees();
+		int longMin2 =  a2.getLongitudeMinutes();
 		double fees = 0;
 		
 		double miles = Haversine.getMiles(lat1, latMin1, long1, longMin1, lat2, latMin2, long2, longMin2);
@@ -66,8 +70,22 @@ public class OffSeasonTicket extends Ticket {
 	public double getTax(double fee){
 		double tax = 0;
 		tax = fee * .075; // Federal Excise Tax
-		tax = tax * .04; // flat 4% tax
 		return tax;
+	}
+	
+	@Override
+	public double getMiles(Airport a1, Airport a2) {
+
+		int lat1 = a1.getLattitudeDegrees();
+		int latMin1 = a1.getLattitudeMinutes();
+		int long1 = a1.getLongitudeDegrees();
+		int longMin1 = a1.getLongitudeMinutes();
+		int lat2 = a2.getLattitudeDegrees();
+		int latMin2 = a2.getLattitudeMinutes();
+		int long2 = a2.getLongitudeDegrees();
+		int longMin2 =  a2.getLongitudeMinutes();
+		double miles = Haversine.getMiles(lat1, latMin1, long1, longMin1, lat2, latMin2, long2, longMin2);
+		return miles;
 	}
 	
 }

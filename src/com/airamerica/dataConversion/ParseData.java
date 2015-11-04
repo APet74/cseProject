@@ -360,11 +360,12 @@ public class ParseData {
 				ticketIndexFlag++;
 				thisInvoice.addFlightDates(flightDate);
 				
-				//add pax info
+				//add ticket comment
+				thisInvoice.addComment(productDefined[productDefined.length - 1]);
 				
 				
 			} else if (FindObject.find(productDefined[0], productList) instanceof Refreshment) {
-				System.out.println(productDefined[0] + " is a refreshment");
+
 				thisInvoice.newTicketService();
 				thisInvoice.addRefreshment(serviceIndexFlag, productDefined[0], Integer.parseInt(productDefined[1]));
 				
@@ -375,14 +376,14 @@ public class ParseData {
 				
 				serviceIndexFlag++;
 			} else if (FindObject.find(productDefined[0], productList) instanceof Insurance) {
-				System.out.println(productDefined[0] + " is insurance");
+
 				thisInvoice.newTicketService();
 				thisInvoice.addInsurance(serviceIndexFlag, productDefined[0], Integer.parseInt(productDefined[1]), 
 						productDefined[2]);
 				
 				serviceIndexFlag++;
 			} else if (FindObject.find(productDefined[0], productList) instanceof SpecialAssistance) {
-				System.out.println(productDefined[0] + " is special assistance");
+
 				thisInvoice.newTicketService();
 				thisInvoice.addSpecialAssistance(serviceIndexFlag, productDefined[0], productDefined[1]);
 				
