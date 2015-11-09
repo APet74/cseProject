@@ -35,35 +35,12 @@ public class InvoiceData {
 		
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		ResultSet rs, rs1;
-		String getAddressID = "SELECT address_ID FROM `Persons`";
-		String RemoveAddresses = "DELETE * FROM `Addresses` WHERE `address_ID` = ?";
 		String removePersonsQuery = "DELETE * FROM `Persons`";
-		String checkAddressID = "SELECT address_ID FROM Addresses WHERE address_ID = ?";
 		try
 		{
-			ps = conn.prepareStatement(getAddressID);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				int address_ID = rs.getInt("address_ID");
-				if(!(address_ID == 0)){
-					ps = conn.prepareStatement(checkAddressID);
-					ps.setInt(1, address_ID);
-					rs1 = ps.executeQuery();
-					ps.close();
-					if(rs1.next()){
-						ps = conn.prepareStatement(RemoveAddresses);
-						ps.setInt(1, address_ID);
-						ps.executeUpdate();
-						ps.close();
-					}
-					rs1.close();
-				}
-			}
 			ps = conn.prepareStatement(removePersonsQuery);
 			ps.executeUpdate();
 			ps.close();
-			rs.close();
 			conn.close();
 		}
 		catch (SQLException e)
@@ -77,6 +54,22 @@ public class InvoiceData {
 	/**
 	 * Method to add a person record to the database with the provided data. 
 	 */
+	public static void removeAllAddresses() {
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		String removeADdressesQuery = "DELETE * FROM `Addresses`";
+		try{
+			ps = conn.prepareStatement(removeADdressesQuery);
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	public static void addPerson(String personCode, String firstName, String lastName, 
 			String phoneNo, String street, String city, String state, 
 			String zip, String country) {
