@@ -582,12 +582,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		System.out.println("======================================================================================================================");
 		System.out.println("\n\n");
 		
-		//clear data from database
-		InvoiceData.removeAllPersons();
-		//InvoiceData.removeAllCustomers();
-		//InvoiceData.removeAllAirports();
-		//InvoiceData.removeAllProducts();
-		//InvoiceData.removeAllInvoices();
+		
 		
 	}
 }
