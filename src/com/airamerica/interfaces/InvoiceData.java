@@ -35,7 +35,7 @@ public class InvoiceData {
 		
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		String removePersonsQuery = "DELETE * FROM `Persons`";
+		String removePersonsQuery = "DELETE FROM `Persons`";
 		try
 		{
 			ps = conn.prepareStatement(removePersonsQuery);
@@ -57,7 +57,7 @@ public class InvoiceData {
 	public static void removeAllAddresses() {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		String removeADdressesQuery = "DELETE * FROM `Addresses`";
+		String removeADdressesQuery = "DELETE FROM `Addresses`";
 		try{
 			ps = conn.prepareStatement(removeADdressesQuery);
 			ps.executeUpdate();
@@ -75,24 +75,41 @@ public class InvoiceData {
 			String zip, String country) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		
+		ResultSet rs;
 		String addAddressQuery = "INSERT INTO `Addresses` (`street`,`city`,`state`,`zip`,`country`) VALUES (?,?,?,?,?)";
-		String addPersonQuery = "INSERT INTO `Persons` (`personCode`,`firstName`,`lastName`,`address_ID`,`phoneNo`) VALUES (?,?,?,(SELECT `address_ID` FROM `Addresses` ORDER BY `address_ID` desc LIMIT 1),?)";
+		String checkAddress = "SELECT `address_ID` FROM `Addresses` WHERE street = ? AND city = ? AND state = ? AND zip = ? AND country = ?";
+		String addPersonQuery = "INSERT INTO `Persons` (`personCode`,`firstName`,`lastName`,`address_ID`,`phoneNumber`) VALUES (?,?,?,(SELECT `address_ID` FROM `Addresses` WHERE street = ? AND city = ? AND state = ? AND zip = ? AND country = ?),?)";
 		try
 		{
-			ps = conn.prepareStatement(addAddressQuery);
+			ps = conn.prepareStatement(checkAddress);
 			ps.setString(1, street);
 			ps.setString(2, city);
 			ps.setString(3, state);
 			ps.setString(4, zip);
 			ps.setString(5, country);
-			ps.executeUpdate();
+			rs = ps.executeQuery();
+			if(!(rs.next())){
+				ps = conn.prepareStatement(addAddressQuery);
+				ps.setString(1, street);
+				ps.setString(2, city);
+				ps.setString(3, state);
+				ps.setString(4, zip);
+				ps.setString(5, country);
+				ps.executeUpdate();
+				ps.close();
+			}
 			ps.close();
+			rs.close();
 			ps = conn.prepareStatement(addPersonQuery);
 			ps.setString(1, personCode);
 			ps.setString(2, firstName);
 			ps.setString(3, lastName);
-			ps.setString(4, phoneNo);
+			ps.setString(4, street);
+			ps.setString(5, city);
+			ps.setString(6, state);
+			ps.setString(7, zip);
+			ps.setString(8, country);
+			ps.setString(9, phoneNo);
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -113,8 +130,8 @@ public class InvoiceData {
 		PreparedStatement ps;
 		ResultSet rs;
 		String getAddressID = "SELECT `address_ID` FROM `Airports`";
-		String RemoveAddresses = "DELETE * FROM `Addresses` WHERE `address_ID` = ?";
-		String removeAirportsQuery = "DELETE * FROM `Airports`";
+		String RemoveAddresses = "DELETE FROM `Addresses` WHERE `address_ID` = ?";
+		String removeAirportsQuery = "DELETE FROM `Airports`";
 		try
 		{
 			ps = conn.prepareStatement(getAddressID);
@@ -214,7 +231,7 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
-		String removeCustomersQuery = "DELETE * FROM `Customers`";
+		String removeCustomersQuery = "DELETE FROM `Customers`";
 		try
 		{
 			ps = conn.prepareStatement(removeCustomersQuery);
@@ -268,10 +285,10 @@ public class InvoiceData {
 		PreparedStatement ps;
 
 		
-		String removeTicketsQuery = "DELETE * FROM `Tickets`";
-		String removeServicesQuery = "DELETE * FROM `Services`";
-		String removeTicketTypeQuery = "DELETE * FROM `ServiceTypes`";
-		String removeServiceTypeQuery = "DELETE * FROM `TicketTypes`";
+		String removeTicketsQuery = "DELETE FROM `Tickets`";
+		String removeServicesQuery = "DELETE FROM `Services`";
+		String removeTicketTypeQuery = "DELETE FROM `ServiceTypes`";
+		String removeServiceTypeQuery = "DELETE FROM `TicketTypes`";
 		try
 		{
 			ps = conn.prepareStatement(removeTicketsQuery);
@@ -708,10 +725,10 @@ public class InvoiceData {
 		PreparedStatement ps;
 
 		
-		String removeInvoiceQuery = "DELETE * FROM `Invoices`";
-		String removeInvoiceMapQuery = "DELETE * FROM `Invoices_Tickets_map`";
-		String removeTicketHolderQuery = "DELETE * FROM `TicketHolder`";
-		String removeTicketServiceQuery = "DELETE * FROM `TicketServices`";
+		String removeInvoiceQuery = "DELETE FROM `Invoices`";
+		String removeInvoiceMapQuery = "DELETE FROM `Invoices_Tickets_map`";
+		String removeTicketHolderQuery = "DELETE FROM `TicketHolders`";
+		String removeTicketServiceQuery = "DELETE FROM `TicketServices`";
 		try
 		{
 			ps = conn.prepareStatement(removeInvoiceQuery);
