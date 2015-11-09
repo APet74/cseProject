@@ -9,6 +9,7 @@ import com.airamerica.dataConversion.ParseData;
 import com.airamerica.dataConversion.XMLOut;
 import com.airamerica.interfaces.InvoiceData;
 import com.airamerica.invoices.Invoice;
+import com.airamerica.invoices.TicketService;
 import com.airamerica.products.*;
 
 
@@ -194,6 +195,15 @@ public class DataConverter {
 			String salesPersonCode, String invoiceDate
 			 */
 			InvoiceData.addInvoice(i.getInvoiceCode(), i.getCustomer().getCode(), i.getSalesperson(), i.getSaleDate().toString());
+			//add ticketholder info to invoice
+			
+			//add tickets to invoice
+			
+			//add services to invoice
+			for (TicketService s: i.getServices()){
+				
+			}
+		
 		}
 		
 		/*
