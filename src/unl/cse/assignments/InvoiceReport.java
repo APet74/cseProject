@@ -554,23 +554,23 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 			//System.out.println(productArray[i].getCode());
 		}
 		
-		
 		//XMLOut.toXML(personArray);
 		//XMLOut.toXML(customerArray);
 		//XMLOut.toXML(airportArray);
 		//XMLOut.toXML(productArray);	
 		//XMLOut.toXML(invoiceArray);
-			//declares the arrays and uses passing by reference to get values to summary report
-		  ArrayList<String> invoiceNum = new ArrayList();
-	      ArrayList<String> customerName = new ArrayList();
-	      ArrayList<String> salesPerson = new ArrayList();
-	      double[] subTotalEx = new double[invoiceArray.size()];
-	      double[] feesEx = new double[invoiceArray.size()];
-	      double[] taxesEx = new double[invoiceArray.size()];
-	      double[] discountEx = new double[invoiceArray.size()];
-	      double[] totalEx = new double[invoiceArray.size()];
+
+		//declares the arrays and uses passing by reference to get values to summary report
+		ArrayList<String> invoiceNum = new ArrayList();
+		ArrayList<String> customerName = new ArrayList();
+	    ArrayList<String> salesPerson = new ArrayList();
+	    double[] subTotalEx = new double[invoiceArray.size()];
+	    double[] feesEx = new double[invoiceArray.size()];
+	    double[] taxesEx = new double[invoiceArray.size()];
+	    double[] discountEx = new double[invoiceArray.size()];
+	    double[] totalEx = new double[invoiceArray.size()];
 		
-		//DataConverter.main(); //calls our DataConverter so that it runs and parses all the files.
+	    //calls our DataConverter so that it runs and parses all the files.
 		InvoiceReport ir = new InvoiceReport();
 		String details = ir.generateDetailReport(invoiceArray, personArray, productArray, customerArray, invoiceNum, customerName, salesPerson, subTotalEx, feesEx, taxesEx, discountEx, totalEx);
 		String summary = ir.generateSummaryReport(invoiceNum, customerName, salesPerson, subTotalEx, feesEx, taxesEx, discountEx, totalEx );
@@ -582,7 +582,16 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		System.out.println("======================================================================================================================");
 		System.out.println("\n\n");
 		
+		//clear the database
+		DatabaseImportSystem.clearDatabase();
 		
-		
+		//upload data to database from flat files
+		DatabaseImportSystem.uploadAirports(airportArray);
+		DatabaseImportSystem.uploadPersons(personArray);
+		DatabaseImportSystem.uploadCustomers(customerArray);
+		DatabaseImportSystem.uploadProducts(productArray);
+		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
+				
+		}
 	}
 }
