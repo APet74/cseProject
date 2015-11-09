@@ -273,7 +273,7 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
-		String addCustomerQuery = "INSERT INTO `Customers` (`customerCode`,`customerType`,`primaryContact_person_ID`,`customerName`,`airlineMiles`) VALUES (?,?,(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?,?,?,?)";
+		String addCustomerQuery = "INSERT INTO `Customers` (`customerCode`,`customerType`,`primaryContact_person_ID`,`customerName`,`airlineMiles`) VALUES (?,?,(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?)";
 		try
 		{
 			ps = conn.prepareStatement(addCustomerQuery);
@@ -340,14 +340,14 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
-		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TS'";		
+		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TS'";		
 		try
 		{
 			
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TS')";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -362,12 +362,12 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketType` (`ticketType`) VALUES ('TS')";
+				String insertTicketType = "INSERT INTO `TicketTypes` (`ticketType`) VALUES ('TS')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TS')";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS')";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -405,14 +405,14 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
-		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TO'";		
+		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TO'";		
 		try
 		{
 			
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TO'),?,?,?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -430,12 +430,12 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketType` (`ticketType`) VALUES ('TO')";
+				String insertTicketType = "INSERT INTO `TicketTypes` (`ticketType`) VALUES ('TO')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TO'),?,?,?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -474,14 +474,14 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
-		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TA'";		
+		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TA'";		
 		try
 		{
 			
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TA'),?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -497,12 +497,12 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketType` (`ticketType`) VALUES ('TA')";
+				String insertTicketType = "INSERT INTO `TicketTypes` (`ticketType`) VALUES ('TA')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TA'),?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -553,7 +553,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Checked Baggage')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Checked Baggage')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
@@ -605,7 +605,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Insurance')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Insurance')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
@@ -656,7 +656,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Special Assistance')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Special Assistance')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
@@ -708,7 +708,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Refreshment')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Refreshment')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
@@ -971,6 +971,7 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try {	
+			/*
 			//add static values to ServiceTypes
 			//TO
 			String addStaticValuesToDatabase = "INSERT INTO `TicketTypes` (`ticketType`) VALUES (?)";
@@ -987,10 +988,10 @@ public class InvoiceData {
 			ps = conn.prepareStatement(addStaticValuesToDatabase);
 			ps.setString(1, "TS");
 			ps.executeUpdate();
-			
+			*/
 			//add static values to ServiceTypes
 			//Refreshments
-			addStaticValuesToDatabase = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES (?)";
+			String addStaticValuesToDatabase = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES (?)";
 			ps = conn.prepareStatement(addStaticValuesToDatabase);
 			ps.setString(1, "Refreshments");
 			ps.executeUpdate();
