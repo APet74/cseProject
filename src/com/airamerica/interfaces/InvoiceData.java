@@ -35,23 +35,35 @@ public class InvoiceData {
 		
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		ResultSet rs;
-		String getAddressID = "SELECT `address_ID` FROM `Persons`";
+		ResultSet rs, rs1;
+		String getAddressID = "SELECT address_ID FROM `Persons`";
 		String RemoveAddresses = "DELETE * FROM `Addresses` WHERE `address_ID` = ?";
 		String removePersonsQuery = "DELETE * FROM `Persons`";
+		String checkAddressID = "SELECT address_ID FROM Addresses WHERE address_ID = ?";
 		try
 		{
 			ps = conn.prepareStatement(getAddressID);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				int address_ID = rs.getInt("address_ID");
-				ps = conn.prepareStatement(RemoveAddresses);
-				ps.setInt(1, address_ID);
-				ps.executeUpdate();
+				if(!(address_ID == 0)){
+					ps = conn.prepareStatement(checkAddressID);
+					ps.setInt(1, address_ID);
+					rs1 = ps.executeQuery();
+					ps.close();
+					if(rs1.next()){
+						ps = conn.prepareStatement(RemoveAddresses);
+						ps.setInt(1, address_ID);
+						ps.executeUpdate();
+						ps.close();
+					}
+					rs1.close();
+				}
 			}
 			ps = conn.prepareStatement(removePersonsQuery);
 			ps.executeUpdate();
 			ps.close();
+			rs.close();
 			conn.close();
 		}
 		catch (SQLException e)
@@ -821,11 +833,11 @@ public class InvoiceData {
 	 */
 	public static void addInsuranceToInvoice(String invoiceCode, String productCode, 
 			int quantity, String ticketCode) {
-		/*Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+	/*	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`,`age`,`nationality`,`seatNumber`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?,?,?)";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?,?,?)";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
