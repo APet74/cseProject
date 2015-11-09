@@ -35,10 +35,20 @@ public class InvoiceData {
 		
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		
+		ResultSet rs;
+		String getAddressID = "SELECT `address_ID` FROM `Persons`";
+		String RemoveAddresses = "DELETE * FROM `Addresses` WHERE `address_ID` = ?";
 		String removePersonsQuery = "DELETE * FROM `Persons`";
 		try
 		{
+			ps = conn.prepareStatement(getAddressID);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				int address_ID = rs.getInt("address_ID");
+				ps = conn.prepareStatement(RemoveAddresses);
+				ps.setInt(1, address_ID);
+				ps.executeUpdate();
+			}
 			ps = conn.prepareStatement(removePersonsQuery);
 			ps.executeUpdate();
 			ps.close();
@@ -96,10 +106,20 @@ public class InvoiceData {
 	public static void removeAllAirports() {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		
+		ResultSet rs;
+		String getAddressID = "SELECT `address_ID` FROM `Airports`";
+		String RemoveAddresses = "DELETE * FROM `Addresses` WHERE `address_ID` = ?";
 		String removeAirportsQuery = "DELETE * FROM `Airports`";
 		try
 		{
+			ps = conn.prepareStatement(getAddressID);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				int address_ID = rs.getInt("address_ID");
+				ps = conn.prepareStatement(RemoveAddresses);
+				ps.setInt(1, address_ID);
+				ps.executeUpdate();
+			}
 			ps = conn.prepareStatement(removeAirportsQuery);
 			ps.executeUpdate();
 			ps.close();
@@ -800,7 +820,28 @@ public class InvoiceData {
 	 * number of quantity and associated ticket information
 	 */
 	public static void addInsuranceToInvoice(String invoiceCode, String productCode, 
-			int quantity, String ticketCode) { }
+			int quantity, String ticketCode) {
+		/*Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		try
+		{
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`,`age`,`nationality`,`seatNumber`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?,?,?)";
+				ps = conn.prepareStatement(addTicketToInvoiceQuery);
+				ps.setString(1, invoiceCode);
+				ps.setString(2, productCode);
+				ps.setString(3, personCode);
+				ps.setString(4, identity);
+				ps.executeUpdate();
+				ps.close();
+				conn.close();
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		*/
+	}
 
 	/**
 	 * Adds a CheckedBaggage Service (corresponding to <code>productCode</code>) to an 
