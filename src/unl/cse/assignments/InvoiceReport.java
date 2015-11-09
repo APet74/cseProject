@@ -584,10 +584,10 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		
 		//clear data from database
 		InvoiceData.removeAllPersons();
-		InvoiceData.removeAllCustomers();
-		InvoiceData.removeAllAirports();
-		InvoiceData.removeAllProducts();
-		InvoiceData.removeAllInvoices();
+		//InvoiceData.removeAllCustomers();
+		//InvoiceData.removeAllAirports();
+		//InvoiceData.removeAllProducts();
+		//InvoiceData.removeAllInvoices();
 		
 	}
 }
