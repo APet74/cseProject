@@ -100,6 +100,9 @@ public class Invoice {
 		return this.ticketHolder;
 	}
 	
+	public TicketHolder getTicketHolder(int index){
+		return this.ticketHolder.get(index);
+	}
 	public String getTicketHolderName(int index, int indexB, ArrayList<Person> personArray) {
 		return ticketHolder.get(index).getName(indexB, personArray);
 	}
