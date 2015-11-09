@@ -26,7 +26,7 @@ public class OffSeasonTicket extends Ticket {
 	}
 	
 	@Override
-	public Date getSesaonEndDAte() {
+	public Date getSesaonEndDate() {
 		return sesaonEndDAte;
 	}
 	public void setSesaonEndDAte(Date sesaonEndDAte) {

@@ -4,6 +4,10 @@ package com.airamerica;
 public class Airport {
 	
 	private String airportCode;
+	public String getAirportCode() {
+		return airportCode;
+	}
+
 	private String airportName;
 	private Address address;
 	private int lattitudeDegrees, longitudeDegrees, longitudeMinutes, lattitudeMinutes;

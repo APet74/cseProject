@@ -33,6 +33,10 @@ public class Person {
 		return this.address.getAddress();
 	}
 	
+	public Address getAddressObject(){
+		return this.address;
+	}
+	
 	public void setAddress(Address address) {
 		this.address = address;
 	}
