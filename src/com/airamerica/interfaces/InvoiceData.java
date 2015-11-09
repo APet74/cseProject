@@ -164,27 +164,44 @@ public class InvoiceData {
 			double passengerFacilityFee) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		
+		ResultSet rs;
 		String addAddressQuery = "INSERT INTO `Addresses` (`street`,`city`,`state`,`zip`,`country`) VALUES (?,?,?,?,?)";
-		String addAirportQuery = "INSERT INTO `Airports` (`airportCode`,`name`,`address_ID`,`latDegrees`,`latMinutes`,`longDegrees`,`longMinutes`,`pasFacilityFee`) VALUES (?,?,(SELECT `address_ID` FROM `Addresses` ORDER BY `address_ID` desc LIMIT 1),?,?,?,?,?)";
+		String checkAddress = "SELECT `address_ID` FROM `Addresses` WHERE street = ? AND city = ? AND state = ? AND zip = ? AND country = ?";
+		String addAirportQuery = "INSERT INTO `Airports` (`airportCode`,`name`,`address_ID`,`latDegrees`,`latMinutes`,`longDegrees`,`longMinutes`,`pasFacilityFee`) VALUES (?,?,(SELECT `address_ID` FROM `Addresses` WHERE street = ? AND city = ? AND state = ? AND zip = ? AND country = ?),?,?,?,?,?)";
 		try
 		{
-			ps = conn.prepareStatement(addAddressQuery);
+			ps = conn.prepareStatement(checkAddress);
 			ps.setString(1, street);
 			ps.setString(2, city);
 			ps.setString(3, state);
 			ps.setString(4, zip);
 			ps.setString(5, country);
-			ps.executeUpdate();
+			rs = ps.executeQuery();
+			if(!(rs.next())){
+				ps = conn.prepareStatement(addAddressQuery);
+				ps.setString(1, street);
+				ps.setString(2, city);
+				ps.setString(3, state);
+				ps.setString(4, zip);
+				ps.setString(5, country);
+				ps.executeUpdate();
+				ps.close();
+			}
 			ps.close();
+			rs.close();
 			ps = conn.prepareStatement(addAirportQuery);
 			ps.setString(1, airportCode);
 			ps.setString(2, name);
-			ps.setInt(3, latdegs);
-			ps.setInt(4, latmins);
-			ps.setInt(5, londegs);
-			ps.setInt(6, lonmins);
-			ps.setDouble(7, passengerFacilityFee);
+			ps.setString(3, street);
+			ps.setString(4, city);
+			ps.setString(5, state);
+			ps.setString(6, zip);
+			ps.setString(7, country);
+			ps.setInt(8, latdegs);
+			ps.setInt(9, latmins);
+			ps.setInt(10, londegs);
+			ps.setInt(11, lonmins);
+			ps.setDouble(12, passengerFacilityFee);
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -843,16 +860,16 @@ public class InvoiceData {
 	 */
 	public static void addInsuranceToInvoice(String invoiceCode, String productCode, 
 			int quantity, String ticketCode) {
-	/*	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?,?,?)";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?))";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
-				ps.setString(3, personCode);
-				ps.setString(4, identity);
+				ps.setInt(3, quantity);
+				ps.setString(4, ticketCode);
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
@@ -862,7 +879,7 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		*/
+		
 	}
 
 	/**
@@ -871,7 +888,26 @@ public class InvoiceData {
 	 * number of quantity.
 	 */
 	public static void addCheckedBaggageToInvoice(String invoiceCode, String productCode, 
-			int quantity) { }
+			int quantity) {
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		try
+		{
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?)";
+				ps = conn.prepareStatement(addTicketToInvoiceQuery);
+				ps.setString(1, invoiceCode);
+				ps.setString(2, productCode);
+				ps.setInt(3, quantity);
+				ps.executeUpdate();
+				ps.close();
+				conn.close();
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 		
 	/**
 	 * Adds a SpecialAssistance Service (corresponding to <code>productCode</code>) to an 
@@ -879,7 +915,26 @@ public class InvoiceData {
 	 * number of quantity.
 	 */
 	public static void addSpecialAssistanceToInvoice(String invoiceCode, String productCode, 
-			String personCode) { }
+			String personCode) {
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		try
+		{
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `PersonCode` = ?))";
+				ps = conn.prepareStatement(addTicketToInvoiceQuery);
+				ps.setString(1, invoiceCode);
+				ps.setString(2, productCode);
+				ps.setString(3, personCode);
+				ps.executeUpdate();
+				ps.close();
+				conn.close();
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	
 	/**
 	 * Adds a Refreshment service (corresponding to <code>productCode</code>) to an 
@@ -887,5 +942,24 @@ public class InvoiceData {
 	 * number of quantity.
 	 */
 	public static void addRefreshmentToInvoice(String invoiceCode, 
-			String productCode, int quantity) { }
+			String productCode, int quantity) { 
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		try
+		{
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?)";
+				ps = conn.prepareStatement(addTicketToInvoiceQuery);
+				ps.setString(1, invoiceCode);
+				ps.setString(2, productCode);
+				ps.setInt(3, quantity);
+				ps.executeUpdate();
+				ps.close();
+				conn.close();
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }
