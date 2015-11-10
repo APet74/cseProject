@@ -21,6 +21,8 @@ import com.airamerica.products.Ticket;
 
 import com.thoughtworks.xstream.io.binary.Token.Formatter;
 
+import database.com.airamerica.interfaces.DatabaseImportSystem;
+
 import com.airamerica.utils.StandardUtils;
 
 
@@ -582,7 +584,11 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		System.out.println("======================================================================================================================");
 		System.out.println("\n\n");
 		
-		
+		DatabaseImportSystem.uploadPersons(personArray);
+ 		DatabaseImportSystem.uploadCustomers(customerArray);
+ 		DatabaseImportSystem.uploadProducts(productArray);
+		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
+		DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
 		
 	}
 }
