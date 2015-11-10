@@ -1177,6 +1177,34 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
+	public static List<String> getCustomers(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> customers = new ArrayList<String>();
+		
+		try
+		{
+			String getCustomers = "SELECT `customerCode` FROM Customers";
+			ps = conn.prepareStatement(getCustomers);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				customers.add(rs.getString("customerCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return customers;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	public static AwardTicket getAwardTicketObject(String ticketCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
