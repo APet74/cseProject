@@ -29,6 +29,7 @@ import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
+import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
 import com.airamerica.products.StandardTicket;
 
@@ -1090,7 +1091,7 @@ public class InvoiceData {
 				rs = ps.executeQuery();
 				rs.next();
 				int customerID = rs.getInt("customer_ID");
-				int personID = rs.getInt("person_ID");
+				int personID = rs.getInt("primaryContact_person_ID");
 				String name = rs.getString("customerName");
 				String custType = rs.getString("customerType");
 				int airlineMiles = rs.getInt("airlineMiles");
@@ -1178,6 +1179,34 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getCustomers(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> customers = new ArrayList<String>();
+		
+		try
+		{
+			String getCustomers = "SELECT `customerCode` FROM Customers";
+			ps = conn.prepareStatement(getCustomers);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				customers.add(rs.getString("customerCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return customers;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static Ticket getTicket(String ticketCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
@@ -1317,13 +1346,43 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	/*public static CheckedBaggage getCheckedBaggaeObject(String code){
+	public static Insurance getInsuranceObject(String code){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
 		{
-				String getServiceInfo = "SELECT * FROM SErvices WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Checked Baggae') AND serviceCode = ?";
+				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Insurance') AND serviceCode = ?";
+				
+				ps = conn.prepareStatement(getServiceInfo);
+				ps.setString(1, code);
+				rs = ps.executeQuery();
+				rs.next();
+				int serviceID = rs.getInt("service_ID");
+				String name = rs.getString("serviceName");
+				String ageClass = rs.getString("age");
+				float costPerMile = rs.getFloat("costPerUnit");
+				rs.close();
+				ps.close();
+				conn.close();
+				Insurance insurance = new Insurance(code, "Insurance", name, ageClass, costPerMile);
+				conn.close();
+				return insurance;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static CheckedBaggage getCheckedBaggaeObject(String code){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Checked Baggage') AND serviceCode = ?";
 				
 				ps = conn.prepareStatement(getServiceInfo);
 				ps.setString(1, code);
@@ -1353,7 +1412,7 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	*/
+	
 	/*
 	public static TicketHolder getTicketHolderObject(String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
