@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.airamerica.Address;
+import com.airamerica.Person;
 
 
 
@@ -342,14 +343,14 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
-		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TS'";		
+		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TS'";		
 		try
 		{
 			
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TS')";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS'))";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -364,12 +365,12 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketType` (`ticketType`) VALUES ('TS')";
+				String insertTicketType = "INSTER INTO `TicketTypes` (`ticketType`) VALUES ('TS')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TS')";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS')";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -407,14 +408,14 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
-		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TO'";		
+		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TO'";		
 		try
 		{
 			
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TO'),?,?,?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -432,12 +433,12 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketType` (`ticketType`) VALUES ('TO')";
+				String insertTicketType = "INSTER INTO `TicketTypes` (`ticketType`) VALUES ('TO')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TO'),?,?,?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -476,14 +477,14 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
-		String checkTicketType = "SELECT `ticketType_ID` FROM TicketType WHERE `ticketType` = 'TA'";		
+		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TA'";		
 		try
 		{
 			
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TA'),?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -499,12 +500,12 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketType` (`ticketType`) VALUES ('TA')";
+				String insertTicketType = "INSTER INTO `TicketTypes` (`ticketType`) VALUES ('TA')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketType` WHERE `ticketType` = 'TA'),?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -790,8 +791,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
-		}catch (SQLException e)
-		{
+		}catch (SQLException e){
 			System.out.println("SQLException: ");
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -965,11 +965,37 @@ public class InvoiceData {
 		}
 	}
 	
-	public static Address GetAddressObject(String street, String city, String state, String zip, String country){
+	/*public static Person GetPersonObject(String personCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getPersonInfo = "SELECT * FROM Persons WHERE personCode = ?";
+				String getAddress = "SELECT * FROM Addresses WHERE address_ID = ?";
+				String getEmails = "SELECT `emailAddress` FROM EmailAddresses WHERE person_ID = ?";
+				ps = conn.prepareStatement(getPersonInfo);
+				ps.setString(1, personCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int personID = rs.getInt("person_ID");
+				int addressID = rs.getInt("address_ID");
+				String firstName = rs.getString("firstName");
+				String lastName = rs.getString("lastName");
+				String phoneNumber = rs.getString("phoneNumber");
+				
+				rs.close();
+				ps.close();
+				conn.close();
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 		
-		Address address = new Address(street, city, state, zip, country);
-		
-		return address;
-		
+		Address address = new Address();
 	}
+		*/
+		
 }
