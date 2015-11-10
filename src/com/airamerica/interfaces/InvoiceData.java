@@ -362,7 +362,7 @@ public class InvoiceData {
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS'))";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNum`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS'))";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -382,7 +382,7 @@ public class InvoiceData {
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS'))";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNum`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS'))";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -1418,6 +1418,40 @@ public class InvoiceData {
 		}
 	}
 	
+	public static SpecialAssistance getSpecialAssistanceObject(String code){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Special Assistance') AND serviceCode = ?";
+				String getTicketCode = "SELECT ticketCode FROM Tickets WHERE ticket_ID = ?";
+				ps = conn.prepareStatement(getServiceInfo);
+				ps.setString(1, code);
+				rs = ps.executeQuery();
+				rs.next();
+				int ticketID = rs.getInt("ticket_ID");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getTicketCode);
+				rs = ps.executeQuery();
+				rs.next();
+				String ticketCode = rs.getString("ticketCode");
+				rs.close();
+				ps.close();
+				conn.close();
+				Ticket t1 = getTicket(ticketCode);
+				CheckedBaggage checked = new CheckedBaggage(code, "Checked Baggage", t1);
+				conn.close();
+				return checked;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	/*
 	public static TicketHolder getTicketHolderObject(String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
