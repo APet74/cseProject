@@ -32,6 +32,7 @@ import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
 import com.airamerica.products.StandardTicket;
+import com.airamerica.products.Ticket;
 
 
 
@@ -1211,22 +1212,28 @@ public class InvoiceData {
 		PreparedStatement ps;
 		ResultSet rs;
 		
-		List<String> customers = new ArrayList<String>();
+		
 		
 		try
 		{
-			String getCustomers = "SELECT `customerCode` FROM Customers";
+			String getCustomers = "SELECT `ticketType` FROM TicketTypes WHERE ticketType_ID = (SELECT ticketType_ID FROM Tickets WHERE ticketCode = ?)";
 			ps = conn.prepareStatement(getCustomers);
 			rs = ps.executeQuery();
-			
-			while(rs.next()){
-				customers.add(rs.getString("customerCode"));
-			}
+			Ticket t1 = null;
+			rs.next();
+			String ticketType = rs.getString("ticketType");
 
 			rs.close();
 			ps.close();
 			conn.close();
-			return customers;
+			if(ticketType.equals("TO")){
+				t1 = getOffseasonTicketObject(ticketCode);
+			}else if(ticketType.equals("TA")){
+				t1 = getAwardTicketObject(ticketCode);
+			}else{
+				t1 = getStandardTicketObject(ticketCode);
+			}
+			return t1;
 		}catch (SQLException e)
 		{
 			System.out.println("SQLException: ");
@@ -1383,27 +1390,25 @@ public class InvoiceData {
 		try
 		{
 				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Checked Baggage') AND serviceCode = ?";
-				
+				String getTicketCode = "SELECT ticketCode FROM Tickets WHERE ticket_ID = ?";
 				ps = conn.prepareStatement(getServiceInfo);
 				ps.setString(1, code);
 				rs = ps.executeQuery();
 				rs.next();
-				int serviceID = rs.getInt("service_ID");
-				String depAirCode = rs.getString("serviceCode");
-				String arrAirCode = rs.getString("arrAirportCode");
-				Date depTime = rs.getTime("depTime");
-				Date arrTime = rs.getTime("arrTime");
-				String flightNum = rs.getString("flightNum");
-				String flightClass = rs.getString("flightClass");
-				String aircraftType = rs.getString("aircraftType");
+				int ticketID = rs.getInt("ticket_ID");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getTicketCode);
+				rs = ps.executeQuery();
+				rs.next();
+				String ticketCode = rs.getString("ticketCode");
 				rs.close();
 				ps.close();
 				conn.close();
-				Airport a1 = GetAirportObject(depAirCode);
-				Airport a2 = GetAirportObject(arrAirCode);
-				StandardTicket sTicket = new StandardTicket(ticketCode, "TS", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType);
+				Ticket t1 = getTicket(ticketCode);
+				CheckedBaggage checked = new CheckedBaggage(code, "Checked Baggage", t1);
 				conn.close();
-				return sTicket;
+				return checked;
 				
 		}catch (SQLException e)
 		{
