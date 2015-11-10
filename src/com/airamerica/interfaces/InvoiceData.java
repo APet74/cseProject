@@ -352,7 +352,7 @@ public class InvoiceData {
 	 */
 	public static void addStandardTicket(String productCode,String depAirportCode, 
 			String arrAirportCode, String depTime, String arrTime, 
-			String flightNo, String flightClass, String aircraftType) { 
+			String flightNum, String flightClass, String aircraftType) { 
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
@@ -372,7 +372,7 @@ public class InvoiceData {
 				ps.setString(3, arrAirportCode);
 				ps.setString(4, depTime);
 				ps.setString(5, arrTime);
-				ps.setString(6, flightNo);
+				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
 				ps.executeUpdate();
@@ -391,7 +391,7 @@ public class InvoiceData {
 				ps.setString(3, arrAirportCode);
 				ps.setString(4, depTime);
 				ps.setString(5, arrTime);
-				ps.setString(6, flightNo);
+				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
 				ps.executeUpdate();
@@ -416,7 +416,7 @@ public class InvoiceData {
 	 */
 	public static void addOffSeasonTicket(String productCode, String seasonStartDate, 
 			String seasonEndDate, String depAirportCode, String arrAirportCode, 
-			String depTime, String arrTime,	String flightNo, String flightClass, 
+			String depTime, String arrTime,	String flightNum, String flightClass, 
 			String aircraftType, double rebate) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
@@ -428,7 +428,7 @@ public class InvoiceData {
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNum`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -437,7 +437,7 @@ public class InvoiceData {
 				ps.setString(3, arrAirportCode);
 				ps.setString(4, depTime);
 				ps.setString(5, arrTime);
-				ps.setString(6, flightNo);
+				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
 				ps.setString(9, seasonStartDate);
@@ -451,7 +451,7 @@ public class InvoiceData {
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNum`,`flightClass`,`aircraftType`,`ticketType`,`seasonStartDate`,`seasonEndDate`,`rebate`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TO'),?,?,?)";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -459,7 +459,7 @@ public class InvoiceData {
 				ps.setString(3, arrAirportCode);
 				ps.setString(4, depTime);
 				ps.setString(5, arrTime);
-				ps.setString(6, flightNo);
+				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
 				ps.setString(9, seasonStartDate);
@@ -485,7 +485,7 @@ public class InvoiceData {
 	 */
 	public static void addAwardsTicket(String productCode,String depAirportCode, 
 			String arrAirportCode, String depTime, String arrTime, 
-			String flightNo, String flightClass, 
+			String flightNum, String flightClass, 
 			String aircraftType, int pointsPerMile) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
@@ -497,7 +497,7 @@ public class InvoiceData {
 			ps = conn.prepareStatement(checkTicketType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNum`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addTicketQuery);
@@ -506,7 +506,7 @@ public class InvoiceData {
 				ps.setString(3, arrAirportCode);
 				ps.setString(4, depTime);
 				ps.setString(5, arrTime);
-				ps.setString(6, flightNo);
+				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
 				ps.setInt(9, pointsPerMile);
@@ -518,7 +518,7 @@ public class InvoiceData {
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNum`,`flightClass`,`aircraftType`,`ticketType`,`pointsPerMile`) VALUES (?,(SELECT airport_ID FROM Airports WHERE airportCode = ?),(SELECT airport_ID FROM Airports WHERE airportCode = ?),?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TA'),?)";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
@@ -526,7 +526,7 @@ public class InvoiceData {
 				ps.setString(3, arrAirportCode);
 				ps.setString(4, depTime);
 				ps.setString(5, arrTime);
-				ps.setString(6, flightNo);
+				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
 				ps.setInt(9, pointsPerMile);
