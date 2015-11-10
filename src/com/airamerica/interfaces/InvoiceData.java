@@ -25,6 +25,7 @@ import com.airamerica.Address;
 import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
+import com.airamerica.products.AwardTicket;
 
 
 
@@ -1114,6 +1115,167 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}	
+	public static List<String> getAirports(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> airports = new ArrayList<String>();
+		
+		try
+		{
+			String getAirports = "SELECT `airportCode` FROM Airports";
+			ps = conn.prepareStatement(getAirports);
+			rs = ps.executeQuery();
+			
+			
+			while(rs.next()){
+				airports.add(rs.getString("airportCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return airports;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	/*public static AwardTicket getAwardTicketObject(String ticketCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getTicketInfo = "SELECT * FROM Ticket WHERE ticketType = (SELECT ticket_ID FROM TicketTypes WHERE ticketType = 'TA') AND ticketCode = ?";
+				
+				ps = conn.prepareStatement(getTicketInfo);
+				ps.setString(1, ticketCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int customerID = rs.getInt("ticket_ID");
+				String depAirCode = rs.getString("depAirportCode");
+				String arrAirCode = rs.getString("arrAirportCode");
+				
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getPerson);
+				ps.setInt(1, personID);
+				rs = ps.executeQuery();
+				rs.next();
+				String personCode = rs.getString("personCode");
+				rs.close();
+				ps.close();
+				conn.close();
+				Person person = GetPersonObject(personCode);
+				Customer customer = new Customer(customerCode, custType, person, name);
+				if (airlineMiles != 0) {
+					customer.setAirlineMiles(airlineMiles);					
+				}
+				conn.close();
+				return customer;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	*/
+	
+	/*
+	public static TicketHolder getTicketHolderObject(String invoiceCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getCustomerInfo = "SELECT * FROM TicketHolders WHERE customerCode = ?";
+				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
+				ps = conn.prepareStatement(getCustomerInfo);
+				ps.setString(1, customerCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int customerID = rs.getInt("customer_ID");
+				int personID = rs.getInt("person_ID");
+				String name = rs.getString("customerName");
+				String custType = rs.getString("customerType");
+				int airlineMiles = rs.getInt("airlineMiles");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getPerson);
+				ps.setInt(1, personID);
+				rs = ps.executeQuery();
+				rs.next();
+				String personCode = rs.getString("personCode");
+				rs.close();
+				ps.close();
+				conn.close();
+				Person person = GetPersonObject(personCode);
+				Customer customer = new Customer(customerCode, custType, person, name);
+				if (airlineMiles != 0) {
+					customer.setAirlineMiles(airlineMiles);					
+				}
+				conn.close();
+				return customer;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}	
+	*/
+	
+	/*public static Invoice getInvoiceObject(String invoiceCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getCustomerInfo = "SELECT * FROM Customers WHERE invoiceCode = ?";
+				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
+				ps = conn.prepareStatement(getCustomerInfo);
+				ps.setString(1, customerCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int customerID = rs.getInt("customer_ID");
+				int personID = rs.getInt("person_ID");
+				String name = rs.getString("customerName");
+				String custType = rs.getString("customerType");
+				int airlineMiles = rs.getInt("airlineMiles");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getPerson);
+				ps.setInt(1, personID);
+				rs = ps.executeQuery();
+				rs.next();
+				String personCode = rs.getString("personCode");
+				rs.close();
+				ps.close();
+				conn.close();
+				Person person = GetPersonObject(personCode);
+				Customer customer = new Customer(customerCode, custType, person, name);
+				if (airlineMiles != 0) {
+					customer.setAirlineMiles(airlineMiles);					
+				}
+				conn.close();
+				return customer;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}	
+	*/
 	/**
 	 * Adds static values to database
 	 * 
@@ -1180,4 +1342,5 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
+	
 }
