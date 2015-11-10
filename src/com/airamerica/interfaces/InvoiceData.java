@@ -340,6 +340,7 @@ public class InvoiceData {
 		}
 		catch (SQLException e)
 		{
+			
 			System.out.println("SQLException: ");
 			e.printStackTrace();
 			throw new RuntimeException(e);
