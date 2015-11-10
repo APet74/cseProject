@@ -584,9 +584,12 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		System.out.println("======================================================================================================================");
 		System.out.println("\n\n");
 		
+		//clear database
+		DatabaseImportSystem.clearDatabase();
+		
 		DatabaseImportSystem.uploadPersons(personArray);
- 		//DatabaseImportSystem.uploadCustomers(customerArray);
- 		//DatabaseImportSystem.uploadProducts(productArray);
+ 		DatabaseImportSystem.uploadCustomers(customerArray);
+ 		DatabaseImportSystem.uploadProducts(productArray);
 		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
 		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
 		

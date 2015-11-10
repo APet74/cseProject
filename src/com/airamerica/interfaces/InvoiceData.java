@@ -369,7 +369,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketTypes` (`ticketType`) VALUES ('TS')";
+				String insertTicketType = "INSERT INTO `TicketTypes` (`ticketType`) VALUES ('TS')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
@@ -437,7 +437,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketTypes` (`ticketType`) VALUES ('TO')";
+				String insertTicketType = "INSERT INTO `TicketTypes` (`ticketType`) VALUES ('TO')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
@@ -504,7 +504,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertTicketType = "INSTER INTO `TicketTypes` (`ticketType`) VALUES ('TA')";
+				String insertTicketType = "INSERT INTO `TicketTypes` (`ticketType`) VALUES ('TA')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
@@ -560,7 +560,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Checked Baggage')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Checked Baggage')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
@@ -612,7 +612,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Insurance')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Insurance')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
@@ -663,7 +663,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Special Assistance')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Special Assistance')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
@@ -715,7 +715,7 @@ public class InvoiceData {
 				ps.executeUpdate();
 				ps.close();
 			}else{
-				String insertServiceType = "INSTER INTO `ServiceTypes` (`serviceType`) VALUES ('Refreshment')";
+				String insertServiceType = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES ('Refreshment')";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
