@@ -55,11 +55,11 @@ public ArrayList<Integer> getAge() {
 	return age;
 }
 
-public int getAgeOfTicketHolder(int index){
+public int getAge(int index){
 	return this.age.get(index);
 }
 
-public String getSeatOfTicketholder(int index) {
+public String getSeat(int index) {
 	return this.seatNum.get(index);
 }
 public void addAge(Integer age) {

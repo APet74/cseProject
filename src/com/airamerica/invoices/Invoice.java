@@ -34,6 +34,9 @@ public class Invoice {
 	public String getTicketCodes(int index) {
 		return ticketCodes.get(index);
 	}
+	public ArrayList<String> getTicketCodes() {
+		return ticketCodes;
+	}
 
 	public void setTicketCodes(ArrayList<String> ticketCodes) {
 		this.ticketCodes = ticketCodes;

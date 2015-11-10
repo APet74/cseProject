@@ -134,9 +134,9 @@ public class InvoiceReport  {
 					"",
 					invoiceArray.get(index).getTicketHolder().get(j).getName(k, personArray),
 					//age
-					invoiceArray.get(index).getTicketHolder().get(j).getAgeOfTicketHolder(k),
+					invoiceArray.get(index).getTicketHolder().get(j).getAge(k),
 					//seat number
-					invoiceArray.get(index).getTicketHolder().get(j).getSeatOfTicketholder(k)
+					invoiceArray.get(index).getTicketHolder().get(j).getSeat(k)
 					));
 			
 			}
@@ -592,7 +592,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		DatabaseImportSystem.uploadPersons(personArray);
 		DatabaseImportSystem.uploadCustomers(customerArray);
 		DatabaseImportSystem.uploadProducts(productArray);
-		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
+		DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
 				
 		}
 }
