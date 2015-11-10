@@ -18,7 +18,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.airamerica.Address;
@@ -26,6 +28,7 @@ import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.products.AwardTicket;
+import com.airamerica.products.StandardTicket;
 
 
 
@@ -1145,7 +1148,7 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	/*public static AwardTicket getAwardTicketObject(String ticketCode){
+	public static AwardTicket getAwardTicketObject(String ticketCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
@@ -1157,27 +1160,23 @@ public class InvoiceData {
 				ps.setString(1, ticketCode);
 				rs = ps.executeQuery();
 				rs.next();
-				int customerID = rs.getInt("ticket_ID");
+				int ticketID = rs.getInt("ticket_ID");
 				String depAirCode = rs.getString("depAirportCode");
 				String arrAirCode = rs.getString("arrAirportCode");
-				
-				rs.close();
-				ps.close();
-				ps = conn.prepareStatement(getPerson);
-				ps.setInt(1, personID);
-				rs = ps.executeQuery();
-				rs.next();
-				String personCode = rs.getString("personCode");
+				Date depTime = rs.getTime("depTime");
+				Date arrTime = rs.getTime("arrTime");
+				String flightNum = rs.getString("flightNum");
+				String flightClass = rs.getString("flightClass");
+				String aircraftType = rs.getString("aircraftType");
+				int pointsPerMile = rs.getInt("pointsPerMile");
 				rs.close();
 				ps.close();
 				conn.close();
-				Person person = GetPersonObject(personCode);
-				Customer customer = new Customer(customerCode, custType, person, name);
-				if (airlineMiles != 0) {
-					customer.setAirlineMiles(airlineMiles);					
-				}
+				Airport a1 = GetAirportObject(depAirCode);
+				Airport a2 = GetAirportObject(arrAirCode);
+				AwardTicket aTicket = new AwardTicket(ticketCode, "TA", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType, pointsPerMile);
 				conn.close();
-				return customer;
+				return aTicket;
 				
 		}catch (SQLException e)
 		{
@@ -1186,7 +1185,42 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	*/
+	public static StandardTicket getStandardTicketObject(String ticketCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getTicketInfo = "SELECT * FROM Ticket WHERE ticketType = (SELECT ticket_ID FROM TicketTypes WHERE ticketType = 'TS') AND ticketCode = ?";
+				
+				ps = conn.prepareStatement(getTicketInfo);
+				ps.setString(1, ticketCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int ticketID = rs.getInt("ticket_ID");
+				String depAirCode = rs.getString("depAirportCode");
+				String arrAirCode = rs.getString("arrAirportCode");
+				Date depTime = rs.getTime("depTime");
+				Date arrTime = rs.getTime("arrTime");
+				String flightNum = rs.getString("flightNum");
+				String flightClass = rs.getString("flightClass");
+				String aircraftType = rs.getString("aircraftType");
+				rs.close();
+				ps.close();
+				conn.close();
+				Airport a1 = GetAirportObject(depAirCode);
+				Airport a2 = GetAirportObject(arrAirCode);
+				StandardTicket sTicket = new StandardTicket(ticketCode, "TS", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType);
+				conn.close();
+				return sTicket;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	
 	/*
 	public static TicketHolder getTicketHolderObject(String invoiceCode){
