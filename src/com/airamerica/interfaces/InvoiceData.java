@@ -28,6 +28,7 @@ import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.products.AwardTicket;
+import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.OffSeasonTicket;
 import com.airamerica.products.StandardTicket;
 
@@ -1005,7 +1006,6 @@ public class InvoiceData {
 				String country = rs.getString("country");
 				rs.close();
 				ps.close();
-				conn.close();
 				Address address = new Address(street, city, state, zip, country);
 				Person person = new Person(personCode, firstName, lastName);
 				person.setAddress(address);
@@ -1317,6 +1317,43 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
+	/*public static CheckedBaggage getCheckedBaggaeObject(String code){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getServiceInfo = "SELECT * FROM SErvices WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Checked Baggae') AND serviceCode = ?";
+				
+				ps = conn.prepareStatement(getServiceInfo);
+				ps.setString(1, code);
+				rs = ps.executeQuery();
+				rs.next();
+				int serviceID = rs.getInt("service_ID");
+				String depAirCode = rs.getString("serviceCode");
+				String arrAirCode = rs.getString("arrAirportCode");
+				Date depTime = rs.getTime("depTime");
+				Date arrTime = rs.getTime("arrTime");
+				String flightNum = rs.getString("flightNum");
+				String flightClass = rs.getString("flightClass");
+				String aircraftType = rs.getString("aircraftType");
+				rs.close();
+				ps.close();
+				conn.close();
+				Airport a1 = GetAirportObject(depAirCode);
+				Airport a2 = GetAirportObject(arrAirCode);
+				StandardTicket sTicket = new StandardTicket(ticketCode, "TS", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType);
+				conn.close();
+				return sTicket;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	*/
 	/*
 	public static TicketHolder getTicketHolderObject(String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
