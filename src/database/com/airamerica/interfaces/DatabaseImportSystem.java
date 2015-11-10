@@ -136,10 +136,12 @@ public class DatabaseImportSystem {
 		for (Invoice i: invoiceArray){
 			InvoiceData.addInvoice(i.getInvoiceCode(), i.getCustomer().getCode(), i.getSalesperson(), i.getSaleDate().toString());
 			
+			DateFormat yearMonthDay = new SimpleDateFormat("yyyy-MM-dd");
+			
 			//add every ticket to the invoice
 			for (int k = 0; k < i.getTicketCodes().size(); k++){
 				//add ticket at k
-				InvoiceData.addTicketToInvoice(i.getInvoiceCode(), i.getTicketCodes(k), i.getFlightDates(k).toString(), i.getComment(k));
+				InvoiceData.addTicketToInvoice(i.getInvoiceCode(), i.getTicketCodes(k), yearMonthDay.format(i.getFlightDates(k)), i.getComment(k));
 				
 				//add ticketholder at k
 				for(int l = 0; l < i.getTicketHolder(k).getSeatNum().size(); l++){
