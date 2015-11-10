@@ -1394,7 +1394,7 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	public static CheckedBaggage getCheckedBaggaeObject(String code){
+	public static CheckedBaggage getCheckedBaggageObject(String code){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
