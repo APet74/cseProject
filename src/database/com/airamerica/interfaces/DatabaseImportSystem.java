@@ -68,7 +68,7 @@ public class DatabaseImportSystem {
 	public static void uploadProducts(ArrayList<Product> productArray){
 		//From products object to database
 		
-		DateFormat formatter = new SimpleDateFormat("HHMM");
+		DateFormat formatter = new SimpleDateFormat("HH:mm");
 		
 		//have to sort between product types
 		  //Ticket  Award, OffSeason, Standard
