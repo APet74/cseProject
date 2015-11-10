@@ -42,7 +42,11 @@ import com.airamerica.products.Ticket;
  *
  */
 public class InvoiceData {
-
+	public static String SQLEscape( String pStr ){
+		String mStr;
+		mStr = pStr.replace( "'" , "''" );
+		return mStr;
+		}
 	/**
 	 * Method that removes every person record from the database
 	 */
@@ -117,6 +121,8 @@ public class InvoiceData {
 			rs.close();
 			ps = conn.prepareStatement(addPersonQuery);
 			ps.setString(1, personCode);
+			firstName = SQLEscape(firstName);
+			lastName = SQLEscape(lastName);
 			ps.setString(2, firstName);
 			ps.setString(3, lastName);
 			ps.setString(4, street);
