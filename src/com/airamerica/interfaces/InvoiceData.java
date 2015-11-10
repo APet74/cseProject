@@ -861,6 +861,9 @@ public class InvoiceData {
 				ps.setString(2, productCode);
 				ps.setString(3, personCode);
 				ps.setString(4, identity);
+				ps.setInt(5, age);
+				ps.setString(6, nationality);
+				ps.setString(7, seat);
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
