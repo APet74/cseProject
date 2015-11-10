@@ -31,6 +31,7 @@ import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
+import com.airamerica.products.SpecialAssistance;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
 
@@ -1431,25 +1432,17 @@ public class InvoiceData {
 		try
 		{
 				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Special Assistance') AND serviceCode = ?";
-				String getTicketCode = "SELECT ticketCode FROM Tickets WHERE ticket_ID = ?";
 				ps = conn.prepareStatement(getServiceInfo);
 				ps.setString(1, code);
 				rs = ps.executeQuery();
 				rs.next();
-				int ticketID = rs.getInt("ticket_ID");
-				rs.close();
-				ps.close();
-				ps = conn.prepareStatement(getTicketCode);
-				rs = ps.executeQuery();
-				rs.next();
-				String ticketCode = rs.getString("ticketCode");
+				String serviceName = rs.getString("serviceName");
 				rs.close();
 				ps.close();
 				conn.close();
-				Ticket t1 = getTicket(ticketCode);
-				CheckedBaggage checked = new CheckedBaggage(code, "Checked Baggage", t1);
+				SpecialAssistance specialA = new SpecialAssistance(code, "Special Assistance", serviceName);
 				conn.close();
-				return checked;
+				return specialA;
 				
 		}catch (SQLException e)
 		{
