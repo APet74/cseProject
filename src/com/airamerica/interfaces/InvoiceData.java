@@ -280,7 +280,7 @@ public class InvoiceData {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		
-		String addCustomerQuery = "INSERT INTO `Customers` (`customerCode`,`customerType`,`primaryContact_person_ID`,`customerName`,`airlineMiles`) VALUES (?,?,(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?,?,?,?)";
+		String addCustomerQuery = "INSERT INTO `Customers` (`customerCode`,`customerType`,`primaryContact_person_ID`,`customerName`,`airlineMiles`) VALUES (?,?,(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?)";
 		try
 		{
 			ps = conn.prepareStatement(addCustomerQuery);
