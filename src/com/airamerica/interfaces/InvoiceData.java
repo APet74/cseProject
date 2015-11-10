@@ -28,6 +28,7 @@ import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.products.AwardTicket;
+import com.airamerica.products.OffSeasonTicket;
 import com.airamerica.products.StandardTicket;
 
 
@@ -1221,7 +1222,45 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	public static OffSeasonTicket getOffseasonTicketObject(String ticketCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getTicketInfo = "SELECT * FROM Ticket WHERE ticketType = (SELECT ticket_ID FROM TicketTypes WHERE ticketType = 'TO') AND ticketCode = ?";
+				
+				ps = conn.prepareStatement(getTicketInfo);
+				ps.setString(1, ticketCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int ticketID = rs.getInt("ticket_ID");
+				String depAirCode = rs.getString("depAirportCode");
+				String arrAirCode = rs.getString("arrAirportCode");
+				Date depTime = rs.getTime("depTime");
+				Date arrTime = rs.getTime("arrTime");
+				String flightNum = rs.getString("flightNum");
+				String flightClass = rs.getString("flightClass");
+				String aircraftType = rs.getString("aircraftType");
+				Date seasonStartDate = rs.getDate("seasonSTartDate");
+				Date seasonEndDate = rs.getDate("seasonEndDate");
+				float rebate = rs.getFloat("rebate");
+				rs.close();
+				ps.close();
+				conn.close();
+				Airport a1 = GetAirportObject(depAirCode);
+				Airport a2 = GetAirportObject(arrAirCode);
+				OffSeasonTicket oTicket = new OffSeasonTicket(ticketCode, "TO", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType, seasonStartDate, seasonEndDate, rebate);
+				conn.close();
+				return oTicket;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 	/*
 	public static TicketHolder getTicketHolderObject(String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
