@@ -1,6 +1,7 @@
 package database.com.airamerica.interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.airamerica.Airport;
 import com.airamerica.Customer;
@@ -18,7 +19,11 @@ import com.airamerica.products.StandardTicket;
 
 public class DatabaseImportSystem {
 
+	/*
+	 * import data into database
+	 */
 	public static void clearDatabase(){
+		//TODO: remove all emails
 		InvoiceData.removeAllAddresses();
 		InvoiceData.removeAllAirports();
 		InvoiceData.removeAllCustomers();
@@ -41,13 +46,14 @@ public class DatabaseImportSystem {
 		for(Person p: personArray){
 			InvoiceData.addPerson(p.getCode(), p.getfirstName(), p.getlastName(), p.getPhoneNumber(), p.getAddressObject().getStreet(),
 					p.getAddressObject().getCity(), p.getAddressObject().getState(), p.getAddressObject().getZip(), p.getAddressObject().getCountry());
+		
+			//add every email to the person in database
+			for(String e: p.getEmails()){
+				InvoiceData.addEmail(p.getCode(), e);
+			}
 		}
-		//TODO: add emails
-		
-		
 	}
 	
-
 	public static void uploadCustomers(ArrayList<Customer> customerArray){
 		//From Customer object to database
 		for(Customer c: customerArray){
@@ -141,4 +147,22 @@ public class DatabaseImportSystem {
 			
 		}
  	}
+
+ 	/*
+ 	 * download data from database
+ 	 */
+ 	public ArrayList<Airport> downloadAirports(){
+ 		ArrayList<Airport> airportArray = new ArrayList<Airport>();
+ 		
+ 		List<String> airportCodes = new ArrayList<String>();
+ 				
+ 		airportCodes = InvoiceData.getAirportCodes();
+ 		
+ 		for(String s: airportCodes){
+ 			airportArray.add(InvoiceData.GetAirportObject(s));
+ 		}
+ 		
+ 		return airportArray;
+ 	}
+
 }

@@ -587,11 +587,14 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		//clear database
 		DatabaseImportSystem.clearDatabase();
 		
+		//upload all objects to database
 		DatabaseImportSystem.uploadPersons(personArray);
- 		DatabaseImportSystem.uploadCustomers(customerArray);
- 		DatabaseImportSystem.uploadProducts(productArray);
+ 		//DatabaseImportSystem.uploadCustomers(customerArray);
+ 		//DatabaseImportSystem.uploadProducts(productArray);
 		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
 		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
 		
+		//get objects from database
+		airportArray = DatabaseImportsystem.downloadAirports
 	}
 }
