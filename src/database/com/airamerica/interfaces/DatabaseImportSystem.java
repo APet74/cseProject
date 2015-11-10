@@ -1,11 +1,14 @@
 package database.com.airamerica.interfaces;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
+import com.airamerica.dataConversion.FindObject;
 import com.airamerica.interfaces.InvoiceData;
 import com.airamerica.invoices.Invoice;
 import com.airamerica.products.AwardTicket;
@@ -16,6 +19,7 @@ import com.airamerica.products.Product;
 import com.airamerica.products.Refreshment;
 import com.airamerica.products.SpecialAssistance;
 import com.airamerica.products.StandardTicket;
+import com.airamerica.products.Ticket;
 
 public class DatabaseImportSystem {
 
@@ -64,6 +68,8 @@ public class DatabaseImportSystem {
 	public static void uploadProducts(ArrayList<Product> productArray){
 		//From products object to database
 		
+		DateFormat formatter = new SimpleDateFormat("HHMM");
+		
 		//have to sort between product types
 		  //Ticket  Award, OffSeason, Standard
 		  //Service  CheckedBaggage, Insurance, Refreshment, SpecialAssistance
@@ -71,14 +77,14 @@ public class DatabaseImportSystem {
 			if(p instanceof AwardTicket){
 				AwardTicket t = (AwardTicket) p;
 				InvoiceData.addAwardsTicket(t.getCode(), t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), 
-						t.getDepTime().toString(), t.getArrTime().toString(), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), 
+						formatter.format(t.getFlightTime("departing")), formatter.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), 
 						t.getPointsPerMile());
 				
 			} else if (p instanceof OffSeasonTicket){
 				OffSeasonTicket t = (OffSeasonTicket) p;
 				InvoiceData.addOffSeasonTicket(t.getCode(), t.getSeasonStartDate().toString(), t.getSesaonEndDate().toString(), 
-						t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), t.getDepTime().toString(), 
-						t.getArrTime().toString(), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), t.getRebate());
+						t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), formatter.format(t.getFlightTime("departing")), 
+						formatter.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), t.getRebate());
 				
 			} else if (p instanceof StandardTicket){
 				/*
@@ -88,7 +94,7 @@ public class DatabaseImportSystem {
 				 */
 				StandardTicket t = (StandardTicket) p;
 				InvoiceData.addStandardTicket(t.getCode(), t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), 
-						t.getDepTime().toString(), t.getArrTime().toString(), t.getFlightNo(), t.getFlightClass(), t.getAircraftType());
+						formatter.format(t.getFlightTime("departing")), formatter.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType());
 				
 			} else if (p instanceof CheckedBaggage){
 				/*
