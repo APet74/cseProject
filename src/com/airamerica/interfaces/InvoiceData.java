@@ -1018,6 +1018,7 @@ public class InvoiceData {
 				Address address = new Address(street, city, state, zip, country);
 				Person person = new Person(personCode, firstName, lastName);
 				person.setAddress(address);
+				person.setPhoneNumber(phoneNumber);
 				ps = conn.prepareStatement(getEmails);
 				ps.setInt(1, personID);
 				rs = ps.executeQuery();
