@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.airamerica.Address;
+
 
 
 /**
@@ -961,5 +963,13 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public static Address GetAddressObject(String street, String city, String state, String zip, String country){
+		
+		Address address = new Address(street, city, state, zip, country);
+		
+		return address;
+		
 	}
 }
