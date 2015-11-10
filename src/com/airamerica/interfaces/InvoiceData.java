@@ -995,6 +995,8 @@ public class InvoiceData {
 				int addressID = rs.getInt("address_ID");
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
+				firstName = firstName.replace("&apos;", "'");
+				lastName = lastName.replace("&apos;", "'");
 				String phoneNumber = rs.getString("phoneNumber");
 				rs.close();
 				ps.close();
