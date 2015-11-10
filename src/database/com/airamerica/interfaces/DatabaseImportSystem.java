@@ -34,6 +34,8 @@ public class DatabaseImportSystem {
 		InvoiceData.removeAllInvoices();
 		InvoiceData.removeAllPersons();
 		InvoiceData.removeAllProducts();
+		
+		InvoiceData.addStaticValues();
 	}
 	
 	public static void uploadAirports(ArrayList<Airport> airportArray){
@@ -196,4 +198,15 @@ public class DatabaseImportSystem {
  		return customerArray;
  	}
 
+ 	public static ArrayList<Product> downloadProducts(){
+ 		ArrayList<Product> productArray = new ArrayList<Product>();
+ 		
+ 		List<String> productCodes = InvoiceData.getProducts();
+ 		
+ 		for(String s: productCodes){
+ 			productArray.add(InvoiceData.getObject(s));
+ 		}
+ 		
+ 		return productArray;
+ 	}
 }
