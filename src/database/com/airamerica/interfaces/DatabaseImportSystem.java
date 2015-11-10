@@ -162,17 +162,29 @@ public class DatabaseImportSystem {
  		
  		return airportArray;
  	}
-/*
+
  	public static ArrayList<Person> downloadPersons(){
  		ArrayList<Person> personArray = new ArrayList<Person>();
  		
- 		List<String> personCodes = InvoiceData.getPersonCodes();
+ 		List<String> personCodes = InvoiceData.getPersons();
  		
  		for(String s: personCodes){
- 			
+ 			personArray.add(InvoiceData.GetPersonObject(s));
  		}
  		
  		return personArray;
  	}
-*/
+ 	
+ 	public static ArrayList<Customer> downloadCustomers(){
+ 		ArrayList<Customer> customerArray = new ArrayList<Customer>();
+ 		
+ 		List<String> customerCodes = InvoiceData.getCustomers();
+ 		
+ 		for(String s: customerCodes){
+ 			customerArray.add(InvoiceData.getCustomerObject(s));
+ 		}
+ 		
+ 		return customerArray;
+ 	}
+
 }
