@@ -18,6 +18,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.airamerica.Address;
 import com.airamerica.Person;
@@ -965,7 +967,7 @@ public class InvoiceData {
 		}
 	}
 	
-	/*public static Person GetPersonObject(String personCode){
+	public static Person GetPersonObject(String personCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
@@ -983,10 +985,36 @@ public class InvoiceData {
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
 				String phoneNumber = rs.getString("phoneNumber");
-				
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getAddress);
+				ps.setInt(1, addressID);
+				rs = ps.executeQuery();
+				rs.next();
+				String street = rs.getString("street");
+				String city = rs.getString("city");
+				String state = rs.getString("state");
+				String zip = rs.getString("zip");
+				String country = rs.getString("country");
 				rs.close();
 				ps.close();
 				conn.close();
+				Address address = new Address(street, city, state, zip, country);
+				Person person = new Person(personCode, firstName, lastName);
+				person.setAddress(address);
+				ps = conn.prepareStatement(getEmails);
+				ps.setInt(1, personID);
+				rs = ps.executeQuery();
+				List<String> emails = new ArrayList<String>();
+				while(rs.next()){
+					String emailAddress = rs.getString("emailAddress");
+					person.addEmail(emailAddress);
+				}
+				rs.close();
+				ps.close();
+				conn.close();
+				return person;
+				
 		}catch (SQLException e)
 		{
 			System.out.println("SQLException: ");
@@ -994,8 +1022,9 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 		
-		Address address = new Address();
+		
+		
 	}
-		*/
+		
 		
 }
