@@ -1114,4 +1114,70 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}	
+	/**
+	 * Adds static values to database
+	 * 
+	 */
+	public static void addStaticValues() {
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		try {	
+			/*
+			//add static values to ServiceTypes
+			//TO
+			String addStaticValuesToDatabase = "INSERT INTO `TicketTypes` (`ticketType`) VALUES (?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "TO");
+			ps.executeUpdate();
+			//TA
+			addStaticValuesToDatabase = "INSERT INTO `TicketTypes` (`ticketType`) VALUES (?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "TA");
+			ps.executeUpdate();			
+			//TS
+			addStaticValuesToDatabase = "INSERT INTO `TicketTypes` (`ticketType`) VALUES (?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "TS");
+			ps.executeUpdate();
+			*/
+			//add static values to ServiceTypes
+			//Refreshments
+			String addStaticValuesToDatabase = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES (?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "Refreshments");
+			ps.executeUpdate();
+			//Checked Baggage
+			addStaticValuesToDatabase = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES (?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "CheckedBaggage");
+			ps.executeUpdate();
+			//Insurance
+			addStaticValuesToDatabase = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES (?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "Insurance");
+			ps.executeUpdate();
+			//Special Assistance
+			addStaticValuesToDatabase = "INSERT INTO `ServiceTypes` (`serviceType`) VALUES (?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "Special Assistance");
+			ps.executeUpdate();
+			
+			
+			
+			addStaticValuesToDatabase = "INSERT INTO `Persons` (personCode, firstName, lastName) VALUES(?,?,?)";
+			ps = conn.prepareStatement(addStaticValuesToDatabase);
+			ps.setString(1, "online");
+			ps.setString(2, "online");
+			ps.setString(3, "online");
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
 }
