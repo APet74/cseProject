@@ -591,18 +591,9 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		DatabaseImportSystem.uploadAirports(airportArray);
 		DatabaseImportSystem.uploadPersons(personArray);
  		DatabaseImportSystem.uploadCustomers(customerArray);
- 		//DatabaseImportSystem.uploadProducts(productArray);
+ 		DatabaseImportSystem.uploadProducts(productArray);
 		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
 		//DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
-		
- 		/*
- 		 * 
- 		 */
-		personArray = null;
-		//get objects from database
-		personArray = DatabaseImportSystem.downloadPersons();
-		XMLOut.toXML(personArray);
-
  		
  		/*
  		customerArray = null;
