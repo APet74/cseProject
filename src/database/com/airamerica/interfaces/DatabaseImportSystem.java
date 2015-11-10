@@ -68,7 +68,8 @@ public class DatabaseImportSystem {
 	public static void uploadProducts(ArrayList<Product> productArray){
 		//From products object to database
 		
-		DateFormat formatter = new SimpleDateFormat("HH:mm");
+		DateFormat timeOfDay = new SimpleDateFormat("HH:mm");
+		DateFormat yearMonthDay = new SimpleDateFormat("yyyy-MM-dd");
 		
 		//have to sort between product types
 		  //Ticket  Award, OffSeason, Standard
@@ -77,14 +78,14 @@ public class DatabaseImportSystem {
 			if(p instanceof AwardTicket){
 				AwardTicket t = (AwardTicket) p;
 				InvoiceData.addAwardsTicket(t.getCode(), t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), 
-						formatter.format(t.getFlightTime("departing")), formatter.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), 
+						timeOfDay.format(t.getFlightTime("departing")), timeOfDay.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), 
 						t.getPointsPerMile());
 				
 			} else if (p instanceof OffSeasonTicket){
 				OffSeasonTicket t = (OffSeasonTicket) p;
-				InvoiceData.addOffSeasonTicket(t.getCode(), t.getSeasonStartDate().toString(), t.getSesaonEndDate().toString(), 
-						t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), formatter.format(t.getFlightTime("departing")), 
-						formatter.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), t.getRebate());
+				InvoiceData.addOffSeasonTicket(t.getCode(), yearMonthDay.format(t.getSeasonStartDate()), yearMonthDay.format(t.getSesaonEndDate()), 
+						t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), timeOfDay.format(t.getFlightTime("departing")), 
+						timeOfDay.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), t.getRebate());
 				
 			} else if (p instanceof StandardTicket){
 				/*
@@ -94,7 +95,7 @@ public class DatabaseImportSystem {
 				 */
 				StandardTicket t = (StandardTicket) p;
 				InvoiceData.addStandardTicket(t.getCode(), t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), 
-						formatter.format(t.getFlightTime("departing")), formatter.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType());
+						timeOfDay.format(t.getFlightTime("departing")), timeOfDay.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType());
 				
 			} else if (p instanceof CheckedBaggage){
 				/*
@@ -135,10 +136,12 @@ public class DatabaseImportSystem {
 		for (Invoice i: invoiceArray){
 			InvoiceData.addInvoice(i.getInvoiceCode(), i.getCustomer().getCode(), i.getSalesperson(), i.getSaleDate().toString());
 			
+			DateFormat yearMonthDay = new SimpleDateFormat("yyyy-MM-dd");
+			
 			//add every ticket to the invoice
 			for (int k = 0; k < i.getTicketCodes().size(); k++){
 				//add ticket at k
-				InvoiceData.addTicketToInvoice(i.getInvoiceCode(), i.getTicketCodes(k), i.getFlightDates(k).toString(), i.getComment(k));
+				InvoiceData.addTicketToInvoice(i.getInvoiceCode(), i.getTicketCodes(k), yearMonthDay.format(i.getFlightDates(k)), i.getComment(k));
 				
 				//add ticketholder at k
 				for(int l = 0; l < i.getTicketHolder(k).getSeatNum().size(); l++){
