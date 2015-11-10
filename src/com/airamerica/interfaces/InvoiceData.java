@@ -374,7 +374,7 @@ public class InvoiceData {
 				rs.close();
 				ps = conn.prepareStatement(insertTicketType);
 				ps.executeUpdate();
-				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS')";
+				String addTicketQuery = "INSERT INTO `Tickets` (`ticketCode`,`depAirportCode`,`arrAirportCode`,`depTime`,`arrTime`,`flightNo`,`flightClass`,`aircraftType`,`ticketType`) VALUES (?,?,?,?,?,?,?,?,(SELECT `ticketType_ID` FROM `TicketTypes` WHERE `ticketType` = 'TS'))";
 				ps.close();
 				ps = conn.prepareStatement(addTicketQuery);
 				ps.setString(1, productCode);
