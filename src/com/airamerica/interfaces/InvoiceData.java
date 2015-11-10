@@ -23,6 +23,7 @@ import java.util.List;
 
 import com.airamerica.Address;
 import com.airamerica.Airport;
+import com.airamerica.Customer;
 import com.airamerica.Person;
 
 
@@ -1071,5 +1072,46 @@ public class InvoiceData {
 		}
 	}
 		
-		
+	public static Customer getCustomerObject(String customerCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getCustomerInfo = "SELECT * FROM Customers WHERE customerCode = ?";
+				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
+				ps = conn.prepareStatement(getCustomerInfo);
+				ps.setString(1, customerCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int customerID = rs.getInt("customer_ID");
+				int personID = rs.getInt("person_ID");
+				String name = rs.getString("customerName");
+				String custType = rs.getString("customerType");
+				int airlineMiles = rs.getInt("airlineMiles");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getPerson);
+				ps.setInt(1, personID);
+				rs = ps.executeQuery();
+				rs.next();
+				String personCode = rs.getString("personCode");
+				rs.close();
+				ps.close();
+				conn.close();
+				Person person = GetPersonObject(personCode);
+				Customer customer = new Customer(customerCode, custType, person, name);
+				if (airlineMiles != 0) {
+					customer.setAirlineMiles(airlineMiles);					
+				}
+				conn.close();
+				return customer;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}	
 }
