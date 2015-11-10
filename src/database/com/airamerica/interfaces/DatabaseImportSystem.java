@@ -124,12 +124,12 @@ public class DatabaseImportSystem {
 			InvoiceData.addInvoice(i.getInvoiceCode(), i.getCustomer().getCode(), i.getSalesperson(), i.getSaleDate().toString());
 			
 			//add every ticket to the invoice
-			for (int k = 0; k < i.getTicketCodes().size(); k){
+			for (int k = 0; k < i.getTicketCodes().size(); k++){
 				//add ticket at k
 				InvoiceData.addTicketToInvoice(i.getInvoiceCode(), i.getTicketCodes(k), i.getFlightDates(k).toString(), i.getComment(k));
 				
 				//add ticketholder at k
-				for(int l = 0; l < i.getTicketHolder(k).getSeatNum().size(); l){
+				for(int l = 0; l < i.getTicketHolder(k).getSeatNum().size(); l++){
 					InvoiceData.addPassengerInformation(i.getInvoiceCode(), i.getTicketCodes(k), 
 							i.getTicketHolder(k).getPerson(l), i.getTicketHolder(k).getId(l),
 							i.getTicketHolder(k).getAge(l), i.getTicketHolder(k).getNationality(l),
@@ -140,4 +140,5 @@ public class DatabaseImportSystem {
 			}
 			
 		}
+ 	}
 }

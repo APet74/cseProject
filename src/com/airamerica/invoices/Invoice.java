@@ -34,7 +34,9 @@ public class Invoice {
 	public String getTicketCodes(int index) {
 		return ticketCodes.get(index);
 	}
-
+	public ArrayList<String> getTicketCodes() {
+		return ticketCodes;
+	}
 	public void setTicketCodes(ArrayList<String> ticketCodes) {
 		this.ticketCodes = ticketCodes;
 	}
@@ -99,7 +101,9 @@ public class Invoice {
 	public ArrayList<TicketHolder> getTicketHolder(){
 		return this.ticketHolder;
 	}
-	
+	public TicketHolder getTicketHolder(int index){
+		return this.ticketHolder.get(index);
+	}	
 	public String getTicketHolderName(int index, int indexB, ArrayList<Person> personArray) {
 		return ticketHolder.get(index).getName(indexB, personArray);
 	}

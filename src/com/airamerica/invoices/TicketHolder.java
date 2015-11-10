@@ -30,17 +30,26 @@ public TicketHolder(){
 public ArrayList<String> getPerson() {
 	return person;
 }
+public String getPerson(int index){
+	return person.get(index);
+}
 public void addPerson(String person) {
 	this.person.add(person);
 }
 public ArrayList<String> getSeatNum() {
 	return seatNum;
 }
+public String getSeat(int index) {
+	return seatNum.get(index);
+}
 public void addSeatNum(String seatNum) {
 	this.seatNum.add(seatNum);
 }
 public ArrayList<String> getId() {
 	return id;
+}
+public String getId(int index) {
+	return id.get(index);
 }
 public void addId(String id) {
 	this.id.add(id);
@@ -49,7 +58,7 @@ public ArrayList<Integer> getAge() {
 	return age;
 }
 
-public int getAgeOfTicketHolder(int index){
+public int getAge(int index){
 	return this.age.get(index);
 }
 
@@ -61,6 +70,9 @@ public void addAge(Integer age) {
 }
 public ArrayList<String> getNationality() {
 	return nationality;
+}
+public String getNationality(int index){
+	return nationality.get(index);
 }
 public void addNationality(String nationality) {
 	this.nationality.add(nationality);
