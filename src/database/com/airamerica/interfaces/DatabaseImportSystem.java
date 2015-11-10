@@ -151,12 +151,10 @@ public class DatabaseImportSystem {
  	/*
  	 * download data from database
  	 */
- 	public ArrayList<Airport> downloadAirports(){
+ 	public static ArrayList<Airport> downloadAirports(){
  		ArrayList<Airport> airportArray = new ArrayList<Airport>();
  		
- 		List<String> airportCodes = new ArrayList<String>();
- 				
- 		airportCodes = InvoiceData.getAirportCodes();
+ 		List<String> airportCodes = InvoiceData.getAirports();
  		
  		for(String s: airportCodes){
  			airportArray.add(InvoiceData.GetAirportObject(s));
@@ -164,5 +162,17 @@ public class DatabaseImportSystem {
  		
  		return airportArray;
  	}
-
+/*
+ 	public static ArrayList<Person> downloadPersons(){
+ 		ArrayList<Person> personArray = new ArrayList<Person>();
+ 		
+ 		List<String> personCodes = InvoiceData.getPersonCodes();
+ 		
+ 		for(String s: personCodes){
+ 			
+ 		}
+ 		
+ 		return personArray;
+ 	}
+*/
 }
