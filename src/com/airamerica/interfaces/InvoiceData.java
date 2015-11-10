@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.airamerica.Address;
+import com.airamerica.Airport;
 import com.airamerica.Person;
 
 
@@ -1021,9 +1022,53 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		
-		
-		
+	}
+	public static Airport GetAirportObject(String airportCode){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getAirportInfo = "SELECT * FROM Airports WHERE airportCode = ?";
+				String getAddress = "SELECT * FROM Addresses WHERE address_ID = ?";
+				ps = conn.prepareStatement(getAirportInfo);
+				ps.setString(1, airportCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int airportID = rs.getInt("airport_ID");
+				int addressID = rs.getInt("address_ID");
+				String name = rs.getString("name");
+				int latDeg = rs.getInt("latDegrees");
+				int latMin = rs.getInt("latMinutes");
+				int longDegrees = rs.getInt("longDegrees");
+				int longMinutes = rs.getInt("longMinutes");
+				float pasFacilityFee = rs.getFloat("pasFacilityFee");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getAddress);
+				ps.setInt(1, addressID);
+				rs = ps.executeQuery();
+				rs.next();
+				String street = rs.getString("street");
+				String city = rs.getString("city");
+				String state = rs.getString("state");
+				String zip = rs.getString("zip");
+				String country = rs.getString("country");
+				rs.close();
+				ps.close();
+				conn.close();
+				Address address = new Address(street, city, state, zip, country);
+				Airport airport = new Airport(airportCode, name, latDeg, latMin, longDegrees, longMinutes, pasFacilityFee);
+				airport.setAddress(address);
+				conn.close();
+				return airport;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 		
 		
