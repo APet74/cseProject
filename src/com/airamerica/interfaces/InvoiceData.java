@@ -31,6 +31,7 @@ import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
+import com.airamerica.products.Refreshment;
 import com.airamerica.products.SpecialAssistance;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
@@ -1444,6 +1445,33 @@ public class InvoiceData {
 				SpecialAssistance specialA = new SpecialAssistance(code, "Special Assistance", serviceName);
 				conn.close();
 				return specialA;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static Refreshment getRefreshmentObject(String code){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Refreshment') AND serviceCode = ?";
+				ps = conn.prepareStatement(getServiceInfo);
+				ps.setString(1, code);
+				rs = ps.executeQuery();
+				rs.next();
+				String serviceName = rs.getString("serviceName");
+				float cost = rs.getFloat("costPerUnit");
+				rs.close();
+				ps.close();
+				conn.close();
+				Refreshment refreshment = new Refreshment(code, "Refreshment", serviceName, cost);
+				conn.close();
+				return refreshment;
 				
 		}catch (SQLException e)
 		{
