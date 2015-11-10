@@ -120,6 +120,8 @@ public class InvoiceData {
 			ps.setString(1, personCode);
 			ps.setString(2, firstName);
 			ps.setString(3, lastName);
+			firstName = firstName.replace("&apos;", "'");
+			lastName = lastName.replace("&apos;", "'");
 			ps.setString(4, street);
 			ps.setString(5, city);
 			ps.setString(6, state);
@@ -820,16 +822,16 @@ public class InvoiceData {
 	 * additional details
 	 */
 	public static void addTicketToInvoice(String invoiceCode, String productCode, 
-			String travelDate, String ticketNote) {
+			String travelDate, String comment) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `Invoices_Tickets_map` (`invoice_ID`,`ticket_ID`,`ticketNote`,`flightDate`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?),?,?)";
+				String addTicketToInvoiceQuery = "INSERT INTO `Invoices_Tickets_map` (`invoice_ID`,`ticket_ID`,`comment`,`flightDate`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?),?,?)";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
-				ps.setString(3, ticketNote);
+				ps.setString(3, comment);
 				ps.setString(4, travelDate);
 				ps.executeUpdate();
 				ps.close();
