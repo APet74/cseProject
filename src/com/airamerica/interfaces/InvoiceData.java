@@ -1866,7 +1866,7 @@ public class InvoiceData {
 				t1.addSeatNum(seatNum);
 				ps1 = conn.prepareStatement(getPersonCode);
 				ps1.setInt(1, personID);
-				rs1 = ps.executeQuery();
+				rs1 = ps1.executeQuery();
 				rs1.next();
 				String personCode = rs1.getString("personCode");
 				t1.addPerson(personCode);
