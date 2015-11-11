@@ -1832,7 +1832,7 @@ public class InvoiceData {
 				String nationality = rs.getString("nationality");
 				String identification = rs.getString("identification");
 				String seatNum = rs.getString("seatNumber");
-				TicketHolder t1 = null;
+				TicketHolder t1 = new TicketHolder();
 				t1.addAge(age);
 				t1.addId(identification);
 				t1.addNationality(nationality);

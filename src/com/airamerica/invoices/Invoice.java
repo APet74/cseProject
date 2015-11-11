@@ -2,6 +2,7 @@ package com.airamerica.invoices;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.airamerica.Customer;
 import com.airamerica.Person;
@@ -114,6 +115,9 @@ public class Invoice {
 
 	public void newTicketHolder(){
 		this.ticketHolder.add(new TicketHolder());
+	}
+	public void addTicketHolders(List<TicketHolder> ticketHolder){
+		this.ticketHolder.addAll(ticketHolder);
 	}
 	
 	public void addTicketHolderInformation(int index, String seatNumber, String personCode, String id, Integer age, String nationality) {
