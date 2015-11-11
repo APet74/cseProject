@@ -270,7 +270,6 @@ public class DatabaseImportSystem {
  			//add all ticketholders from tickets 
  			List<Integer> tickets = InvoiceData.getTicketsIDs(i.getInvoiceCode());
  			for(Integer n: tickets){
- 				System.out.println(n);
  				i.addTicketHolders(InvoiceData.getTicketHolderObject(n));
  			}
  			//add all flight dates to invoice
