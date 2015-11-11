@@ -498,7 +498,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		/*
 		 * Bring data into memory
 		 */
-		
+		/*
 		//Airports
 		fileInput = "data/Airports.dat";
 		new FileReadIn();
@@ -566,17 +566,17 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
  		DatabaseImportSystem.uploadProducts(productArray);
 		DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
  		
-
+		*/
 		
-		airportArray = null;
+		ArrayList<Airport> airportArray = new ArrayList<Airport>();
 		airportArray = DatabaseImportSystem.downloadAirports();
-		personArray = null;
+		ArrayList<Person> personArray = new ArrayList<Person>();
 		personArray = DatabaseImportSystem.downloadPersons();
-		customerArray = null;
+		ArrayList<Customer> customerArray = new ArrayList<Customer>();
 		customerArray = DatabaseImportSystem.downloadCustomers();
-		productArray = null;
+		ArrayList<Product> productArray = new ArrayList<Product>();
 		productArray = DatabaseImportSystem.downloadProducts();
-		invoiceArray = null;
+		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
 		invoiceArray = DatabaseImportSystem.downloadInvoices();
 		
 		
