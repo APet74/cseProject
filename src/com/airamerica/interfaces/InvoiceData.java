@@ -910,17 +910,16 @@ public class InvoiceData {
 	 * number of quantity.
 	 */
 	public static void addCheckedBaggageToInvoice(String invoiceCode, String productCode, 
-			int quantity, String ticketCode) {
+			int quantity) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT ticket_ID FROM Tickets WHERE ticketCode = ?))";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?))";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
 				ps.setInt(3, quantity);
-				ps.setString(4, ticketCode);
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
@@ -943,7 +942,7 @@ public class InvoiceData {
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `PersonCode` = ?))";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`personCode`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `PersonCode` = ?))";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
