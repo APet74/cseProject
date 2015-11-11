@@ -1238,7 +1238,31 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	public static int getServiceID(String invoiceCode){
+	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+	 	PreparedStatement ps;
+	 	ResultSet rs;
+		int id = 0;
+	 	try
+	 	{
+	 	String getService = "SELECT `service_ID` FROM Services WHERE `service_ID` = ?";
+	 	ps = conn.prepareStatement(getService);
+		ps.setString(1, invoiceCode);
+	 	rs = ps.executeQuery();
+	 	rs.next();
+	 	id = rs.getInt("service_ID");
+	 	rs.close();
+	 	ps.close();
+	 	conn.close();
+	 	return id;
+	 	}catch (SQLException e)
+	 	{
+	 	System.out.println("SQLException: ");
+	 	e.printStackTrace();
+	 	throw new RuntimeException(e);
+	 	}
+	 }
+
 	public static List<String> getStandardTickets(){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
