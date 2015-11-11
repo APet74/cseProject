@@ -1890,6 +1890,7 @@ public class InvoiceData {
 				invoice.setCustomer(customer);
 				invoice.setSaleDate(saleDate);
 				invoice.setSalesperson(personCode);
+				invoice.setInvoiceCode(invoiceCode);
 				
 				conn.close();
 				return invoice;
