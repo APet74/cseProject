@@ -18,7 +18,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -52,7 +51,7 @@ public class InvoiceData {
 	 */
 	public static void removeAllPersons() {
 		
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		String removePersonsQuery = "DELETE FROM `Persons`";
 		try
@@ -74,7 +73,7 @@ public class InvoiceData {
 	 * Method to add a person record to the database with the provided data. 
 	 */
 	public static void removeAllAddresses() {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		String removeADdressesQuery = "DELETE FROM `Addresses`";
 		try{
@@ -92,7 +91,7 @@ public class InvoiceData {
 	public static void addPerson(String personCode, String firstName, String lastName, 
 			String phoneNo, String street, String city, String state, 
 			String zip, String country) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String addAddressQuery = "INSERT INTO `Addresses` (`street`,`city`,`state`,`zip`,`country`) VALUES (?,?,?,?,?)";
@@ -147,7 +146,7 @@ public class InvoiceData {
 	 * Method that removes every airport record from the database
 	 */
 	public static void removeAllAirports() {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String getAddressID = "SELECT `address_ID` FROM `Airports`";
@@ -183,7 +182,7 @@ public class InvoiceData {
 			String city, String state, String zip, String country, 
 			int latdegs, int latmins, int londegs, int lonmins, 
 			double passengerFacilityFee) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String addAddressQuery = "INSERT INTO `Addresses` (`street`,`city`,`state`,`zip`,`country`) VALUES (?,?,?,?,?)";
@@ -240,7 +239,7 @@ public class InvoiceData {
 	 * provided <code>personCode</code>
 	 */
 	public static void addEmail(String personCode, String email) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		
 		String addEmailQuery = "INSERT INTO `EmailAddresses` (`person_ID`,`emailAddress`) VALUES ((SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?)";
@@ -266,7 +265,7 @@ public class InvoiceData {
 	 * Method that removes every customer record from the database
 	 */
 	public static void removeAllCustomers() {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		
 		String removeCustomersQuery = "DELETE FROM `Customers`";
@@ -291,7 +290,7 @@ public class InvoiceData {
 	public static void addCustomer(String customerCode, String customerType, 
 			String primaryContactPersonCode, String name, 
 			int airlineMiles) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		
 		String addCustomerQuery = "INSERT INTO `Customers` (`customerCode`,`customerType`,`primaryContact_person_ID`,`customerName`,`airlineMiles`) VALUES (?,?,(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?,?)";
@@ -319,7 +318,7 @@ public class InvoiceData {
 	 * Removes all product records from the database
 	 */
 	public static void removeAllProducts() {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 
 		
@@ -359,7 +358,7 @@ public class InvoiceData {
 	public static void addStandardTicket(String productCode,String depAirportCode, 
 			String arrAirportCode, String depTime, String arrTime, 
 			String flightNum, String flightClass, String aircraftType) { 
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TS'";		
@@ -424,7 +423,7 @@ public class InvoiceData {
 			String seasonEndDate, String depAirportCode, String arrAirportCode, 
 			String depTime, String arrTime,	String flightNum, String flightClass, 
 			String aircraftType, double rebate) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TO'";		
@@ -493,7 +492,7 @@ public class InvoiceData {
 			String arrAirportCode, String depTime, String arrTime, 
 			String flightNum, String flightClass, 
 			String aircraftType, int pointsPerMile) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkTicketType = "SELECT `ticketType_ID` FROM TicketTypes WHERE `ticketType` = 'TA'";		
@@ -557,7 +556,7 @@ public class InvoiceData {
 	 * provided data.  
 	 */
 	public static void addCheckedBaggage(String productCode, String ticketCode) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Checked Baggage'";		
@@ -607,7 +606,7 @@ public class InvoiceData {
 	 */
 	public static void addInsurance(String productCode, String productName, 
 			String ageClass, double costPerMile) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Insurance'";		
@@ -660,7 +659,7 @@ public class InvoiceData {
 	 * provided data.  
 	 */
 	public static void addSpecialAssistance(String productCode, String assistanceType) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Special Assistance'";		
@@ -710,7 +709,7 @@ public class InvoiceData {
 	 * provided data.  
 	 */
 	public static void addRefreshment(String productCode, String name, double cost) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		String checkServiceType = "SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `serviceType` = 'Refreshment'";		
@@ -761,7 +760,7 @@ public class InvoiceData {
 	 * Removes all invoice records from the database
 	 */
 	public static void removeAllInvoices() {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 
 		
@@ -798,7 +797,7 @@ public class InvoiceData {
 	 */
 	public static void addInvoice(String invoiceCode, String customerCode, 
 			String salesPersonCode, String invoiceDate) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try
 		{
@@ -826,7 +825,7 @@ public class InvoiceData {
 	 */
 	public static void addTicketToInvoice(String invoiceCode, String productCode, 
 			String travelDate, String comment) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try
 		{
@@ -854,7 +853,7 @@ public class InvoiceData {
 	public static void addPassengerInformation(String invoiceCode, String productCode, 
 			String personCode, 
 			String identity, int age, String nationality, String seat){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try
 		{
@@ -885,7 +884,7 @@ public class InvoiceData {
 	 */
 	public static void addInsuranceToInvoice(String invoiceCode, String productCode, 
 			int quantity, String ticketCode) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try
 		{
@@ -914,7 +913,7 @@ public class InvoiceData {
 	 */
 	public static void addCheckedBaggageToInvoice(String invoiceCode, String productCode, 
 			int quantity) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try
 		{
@@ -941,7 +940,7 @@ public class InvoiceData {
 	 */
 	public static void addSpecialAssistanceToInvoice(String invoiceCode, String productCode, 
 			String personCode) {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try
 		{
@@ -968,7 +967,7 @@ public class InvoiceData {
 	 */
 	public static void addRefreshmentToInvoice(String invoiceCode, 
 			String productCode, int quantity) { 
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try
 		{
@@ -989,7 +988,7 @@ public class InvoiceData {
 	}
 	
 	public static Person GetPersonObject(String personCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1052,7 +1051,7 @@ public class InvoiceData {
 		}
 	}
 	public static Airport GetAirportObject(String airportCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1103,7 +1102,7 @@ public class InvoiceData {
 	 * 
 	 */
 	public static List<String> getAirports(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1133,7 +1132,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getPersons(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1161,7 +1160,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getCustomers(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1190,7 +1189,7 @@ public class InvoiceData {
 	}
 
 	public static List<String> getAwardTickets(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1218,7 +1217,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getOffSeasonTickets(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1246,7 +1245,7 @@ public class InvoiceData {
 		}
 	}
 	public static int getInvoiceID(String invoiceCode){
-	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+	 	Connection conn = DataBaseInfo.getConnection();
 	 	PreparedStatement ps;
 	 	ResultSet rs;
 		int id = 0;
@@ -1271,7 +1270,7 @@ public class InvoiceData {
 	 }
 
 	public static List<String> getStandardTickets(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1299,7 +1298,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getCheckedBaggage(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1327,7 +1326,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getInsurance(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1355,7 +1354,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getRefreshments(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1383,7 +1382,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getSpecialAssistance(){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1411,7 +1410,7 @@ public class InvoiceData {
 		}
 	}
 	public static List<String> getInvoices(){
-	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+	 	Connection conn = DataBaseInfo.getConnection();
 	 	PreparedStatement ps;
 	 	ResultSet rs;
 	 	 
@@ -1439,7 +1438,7 @@ public class InvoiceData {
 	 	}
 	 }
 	public static List<Integer> getTicketsIDs(String invoiceCode){
-	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+	 	Connection conn = DataBaseInfo.getConnection();
 	 	PreparedStatement ps;
 	 	ResultSet rs;
 	 	 
@@ -1471,7 +1470,7 @@ public class InvoiceData {
 	public static Customer getCustomerObject(String customerCode){
 
 		
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1514,7 +1513,7 @@ public class InvoiceData {
 	}	
 
 	public static Ticket getTicket(String ticketCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		
@@ -1549,7 +1548,7 @@ public class InvoiceData {
 		}
 	}
 	public static AwardTicket getAwardTicketObject(String ticketCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1605,7 +1604,7 @@ public class InvoiceData {
 		}
 	}
 	public static StandardTicket getStandardTicketObject(String ticketCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1660,7 +1659,7 @@ public class InvoiceData {
 		}
 	}
 	public static OffSeasonTicket getOffseasonTicketObject(String ticketCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1718,7 +1717,7 @@ public class InvoiceData {
 		}
 	}
 	public static Insurance getInsuranceObject(String code){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1748,7 +1747,7 @@ public class InvoiceData {
 		}
 	}
 	public static CheckedBaggage getCheckedBaggageObject(String code){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1784,7 +1783,7 @@ public class InvoiceData {
 	}
 	
 	public static SpecialAssistance getSpecialAssistanceObject(String code){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1810,7 +1809,7 @@ public class InvoiceData {
 		}
 	}
 	public static Refreshment getRefreshmentObject(String code){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
@@ -1838,7 +1837,7 @@ public class InvoiceData {
 	}
 
 	public static List<TicketHolder> getTicketHolderObject(int ticket_ID, String invoiceCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps, ps1;
 		ResultSet rs, rs1;
 		
@@ -1896,7 +1895,7 @@ public class InvoiceData {
 	}	
 	
 	public static List<TicketService> getTicketServiceObject(int invoice_ID){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs, rs1;
 		
@@ -1966,7 +1965,7 @@ public class InvoiceData {
 	}	
 	
 	public static Invoice getInvoiceObject(String invoiceCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs, rs1;
 		try
@@ -2045,7 +2044,7 @@ public class InvoiceData {
 	 * 
 	 */
 	public static void addStaticValues() {
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		try {	
 			
