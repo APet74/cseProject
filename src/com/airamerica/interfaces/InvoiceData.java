@@ -28,6 +28,7 @@ import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.invoices.Invoice;
+import com.airamerica.invoices.TicketHolder;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
@@ -1405,7 +1406,35 @@ public class InvoiceData {
 	 	throw new RuntimeException(e);
 	 	}
 	 }
-	 
+	public static List<String> getTicketsIDs(String invoiceCode){
+	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+	 	PreparedStatement ps;
+	 	ResultSet rs;
+	 	 
+	 	List<String> tickets = new ArrayList<String>();
+	 	 
+	 	try
+	 	{
+	 	String getTickets = "SELECT `ticket_ID` FROM Invoices_Tickets_map WHERE `invoice_ID` = (SELECT `invoice_ID` FROM Invoices WHERE `invoiceCode` = ?)";
+	 	ps = conn.prepareStatement(getTickets);
+		ps.setString(1, invoiceCode);
+	 	rs = ps.executeQuery();
+	 	 
+	 	while(rs.next()){
+	 	tickets.add(rs.getString("`ticket_ID`"));
+	 	}
+
+	 	rs.close();
+	 	ps.close();
+	 	conn.close();
+	 	return tickets;
+	 	}catch (SQLException e)
+	 	{
+	 	System.out.println("SQLException: ");
+	 	e.printStackTrace();
+	 	throw new RuntimeException(e);
+	 	}
+	 }
 	public static Customer getCustomerObject(String customerCode){
 
 		
@@ -1774,42 +1803,46 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	/*
-	public static TicketHolder getTicketHolderObject(String invoiceCode){
+
+	public static List<TicketHolder> getTicketHolderObject(int ticket_ID){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
+		
+		List<TicketHolder> ticketHolder = new ArrayList<TicketHolder>();
+		
 		try
 		{
-				String getCustomerInfo = "SELECT * FROM TicketHolders WHERE customerCode = ?";
-				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
-				ps = conn.prepareStatement(getCustomerInfo);
-				ps.setString(1, customerCode);
-				rs = ps.executeQuery();
-				rs.next();
-				int customerID = rs.getInt("customer_ID");
-				int personID = rs.getInt("person_ID");
-				String name = rs.getString("customerName");
-				String custType = rs.getString("customerType");
-				int airlineMiles = rs.getInt("airlineMiles");
-				rs.close();
-				ps.close();
-				ps = conn.prepareStatement(getPerson);
-				ps.setInt(1, personID);
-				rs = ps.executeQuery();
-				rs.next();
-				String personCode = rs.getString("personCode");
-				rs.close();
-				ps.close();
-				conn.close();
-				Person person = GetPersonObject(personCode);
-				Customer customer = new Customer(customerCode, custType, person, name);
-				if (airlineMiles != 0) {
-					customer.setAirlineMiles(airlineMiles);					
-				}
-				conn.close();
-				return customer;
+			String getComment = "SELECT `comment` FROM Invoices_Tickets_map WHERE ticket_ID = ?";
+			String getTicketHolder = "SELECT * FROM TicketHolders WHERE ticket_ID = ?";
+			ps = conn.prepareStatement(getComment);
+			ps.setInt(1, ticket_ID);
+			rs = ps.executeQuery();
+			rs.next();
+			String comment = rs.getString("comment");
+			rs.close();
+			ps.close();
+			ps = conn.prepareStatement(getTicketHolder);
+			ps.setInt(1, ticket_ID);
+			rs = ps.executeQuery();
+			while(rs.next()){
 				
+				int age =rs.getInt("age");
+				String nationality = rs.getString("nationality");
+				String identification = rs.getString("identification");
+				String seatNum = rs.getString("seatNumber");
+				TicketHolder t1 = null;
+				t1.addAge(age);
+				t1.addId(identification);
+				t1.addNationality(nationality);
+				t1.addSeatNum(seatNum);
+				ticketHolder.add(t1);
+			}
+			
+			rs.close();
+			ps.close();
+			conn.close();
+			return ticketHolder;
 		}catch (SQLException e)
 		{
 			System.out.println("SQLException: ");
@@ -1817,7 +1850,6 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}	
-	*/
 	
 	public static Invoice getInvoiceObject(String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
