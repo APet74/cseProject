@@ -1924,13 +1924,14 @@ public class InvoiceData {
 	public static Invoice getInvoiceObject(String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		ResultSet rs;
+		ResultSet rs, rs1;
 		try
 		{
 				String getInvoice = "SELECT * FROM Invoices WHERE invoiceCode = ?";
 				String getCustomer = "SELECT customerCode FROM Customers WHERE customer_ID = ?";
 				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
-				String getAddionInfo = "SELECT * FROM Invoice_Ticket_map WHERE invoice_ID = (SELECT invoice_ID FROM Invoice WHERE invoiceCode = ?)";
+				String getAddionInfo = "SELECT * FROM Invoices_Tickets_map WHERE invoice_ID = (SELECT invoice_ID FROM Invoice WHERE invoiceCode = ?)";
+				String getTicketCode = "SELECT ticketCode FROM Tickets WHERE ticket_ID = ?";
 				ps = conn.prepareStatement(getInvoice);
 				ps.setString(1, invoiceCode);
 				rs = ps.executeQuery();
@@ -1957,14 +1958,28 @@ public class InvoiceData {
 				ps = conn.prepareStatement(getAddionInfo);
 				ps.setString(1, invoiceCode);
 				rs = ps.executeQuery();
+				Invoice invoice = new Invoice();
 				while(rs.next()){
 					Date flightDate = rs.getDate("flightDate");
 					int ticketID = rs.getInt("ticket_ID");
 					String comment = rs.getString("comment");
+					ps = conn.prepareStatement(getTicketCode);
+					ps.setInt(1, ticketID);
+					rs1 = ps.executeQuery();
+					rs1.next();
+					String ticketCode = rs1.getString("ticketCode");
+					invoice.addComment(comment);
+					invoice.addFlightDates(flightDate);
+					invoice.addTicket(ticketCode);
+					rs1.close();
+					
 				}
+				rs.close();
+				ps.close();
+				
 				conn.close();
 				Customer customer = getCustomerObject(customerCode);
-				Invoice invoice = new Invoice();
+				
 				invoice.setCustomer(customer);
 				invoice.setSaleDate(saleDate);
 				invoice.setSalesperson(personCode);
