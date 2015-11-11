@@ -556,6 +556,30 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 			//System.out.println(productArray[i].getCode());
 		}
 		
+		//clear database
+		DatabaseImportSystem.clearDatabase();
+		
+		//upload all objects to database
+		DatabaseImportSystem.uploadAirports(airportArray);
+		DatabaseImportSystem.uploadPersons(personArray);
+ 		DatabaseImportSystem.uploadCustomers(customerArray);
+ 		DatabaseImportSystem.uploadProducts(productArray);
+		DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
+ 		
+
+		
+		airportArray = null;
+		airportArray = DatabaseImportSystem.downloadAirports();
+		personArray = null;
+		personArray = DatabaseImportSystem.downloadPersons();
+		customerArray = null;
+		customerArray = DatabaseImportSystem.downloadCustomers();
+		productArray = null;
+		productArray = DatabaseImportSystem.downloadProducts();
+		invoiceArray = null;
+		invoiceArray = DatabaseImportSystem.downloadInvoices();
+		
+		
 		
 		//XMLOut.toXML(personArray);
 		//XMLOut.toXML(customerArray);
@@ -584,20 +608,6 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		System.out.println("======================================================================================================================");
 		System.out.println("\n\n");
 		
-		//clear database
-		DatabaseImportSystem.clearDatabase();
-		
-		//upload all objects to database
-		DatabaseImportSystem.uploadAirports(airportArray);
-		DatabaseImportSystem.uploadPersons(personArray);
- 		DatabaseImportSystem.uploadCustomers(customerArray);
- 		DatabaseImportSystem.uploadProducts(productArray);
-		DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
- 		
-
- 		invoiceArray = null;
- 		invoiceArray = DatabaseImportSystem.downloadInvoices();
- 		XMLOut.toXML(invoiceArray);
 
 	}
 }

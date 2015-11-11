@@ -1009,21 +1009,27 @@ public class InvoiceData {
 				String phoneNumber = rs.getString("phoneNumber");
 				rs.close();
 				ps.close();
-				ps = conn.prepareStatement(getAddress);
-				ps.setInt(1, addressID);
-				rs = ps.executeQuery();
-				rs.next();
-				String street = rs.getString("street");
-				String city = rs.getString("city");
-				String state = rs.getString("state");
-				String zip = rs.getString("zip");
-				String country = rs.getString("country");
-				rs.close();
-				ps.close();
-				Address address = new Address(street, city, state, zip, country);
-				Person person = new Person(personCode, firstName, lastName);
-				person.setAddress(address);
-				person.setPhoneNumber(phoneNumber);
+				Person person;
+				
+				if (!lastName.equals("online")){
+					ps = conn.prepareStatement(getAddress);
+					ps.setInt(1, addressID);
+					rs = ps.executeQuery();
+					rs.next();
+					String street = rs.getString("street");
+					String city = rs.getString("city");
+					String state = rs.getString("state");
+					String zip = rs.getString("zip");
+					String country = rs.getString("country");
+					rs.close();
+					ps.close();
+					Address address = new Address(street, city, state, zip, country);
+					person = new Person(personCode, firstName, lastName);
+					person.setAddress(address);
+					person.setPhoneNumber(phoneNumber);
+				} else {
+					person = new Person(personCode, firstName, lastName);
+				}
 				ps = conn.prepareStatement(getEmails);
 				ps.setInt(1, personID);
 				rs = ps.executeQuery();
@@ -1238,19 +1244,19 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	public static int getServiceID(String invoiceCode){
+	public static int getInvoiceID(String invoiceCode){
 	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 	 	PreparedStatement ps;
 	 	ResultSet rs;
 		int id = 0;
 	 	try
 	 	{
-	 	String getService = "SELECT `service_ID` FROM Services WHERE `service_ID` = (SELECT service_ID FROM Invoices WHERE invoiceCode = ?)";
+	 	String getService = "SELECT `invoice_ID` FROM Invoices WHERE `invoiceCode` = ?";
 	 	ps = conn.prepareStatement(getService);
 		ps.setString(1, invoiceCode);
 	 	rs = ps.executeQuery();
 	 	rs.next();
-	 	id = rs.getInt("service_ID");
+	 	id = rs.getInt("invoice_ID");
 	 	rs.close();
 	 	ps.close();
 	 	conn.close();
@@ -1870,10 +1876,10 @@ public class InvoiceData {
 				rs1.next();
 				String personCode = rs1.getString("personCode");
 				t1.addPerson(personCode);
-				ticketHolder.add(t1);
 				rs1.close();
 				ps1.close();
 			}
+			ticketHolder.add(t1);
 			
 			rs.close();
 			ps.close();
@@ -1890,7 +1896,7 @@ public class InvoiceData {
 	public static List<TicketService> getTicketServiceObject(int invoice_ID){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
-		ResultSet rs;
+		ResultSet rs, rs1;
 		
 		List<TicketService> ticketHolder = new ArrayList<TicketService>();
 		
@@ -1903,35 +1909,46 @@ public class InvoiceData {
 			ps = conn.prepareStatement(getTicketService);
 			ps.setInt(1, invoice_ID);
 			rs = ps.executeQuery();
-			TicketService t1 = new TicketService();
+
 			while(rs.next()){
+				TicketService t1 = new TicketService();
 				int person_ID = rs.getInt("person_ID");
 				int serviceID = rs.getInt("service_ID");
 				int ticketID = rs.getInt("ticket_ID");
 				int units = rs.getInt("units");
 				
 				t1.setUnits(units);
-				ps = conn.prepareStatement(getPersoncode);
-				ps.setInt(1, person_ID);
-				rs = ps.executeQuery();
-				rs.next();
-				String PersonCode = rs.getString("personCode");
-				t1.setPersonCode(PersonCode);
-				rs.close();
-				ps.close();
-				ps = conn.prepareStatement(getTicketCode);
-				ps.setInt(1, ticketID);
-				rs = ps.executeQuery();
-				rs.next();
-				String ticketCode = rs.getString("ticketCode");
-				t1.setTicketCode(ticketCode);
+				
+				if(!(person_ID == 0)){
+					ps = conn.prepareStatement(getPersoncode);
+					ps.setInt(1, person_ID);
+					rs1 = ps.executeQuery();
+					rs1.next();
+					String PersonCode = rs1.getString("personCode");
+					t1.setPersonCode(PersonCode);
+					rs1.close();
+					ps.close();
+				}
+
+				if(!(ticketID == 0)){
+					ps = conn.prepareStatement(getTicketCode);
+					ps.setInt(1, ticketID);
+					rs1 = ps.executeQuery();
+					rs1.next();
+					String ticketCode = rs1.getString("ticketCode");
+					t1.setTicketCode(ticketCode);
+					rs1.close();
+					ps.close();
+				}
+				
 				ps = conn.prepareStatement(getServiceCode);
 				ps.setInt(1, serviceID);
-				rs = ps.executeQuery();
-				rs.next();
-				String serviceCode = rs.getString("serviceCode");
+				rs1 = ps.executeQuery();
+				rs1.next();
+				String serviceCode = rs1.getString("serviceCode");
 				t1.setServiceCode(serviceCode);
-				
+				rs1.close();
+				ticketHolder.add(t1);
 			}
 			
 			rs.close();

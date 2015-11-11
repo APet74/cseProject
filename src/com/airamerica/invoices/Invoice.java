@@ -86,8 +86,8 @@ public class Invoice {
 		return services;
 	}
 	
-	public void AddServices(ArrayList<TicketService> services) {
-		this.services = services;
+	public void AddServices(List<TicketService> list) {
+		this.services = (ArrayList<TicketService>) list;
 	}
 
 	public void addTicket(String code){

@@ -272,10 +272,9 @@ public class DatabaseImportSystem {
  			for(Integer n: tickets){
  				i.addTicketHolders(InvoiceData.getTicketHolderObject(n));
  			}
- 			//add all flight dates to invoice
- 			
- 			//add all 
- 			
+ 			//add services
+ 			//get invoice id
+ 			i.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(i.getInvoiceCode())));
  		}
  		
  		return invoiceArray;
