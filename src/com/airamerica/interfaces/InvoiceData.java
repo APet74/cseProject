@@ -884,16 +884,17 @@ public class InvoiceData {
 	 * number of quantity and associated ticket information
 	 */
 	public static void addInsuranceToInvoice(String invoiceCode, String productCode, 
-			int quantity) {
+			int quantity, String ticketCode) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?)";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT ticket_ID FROM Tickets WHERE ticketCode = ?))";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
 				ps.setInt(3, quantity);
+				ps.setString(4, ticketCode);
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
@@ -1735,7 +1736,7 @@ public class InvoiceData {
 				rs.close();
 				ps.close();
 				conn.close();
-				Insurance insurance = new Insurance(code, "Insurance", name, ageClass, costPerMile);
+				Insurance insurance = new Insurance(code, "SI", name, ageClass, costPerMile);
 				conn.close();
 				return insurance;
 				
@@ -1770,7 +1771,7 @@ public class InvoiceData {
 				ps.close();
 				conn.close();
 				Ticket t1 = getTicket(ticketCode);
-				CheckedBaggage checked = new CheckedBaggage(code, "Checked Baggage", t1);
+				CheckedBaggage checked = new CheckedBaggage(code, "SC", t1);
 				conn.close();
 				return checked;
 				
@@ -1797,7 +1798,7 @@ public class InvoiceData {
 				rs.close();
 				ps.close();
 				conn.close();
-				SpecialAssistance specialA = new SpecialAssistance(code, "Special Assistance", serviceName);
+				SpecialAssistance specialA = new SpecialAssistance(code, "SS", serviceName);
 				conn.close();
 				return specialA;
 				
@@ -1824,7 +1825,7 @@ public class InvoiceData {
 				rs.close();
 				ps.close();
 				conn.close();
-				Refreshment refreshment = new Refreshment(code, "Refreshment", serviceName, cost);
+				Refreshment refreshment = new Refreshment(code, "SR", serviceName, cost);
 				conn.close();
 				return refreshment;
 				
