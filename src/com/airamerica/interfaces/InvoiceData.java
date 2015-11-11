@@ -1837,7 +1837,7 @@ public class InvoiceData {
 		}
 	}
 
-	public static List<TicketHolder> getTicketHolderObject(int ticket_ID){
+	public static List<TicketHolder> getTicketHolderObject(int ticket_ID, String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps, ps1;
 		ResultSet rs, rs1;
@@ -1847,7 +1847,7 @@ public class InvoiceData {
 		try
 		{
 			String getComment = "SELECT `comment` FROM Invoices_Tickets_map WHERE ticket_ID = ?";
-			String getTicketHolder = "SELECT * FROM TicketHolders WHERE ticket_ID = ?";
+			String getTicketHolder = "SELECT * FROM TicketHolders WHERE ticket_ID = ? AND invoice_ID = (SELECT invoice_ID FROM Invoices WHERE invoiceCode = ?)";
 			String getPersonCode = "SELECT personCode FROM Persons WHERE person_ID = ?";
 			ps = conn.prepareStatement(getComment);
 			ps.setInt(1, ticket_ID);
@@ -1858,6 +1858,7 @@ public class InvoiceData {
 			ps.close();
 			ps = conn.prepareStatement(getTicketHolder);
 			ps.setInt(1, ticket_ID);
+			ps.setString(2, invoiceCode);
 			rs = ps.executeQuery();
 			TicketHolder t1 = new TicketHolder();
 			while(rs.next()){
