@@ -29,8 +29,12 @@
     </customer>
     <salespersonCode>nwdoc1</salespersonCode>
     <saleDate class="sql-date">2015-08-03</saleDate>
-    <ticketCodes/>
-    <flightDates/>
+    <ticketCodes>
+      <string>1255</string>
+    </ticketCodes>
+    <flightDates>
+      <sql-date>2015-09-13</sql-date>
+    </flightDates>
     <ticketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
@@ -51,7 +55,9 @@
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
     <services/>
-    <comments/>
+    <comments>
+      <string>Operated by Skywest</string>
+    </comments>
   </invoice>
   <invoice>
     <invoiceCode>INV002</invoiceCode>
@@ -80,8 +86,14 @@
     </customer>
     <salespersonCode>online</salespersonCode>
     <saleDate class="sql-date">2015-01-10</saleDate>
-    <ticketCodes/>
-    <flightDates/>
+    <ticketCodes>
+      <string>1240</string>
+      <string>1241</string>
+    </ticketCodes>
+    <flightDates>
+      <sql-date>2015-09-12</sql-date>
+      <sql-date>2015-09-22</sql-date>
+    </flightDates>
     <ticketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
@@ -119,7 +131,10 @@
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
     <services/>
-    <comments/>
+    <comments>
+      <string>None</string>
+      <string>None</string>
+    </comments>
   </invoice>
   <invoice>
     <invoiceCode>INV003</invoiceCode>
@@ -148,8 +163,12 @@
     </customer>
     <salespersonCode>2ndbestd</salespersonCode>
     <saleDate class="sql-date">2015-09-10</saleDate>
-    <ticketCodes/>
-    <flightDates/>
+    <ticketCodes>
+      <string>1240</string>
+    </ticketCodes>
+    <flightDates>
+      <sql-date>2015-12-17</sql-date>
+    </flightDates>
     <ticketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
@@ -170,7 +189,9 @@
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
     <services/>
-    <comments/>
+    <comments>
+      <string>CareNeeded</string>
+    </comments>
   </invoice>
   <invoice>
     <invoiceCode>INV004</invoiceCode>
@@ -199,8 +220,14 @@
     </customer>
     <salespersonCode>6doc</salespersonCode>
     <saleDate class="sql-date">2015-10-16</saleDate>
-    <ticketCodes/>
-    <flightDates/>
+    <ticketCodes>
+      <string>1260</string>
+      <string>1262</string>
+    </ticketCodes>
+    <flightDates>
+      <sql-date>2016-01-08</sql-date>
+      <sql-date>2016-03-28</sql-date>
+    </flightDates>
     <ticketHolder>
       <com.airamerica.invoices.TicketHolder>
         <seatNum>
@@ -237,7 +264,10 @@
         </nationality>
       </com.airamerica.invoices.TicketHolder>
     </ticketHolder>
-    <services></services>
-    <comments/>
+    <services/>
+    <comments>
+      <string>Operated by Southwest</string>
+      <string>None</string>
+    </comments>
   </invoice>
 </list></invoices>
