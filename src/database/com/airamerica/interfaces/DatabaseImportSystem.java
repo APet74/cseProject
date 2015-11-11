@@ -152,8 +152,11 @@ public class DatabaseImportSystem {
 							i.getTicketHolder(k).getAge(l), i.getTicketHolder(k).getNationality(l),
 							i.getTicketHolder(k).getSeat(l));
 				}
-				
-				//add ticketservice at k
+			}
+			
+			//add ticketservice at k
+			for(int l = 0; l < i.getServices().size(); l++){
+				InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());
 			}
 			
 		}
@@ -245,4 +248,19 @@ public class DatabaseImportSystem {
  		
  		return productArray;
  	}
+ 	/*
+ 	public static ArrayList<Invoice> downloadInvoices(){
+ 		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
+ 		
+ 		List<String> invoices= InvoiceData.getServices();
+
+ 		for(String s: invoices){
+ 			invoiceArray.add(InvoiceData.getInvoiceObject(s));
+ 		}
+ 		
+ 		//for every invoice array 
+ 		
+ 		return invoiceArray;
+ 	}
+ 	*/
 }
