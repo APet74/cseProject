@@ -1829,11 +1829,8 @@ public class InvoiceData {
 			ps.setInt(1, ticket_ID);
 			rs = ps.executeQuery();
 			TicketHolder t1 = new TicketHolder();
-			int i = 0;
 			while(rs.next()){
-				i++;
-				System.out.println(i);
-				int age =rs.getInt("age");
+				int age = rs.getInt("age");
 				String nationality = rs.getString("nationality");
 				String identification = rs.getString("identification");
 				String seatNum = rs.getString("seatNumber");
@@ -1850,6 +1847,7 @@ public class InvoiceData {
 				String personCode = rs.getString("personCode");
 				t1.addPerson(personCode);
 				ticketHolder.add(t1);
+				rs.next();
 			}
 			
 			rs.close();
