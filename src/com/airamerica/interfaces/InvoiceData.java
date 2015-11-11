@@ -27,6 +27,7 @@ import com.airamerica.Address;
 import com.airamerica.Airport;
 import com.airamerica.Customer;
 import com.airamerica.Person;
+import com.airamerica.invoices.Invoice;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
@@ -886,7 +887,7 @@ public class InvoiceData {
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?))";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?))";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
@@ -1377,7 +1378,35 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	public static List<String> getInvoices(){
+	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+	 	PreparedStatement ps;
+	 	ResultSet rs;
+	 	 
+	 	List<String> invoices = new ArrayList<String>();
+	 	 
+	 	try
+	 	{
+	 	String getInvoices = "SELECT `invoiceCode` FROM Invoices";
+	 	ps = conn.prepareStatement(getInvoices);
+	 	rs = ps.executeQuery();
+	 	 
+	 	while(rs.next()){
+	 	invoices.add(rs.getString("invoiceCode"));
+	 	}
+
+	 	rs.close();
+	 	ps.close();
+	 	conn.close();
+	 	return invoices;
+	 	}catch (SQLException e)
+	 	{
+	 	System.out.println("SQLException: ");
+	 	e.printStackTrace();
+	 	throw new RuntimeException(e);
+	 	}
+	 }
+	 
 	public static Customer getCustomerObject(String customerCode){
 
 		
@@ -1791,40 +1820,47 @@ public class InvoiceData {
 	}	
 	*/
 	
-	/*public static Invoice getInvoiceObject(String invoiceCode){
+	public static Invoice getInvoiceObject(String invoiceCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
 		try
 		{
-				String getCustomerInfo = "SELECT * FROM Customers WHERE invoiceCode = ?";
+				String getInvoice = "SELECT * FROM Invoices WHERE invoiceCode = ?";
+				String getCustomer = "SELECT customerCode FROM Customers WHERE customer_ID = ?";
 				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
-				ps = conn.prepareStatement(getCustomerInfo);
-				ps.setString(1, customerCode);
+				ps = conn.prepareStatement(getInvoice);
+				ps.setString(1, invoiceCode);
 				rs = ps.executeQuery();
 				rs.next();
 				int customerID = rs.getInt("customer_ID");
-				int personID = rs.getInt("person_ID");
-				String name = rs.getString("customerName");
-				String custType = rs.getString("customerType");
-				int airlineMiles = rs.getInt("airlineMiles");
+				int salesPerson = rs.getInt("salesperson");
+				Date saleDate = rs.getDate("saleDate");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getCustomer);
+				ps.setInt(1, customerID);
+				rs = ps.executeQuery();
+				rs.next();
+				String customerCode = rs.getString("customerCode");
 				rs.close();
 				ps.close();
 				ps = conn.prepareStatement(getPerson);
-				ps.setInt(1, personID);
+				ps.setInt(1, salesPerson);
 				rs = ps.executeQuery();
 				rs.next();
 				String personCode = rs.getString("personCode");
 				rs.close();
 				ps.close();
 				conn.close();
-				Person person = GetPersonObject(personCode);
-				Customer customer = new Customer(customerCode, custType, person, name);
-				if (airlineMiles != 0) {
-					customer.setAirlineMiles(airlineMiles);					
-				}
+				Customer customer = getCustomerObject(customerCode);
+				Invoice invoice = new Invoice();
+				invoice.setCustomer(customer);
+				invoice.setSaleDate(saleDate);
+				invoice.setSalesperson(personCode);
+				
 				conn.close();
-				return customer;
+				return invoice;
 				
 		}catch (SQLException e)
 		{
@@ -1833,7 +1869,7 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}	
-	*/
+	
 	/**
 	 * Adds static values to database
 	 * 

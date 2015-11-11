@@ -57,6 +57,9 @@ public class Invoice {
 		return customer;
 	}
 	
+	public void setCustomer(Customer customer){
+		this.customer = customer;
+	}
 	public void setCustomer(String customerCode, ArrayList<Customer> list) {
 		this.customer = (Customer) FindObject.find(customerCode, list);
 	}
