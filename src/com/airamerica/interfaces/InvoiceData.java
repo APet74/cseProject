@@ -615,7 +615,7 @@ public class InvoiceData {
 			ps = conn.prepareStatement(checkServiceType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerunits`,`age`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Insurance'),?,?,?,?)";
+				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerUnit`,`age`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Insurance'),?,?,?,?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addServiceQuery);
@@ -631,7 +631,7 @@ public class InvoiceData {
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
 				ps.executeUpdate();
-				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerunits`,`age`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Insurance'),?,?,?,?)";
+				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerUnit`,`age`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Insurance'),?,?,?,?)";
 				ps.close();
 				ps = conn.prepareStatement(addServiceQuery);
 				ps.setString(1, productCode);
@@ -718,7 +718,7 @@ public class InvoiceData {
 			ps = conn.prepareStatement(checkServiceType);
 			rs = ps.executeQuery();
 			if(rs.next()){
-				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerunits`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Refreshment'),?,?,?)";
+				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerUnit`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Refreshment'),?,?,?)";
 				ps.close();
 				rs.close();
 				ps = conn.prepareStatement(addServiceQuery);
@@ -734,7 +734,7 @@ public class InvoiceData {
 				rs.close();
 				ps = conn.prepareStatement(insertServiceType);
 				ps.executeUpdate();
-				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerunits`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Refreshment'),?,?,?)";
+				String addServiceQuery = "INSERT INTO `Services` (`serviceType_ID`,`serviceCode`,`costPerUnit`,`serviceName`) VALUES ((SELECT `serviceType_ID` FROM `ServiceTypes` WHERE `ServiceType` = 'Refreshment'),?,?,?)";
 				ps.close();
 				ps = conn.prepareStatement(addServiceQuery);
 				ps.setString(1, productCode);
