@@ -201,10 +201,46 @@ public class DatabaseImportSystem {
  	public static ArrayList<Product> downloadProducts(){
  		ArrayList<Product> productArray = new ArrayList<Product>();
  		
- 		List<String> productCodes = InvoiceData.getProducts();
+ 		List<String> products = InvoiceData.getAwardTickets();
+
+ 		for(String s: products){
+ 			productArray.add(InvoiceData.getAwardTicketObject(s));
+ 		}
  		
- 		for(String s: productCodes){
- 			productArray.add(InvoiceData.getObject(s));
+ 		products = InvoiceData.getOffSeasonTickets();
+ 		
+ 		for(String s: products){
+ 			productArray.add(InvoiceData.getOffseasonTicketObject(s));
+ 		}
+ 		
+ 		products = InvoiceData.getStandardTickets();
+ 		
+ 		for(String s: products){
+ 			productArray.add(InvoiceData.getStandardTicketObject(s));
+ 		}
+ 		
+ 		products = InvoiceData.getCheckedBaggage();
+ 		
+ 		for(String s: products){
+ 			productArray.add(InvoiceData.getCheckedBaggageObject(s));
+ 		}
+ 		
+ 		products = InvoiceData.getInsurance();
+ 		
+ 		for(String s: products){
+ 			productArray.add(InvoiceData.getInsuranceObject(s));
+ 		}
+ 		
+ 		products = InvoiceData.getRefreshments();
+ 		
+ 		for(String s: products){
+ 			productArray.add(InvoiceData.getRefreshmentObject(s));
+ 		}
+ 		
+ 		products = InvoiceData.getSpecialAssistance();
+ 		
+ 		for(String s: products){
+ 			productArray.add(InvoiceData.getSpecialAssistanceObject(s));
  		}
  		
  		return productArray;

@@ -1090,48 +1090,9 @@ public class InvoiceData {
 		}
 	}
 		
-	public static Customer getCustomerObject(String customerCode){
-		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
-		PreparedStatement ps;
-		ResultSet rs;
-		try
-		{
-				String getCustomerInfo = "SELECT * FROM Customers WHERE customerCode = ?";
-				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
-				ps = conn.prepareStatement(getCustomerInfo);
-				ps.setString(1, customerCode);
-				rs = ps.executeQuery();
-				rs.next();
-				int customerID = rs.getInt("customer_ID");
-				int personID = rs.getInt("primaryContact_person_ID");
-				String name = rs.getString("customerName");
-				String custType = rs.getString("customerType");
-				int airlineMiles = rs.getInt("airlineMiles");
-				rs.close();
-				ps.close();
-				ps = conn.prepareStatement(getPerson);
-				ps.setInt(1, personID);
-				rs = ps.executeQuery();
-				rs.next();
-				String personCode = rs.getString("personCode");
-				rs.close();
-				ps.close();
-				conn.close();
-				Person person = GetPersonObject(personCode);
-				Customer customer = new Customer(customerCode, custType, person, name);
-				if (airlineMiles != 0) {
-					customer.setAirlineMiles(airlineMiles);					
-				}
-				conn.close();
-				return customer;
-				
-		}catch (SQLException e)
-		{
-			System.out.println("SQLException: ");
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}	
+	/*gets
+	 * 
+	 */
 	public static List<String> getAirports(){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
@@ -1218,6 +1179,250 @@ public class InvoiceData {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public static List<String> getAwardTickets(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> awardTickets = new ArrayList<String>();
+		
+		try
+		{
+			String getAwardTickets = "SELECT `ticketCode` FROM Tickets WHERE ticketType = (SELECT ticketType_ID FROM TicketTypes WHERE ticketType = 'TA')";
+			ps = conn.prepareStatement(getAwardTickets);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				awardTickets.add(rs.getString("ticketCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return awardTickets;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static List<String> getOffSeasonTickets(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> offSeasonTickets = new ArrayList<String>();
+		
+		try
+		{
+			String getOffSeasonTickets = "SELECT `ticketCode` FROM Tickets WHERE ticketType = (SELECT ticketType_ID FROM TicketTypes WHERE ticketType = 'TO')";
+			ps = conn.prepareStatement(getOffSeasonTickets);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				offSeasonTickets.add(rs.getString("ticketCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return offSeasonTickets;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static List<String> getStandardTickets(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> standardTickets = new ArrayList<String>();
+		
+		try
+		{
+			String getStandardTickets = "SELECT `ticketCode` FROM Tickets WHERE ticketType = (SELECT ticketType_ID FROM TicketTypes WHERE ticketType = 'TS')";
+			ps = conn.prepareStatement(getStandardTickets);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				standardTickets.add(rs.getString("ticketCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return standardTickets;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static List<String> getCheckedBaggage(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> service = new ArrayList<String>();
+		
+		try
+		{
+			String getServices = "SELECT `serviceCode` FROM Services WHERE serviceType_ID = (SELECT serviceType_ID FROM ServiceTypes WHERE serviceType = 'Checked Baggage')";
+			ps = conn.prepareStatement(getServices);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				service.add(rs.getString("serviceCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return service;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static List<String> getInsurance(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> service = new ArrayList<String>();
+		
+		try
+		{
+			String getServices = "SELECT `serviceCode` FROM Services WHERE serviceType_ID = (SELECT serviceType_ID FROM ServiceTypes WHERE serviceType = 'Insurance')";
+			ps = conn.prepareStatement(getServices);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				service.add(rs.getString("serviceCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return service;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static List<String> getRefreshments(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> service = new ArrayList<String>();
+		
+		try
+		{
+			String getServices = "SELECT `serviceCode` FROM Services WHERE serviceType_ID = (SELECT serviceType_ID FROM ServiceTypes WHERE serviceType = 'Refreshment')";
+			ps = conn.prepareStatement(getServices);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				service.add(rs.getString("serviceCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return service;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static List<String> getSpecialAssistance(){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<String> service = new ArrayList<String>();
+		
+		try
+		{
+			String getServices = "SELECT `serviceCode` FROM Services WHERE serviceType_ID = (SELECT serviceType_ID FROM ServiceTypes WHERE serviceType = 'Special Assistance')";
+			ps = conn.prepareStatement(getServices);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				service.add(rs.getString("serviceCode"));
+			}
+
+			rs.close();
+			ps.close();
+			conn.close();
+			return service;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static Customer getCustomerObject(String customerCode){
+
+		
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		try
+		{
+				String getCustomerInfo = "SELECT * FROM Customers WHERE customerCode = ?";
+				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
+				ps = conn.prepareStatement(getCustomerInfo);
+				ps.setString(1, customerCode);
+				rs = ps.executeQuery();
+				rs.next();
+				int customerID = rs.getInt("customer_ID");
+				int personID = rs.getInt("primaryContact_person_ID");
+				String name = rs.getString("customerName");
+				String custType = rs.getString("customerType");
+				int airlineMiles = rs.getInt("airlineMiles");
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getPerson);
+				ps.setInt(1, personID);
+				rs = ps.executeQuery();
+				rs.next();
+				String personCode = rs.getString("personCode");
+				rs.close();
+				ps.close();
+				conn.close();
+				Person person = GetPersonObject(personCode);
+				Customer customer = new Customer(customerCode, custType, person, name);
+				if (airlineMiles != 0) {
+					customer.setAirlineMiles(airlineMiles);					
+				}
+				conn.close();
+				return customer;
+				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}	
+
 	public static Ticket getTicket(String ticketCode){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
@@ -1229,6 +1434,7 @@ public class InvoiceData {
 		{
 			String getCustomers = "SELECT `ticketType` FROM TicketTypes WHERE ticketType_ID = (SELECT ticketType_ID FROM Tickets WHERE ticketCode = ?)";
 			ps = conn.prepareStatement(getCustomers);
+			ps.setString(1, ticketCode);
 			rs = ps.executeQuery();
 			Ticket t1 = null;
 			rs.next();
@@ -1258,15 +1464,15 @@ public class InvoiceData {
 		ResultSet rs;
 		try
 		{
-				String getTicketInfo = "SELECT * FROM Ticket WHERE ticketType = (SELECT ticket_ID FROM TicketTypes WHERE ticketType = 'TA') AND ticketCode = ?";
+				String getTicketInfo = "SELECT * FROM Tickets WHERE ticketCode = ?";
 				
 				ps = conn.prepareStatement(getTicketInfo);
 				ps.setString(1, ticketCode);
 				rs = ps.executeQuery();
 				rs.next();
 				int ticketID = rs.getInt("ticket_ID");
-				String depAirCode = rs.getString("depAirportCode");
-				String arrAirCode = rs.getString("arrAirportCode");
+				int depAirCode = rs.getInt("depAirportCode");
+				int arrAirCode = rs.getInt("arrAirportCode");
 				Date depTime = rs.getTime("depTime");
 				Date arrTime = rs.getTime("arrTime");
 				String flightNum = rs.getString("flightNum");
@@ -1275,9 +1481,28 @@ public class InvoiceData {
 				int pointsPerMile = rs.getInt("pointsPerMile");
 				rs.close();
 				ps.close();
+				
+				String getAirportCode = "SELECT airportCode FROM Airports WHERE airport_ID = ?";
+				ps = conn.prepareStatement(getAirportCode);
+				ps.setInt(1, depAirCode);
+				rs = ps.executeQuery();
+				
+				rs.next();
+				String depAirName = rs.getString("airportCode");
+				Airport a1 = GetAirportObject(depAirName);
+				rs.close();
+				ps.close();
+				
+				ps = conn.prepareStatement(getAirportCode);
+				ps.setInt(1, arrAirCode);
+				rs = ps.executeQuery();
+				
+				rs.next();
+				String arrAirName = rs.getString("airportCode");
+				Airport a2 = GetAirportObject(arrAirName);
+				rs.close();
+				ps.close();
 				conn.close();
-				Airport a1 = GetAirportObject(depAirCode);
-				Airport a2 = GetAirportObject(arrAirCode);
 				AwardTicket aTicket = new AwardTicket(ticketCode, "TA", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType, pointsPerMile);
 				conn.close();
 				return aTicket;
@@ -1295,15 +1520,15 @@ public class InvoiceData {
 		ResultSet rs;
 		try
 		{
-				String getTicketInfo = "SELECT * FROM Ticket WHERE ticketType = (SELECT ticket_ID FROM TicketTypes WHERE ticketType = 'TS') AND ticketCode = ?";
+				String getTicketInfo = "SELECT * FROM Tickets WHERE ticketCode = ?";
 				
 				ps = conn.prepareStatement(getTicketInfo);
 				ps.setString(1, ticketCode);
 				rs = ps.executeQuery();
 				rs.next();
 				int ticketID = rs.getInt("ticket_ID");
-				String depAirCode = rs.getString("depAirportCode");
-				String arrAirCode = rs.getString("arrAirportCode");
+				int depAirCode = rs.getInt("depAirportCode");
+				int arrAirCode = rs.getInt("arrAirportCode");
 				Date depTime = rs.getTime("depTime");
 				Date arrTime = rs.getTime("arrTime");
 				String flightNum = rs.getString("flightNum");
@@ -1311,9 +1536,28 @@ public class InvoiceData {
 				String aircraftType = rs.getString("aircraftType");
 				rs.close();
 				ps.close();
-				conn.close();
-				Airport a1 = GetAirportObject(depAirCode);
-				Airport a2 = GetAirportObject(arrAirCode);
+				
+				String getAirportCode = "SELECT airportCode FROM Airports WHERE airport_ID = ?";
+				ps = conn.prepareStatement(getAirportCode);
+				ps.setInt(1, depAirCode);
+				rs = ps.executeQuery();
+				
+				rs.next();
+				String depAirName = rs.getString("airportCode");
+				Airport a1 = GetAirportObject(depAirName);
+				rs.close();
+				ps.close();
+				
+				ps = conn.prepareStatement(getAirportCode);
+				ps.setInt(1, arrAirCode);
+				rs = ps.executeQuery();
+				
+				rs.next();
+				String arrAirName = rs.getString("airportCode");
+				Airport a2 = GetAirportObject(arrAirName);
+				rs.close();
+				ps.close();
+
 				StandardTicket sTicket = new StandardTicket(ticketCode, "TS", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType);
 				conn.close();
 				return sTicket;
@@ -1331,15 +1575,15 @@ public class InvoiceData {
 		ResultSet rs;
 		try
 		{
-				String getTicketInfo = "SELECT * FROM Ticket WHERE ticketType = (SELECT ticket_ID FROM TicketTypes WHERE ticketType = 'TO') AND ticketCode = ?";
+				String getTicketInfo = "SELECT * FROM Tickets WHERE ticketCode = ?";
 				
 				ps = conn.prepareStatement(getTicketInfo);
 				ps.setString(1, ticketCode);
 				rs = ps.executeQuery();
 				rs.next();
 				int ticketID = rs.getInt("ticket_ID");
-				String depAirCode = rs.getString("depAirportCode");
-				String arrAirCode = rs.getString("arrAirportCode");
+				int depAirCode = rs.getInt("depAirportCode");
+				int  arrAirCode = rs.getInt("arrAirportCode");
 				Date depTime = rs.getTime("depTime");
 				Date arrTime = rs.getTime("arrTime");
 				String flightNum = rs.getString("flightNum");
@@ -1350,9 +1594,28 @@ public class InvoiceData {
 				float rebate = rs.getFloat("rebate");
 				rs.close();
 				ps.close();
-				conn.close();
-				Airport a1 = GetAirportObject(depAirCode);
-				Airport a2 = GetAirportObject(arrAirCode);
+				
+				String getAirportCode = "SELECT airportCode FROM Airports WHERE airport_ID = ?";
+				ps = conn.prepareStatement(getAirportCode);
+				ps.setInt(1, depAirCode);
+				rs = ps.executeQuery();
+				
+				rs.next();
+				String depAirName = rs.getString("airportCode");
+				Airport a1 = GetAirportObject(depAirName);
+				rs.close();
+				ps.close();
+				
+				ps = conn.prepareStatement(getAirportCode);
+				ps.setInt(1, arrAirCode);
+				rs = ps.executeQuery();
+				
+				rs.next();
+				String arrAirName = rs.getString("airportCode");
+				Airport a2 = GetAirportObject(arrAirName);
+				rs.close();
+				ps.close();
+				
 				OffSeasonTicket oTicket = new OffSeasonTicket(ticketCode, "TO", a1, a2, depTime, arrTime, flightNum, flightClass, aircraftType, seasonStartDate, seasonEndDate, rebate);
 				conn.close();
 				return oTicket;
@@ -1370,7 +1633,7 @@ public class InvoiceData {
 		ResultSet rs;
 		try
 		{
-				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Insurance') AND serviceCode = ?";
+				String getServiceInfo = "SELECT * FROM Services WHERE serviceCode = ?";
 				
 				ps = conn.prepareStatement(getServiceInfo);
 				ps.setString(1, code);
@@ -1400,7 +1663,7 @@ public class InvoiceData {
 		ResultSet rs;
 		try
 		{
-				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Checked Baggage') AND serviceCode = ?";
+				String getServiceInfo = "SELECT * FROM Services WHERE serviceCode = ?";
 				String getTicketCode = "SELECT ticketCode FROM Tickets WHERE ticket_ID = ?";
 				ps = conn.prepareStatement(getServiceInfo);
 				ps.setString(1, code);
@@ -1410,6 +1673,7 @@ public class InvoiceData {
 				rs.close();
 				ps.close();
 				ps = conn.prepareStatement(getTicketCode);
+				ps.setInt(1, ticketID);
 				rs = ps.executeQuery();
 				rs.next();
 				String ticketCode = rs.getString("ticketCode");
@@ -1435,7 +1699,7 @@ public class InvoiceData {
 		ResultSet rs;
 		try
 		{
-				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Special Assistance') AND serviceCode = ?";
+				String getServiceInfo = "SELECT * FROM Services WHERE serviceCode = ?";
 				ps = conn.prepareStatement(getServiceInfo);
 				ps.setString(1, code);
 				rs = ps.executeQuery();
@@ -1461,7 +1725,7 @@ public class InvoiceData {
 		ResultSet rs;
 		try
 		{
-				String getServiceInfo = "SELECT * FROM Services WHERE ServiceType = (SELECT service_ID FROM ServiceTypes WHERE serviceType = 'Refreshment') AND serviceCode = ?";
+				String getServiceInfo = "SELECT * FROM Services WHERE serviceCode = ?";
 				ps = conn.prepareStatement(getServiceInfo);
 				ps.setString(1, code);
 				rs = ps.executeQuery();
