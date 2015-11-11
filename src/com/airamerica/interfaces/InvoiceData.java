@@ -1406,12 +1406,12 @@ public class InvoiceData {
 	 	throw new RuntimeException(e);
 	 	}
 	 }
-	public static List<String> getTicketsIDs(String invoiceCode){
+	public static List<Integer> getTicketsIDs(String invoiceCode){
 	 	Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 	 	PreparedStatement ps;
 	 	ResultSet rs;
 	 	 
-	 	List<String> tickets = new ArrayList<String>();
+	 	List<Integer> tickets = new ArrayList<Integer>();
 	 	 
 	 	try
 	 	{
@@ -1421,9 +1421,10 @@ public class InvoiceData {
 	 	rs = ps.executeQuery();
 	 	 
 	 	while(rs.next()){
-	 	tickets.add(rs.getString("`ticket_ID`"));
+	 	tickets.add(rs.getInt("ticket_ID"));
 	 	}
 
+	 	
 	 	rs.close();
 	 	ps.close();
 	 	conn.close();
