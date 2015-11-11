@@ -1828,6 +1828,7 @@ public class InvoiceData {
 			ps = conn.prepareStatement(getTicketHolder);
 			ps.setInt(1, ticket_ID);
 			rs = ps.executeQuery();
+			TicketHolder t1 = new TicketHolder();
 			while(rs.next()){
 				
 				int age =rs.getInt("age");
@@ -1835,7 +1836,7 @@ public class InvoiceData {
 				String identification = rs.getString("identification");
 				String seatNum = rs.getString("seatNumber");
 				int personID = rs.getInt("person_ID");
-				TicketHolder t1 = new TicketHolder();
+				
 				t1.addAge(age);
 				t1.addId(identification);
 				t1.addNationality(nationality);
@@ -1877,12 +1878,13 @@ public class InvoiceData {
 			ps = conn.prepareStatement(getTicketService);
 			ps.setInt(1, ticket_ID);
 			rs = ps.executeQuery();
+			TicketService t1 = new TicketService();
 			while(rs.next()){
 				int person_ID = rs.getInt("person_ID");
 				int serviceID = rs.getInt("service_ID");
 				int ticketID = rs.getInt("ticket_ID");
 				int units = rs.getInt("units");
-				TicketService t1 = new TicketService();
+				
 				t1.setUnits(units);
 				ps = conn.prepareStatement(getPersoncode);
 				ps.setInt(1, person_ID);
@@ -1928,6 +1930,7 @@ public class InvoiceData {
 				String getInvoice = "SELECT * FROM Invoices WHERE invoiceCode = ?";
 				String getCustomer = "SELECT customerCode FROM Customers WHERE customer_ID = ?";
 				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
+				String getAddionInfo = "SELECT * FROM Invoice_Ticket_map WHERE invoice_ID = (SELECT invoice_ID FROM Invoice WHERE invoiceCode = ?)";
 				ps = conn.prepareStatement(getInvoice);
 				ps.setString(1, invoiceCode);
 				rs = ps.executeQuery();
@@ -1951,6 +1954,14 @@ public class InvoiceData {
 				String personCode = rs.getString("personCode");
 				rs.close();
 				ps.close();
+				ps = conn.prepareStatement(getAddionInfo);
+				ps.setString(1, invoiceCode);
+				rs = ps.executeQuery();
+				while(rs.next()){
+					Date flightDate = rs.getDate("flightDate");
+					int ticketID = rs.getInt("ticket_ID");
+					String comment = rs.getString("comment");
+				}
 				conn.close();
 				Customer customer = getCustomerObject(customerCode);
 				Invoice invoice = new Invoice();
