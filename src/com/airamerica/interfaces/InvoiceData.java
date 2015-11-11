@@ -67,6 +67,8 @@ public class InvoiceData {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+		//Add static values -- online
+		addStaticValues();
 	}
 
 	/**
@@ -491,7 +493,7 @@ public class InvoiceData {
 	public static void addAwardsTicket(String productCode,String depAirportCode, 
 			String arrAirportCode, String depTime, String arrTime, 
 			String flightNum, String flightClass, 
-			String aircraftType, int pointsPerMile) {
+			String aircraftType, double pointsPerMile) {
 		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
 		ResultSet rs;
@@ -514,7 +516,7 @@ public class InvoiceData {
 				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
-				ps.setInt(9, pointsPerMile);
+				ps.setDouble(9, pointsPerMile);
 				ps.executeUpdate();
 				ps.close();
 			}else{
@@ -535,7 +537,7 @@ public class InvoiceData {
 				ps.setString(6, flightNum);
 				ps.setString(7, flightClass);
 				ps.setString(8, aircraftType);
-				ps.setInt(9, pointsPerMile);
+				ps.setDouble(9, pointsPerMile);
 				ps.executeUpdate();
 				ps.close();
 				
@@ -799,16 +801,31 @@ public class InvoiceData {
 			String salesPersonCode, String invoiceDate) {
 		Connection conn = DataBaseInfo.getConnection();
 		PreparedStatement ps;
+		ResultSet rs;
+		//if salesperson code passed is null, give it the salesperson 'online'
+		System.out.println(salesPersonCode);
+		
 		try
 		{
-				String addInvoiceQuery = "INSERT INTO `Invoices` (`invoiceCode`,`customer_ID`,`salesperson`,`saleDate`) VALUES (?,(SELECT `customer_ID` FROM `Customers` WHERE `customerCode` = ?),(SELECT `person_ID` FROM `Persons` WHERE `personCode` = ?),?)";
-				ps = conn.prepareStatement(addInvoiceQuery);
-				ps.setString(1, invoiceCode);
-				ps.setString(2, customerCode);
-				ps.setString(3, salesPersonCode);
-				ps.setString(4, invoiceDate);
-				ps.executeUpdate();
-				ps.close();
+			String checkSalesPerson= "SELECT `Person_ID` FROM Persons WHERE `personCode` = ?";		
+			ps = conn.prepareStatement(checkSalesPerson);
+			ps.setString(1, salesPersonCode);
+			rs = ps.executeQuery();
+			
+			if(!rs.next()){
+				salesPersonCode = "online";
+			}
+			ps.close();
+			rs.close();
+			
+			String addInvoiceQuery = "INSERT INTO `Invoices` (`invoiceCode`,`customer_ID`,`salesperson`,`saleDate`) VALUES (?,(SELECT `customer_ID` FROM `Customers` WHERE `customerCode` = ?),(SELECT `Person_ID` FROM `Persons` WHERE `personCode` = ?),?)";
+			ps = conn.prepareStatement(addInvoiceQuery);
+			ps.setString(1, invoiceCode);
+			ps.setString(2, customerCode);
+			ps.setString(3, salesPersonCode);		
+			ps.setString(4, invoiceDate);
+			ps.executeUpdate();
+			ps.close();
 				conn.close();
 		}catch (SQLException e){
 			System.out.println("SQLException: ");

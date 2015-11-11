@@ -81,7 +81,7 @@ public class DatabaseImportSystem {
 				AwardTicket t = (AwardTicket) p;
 				InvoiceData.addAwardsTicket(t.getCode(), t.getDepAirportCode().getAirportCode(), t.getArrAirportCode().getAirportCode(), 
 						timeOfDay.format(t.getFlightTime("departing")), timeOfDay.format(t.getFlightTime("arriving")), t.getFlightNo(), t.getFlightClass(), t.getAircraftType(), 
-						t.getPointsPerMile());
+						(double)t.getPointsPerMile());
 				
 			} else if (p instanceof OffSeasonTicket){
 				OffSeasonTicket t = (OffSeasonTicket) p;
