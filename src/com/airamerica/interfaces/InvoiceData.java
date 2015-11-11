@@ -1808,7 +1808,7 @@ public class InvoiceData {
 
 	public static List<TicketHolder> getTicketHolderObject(int ticket_ID){
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
-		PreparedStatement ps;
+		PreparedStatement ps, ps1;
 		ResultSet rs, rs1;
 		
 		List<TicketHolder> ticketHolder = new ArrayList<TicketHolder>();
@@ -1840,14 +1840,15 @@ public class InvoiceData {
 				t1.addId(identification);
 				t1.addNationality(nationality);
 				t1.addSeatNum(seatNum);
-				ps = conn.prepareStatement(getPersonCode);
-				ps.setInt(1, personID);
+				ps1 = conn.prepareStatement(getPersonCode);
+				ps1.setInt(1, personID);
 				rs1 = ps.executeQuery();
 				rs1.next();
 				String personCode = rs1.getString("personCode");
 				t1.addPerson(personCode);
 				ticketHolder.add(t1);
 				rs1.close();
+				ps1.close();
 			}
 			
 			rs.close();
