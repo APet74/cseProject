@@ -156,7 +156,7 @@ public class DatabaseImportSystem {
 			//add ticketservice at k
 			for(int l = 0; l < i.getServices().size(); l++){
 				if(FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof CheckedBaggage){
-					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());
+					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());
 				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof Insurance){
 					InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());	
 				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof Refreshment){
