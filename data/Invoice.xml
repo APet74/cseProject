@@ -1,7 +1,6 @@
 <invoices>
 <list>
   <invoice>
-    <invoiceCode>INV001</invoiceCode>
     <customer>
       <customerCode>C001</customerCode>
       <customerType>C</customerType>
@@ -28,51 +27,14 @@
       <airlineMiles>0</airlineMiles>
     </customer>
     <salespersonCode>nwdoc1</salespersonCode>
-    <saleDate>2015-08-03 05:00:00.0 UTC</saleDate>
-    <ticketCodes>
-      <string>1255</string>
-    </ticketCodes>
-    <flightDates>
-      <date>2015-09-13 05:00:00.0 UTC</date>
-    </flightDates>
-    <ticketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
-          <string>12A</string>
-          <string>12B</string>
-        </seatNum>
-        <person>
-          <string>ma12</string>
-          <string>321f</string>
-        </person>
-        <id>
-          <string>FA1234</string>
-          <string>FP6521</string>
-        </id>
-        <age>
-          <int>23</int>
-          <int>26</int>
-        </age>
-        <nationality>
-          <string>USA</string>
-          <string>USA</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-    </ticketHolder>
-    <services>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>90fa</serviceCode>
-        <units>3</units>
-      </com.airamerica.invoices.TicketService>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>fh23</serviceCode>
-        <units>2</units>
-        <ticketCode>1255</ticketCode>
-      </com.airamerica.invoices.TicketService>
-    </services>
+    <saleDate class="sql-date">2015-08-03</saleDate>
+    <ticketCodes/>
+    <flightDates/>
+    <ticketHolder/>
+    <services/>
+    <comments/>
   </invoice>
   <invoice>
-    <invoiceCode>INV002</invoiceCode>
     <customer>
       <customerCode>C002</customerCode>
       <customerType>G</customerType>
@@ -97,64 +59,14 @@
       <airlineMiles>12500</airlineMiles>
     </customer>
     <salespersonCode>online</salespersonCode>
-    <saleDate>2015-01-10 06:00:00.0 UTC</saleDate>
-    <ticketCodes>
-      <string>1240</string>
-      <string>1241</string>
-    </ticketCodes>
-    <flightDates>
-      <date>2015-09-12 05:00:00.0 UTC</date>
-      <date>2015-09-22 05:00:00.0 UTC</date>
-    </flightDates>
-    <ticketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
-          <string>32C</string>
-        </seatNum>
-        <person>
-          <string>321na</string>
-        </person>
-        <id>
-          <string>FS12345</string>
-        </id>
-        <age>
-          <int>43</int>
-        </age>
-        <nationality>
-          <string>Mexico</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
-          <string>12C</string>
-        </seatNum>
-        <person>
-          <string>321na</string>
-        </person>
-        <id>
-          <string>FS12345</string>
-        </id>
-        <age>
-          <int>43</int>
-        </age>
-        <nationality>
-          <string>Mexico</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-    </ticketHolder>
-    <services>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>32f4</serviceCode>
-        <units>3</units>
-      </com.airamerica.invoices.TicketService>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>xer4</serviceCode>
-        <personCode>321na</personCode>
-      </com.airamerica.invoices.TicketService>
-    </services>
+    <saleDate class="sql-date">2015-01-10</saleDate>
+    <ticketCodes/>
+    <flightDates/>
+    <ticketHolder/>
+    <services/>
+    <comments/>
   </invoice>
   <invoice>
-    <invoiceCode>INV003</invoiceCode>
     <customer>
       <customerCode>C004</customerCode>
       <customerType>C</customerType>
@@ -179,45 +91,14 @@
       <airlineMiles>4170000</airlineMiles>
     </customer>
     <salespersonCode>2ndbestd</salespersonCode>
-    <saleDate>2015-09-10 05:00:00.0 UTC</saleDate>
-    <ticketCodes>
-      <string>1240</string>
-    </ticketCodes>
-    <flightDates>
-      <date>2015-12-17 06:00:00.0 UTC</date>
-    </flightDates>
-    <ticketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
-          <string>17G</string>
-        </seatNum>
-        <person>
-          <string>55bb</string>
-        </person>
-        <id>
-          <string>NB3111</string>
-        </id>
-        <age>
-          <int>72</int>
-        </age>
-        <nationality>
-          <string>Bolivia</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-    </ticketHolder>
-    <services>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>xer1</serviceCode>
-        <personCode>55bb</personCode>
-      </com.airamerica.invoices.TicketService>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>31f4</serviceCode>
-        <units>1</units>
-      </com.airamerica.invoices.TicketService>
-    </services>
+    <saleDate class="sql-date">2015-09-10</saleDate>
+    <ticketCodes/>
+    <flightDates/>
+    <ticketHolder/>
+    <services/>
+    <comments/>
   </invoice>
   <invoice>
-    <invoiceCode>INV004</invoiceCode>
     <customer>
       <customerCode>C003</customerCode>
       <customerType>V</customerType>
@@ -242,81 +123,11 @@
       <airlineMiles>36000</airlineMiles>
     </customer>
     <salespersonCode>6doc</salespersonCode>
-    <saleDate>2015-10-16 05:00:00.0 UTC</saleDate>
-    <ticketCodes>
-      <string>1260</string>
-      <string>1262</string>
-    </ticketCodes>
-    <flightDates>
-      <date>2016-01-08 06:00:00.0 UTC</date>
-      <date>2016-03-28 05:00:00.0 UTC</date>
-    </flightDates>
-    <ticketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
-          <string>32F</string>
-          <string>21A</string>
-          <string>32D</string>
-        </seatNum>
-        <person>
-          <string>55bb</string>
-          <string>2342</string>
-          <string>231</string>
-        </person>
-        <id>
-          <string>AB3111</string>
-          <string>AB1222</string>
-          <string>PP988877</string>
-        </id>
-        <age>
-          <int>34</int>
-          <int>31</int>
-          <int>12</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-          <string>Korea</string>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-      <com.airamerica.invoices.TicketHolder>
-        <seatNum>
-          <string>10B</string>
-          <string>10C</string>
-        </seatNum>
-        <person>
-          <string>231</string>
-          <string>2342</string>
-        </person>
-        <id>
-          <string>PP988877</string>
-          <string>AB1222</string>
-        </id>
-        <age>
-          <int>12</int>
-          <int>31</int>
-        </age>
-        <nationality>
-          <string>Korea</string>
-          <string>Korea</string>
-        </nationality>
-      </com.airamerica.invoices.TicketHolder>
-    </ticketHolder>
-    <services>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>fg23</serviceCode>
-        <units>3</units>
-        <ticketCode>1260</ticketCode>
-      </com.airamerica.invoices.TicketService>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>90fc</serviceCode>
-        <units>2</units>
-      </com.airamerica.invoices.TicketService>
-      <com.airamerica.invoices.TicketService>
-        <serviceCode>fg23</serviceCode>
-        <units>2</units>
-        <ticketCode>1262</ticketCode>
-      </com.airamerica.invoices.TicketService>
-    </services>
+    <saleDate class="sql-date">2015-10-16</saleDate>
+    <ticketCodes/>
+    <flightDates/>
+    <ticketHolder/>
+    <services/>
+    <comments/>
   </invoice>
 </list></invoices>

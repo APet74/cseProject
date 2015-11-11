@@ -595,9 +595,9 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		DatabaseImportSystem.uploadInvoices(invoiceArray, productArray);
  		
 
- 		productArray = null;
- 		productArray = DatabaseImportSystem.downloadProducts();
- 		XMLOut.toXML(productArray);
+ 		invoiceArray = null;
+ 		invoiceArray = DatabaseImportSystem.downloadInvoices();
+ 		XMLOut.toXML(invoiceArray);
 
 	}
 }

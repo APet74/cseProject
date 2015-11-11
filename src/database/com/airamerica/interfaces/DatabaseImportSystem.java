@@ -133,13 +133,12 @@ public class DatabaseImportSystem {
 	}
 	
  	public static void uploadInvoices(ArrayList<Invoice> invoiceArray, ArrayList<Product> productArray){
+		DateFormat yearMonthDay = new SimpleDateFormat("yyyy-MM-dd");
 		
 		//add every invoice object to database
 		for (Invoice i: invoiceArray){
-			InvoiceData.addInvoice(i.getInvoiceCode(), i.getCustomer().getCode(), i.getSalesperson(), i.getSaleDate().toString());
-			
-			DateFormat yearMonthDay = new SimpleDateFormat("yyyy-MM-dd");
-			
+			InvoiceData.addInvoice(i.getInvoiceCode(), i.getCustomer().getCode(), i.getSalesperson(), yearMonthDay.format(i.getSaleDate()));
+		
 			//add every ticket to the invoice
 			for (int k = 0; k < i.getTicketCodes().size(); k++){
 				//add ticket at k
@@ -156,18 +155,15 @@ public class DatabaseImportSystem {
 			
 			//add ticketservice at k
 			for(int l = 0; l < i.getServices().size(); l++){
-				if(FindObject.find(i.getInvoiceCode(), productArray) instanceof CheckedBaggage){
-					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());
-					
-				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof Insurance){
-					InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());	
-				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof Refreshment){
+				if(FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof CheckedBaggage){
+					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());
+				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof Insurance){
+					InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());	
+				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof Refreshment){
 					InvoiceData.addRefreshmentToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());
-				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof SpecialAssistance){
+				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof SpecialAssistance){
 					InvoiceData.addSpecialAssistanceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getPersonCode());
-					
-				}
-					
+				}		
 			}
 			
 		}
@@ -259,11 +255,11 @@ public class DatabaseImportSystem {
  		
  		return productArray;
  	}
- 	/*
+ 	
  	public static ArrayList<Invoice> downloadInvoices(){
  		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
  		
- 		List<String> invoices= InvoiceData.getServices();
+ 		List<String> invoices= InvoiceData.getInvoices();
 
  		for(String s: invoices){
  			invoiceArray.add(InvoiceData.getInvoiceObject(s));
@@ -273,5 +269,5 @@ public class DatabaseImportSystem {
  		
  		return invoiceArray;
  	}
- 	*/
+ 	
 }
