@@ -1245,7 +1245,7 @@ public class InvoiceData {
 		int id = 0;
 	 	try
 	 	{
-	 	String getService = "SELECT `service_ID` FROM Services WHERE `service_ID` = ?";
+	 	String getService = "SELECT `service_ID` FROM Services WHERE `service_ID` = (SELECT service_ID FROM Invoices WHERE invoiceCode = ?)";
 	 	ps = conn.prepareStatement(getService);
 		ps.setString(1, invoiceCode);
 	 	rs = ps.executeQuery();
