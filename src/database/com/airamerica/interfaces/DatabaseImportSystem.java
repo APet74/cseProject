@@ -152,8 +152,22 @@ public class DatabaseImportSystem {
 							i.getTicketHolder(k).getAge(l), i.getTicketHolder(k).getNationality(l),
 							i.getTicketHolder(k).getSeat(l));
 				}
-				
-				//add ticketservice at k
+			}
+			
+			//add ticketservice at k
+			for(int l = 0; l < i.getServices().size(); l++){
+				if(FindObject.find(i.getInvoiceCode(), productArray) instanceof CheckedBaggage){
+					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());
+					
+				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof Insurance){
+					InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());	
+				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof Refreshment){
+					InvoiceData.addRefreshmentToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());
+				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof SpecialAssistance){
+					InvoiceData.addSpecialAssistanceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getPersonCode());
+					
+				}
+					
 			}
 			
 		}
@@ -245,4 +259,19 @@ public class DatabaseImportSystem {
  		
  		return productArray;
  	}
+ 	/*
+ 	public static ArrayList<Invoice> downloadInvoices(){
+ 		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
+ 		
+ 		List<String> invoices= InvoiceData.getServices();
+
+ 		for(String s: invoices){
+ 			invoiceArray.add(InvoiceData.getInvoiceObject(s));
+ 		}
+ 		
+ 		//for every invoice array 
+ 		
+ 		return invoiceArray;
+ 	}
+ 	*/
 }
