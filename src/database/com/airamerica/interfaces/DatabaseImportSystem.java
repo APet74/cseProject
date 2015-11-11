@@ -156,7 +156,18 @@ public class DatabaseImportSystem {
 			
 			//add ticketservice at k
 			for(int l = 0; l < i.getServices().size(); l++){
-				InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());
+				if(FindObject.find(i.getInvoiceCode(), productArray) instanceof CheckedBaggage){
+					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());
+					
+				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof Insurance){
+					InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());	
+				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof Refreshment){
+					InvoiceData.addRefreshmentToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());
+				} else if (FindObject.find(i.getInvoiceCode(), productArray) instanceof SpecialAssistance){
+					InvoiceData.addSpecialAssistanceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getPersonCode());
+					
+				}
+					
 			}
 			
 		}
