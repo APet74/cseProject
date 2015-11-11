@@ -882,17 +882,16 @@ public class InvoiceData {
 	 * number of quantity and associated ticket information
 	 */
 	public static void addInsuranceToInvoice(String invoiceCode, String productCode, 
-			int quantity, String ticketCode) {
+			int quantity) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT `ticket_ID` FROM `Tickets` WHERE `ticketCode` = ?))";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`units`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?)";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
 				ps.setInt(3, quantity);
-				ps.setString(4, ticketCode);
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
@@ -911,16 +910,17 @@ public class InvoiceData {
 	 * number of quantity.
 	 */
 	public static void addCheckedBaggageToInvoice(String invoiceCode, String productCode, 
-			int quantity) {
+			int quantity, String ticketCode) {
 		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?)";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT ticket_ID FROM Tickets WHERE ticketCode = ?)";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
 				ps.setInt(3, quantity);
+				ps.setString(4, ticketCode);
 				ps.executeUpdate();
 				ps.close();
 				conn.close();
