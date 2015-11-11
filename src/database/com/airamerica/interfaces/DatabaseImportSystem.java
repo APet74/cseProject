@@ -156,9 +156,9 @@ public class DatabaseImportSystem {
 			//add ticketservice at k
 			for(int l = 0; l < i.getServices().size(); l++){
 				if(FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof CheckedBaggage){
-					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());
+					InvoiceData.addCheckedBaggageToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());
 				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof Insurance){
-					InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());	
+					InvoiceData.addInsuranceToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits(), i.getServices().get(l).getTicketCode());	
 				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof Refreshment){
 					InvoiceData.addRefreshmentToInvoice(i.getInvoiceCode(), i.getServices().get(l).getServiceCode(), i.getServices().get(l).getUnits());
 				} else if (FindObject.find(i.getServices().get(l).getServiceCode(), productArray) instanceof SpecialAssistance){
@@ -270,7 +270,7 @@ public class DatabaseImportSystem {
  			//add all ticketholders from tickets 
  			List<Integer> tickets = InvoiceData.getTicketsIDs(i.getInvoiceCode());
  			for(Integer n: tickets){
- 				i.addTicketHolders(InvoiceData.getTicketHolderObject(n));
+ 				i.addTicketHolders(InvoiceData.getTicketHolderObject(n, i.getInvoiceCode()));
  			}
  			//add services
  			//get invoice id
