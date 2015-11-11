@@ -1932,7 +1932,7 @@ public class InvoiceData {
 				String getInvoice = "SELECT * FROM Invoices WHERE invoiceCode = ?";
 				String getCustomer = "SELECT customerCode FROM Customers WHERE customer_ID = ?";
 				String getPerson = "SELECT personCode FROM Persons WHERE person_ID = ?";
-				String getAddionInfo = "SELECT * FROM Invoices_Tickets_map WHERE invoice_ID = (SELECT invoice_ID FROM Invoice WHERE invoiceCode = ?)";
+				String getAddionInfo = "SELECT * FROM Invoices_Tickets_map WHERE invoice_ID = (SELECT invoice_ID FROM Invoices WHERE invoiceCode = ?)";
 				String getTicketCode = "SELECT ticketCode FROM Tickets WHERE ticket_ID = ?";
 				ps = conn.prepareStatement(getInvoice);
 				ps.setString(1, invoiceCode);
