@@ -915,7 +915,7 @@ public class InvoiceData {
 		PreparedStatement ps;
 		try
 		{
-				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT ticket_ID FROM Tickets WHERE ticketCode = ?)";
+				String addTicketToInvoiceQuery = "INSERT INTO `TicketServices` (`invoice_ID`,`service_ID`,`unit`,`ticket_ID`) VALUES ((SELECT `invoice_ID` FROM `Invoices` WHERE `invoiceCode` = ?),(SELECT `service_ID` FROM `Services` WHERE `serviceCode` = ?),?,(SELECT ticket_ID FROM Tickets WHERE ticketCode = ?))";
 				ps = conn.prepareStatement(addTicketToInvoiceQuery);
 				ps.setString(1, invoiceCode);
 				ps.setString(2, productCode);
