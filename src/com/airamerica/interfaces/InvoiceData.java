@@ -1817,6 +1817,7 @@ public class InvoiceData {
 		{
 			String getComment = "SELECT `comment` FROM Invoices_Tickets_map WHERE ticket_ID = ?";
 			String getTicketHolder = "SELECT * FROM TicketHolders WHERE ticket_ID = ?";
+			String getPersonCode = "SELECT personCode FROM Persons WHERE person_ID = ?";
 			ps = conn.prepareStatement(getComment);
 			ps.setInt(1, ticket_ID);
 			rs = ps.executeQuery();
@@ -1833,12 +1834,19 @@ public class InvoiceData {
 				String nationality = rs.getString("nationality");
 				String identification = rs.getString("identification");
 				String seatNum = rs.getString("seatNumber");
+				int personID = rs.getInt("person_ID");
 				TicketHolder t1 = new TicketHolder();
 				t1.addAge(age);
 				t1.addId(identification);
 				t1.addNationality(nationality);
 				t1.addSeatNum(seatNum);
 				ticketHolder.add(t1);
+				ps = conn.prepareStatement(getPersonCode);
+				ps.setInt(1, personID);
+				rs = ps.executeQuery();
+				rs.next();
+				String personCode = rs.getString("personCode");
+				t1.addPerson(personCode);
 			}
 			
 			rs.close();
