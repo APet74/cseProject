@@ -29,6 +29,7 @@ import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.invoices.Invoice;
 import com.airamerica.invoices.TicketHolder;
+import com.airamerica.invoices.TicketService;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
@@ -1838,6 +1839,64 @@ public class InvoiceData {
 				t1.addNationality(nationality);
 				t1.addSeatNum(seatNum);
 				ticketHolder.add(t1);
+			}
+			
+			rs.close();
+			ps.close();
+			conn.close();
+			return ticketHolder;
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}	
+	
+	public static List<TicketService> getTicketServiceObject(int ticket_ID){
+		Connection conn = database.com.airamerica.interfaces.DatabaseConnect.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		List<TicketService> ticketHolder = new ArrayList<TicketService>();
+		
+		try
+		{
+			String getTicketService = "SELECT * FROM TicketServices WHERE ticket_ID = ?";
+			String getPersoncode = "SELECT personCode FROM Persons WHERE person_ID = ?";
+			String getTicketCode = "SELECT ticketcode FROM Tickets WHERE ticket_ID = ?";
+			String getServiceCode = "SELECT serviceCode FROM Services WHERE service_ID = ?";
+			ps = conn.prepareStatement(getTicketService);
+			ps.setInt(1, ticket_ID);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				int person_ID = rs.getInt("person_ID");
+				int serviceID = rs.getInt("service_ID");
+				int ticketID = rs.getInt("ticket_ID");
+				int units = rs.getInt("units");
+				TicketService t1 = new TicketService();
+				t1.setUnits(units);
+				ps = conn.prepareStatement(getPersoncode);
+				ps.setInt(1, person_ID);
+				rs = ps.executeQuery();
+				rs.next();
+				String PersonCode = rs.getString("personCode");
+				t1.setPersonCode(PersonCode);
+				rs.close();
+				ps.close();
+				ps = conn.prepareStatement(getTicketCode);
+				ps.setInt(1, ticket_ID);
+				rs = ps.executeQuery();
+				rs.next();
+				String ticketCode = rs.getString("ticketCode");
+				t1.setTicketCode(ticketCode);
+				ps = conn.prepareStatement(getServiceCode);
+				ps.setInt(1, serviceID);
+				rs = ps.executeQuery();
+				rs.next();
+				String serviceCode = rs.getString("serviceCode");
+				t1.setServiceCode(serviceCode);
+				
 			}
 			
 			rs.close();
