@@ -260,7 +260,8 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 				NumberFormat formatter = new DecimalFormat("#0.00");
 				
 				//this is the date comparison
-				if(ticketObj.getSeasonStartDate().compareTo(invoice.getFlightDates(j)) * invoice.getFlightDates(j).compareTo(ticketObj.getSesaonEndDate()) > 0){
+
+				if((ticketObj.getSeasonStartDate().compareTo(invoice.getFlightDates(j)) * invoice.getFlightDates(j).compareTo(ticketObj.getSesaonEndDate()) > 0) || (invoice.getFlightDates(j).equals(ticketObj.getSeasonStartDate()) || (invoice.getFlightDates(j).equals(ticketObj.getSesaonEndDate())))){
 					ticketObj.getFees();
 					double fee = (ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) - ((ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) * ticketObj.getRebate()) + 20 ;
 					 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
