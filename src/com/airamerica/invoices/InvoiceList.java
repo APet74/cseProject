@@ -3,7 +3,7 @@ package com.airamerica.invoices;
 import java.util.Arrays;
 
 
-public class InvoiceList {
+public class InvoiceList{
 
 	private InvoiceListNode start = null;
 	private InvoiceListNode end = null;
