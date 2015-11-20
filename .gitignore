@@ -46,3 +46,6 @@ src/unl/cse/assignments/DataConverter.java
 *.class
 src/com/airamerica/Products.java
 bin/unl/cse/assignments/DataConverter.class
+jar/InvoiceReport.jar
+*.jar
+jar/InvoiceReport.jar
