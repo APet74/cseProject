@@ -14,8 +14,11 @@ public class InvoiceList {
 	}
 	
 	//when pulled from database, added to list
-	public void add(){
+	public void add(Invoice invoice){
+		InvoiceListNode newNode = new InvoiceListNode(invoice);
 		
+		//if first, make into start node
+		//else make into 
 	}
 	
 	//not functional to have a remove - all invoices pulled from database, there are no invoice reports that show only a segment of all invoices
