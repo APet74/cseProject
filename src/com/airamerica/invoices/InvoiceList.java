@@ -2,7 +2,6 @@ package com.airamerica.invoices;
 
 import java.util.Arrays;
 
-import unl.cse.sorting.Location;
 
 public class InvoiceList {
 
@@ -20,13 +19,9 @@ public class InvoiceList {
 	}
 	
 	//not functional to have a remove - all invoices pulled from database, there are no invoice reports that show only a segment of all invoices
-	public static Location [] quickSort(Location list[]) {
-		Location result[] = Arrays.copyOf(list, list.length);
-		quickSortRecursive(result, 0, result.length-1);
-		return result;
-	}
 
-	private static void quickSortRecursive(Location list[], int low, int high) {
+
+	private static void quickSortRecursive(Invoice list[], int low, int high) {
 		int i = low;
 		int j = high;
 		int pivot = (((i - j)/2)+j);
