@@ -23,6 +23,13 @@ public class InvoiceList{
 	
 	//not functional to have a remove - all invoices pulled from database, there are no invoice reports that show only a segment of all invoices
 
+	public Invoice get(int index){
+		//TODO
+	}
+	
+	public int size(){
+		return this.size;
+	}
 
 	private static void quickSortRecursive(Invoice list[], int low, int high) {
 		int i = low;

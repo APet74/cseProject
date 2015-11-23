@@ -2,12 +2,14 @@ package Comparators;
 
 import java.util.Comparator;
 
-public class InvoiceCode implements Comparator{
+import com.airamerica.invoices.Invoice;
+
+public class InvoiceCode implements Comparator<Invoice>{
 
 	@Override
-	public int compare(Object arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compare(Invoice inv1, Invoice inv2) {
+		return inv1.getInvoiceCode().compareTo(inv2.getInvoiceCode());
+		
 	}
 
 }
