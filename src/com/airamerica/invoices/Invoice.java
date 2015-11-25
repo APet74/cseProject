@@ -199,6 +199,9 @@ public class Invoice {
 				 	totalArray[j] = 30 + tax;
 			}
 		}
+		for(int k = 0; k < invoice.getServices().size(); k++){
+			
+		}
 		return 0;
 	}
 }
