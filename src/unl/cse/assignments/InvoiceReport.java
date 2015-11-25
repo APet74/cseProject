@@ -37,9 +37,7 @@ import java.text.SimpleDateFormat;
 /* Assignment 3,5 and 6 (Project Phase-II,IV and V) */
 
 public class InvoiceReport  {
-	
-	
-	
+
 	private String generateSummaryReport(ArrayList<String> invoiceNum, ArrayList<String> customerName, ArrayList<String> salesPerson, double[] subTotalEx, double[] feesEx, double[] taxesEx, double[] discountEx, double[] totalEx) {
 		StringBuilder sb = new StringBuilder();
 		/*
@@ -274,7 +272,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 						
 						//adds to string builder
 					sb.append(String.format("%-8s%-71s%-2s%8.2f%-2s%8.2f%-2s%8.2f\n",ticketObj.getCode(), "OffSeason Ticket(" + ticketObj.getFlightClass() + ") " + a2.getCode() + " to " + a1.getCode() + "(" + formatter.format(ticketObj.getMiles(a1, a2)) + " miles) %" + formatter.format(percentOff) , "$", fee, " $", tax, " $", total));
-					sb.append(String.format("%-8s%-71s\n", "", "(" + invoice.getTicketHolder().get(j).getPerson().size() + " units @ " + formatter.format(ticketObj.getFees()) + "/unit with $20.00 fee) "));
+					sb.append(String.format("%-8s%-71s\n", "", "(" + invoice.getTicketHolder().get(j).getPerson().size() + " units @ " + (formatter.format(ticketObj.getFees() - (ticketObj.getFees() * ticketObj.getRebate()))) + "/unit with $20.00 fee) "));
 				}else{
 					
 					//if the date doesn't match this is used to still apply the fee but not give the discount
