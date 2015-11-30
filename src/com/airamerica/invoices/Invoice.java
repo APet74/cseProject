@@ -9,6 +9,7 @@ import com.airamerica.Customer;
 import com.airamerica.Person;
 import com.airamerica.dataConversion.FindObject;
 import com.airamerica.interfaces.InvoiceData;
+import com.airamerica.products.Insurance;
 import com.airamerica.products.Product;
 import com.airamerica.products.Service;
 import com.airamerica.products.Ticket;
@@ -171,6 +172,7 @@ public class Invoice {
 		return this.ticketHolder.get(index).getNumberOfPassengers();
 	}
 	public double getTotal(Invoice invoice){
+		double total = 0;
 		double[] totalArray = new double[(invoice.getTicketCodes().size()) + (invoice.getServices().size())];
 		for(int j = 0; j < invoice.getTicketCodesSize(); j++){
 			
@@ -179,29 +181,54 @@ public class Invoice {
 			if(ticketObj.getProductType().equals("TS")){
 				double fees = ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size();
 				double tax = ticketObj.getTax(fees) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
-				totalArray[j] = fees + tax;
+				total += fees + tax;
 			}else if(ticketObj.getProductType().equals("TO")){
 				if((ticketObj.getSeasonStartDate().compareTo(invoice.getFlightDates(j)) * invoice.getFlightDates(j).compareTo(ticketObj.getSesaonEndDate()) > 0) || (invoice.getFlightDates(j).equals(ticketObj.getSeasonStartDate()) || (invoice.getFlightDates(j).equals(ticketObj.getSesaonEndDate())))){
 					double fee = (ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) - ((ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) * ticketObj.getRebate()) + 20 ;
 					 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
 						//adds totals and sub totals
-						totalArray[j] = fee + tax;
+						total += fee + tax;
 				}else{
 					double fee = (ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) + 20 ;
 					 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
 						//math for totals and sub totals
-					 	totalArray[j] = fee + tax;
+					 	total += fee + tax;
 				}
 			}else{
 				double fee = ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size();
 				 double tax = ticketObj.getTax(30) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
 					//math for totals and sub totals
-				 	totalArray[j] = 30 + tax;
+				 	total += 30 + tax;
 			}
 		}
 		for(int k = 0; k < invoice.getServices().size(); k++){
-			
+			Service serviceObj = InvoiceData.getService(invoice.getServices().get(k).getServiceCode());
+			if(serviceObj.getProductType().equals("SC")){
+				//checks if baggage and if so grabs prices and calculates fees and taxes calculations from 330 to 336
+				double price = serviceObj.getCostPerMile();
+				price = serviceObj.getFees(invoice.getServices().get(k).getUnits());
+				double tax = price * .04;
+				total += price + tax;
+				
+			}else if(serviceObj.getProductType().equals("SI")){  
+				//if it is insurance grabs a ticket to get the air miles and calculates how much the insurance costs, calculations from line 348 to 354
+				Ticket ticketObj = (Ticket) InvoiceData.getTicket(invoice.getServices().get(k).getTicketCode());
+				Airport a1 = ticketObj.getArrAirportCode();
+				Airport a2 = ticketObj.getDepAirportCode();
+				serviceObj = (Insurance) serviceObj;
+				double price = serviceObj.getCostPerMile();
+				price = (price * ticketObj.getMiles(a1, a2)) * invoice.getServices().get(k).getUnits();
+				double tax = price * .04;
+				total += price + tax;
+			}else if(serviceObj.getProductType().equals("SR")){
+				//if here then must be a refreshment, math is done from 368 to 375
+				double price = serviceObj.getFees();
+				price = (invoice.getServices().get(k).getUnits() * price);
+				price = price - (price * .05);
+				double tax = serviceObj.getTax(invoice.getServices().get(k).getUnits());
+				total += price + tax;
+			}
 		}
-		return 0;
+		return total;
 	}
 }

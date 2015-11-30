@@ -34,6 +34,7 @@ import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
 import com.airamerica.products.Refreshment;
+import com.airamerica.products.Service;
 import com.airamerica.products.SpecialAssistance;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
@@ -1726,6 +1727,43 @@ public class InvoiceData {
 				conn.close();
 				return oTicket;
 				
+		}catch (SQLException e)
+		{
+			System.out.println("SQLException: ");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+	}
+	public static Service getService(String serviceCode){
+		Connection conn = DataBaseInfo.getConnection();
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		
+		
+		try
+		{
+			String getServices = "SELECT `serviceType` FROM ServiceTypes WHERE serviceType_ID = (SELECT serviceType_ID FROM Services WHERE serviceCode = ?)";
+			ps = conn.prepareStatement(getServices);
+			ps.setString(1, serviceCode);
+			rs = ps.executeQuery();
+			Service s1 = null;
+			rs.next();
+			String serviceType = rs.getString("serviceType");
+
+			rs.close();
+			ps.close();
+			conn.close();
+			if(serviceType.equals("Checked Baggae")){
+				s1 = getCheckedBaggageObject(serviceCode);
+			}else if(serviceType.equals("Refreshment")){
+				s1 = getRefreshmentObject(serviceCode);
+			}else if(serviceType.equals("Insurance")){
+				s1 = getInsuranceObject(serviceCode);
+			}else{
+				s1 = getSpecialAssistanceObject(serviceCode);
+			}
+			return s1;
 		}catch (SQLException e)
 		{
 			System.out.println("SQLException: ");
