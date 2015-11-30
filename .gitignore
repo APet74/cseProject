@@ -49,3 +49,4 @@ bin/unl/cse/assignments/DataConverter.class
 jar/InvoiceReport.jar
 *.jar
 jar/InvoiceReport.jar
+src/com/airamerica/invoices/InvoiceList.java

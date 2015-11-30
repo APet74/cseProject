@@ -31,7 +31,7 @@ public class InvoiceList{
 		return this.size;
 	}
 
-	private static void quickSortRecursive(Invoice list[], int low, int high) {
+	private static void quickSortRecursive(int low, int high) {
 		int i = low;
 		int j = high;
 		int pivot = (((i - j)/2)+j);
@@ -43,7 +43,7 @@ public class InvoiceList{
 				j--;
 			}
 			if(i <= j){
-				Location temp = list[i];
+				Invoice temp = list[i];
 				list[i] = list[j];
 				list[j] = temp;
 				i++;
