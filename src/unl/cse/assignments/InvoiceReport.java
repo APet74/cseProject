@@ -11,6 +11,7 @@ import com.airamerica.dataConversion.ParseData;
 import com.airamerica.dataConversion.XMLOut;
 import com.airamerica.interfaces.InvoiceData;
 import com.airamerica.invoices.Invoice;
+import com.airamerica.invoices.InvoiceList;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.Insurance;
 import com.airamerica.products.OffSeasonTicket;
@@ -84,7 +85,7 @@ public class InvoiceReport  {
 	}
 	
 
-	private String getTravelSummary(ArrayList<Invoice> invoiceArray, int index, ArrayList<Product> productArray, ArrayList<Person> personArray) {
+	private String getTravelSummary(InvoiceList invoiceArray, int index, ArrayList<Product> productArray, ArrayList<Person> personArray) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("FLIGHT INFORMATION\n");
 		
@@ -168,7 +169,7 @@ public class InvoiceReport  {
 		
 	}
 	
-private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<Person> personArray, ArrayList<Product> productArray, ArrayList<Customer> customerArray, ArrayList<String> invoiceNum, ArrayList<String> customerName, ArrayList<String> salesPerson, double[] subTotalEx, double[] feesEx, double[] taxesEx,double[] discountEx,double[] totalEx) {
+	private String getCostSummary(InvoiceList invoiceArray,int i, ArrayList<Person> personArray, ArrayList<Product> productArray, ArrayList<Customer> customerArray, ArrayList<String> invoiceNum, ArrayList<String> customerName, ArrayList<String> salesPerson, double[] subTotalEx, double[] feesEx, double[] taxesEx,double[] discountEx,double[] totalEx) {
 		
 		
 		StringBuilder sb = new StringBuilder();
@@ -447,7 +448,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		
 	}
 
-	public String getInvoiceHeader (ArrayList<Invoice> invoiceArray, int index) {
+	public String getInvoiceHeader (InvoiceList invoiceArray, int index) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(String.format("\nInvoice %s\n", invoiceArray.get(index).getInvoiceCode()));
 
@@ -463,7 +464,7 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		return sb.toString();
 	}
 	
-	public String generateDetailReport(ArrayList<Invoice> invoiceArray, ArrayList<Person> personArray, ArrayList<Product> productArray, ArrayList<Customer> customerArray, ArrayList<String> invoiceNum, ArrayList<String> customerName, ArrayList<String> salesPerson, double[] subTotalEx, double[] feesEx, double[] taxesEx,double[] discountEx,double[] totalEx) {
+	public String generateDetailReport(InvoiceList invoiceArray, ArrayList<Person> personArray, ArrayList<Product> productArray, ArrayList<Customer> customerArray, ArrayList<String> invoiceNum, ArrayList<String> customerName, ArrayList<String> salesPerson, double[] subTotalEx, double[] feesEx, double[] taxesEx,double[] discountEx,double[] totalEx) {
 	StringBuilder sb = new StringBuilder();		
 	sb.append("Individual Invoice Detail Reports\n");
 	sb.append("==================================================");
@@ -572,7 +573,8 @@ private String getCostSummary(ArrayList<Invoice> invoiceArray,int i, ArrayList<P
 		ArrayList<Person> personArray = new ArrayList<Person>();
 		ArrayList<Customer> customerArray = new ArrayList<Customer>();
 		ArrayList<Product> productArray = new ArrayList<Product>();
-		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
+		//ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
+		InvoiceList invoiceArray = new InvoiceList();
 		
 		airportArray = DatabaseImportSystem.downloadAirports();
 		personArray = DatabaseImportSystem.downloadPersons();

@@ -11,6 +11,7 @@ import com.airamerica.Person;
 import com.airamerica.dataConversion.FindObject;
 import com.airamerica.interfaces.InvoiceData;
 import com.airamerica.invoices.Invoice;
+import com.airamerica.invoices.InvoiceList;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
@@ -21,13 +22,15 @@ import com.airamerica.products.SpecialAssistance;
 import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
 
+import Comparators.CustomerByPerson;
+import Comparators.InvoiceCode;
+
 public class DatabaseImportSystem {
 
 	/*
 	 * import data into database
 	 */
 	public static void clearDatabase(){
-		//TODO: remove all emails
 		InvoiceData.removeAllAddresses();
 		InvoiceData.removeAllAirports();
 		InvoiceData.removeAllCustomers();
@@ -256,6 +259,7 @@ public class DatabaseImportSystem {
  		return productArray;
  	}
  	
+ 	/*
  	public static ArrayList<Invoice> downloadInvoices(){
  		ArrayList<Invoice> invoiceArray = new ArrayList<Invoice>();
  		
@@ -279,5 +283,31 @@ public class DatabaseImportSystem {
  		
  		return invoiceArray;
  	}
- 	
+	*/
+ 	public static InvoiceList downloadInvoices(){
+ 		InvoiceList invoiceArray = new InvoiceList();
+ 		
+ 		List<String> invoices= InvoiceData.getInvoices();
+
+ 		for(String s: invoices){
+ 			invoiceArray.add(InvoiceData.getInvoiceObject(s), new InvoiceCode());
+ 		}
+
+ 		for(Invoice i: invoiceArray){
+ 			System.out.println(i.getInvoiceCode());
+ 		}
+ 		//for every invoice array 
+ 		for(Invoice i: invoiceArray){
+ 			//add all ticketholders from tickets 
+ 			List<Integer> tickets = InvoiceData.getTicketsIDs(i.getInvoiceCode());
+ 			for(Integer n: tickets){
+ 				i.addTicketHolders(InvoiceData.getTicketHolderObject(n, i.getInvoiceCode()));
+ 			}
+ 			//add services
+ 			//get invoice id
+ 			i.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(i.getInvoiceCode())));
+ 		}
+ 		
+ 		return invoiceArray;
+ 	}
 }

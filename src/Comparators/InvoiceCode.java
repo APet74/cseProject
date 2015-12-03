@@ -8,7 +8,7 @@ public class InvoiceCode implements Comparator<Invoice>{
 
 	@Override
 	public int compare(Invoice inv1, Invoice inv2) {
-		return inv1.getInvoiceCode().compareTo(inv2.getInvoiceCode());
+		return inv2.getInvoiceCode().compareTo(inv1.getInvoiceCode());
 		
 	}
 

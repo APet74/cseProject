@@ -27,4 +27,8 @@ public class InvoiceListNode implements Comparable{
     public void setNext(InvoiceListNode next) {
         this.next = next;
     }
+    
+    public boolean hasNext(){
+    	return (!(next == null));
+    }
 }
