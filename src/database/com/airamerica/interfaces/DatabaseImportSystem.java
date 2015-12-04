@@ -293,9 +293,8 @@ public class DatabaseImportSystem {
  			invoiceArray.add(InvoiceData.getInvoiceObject(s), new InvoiceCode());
  		}
 
- 		for(Invoice i: invoiceArray){
- 			System.out.println(i.getInvoiceCode());
- 		}
+
+		
  		//for every invoice array 
  		for(Invoice i: invoiceArray){
  			//add all ticketholders from tickets 
@@ -308,6 +307,9 @@ public class DatabaseImportSystem {
  			i.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(i.getInvoiceCode())));
  		}
  		
+ 		for(Invoice i: invoiceArray){
+ 			System.out.println(i.getInvoiceCode());
+ 		}
  		return invoiceArray;
  	}
 }

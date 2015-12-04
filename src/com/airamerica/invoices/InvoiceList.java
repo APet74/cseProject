@@ -8,7 +8,6 @@ import java.util.Iterator;
 public class InvoiceList implements Iterable <Invoice>{
 
 	private InvoiceListNode start = null;
-	private InvoiceListNode end = null;
 	private int size = 0;
 	
 	public InvoiceList() {
@@ -22,34 +21,42 @@ public class InvoiceList implements Iterable <Invoice>{
 		//if first, make into start node
 		if (size == 0){
 			start = newNode;
-			end = newNode;
 			size++;
 		} else {
 			//else compare to nodes, find place for node
 			InvoiceListNode prevNode = start;
-			InvoiceListNode nextNode = start.getNext();
+			InvoiceListNode nextNode = start;
 			boolean flag = true;
 			int count = 0;
-			while (compareInvoiceList.compare(prevNode.getInvoice(), newNode.getInvoice()) > 0 && flag) {
-				if (nextNode == null){
-					this.end = newNode;
-					flag = false;
-					System.out.println("1");
-					}else {
+			//if statement == || correct order with start
+			if (compareInvoiceList.compare(nextNode.getInvoice(), newNode.getInvoice()) == 0 ||
+					compareInvoiceList.compare(nextNode.getInvoice(), newNode.getInvoice()) > 0){
+				start = newNode;
+				start.setNext(nextNode);
+			} else {
+				while(!(nextNode.getNext() == null)){
 					prevNode = nextNode;
-					nextNode = prevNode.getNext();
-					
+					nextNode = nextNode.getNext();				
+				
+					if(compareInvoiceList.compare(nextNode.getInvoice(), newNode.getInvoice())  > -1) {
+						break;
+					}
 				}
-
+				
+				if((nextNode.getNext() == null)){
+					nextNode.setNext(newNode);
+				} else {
+					prevNode.setNext(newNode);
+					newNode.setNext(nextNode);
+				}
 			}
-
-			prevNode.setNext(newNode);
-			newNode.setNext(nextNode);
+			//if statement else -- loop to find correct location
+			
+			size++;
 		}
 		
 	}
 	
-	//not functional to have a remove - all invoices pulled from database, there are no invoice reports that show only a segment of all invoices
 
 	public Invoice get(int index){
 		//TODO

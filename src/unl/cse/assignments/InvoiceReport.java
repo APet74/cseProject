@@ -582,7 +582,7 @@ public class InvoiceReport  {
 		productArray = DatabaseImportSystem.downloadProducts();
 		invoiceArray = DatabaseImportSystem.downloadInvoices();
 		
-		
+
 		
 		//XMLOut.toXML(personArray);
 		//XMLOut.toXML(customerArray);
