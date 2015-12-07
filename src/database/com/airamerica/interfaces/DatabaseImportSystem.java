@@ -307,9 +307,6 @@ public class DatabaseImportSystem {
  			i.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(i.getInvoiceCode())));
  		}
  		
- 		for(Invoice i: invoiceArray){
- 			System.out.println(i.getInvoiceCode());
- 		}
  		return invoiceArray;
  	}
 }

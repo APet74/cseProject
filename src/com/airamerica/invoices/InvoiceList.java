@@ -81,9 +81,11 @@ public class InvoiceList implements Iterable <Invoice>{
 	//inner iterable class
 	private class InvoiceListIterator implements Iterator<Invoice>{
 		private InvoiceListNode placeholder;
+		private int index;
 		
 		public InvoiceListIterator() {
 			this.placeholder = InvoiceList.this.start;
+			index = -1;
 		}
 
 		@Override
@@ -94,13 +96,25 @@ public class InvoiceList implements Iterable <Invoice>{
 		@Override
 		public Invoice next() {
 			// TODO Auto-generated method stub
-			if(this.hasNext()) {
-				InvoiceListNode thisNode = placeholder;
-				placeholder = placeholder.getNext();
+			InvoiceListNode thisNode = placeholder;	
+			index++;
+			
+			if (index == 0){
+
 				return thisNode.getInvoice();
+				
+			} else {
+				thisNode = placeholder.getNext();
+				placeholder = placeholder.getNext();
+			
+				if(thisNode == null){
+					return null;
+				} else {
+					return thisNode.getInvoice();
+				}
+			
 			}
 			
-			return null;
 		}
 	}
 
