@@ -294,31 +294,22 @@ public class DatabaseImportSystem {
  			
  			//add all ticketholders from tickets 
  			Invoice invoice = new Invoice();
+ 			invoice = InvoiceData.getInvoiceObject(s);
+ 			invoice.setInvoiceCode(s);
  			List<Integer> tickets = InvoiceData.getTicketsIDs(s);
  			for(Integer n: tickets){
- 				invoice.addTicketHolders(InvoiceData.getTicketHolderObject(n, s));
- 				 System.out.println(invoice.getTicketHolder().get(0).getNumberOfPassengers());
+ 				List<TicketHolder> ticketHolder = new ArrayList<TicketHolder>();
+ 				ticketHolder = InvoiceData.getTicketHolderObject(n, s);
+ 				
+ 				invoice.addTicketHolders(ticketHolder);
  			}
  			//add services
  			//get invoice id
  			invoice.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(s)));
- 		
  			
- 			
- 			
- 			invoiceArray.add(InvoiceData.getInvoiceObject(s), new InvoiceCode());
+ 			invoiceArray.add(invoice, new InvoiceCode());
  		}	
  		
-
-
-		
- 		//for every invoice array 
- 	
- 		for(Invoice i: invoiceArray){
- 			for(TicketHolder t: i.getTicketHolder()){
- 				System.out.println(t.getAge(0));
- 			}
- 		}
  		return invoiceArray;
  	}
 }

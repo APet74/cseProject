@@ -472,7 +472,7 @@ public class InvoiceReport  {
 	/* TODO: Loop through all invoices and call the getTravelSummary() and 
 	getCostSummary() for each invoice*/
 	for(int i = 0; i < invoiceArray.size(); i++){
-		
+
 		//calls the methods for genearting cost summary
 		String invoiceHeader = getInvoiceHeader(invoiceArray, i);
 		String flightSummary = getTravelSummary(invoiceArray, i, productArray, personArray);
