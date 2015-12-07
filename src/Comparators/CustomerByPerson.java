@@ -9,10 +9,15 @@ public class CustomerByPerson implements Comparator<Invoice>{
 	@Override
 	public int compare(Invoice inv1, Invoice inv2) {
 		
+/*
+		System.out.println(inv2.getCustomer().getPrimaryContact().getlastName().compareTo(inv1.getCustomer().getPrimaryContact().getlastName()) +
+				 "\t lastName: " + inv2.getCustomer().getPrimaryContact().getlastName() + "\t :" + inv1.getCustomer().getPrimaryContact().getlastName());		
+	*/
 		if(inv1.getCustomer().getPrimaryContact().getlastName().compareTo(inv2.getCustomer().getPrimaryContact().getlastName()) == 0){
-			return inv1.getCustomer().getPrimaryContact().getfirstName().compareTo(inv2.getCustomer().getPrimaryContact().getfirstName());
+
+			return inv2.getCustomer().getPrimaryContact().getfirstName().compareTo(inv1.getCustomer().getPrimaryContact().getfirstName());
 		} else {
-			return inv1.getCustomer().getPrimaryContact().getlastName().compareTo(inv2.getCustomer().getPrimaryContact().getlastName());
+			return inv2.getCustomer().getPrimaryContact().getlastName().compareTo(inv1.getCustomer().getPrimaryContact().getlastName());
 		}
 
 	}

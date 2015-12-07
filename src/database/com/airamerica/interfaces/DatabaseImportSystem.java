@@ -24,7 +24,9 @@ import com.airamerica.products.StandardTicket;
 import com.airamerica.products.Ticket;
 
 import Comparators.CustomerByPerson;
+import Comparators.CustomertypeBySalesperson;
 import Comparators.InvoiceCode;
+import Comparators.Totals;
 
 public class DatabaseImportSystem {
 
@@ -307,7 +309,7 @@ public class DatabaseImportSystem {
  			//get invoice id
  			invoice.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(s)));
  			
- 			invoiceArray.add(invoice, new InvoiceCode());
+ 			invoiceArray.add(invoice, new CustomerByPerson());
  		}	
  		
  		return invoiceArray;
