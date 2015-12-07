@@ -173,9 +173,7 @@ public class Invoice {
 	}
 	public double getTotal(Invoice invoice){
 		double total = 0;
-		double[] totalArray = new double[(invoice.getTicketCodes().size()) + (invoice.getServices().size())];
-		for(int j = 0; j < invoice.getTicketCodesSize(); j++){
-			
+		for(int j = 0; j < invoice.getTicketCodesSize(); j++){	
 			Ticket ticketObj = InvoiceData.getTicket(invoice.getTicketCodes(j));
 			Airport a1 = ticketObj.getArrAirportCode();
 			if(ticketObj.getProductType().equals("TS")){
@@ -185,12 +183,12 @@ public class Invoice {
 			}else if(ticketObj.getProductType().equals("TO")){
 				if((ticketObj.getSeasonStartDate().compareTo(invoice.getFlightDates(j)) * invoice.getFlightDates(j).compareTo(ticketObj.getSesaonEndDate()) > 0) || (invoice.getFlightDates(j).equals(ticketObj.getSeasonStartDate()) || (invoice.getFlightDates(j).equals(ticketObj.getSesaonEndDate())))){
 					double fee = (ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) - ((ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) * ticketObj.getRebate()) + 20 ;
-					 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
+				    double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
 						//adds totals and sub totals
 						total += fee + tax;
 				}else{
 					double fee = (ticketObj.getFees() * invoice.getTicketHolder().get(j).getPerson().size()) + 20 ;
-					 double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
+					double tax = ticketObj.getTax(fee) + (4 * invoice.getTicketHolder().get(j).getPerson().size()) + (5.6 * invoice.getTicketHolder().get(j).getPerson().size() + (a1.getPassengerFee() * invoice.getTicketHolder().get(j).getPerson().size()));
 						//math for totals and sub totals
 					 	total += fee + tax;
 				}
@@ -228,6 +226,11 @@ public class Invoice {
 				double tax = serviceObj.getTax(invoice.getServices().get(k).getUnits());
 				total += price + tax;
 			}
+		}
+		if(invoice.getCustomer().getCustomerType().equals("V")){
+			double discount = total * .12;
+			double addFee = 40;
+			total = total - discount + addFee;
 		}
 		return total;
 	}
