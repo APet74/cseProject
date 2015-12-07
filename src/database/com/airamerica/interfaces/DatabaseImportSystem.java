@@ -12,6 +12,7 @@ import com.airamerica.dataConversion.FindObject;
 import com.airamerica.interfaces.InvoiceData;
 import com.airamerica.invoices.Invoice;
 import com.airamerica.invoices.InvoiceList;
+import com.airamerica.invoices.TicketHolder;
 import com.airamerica.products.AwardTicket;
 import com.airamerica.products.CheckedBaggage;
 import com.airamerica.products.Insurance;
@@ -290,23 +291,34 @@ public class DatabaseImportSystem {
  		List<String> invoices= InvoiceData.getInvoices();
 
  		for(String s: invoices){
+ 			
+ 			//add all ticketholders from tickets 
+ 			Invoice invoice = new Invoice();
+ 			List<Integer> tickets = InvoiceData.getTicketsIDs(s);
+ 			for(Integer n: tickets){
+ 				invoice.addTicketHolders(InvoiceData.getTicketHolderObject(n, s));
+ 				 System.out.println(invoice.getTicketHolder().get(0).getNumberOfPassengers());
+ 			}
+ 			//add services
+ 			//get invoice id
+ 			invoice.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(s)));
+ 		
+ 			
+ 			
+ 			
  			invoiceArray.add(InvoiceData.getInvoiceObject(s), new InvoiceCode());
- 		}
+ 		}	
+ 		
 
 
 		
  		//for every invoice array 
+ 	
  		for(Invoice i: invoiceArray){
- 			//add all ticketholders from tickets 
- 			List<Integer> tickets = InvoiceData.getTicketsIDs(i.getInvoiceCode());
- 			for(Integer n: tickets){
- 				i.addTicketHolders(InvoiceData.getTicketHolderObject(n, i.getInvoiceCode()));
+ 			for(TicketHolder t: i.getTicketHolder()){
+ 				System.out.println(t.getAge(0));
  			}
- 			//add services
- 			//get invoice id
- 			i.AddServices(InvoiceData.getTicketServiceObject(InvoiceData.getInvoiceID(i.getInvoiceCode())));
  		}
- 		
  		return invoiceArray;
  	}
 }
